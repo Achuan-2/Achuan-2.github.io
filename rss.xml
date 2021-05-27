@@ -6,8 +6,17 @@
     <atom:link href="https://achuan-2.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <description>记录精彩的程序人生</description>
     <generator>Solo, v4.3.1, https://b3log.org/solo</generator>
-    <lastBuildDate>Thu, 27 May 2021 12:38:32 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 May 2021 13:41:51 +0800</lastBuildDate>
     <language>zh-cn</language>
+    <item>
+      <title>说说</title>
+      <link>https://achuan-2.github.io/articles/2021/05/27/1622090927005.html</link>
+      <description/>
+      <author>Achuan-2</author>
+      <guid>https://achuan-2.github.io/articles/2021/05/27/1622090927005.html</guid>
+      <category>待分类</category>
+      <pubDate>Thu, 27 May 2021 12:48:47 +0800</pubDate>
+    </item>
     <item>
       <title>世界，你好！</title>
       <link>https://achuan-2.github.io/hello-solo</link>
