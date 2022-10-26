@@ -1,0 +1,25 @@
+recent:
+  layout: recent
+  rss: # /atom.xml # npm i hexo-generator-feed
+  limit: 5 # Count of posts
+toc:
+  layout: toc
+  list_number: false # 是否显示序号
+  min_depth: 2
+  max_depth: 5
+  fallback: recent # Use a backup widget when toc does not exist.
+ghuser:
+  layout: ghuser
+  api: https://api.github.com
+  username: Achuan-2 # your github login username
+  avatar: true # show avatar or not
+  menu: false  # show menu or not
+welcome:
+  layout: markdown
+  title: 欢迎来到阿巛同学的小窝
+  content: 阿巛同学想在这里偷偷地沉淀，一点点变成更厉害的人哦！
+timeline:
+  layout: timeline
+  title: 近期动态
+  api: https://api.github.com/repos/Achuan-2/Achuan-2.github.io/issues
+  user: Achuan-2 # 是否过滤只显示某个人发布的内容，如果要筛选多人，用英文逗号隔开

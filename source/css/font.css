@@ -1,0 +1,20 @@
+@font-face {
+    font-family: '苹方';
+    src: url('/assets/fonts/pingfangsc-regular.otf');
+}
+
+body {
+    font-family: '苹方',"quote",
+        'Helvetica Neue',
+        'Luxi Sans',
+        'DejaVu Sans',
+        'Hiragino Sans GB',
+        'Microsoft Yahei',
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Noto Color Emoji',
+        'Segoe UI Symbol',
+        'Android Emoji',
+        'EmojiSymbols';
+}

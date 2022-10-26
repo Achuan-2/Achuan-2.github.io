@@ -1,0 +1,17 @@
+group1:
+  title: 🤺大佬们
+  description: 感谢大佬们让我见识到五花八门的世界！！！😋
+  items:  
+  - title: xaoxuu
+    avatar: https://cdn.jsdelivr.net/gh/cdn-x/xaoxuu/avatar/rect-256@2x.png
+    url: https://xaoxuu.com
+    screenshot: https://i.loli.net/2020/08/21/VuSwWZ1xAeUHEBC.jpg
+    description: stellar 主题作者
+  - title: 星日语
+    avatar: https://api.iconify.design/line-md:sunny-outline-twotone-loop.svg?color=%23eb4600
+    url: https://weekdaycare.cn/
+    description: 星语日点灯
+  - title: YuZhangWang的领域
+    avatar: https://gcore.jsdelivr.net/gh/YuZhangWang/Creative-pictures02/2022/04/18/20220418175156528.jpg
+    url: https://yuzhang.wang/
+    description: PLUSULTRA!
