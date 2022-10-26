@@ -17,7 +17,7 @@ ghuser:
 welcome:
   layout: markdown
   title: 欢迎来到阿巛同学的小窝
-  content: 阿巛同学想在这里偷偷地沉淀，一点点变成更厉害的人哦！
+  content: 阿巛同学想在这里偷偷地沉淀，一点点变成更厉害的人哦！🤫
 timeline:
   layout: timeline
   title: 近期动态
