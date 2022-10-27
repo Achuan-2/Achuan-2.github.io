@@ -1,5 +1,5 @@
 ---
-title: Refseq 分析：Tophat2+cufflinks+cuffdiff+差异基因分析
+title: RNAseq 分析：Tophat2+cufflinks+cuffdiff+差异基因分析
 categories:
   - 生信
 tags:
@@ -7,14 +7,12 @@ tags:
   - 作业
 abbrlink: 6389
 date: 2022-10-25 12:21:25
+updated:
+excerpt: 复旦大学《实用生物信息学》第一次作业，使用Tophat2-cufflinks-cuffdiff流程来进行RNAseq差异基因分析
 ---
 
-复旦大学《实用生物信息学》第一次作业
 
-<!-- more -->
-
-
-![pipeline](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/pipeline-20221023131537-gg5rnwh.svg "本次分析的整体流程")​
+![pipeline](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/pipeline-20221023131537-gg5rnwh.svg "本次分析的整体流程")​
 
 ## 一、数据来源
 
@@ -41,7 +39,7 @@ NONO 是一种 DNA/RNA 结合蛋白，该文揭示了 **NONO在小鼠胚胎干�
 
 通过在 NCBI 的 SRA 数据库输入 SRR id，打开 [Run Selector](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP188551&o=acc_s%3Aa&s=SRR8734722,SRR8734718,SRR8734708,SRR8734712)，选择 4 个 Run 后勾选 Selected，下载 Metadata 和 Accession List，上传到服务器项目文件夹中。
 
-![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220923111615-szjl96s.png)
+![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220923111615-szjl96s.png)
 
 ​`SRR_Acc_List.txt` ​文件内容
 
@@ -96,9 +94,9 @@ SRR8734722,set2_NonoKO_D0
    ```
 4. 下载完成
 
-   ![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220923232239-tkxtdyv.png "cat $PROJECT/log/slurm.*.fastq-dump*.out")​
+   ![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220923232239-tkxtdyv.png "cat $PROJECT/log/slurm.*.fastq-dump*.out")​
 
-   ![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220926232618-otpzdnj.png "ll -h $PROJECT/01_rawdata/")​
+   ![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220926232618-otpzdnj.png "ll -h $PROJECT/01_rawdata/")​
 
    ​
 
@@ -168,7 +166,7 @@ $ trim_galore --version
 
    ​`SRR8734708_2.fastq.gz->SRR8734708_2_val_2.fq.gz`​
 
-   ![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220927195628-y81zt42.png "ll -lh $PROJECT/01_rawdata/")​
+   ![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220927195628-y81zt42.png "ll -lh $PROJECT/01_rawdata/")​
 
 > 如果是单端测序模式，trim_galore 则会默认生成带 trimed.fq.gz 的数据文件
 
@@ -323,12 +321,12 @@ $ trim_galore --version
 
    1. tophat2 的运行结果
 
-      ![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220928193453-vtzwja0.png "tree -L 2 ${Project}/02_result/tophat2")​
+      ![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220928193453-vtzwja0.png "tree -L 2 ${Project}/02_result/tophat2")​
 
       其中最有用的是 accepted_hits.bam，记录了 reads 比对到参考基因组的数据
    2. cufflinks 的运行结果：
 
-      ![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220928192709-10579bp.png)​
+      ![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220928192709-10579bp.png)​
 
       其中常用的是 `genes.fpkm_tracking` 和 `transcripts.gtf` 文件
 
@@ -468,7 +466,7 @@ done
 
 FPKM2TPM.R 还会调用 pheatmap 包根据各样本的 TPM 表达量来绘制热图
 
-![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220924223301-uunvmdm.png)​
+![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220924223301-uunvmdm.png)​
 
 ‍
 
@@ -547,11 +545,11 @@ Usage:   cuffdiff [options] <transcripts.gtf> <sample1_hits.sam> <sample2_hits.s
 
    `ll ${Project}/02_result/cuffdiff`
 
-   ![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220928231232-lzbzun2.png "ll ${Project}/02_result/cuffdiff")​
+   ![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20220928231232-lzbzun2.png "ll ${Project}/02_result/cuffdiff")​
 
    可以看到生成了很多文件，后面的差异基因分析将主要用到 gene_exp.dff。其中第三列是基因名，第五列和第六列是比较的两个样本名，第 10 列是 log2(foldchange)值，第 12 列是 pvalue。
 
-   ![Snipaste_2022-10-26_08-41-47](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-26_08-41-47-20221026084153-s33gjur.png "less -SN ${Project}/02_result/cuffdiff/gene_exp.diff")​
+   ![Snipaste_2022-10-26_08-41-47](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-26_08-41-47-20221026084153-s33gjur.png "less -SN ${Project}/02_result/cuffdiff/gene_exp.diff")​
 
 ## 三、R 语言代码
 
@@ -673,19 +671,19 @@ ggsave(p2, filename = "plot/KEGG_enrichment.pdf")
 
 筛选差异基因，提取 | log2(foldchange) | > 1.5，p_value<0.05 的差异基因共 2599 个，上调基因共 947 个（log2(foldchange)>=0），下调基因 1652 个（log2(foldchange)<0）
 
-![Snipaste_2022-10-26_09-45-07](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-26_09-45-07-20221026094508-gu7vli7.png "上下调基因数目比较")​
+![Snipaste_2022-10-26_09-45-07](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-26_09-45-07-20221026094508-gu7vli7.png "上下调基因数目比较")​
 
 按照 foldchange 的值由高到低进行排序，取 Top50 的差异基因，绘制热图。发现 set1_NonoKO_D0 和 set2_NonoKO_D0 的基因特征比较类似，而 set2_WT_D0 的上调基因含量过于高了，不确定是样本问题。NonoKO 细胞的 Mid1、Maf、Pcdh18 等众多基因下调，而 Hist1h2ah、Ftl1、Hprt 基因上调。
 
-![Snipaste_2022-10-26_09-44-43](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-26_09-44-43-20221026094454-yjonve6.png "Top50差异基因在各样本的表达量")​
+![Snipaste_2022-10-26_09-44-43](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-26_09-44-43-20221026094454-yjonve6.png "Top50差异基因在各样本的表达量")​
 
 ​
 
 进行 GO 富集和 KEGG 富集分析
 
-![Snipaste_2022-10-25_23-45-22](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-25_23-45-22-20221025234524-qiue995.png "GO的Biological process富集分析")​
+![Snipaste_2022-10-25_23-45-22](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-25_23-45-22-20221025234524-qiue995.png "GO的Biological process富集分析")​
 
-![Snipaste_2022-10-25_23-45-53](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-25_23-45-53-20221025234555-akrjhuo.png "KEGG富集分析")​
+![Snipaste_2022-10-25_23-45-53](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/Snipaste_2022-10-25_23-45-53-20221025234555-akrjhuo.png "KEGG富集分析")​
 
 通过 GO 的 Biological process 富集分析，发现这些差异基因主要在 epithelial tube morphogenesis、renal system development、mesenchyme development、kidney development、mesenchymal cell
 differentiation 富集
@@ -697,7 +695,7 @@ differentiation 富集
 * trim_galore 过滤双端数据的时候，忘记加--paired 参数，发现 trim_galore 过滤双端数据生成的最终文件不是 trimed.fq.gz，而是 val_1.fq.gz 和 val_2.fq.gz.
 * 一开始不明白 cuffdiff 的 gene_exp.diff 其中的 foldchange 是怎么计算的，四个样本输进去后会有 6 个组的比较，也就是说所有样本之间都进行比较了，包括 set1 的 WT 组和 set2 的 WT 组。后来经过助教的指导才发现自己没看仔细 cuffdiff 的使用规则，同一组的不同重复用逗号分割，不同组间应该用空格分割，说明无论做什么事情还是要仔细，不要一开始就犯错，理解有问题。
 
-  ![image](Refseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20221003224834-2o60cnv.png "cuffdiff计算两组间的差异基因，却出现6组比较")​​
+  ![image](RNAseq-分析：Tophat2-cufflinks-cuffdiff-差异基因分析/image-20221003224834-2o60cnv.png "cuffdiff计算两组间的差异基因，却出现6组比较")​​
 * cuffdiff 的 log（foldchange）是 sample2/sample1，log（foldchange）>0 代表 gene 在 sample2 中上调，log（foldchange）<0 代表 gene 在 sample2 中下调。开始运行 cuffdiff 的时候，没有注意输入顺序，把 KO 放在了 WT 前面，造成上下调基因输出相反。
 * 本次实验的样本量太少，set1 和 set2 同一组的 WT 小鼠的基因表达量差异也很大，GO 富集和 KEGG 富集分析的结果并不能说明什么，需要扩大样本量找到的差异基因才更有说服力。
 

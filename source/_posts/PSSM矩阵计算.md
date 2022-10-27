@@ -5,13 +5,13 @@ tags:
   - 作业
 abbrlink: 12770
 date: 2022-10-21 16:08:58
+updated: 
+excerpt: PSSM（Position-Specific Scoring Matrix）是从MSA中构建的，实际上就是相同长度的一组序列根据各个位点氨基酸（碱基）频率计算得到的的权值矩阵，许多motif寻找软件的组成部分。
+description: PSSM（Position-Specific Scoring Matrix）是从MSA中构建的，实际上就是相同长度的一组序列根据各个位点氨基酸（碱基）频率计算得到的权值矩阵，是许多motif寻找软件的组成部分。
 ---
 
-PSSM（Position-Specific Scoring Matrix）是从MSA中构建的，实际上就是相同长度的一组序列根据各个位点氨基酸（碱基）频率计算得到的的**权值矩阵，**是许多motif寻找软件的组成部分。
 
-<!-- more -->
-
-PSSM（Position-Specific Scoring Matrix）是从MSA中构建的，实际上就是相同长度的一组序列根据各个位点氨基酸（碱基）频率计算得到的的**权值矩阵，**是许多motif寻找软件的组成部分。
+PSSM（Position-Specific Scoring Matrix）是从MSA中构建的，实际上就是相同长度的一组序列根据各个位点氨基酸（碱基）频率计算得到的**权值矩阵，**是许多motif寻找软件的组成部分。
 
 详细介绍见wiki：[Position weight matrix - Wikipedia](https://en.wikipedia.org/wiki/Position_weight_matrix)
 

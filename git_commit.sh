@@ -1,3 +1,3 @@
 git add .
-git commit -m ":memo: 绑定域名，添加sitemap"
+git commit -m ":memo: 文章front-matter添加excerpt"
 git push
