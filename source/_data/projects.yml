@@ -1,0 +1,14 @@
+Test:
+  name: Test
+  title: 这是一个测试wiki
+  subtitle: 待完善
+  cover: true
+  logo:
+    src: /assets/ico/favicon.svg
+    small: 112px
+    large: 240px
+  description: Stellar 是一个内置 wiki 系统的 hexo 主题，适合综合型站点使用。同时也拥有简约而精美的视觉设计和丰富的标签插件，帮助您简单从容地应对各种场合。
+  sidebar: [toc,sections]
+  sections:
+    '分页1': [0, 9]
+    '分页2': [100, 199]
