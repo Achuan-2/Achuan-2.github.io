@@ -187,6 +187,9 @@ footer:
     comments:
       icon: '<img src="https://api.iconify.design/bx/comment-detail.svg"/>'
       url: https://github.com/Achuan-2/Achuan-2.github.io/issues
+    email:
+      icon: '<img src="https://api.iconify.design/clarity/email-outline-badged.svg"/>'
+      url: 'mailto:achuan-2@outlook.com'
     # unsplash:
     #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3616429.svg"/>'
     #   url: /
