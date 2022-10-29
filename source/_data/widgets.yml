@@ -21,5 +21,5 @@ welcome:
 timeline:
   layout: timeline
   title: 近期动态
-  api: https://api.github.com/repos/Achuan-2/Achuan-2.github.io/issues
+  api: https://api.github.com/repos/Achuan-2/Achuan-2.github.io/issues?per_page=2
   user: Achuan-2 # 是否过滤只显示某个人发布的内容，如果要筛选多人，用英文逗号隔开
