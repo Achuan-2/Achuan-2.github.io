@@ -1,8 +1,8 @@
 ---
 title: 用Python实现Needleman-Wunsch和Smith-Waterman算法
-categories: 生信
 tags:
   - 作业
+  - 生信
 abbrlink: 8971
 date: 2022-10-09 16:11:28
 updated: 
