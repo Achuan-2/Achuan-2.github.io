@@ -1,6 +1,6 @@
 ---
 title: Windows 笔记本电脑查看电池使用情况
-categories: 配置
+categories: 搞机
 tags:
   - Windows
 date: 2022-11-04 01:04:03
