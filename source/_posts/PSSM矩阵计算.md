@@ -1,8 +1,8 @@
 ---
 title: PSSM矩阵计算
+categories: 生信
 tags:
   - 作业
-  - 生信
 abbrlink: 12770
 date: 2022-10-21 16:08:58
 updated: 

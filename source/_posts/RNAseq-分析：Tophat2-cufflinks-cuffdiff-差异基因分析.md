@@ -1,9 +1,10 @@
 ---
 title: RNAseq 分析：Tophat2+cufflinks+cuffdiff+差异基因分析
+categories:
+  - 生信
 tags:
   - 组学分析
   - 作业
-  - 生信
 abbrlink: 6389
 date: 2022-10-25 12:21:25
 updated:

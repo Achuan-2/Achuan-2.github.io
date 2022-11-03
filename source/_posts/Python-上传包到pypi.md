@@ -1,8 +1,8 @@
 ---
 title: Python 上传包到pypi
+categories: Coding
 tags:
   - Python
-  - Coding
 abbrlink: d2b2fba7
 excerpt: 阿巛同学第一个上传到Pypi的包
 date: 2022-11-04 00:57:58

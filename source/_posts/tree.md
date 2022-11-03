@@ -1,9 +1,9 @@
 ---
 title: tree 查看文件目录神器
+categories: 配置
 tags:
   - Linux
   - Windows
-  - 配置
 abbrlink: 595885f1
 excerpt: tree能以树状图列出目录的内容，非常适合概览项目结构。
 date: 2022-11-04 01:00:06
