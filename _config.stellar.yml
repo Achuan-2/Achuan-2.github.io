@@ -328,10 +328,10 @@ plugins:
 style:
   darkmode: auto # auto / always / false
   smooth_scroll: true # true / false
-  font-size: 16px
+  font-size: 17px
   font-family:
-    logo: 'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
-    body: 'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+    logo: 'HarmonyOS_Regular,system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+    body: 'HarmonyOS_Regular,system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
     code: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
   text-align: left
   color:

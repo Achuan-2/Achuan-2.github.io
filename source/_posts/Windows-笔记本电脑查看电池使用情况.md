@@ -3,10 +3,10 @@ title: Windows 笔记本电脑查看电池使用情况
 categories: 搞机
 tags:
   - Windows
+abbrlink: e977bfe7
+excerpt: 不需要其他软件，直接用cmd命令就可以就可以详细查看笔记本电脑电池的使用情况
 date: 2022-11-04 01:04:03
 updated: 2022-11-04 01:04:03
-abbrlink:
-excerpt: 不需要其他软件，直接用cmd命令就可以就可以详细查看笔记本电脑电池的使用情况
 ---
 
 
