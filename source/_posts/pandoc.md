@@ -141,7 +141,17 @@ pandoc --citeproc \
 
 大概是这样，可能导出 word 之后还不能直接上交，还需要稍微修改，但是模板能够把主要样式以及字体设置完毕之后，已经省下了很多很多力气了，可以更愉快的用 md 来写稿，word 上交了。
 
-![image](pandoc/net-img-image-20221106222340-5c1qk3g-20221106232925-eg41pat.png)​
+![image](pandoc/net-img-image-20221106222340-5c1qk3g-20221106232925-eg41pat.png)
+
+## 以后导出使用模板
+
+```bash
+pandoc --citeproc \
+--csl gb-t-7714-2015-numeric-bilingual-no-uppercase-no-url-doi.csl \
+--bibliography ref.bib -M reference-section-title="参考文献" \
+-M link-citations=true --reference-doc=template.docx -s input.md  -o output.docx
+
+```​
 
 ## 总结
 
@@ -161,5 +171,6 @@ pandoc --citeproc \
 下一篇文章我将会主要介绍 [Quarto](https://quarto.org/) 这个工具。Quarto 是下一代的 Rmarkdown，相比 Rmarkdown 来说，把生态给大一统了，你甚至不需要有 R 环境也能用，VSCode 上也有专门的[插件](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)。Quarto 的强大之处在于，不仅仅在于可以渲染代码运行结果，而且导出文档方面是我目前见过最无敌的存在，相信我，用上它，你会见到 markdown 的另一片天空。你只需要把 md 改成 qmd 后缀，加上一个 yaml 头，轻轻一点渲染按钮，就可以导出 word、html、ipynb、GFM 规范的 md（还可以设置公式导出为纯文本还是图片），甚至当成简易版的 $\LaTeX$，$\LaTeX$ 代码与 markdown 语法混用，导出样式精美的 pdf。好啦，这里就不多说了，等我下篇博客吧。
 
 ---
+
 
 本文涉及的文件已上传至[GitHub](https://github.com/Achuan-2/mini/tree/main/pandoc)
