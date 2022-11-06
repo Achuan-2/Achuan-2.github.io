@@ -77,7 +77,7 @@ pandoc --citeproc --number-sections \
 
 ### 生成简陋的模板文件
 
-根据创建的基本样式 md `basic.md`​ 生成一个 docx 文件，这个文件我上传到了 [GitHub](https://github.com/Achuan-2/mini/blob/main/pandoc/basic.md)
+根据创建的md基本样式文件 `basic.md` 生成一个 docx 文件，这个文件我上传到了 [GitHub](https://github.com/Achuan-2/mini/blob/main/pandoc/basic.md)
 
 ```bash
 pandoc --citeproc \
