@@ -21,5 +21,13 @@ welcome:
 timeline:
   layout: timeline
   title: '<a href="https://github.com/Achuan-2/Achuan-2.github.io/issues" style="color:#03c7fa">近期动态</a>'
-  api: https://api.github.com/repos/Achuan-2/Achuan-2.github.io/issues?per_page=7
+  api: https://api.github.com/repos/Achuan-2/Achuan-2.github.io/issues?per_page=7 # 若你想限制数量，在api链接后面加上?per_page=1指限制为1条
   user: Achuan-2 # 是否过滤只显示某个人发布的内容，如果要筛选多人，用英文逗号隔开
+  hide: # title,footer # 隐藏标题或底部 # 此功能需要 Stellar v1.13.0
+
+'朋友圈':
+  layout: timeline
+  title: 近期动态
+  api: https://api.vlts.cc/output_data/v1/xaoxuu/friends-rss-generator # 你的朋友圈数据文件地址
+  type: fcircle
+  limit: # 可通过这个限制最大数量
