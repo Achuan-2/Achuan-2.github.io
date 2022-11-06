@@ -77,7 +77,7 @@ pandoc --citeproc --number-sections \
 
 ### 生成简陋的模板文件
 
-根据创建的基本样式 md `basic.md`​ 生成一个 docx 文件
+根据创建的基本样式 md `basic.md`​ 生成一个 docx 文件，这个文件我上传到了 [GitHub](https://github.com/Achuan-2/mini/blob/main/pandoc/basic.md)
 
 ```bash
 pandoc --citeproc \
@@ -87,7 +87,7 @@ pandoc --citeproc \
 
 ```
 
-可以预览下生成这个 docx 文件，这个默认生成的样式特别难看，标题喜欢用蓝色，和中文报告的格式非常不一致。
+可以预览下生成这个 [docx](https://github.com/Achuan-2/mini/blob/main/pandoc/templates.docx) 文件，这个默认生成的样式特别难看，标题喜欢用蓝色，和中文报告的格式非常不一致。
 
 ![image.png](pandoc/net-img-image-dGSQBqY-20221106232924-nlbef1t.png)​
 
@@ -135,7 +135,9 @@ pandoc --citeproc \
 另外我给这份模板还自动加了编号，这是因为我觉得 pandoc 虽然本身有--number-sections 参数，但是这个只是人为加上的，编号不会随着标题变化而变化，其实没有大用。在 word 里给标题编号除了让结构更清晰以外，还有一个重要的作用是让表格和图片的题注自动编号！
 
 如何设置多级标题我这里只点一下，网上教程很多  
-​![image](pandoc/net-img-image-20221106224628-5870vl0-20221106232925-vpklj9f.png)​
+​![image](pandoc/net-img-image-20221106224628-5870vl0-20221106232925-vpklj9f.png)
+
+最后的模板文件可以点击[下载​](https://github.com/Achuan-2/mini/blob/main/pandoc/templates_refine.docx)
 
 ### 修改之后的模板
 
