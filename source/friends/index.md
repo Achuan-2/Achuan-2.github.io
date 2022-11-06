@@ -1,6 +1,7 @@
 ---
 menu_id: more
 title: Friends
+sidebar: [朋友圈]
 ---
 
 {% friends api:https://raw.githubusercontent.com/Achuan-2/friends/output/v2/data.json %}
