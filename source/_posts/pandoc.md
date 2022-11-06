@@ -150,8 +150,7 @@ pandoc --citeproc \
 --csl gb-t-7714-2015-numeric-bilingual-no-uppercase-no-url-doi.csl \
 --bibliography ref.bib -M reference-section-title="参考文献" \
 -M link-citations=true --reference-doc=template.docx -s input.md  -o output.docx
-
-```​
+```
 
 ## 总结
 
