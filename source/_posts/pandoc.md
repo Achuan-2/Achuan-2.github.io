@@ -1,12 +1,14 @@
 ---
-title: pandoc
-categories: inbox
+title: 设置word模板，让 pandoc 转化md为规范美观的docx
+categories: 写作
 tags:
-  - inbox
+  - pandoc
+  - Word
+  - Markdown
+abbrlink: bc4b56d9
+excerpt: 介绍下如何更丝滑的把 Markdown 初步导出成满意的 Word 样式的
 date: 2022-11-06 23:53:47
 updated: 2022-11-06 23:53:47
-abbrlink:
-excerpt:
 ---
 
 # 设置word模板，让 pandoc 转化md为规范美观的docx
