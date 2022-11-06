@@ -1,5 +1,5 @@
 ---
-title: 设置word模板，让 pandoc 转化md为规范美观的docx
+title: 设置word模板，让 pandoc 转换md为规范美观的docx
 categories: 写作
 tags:
   - pandoc
