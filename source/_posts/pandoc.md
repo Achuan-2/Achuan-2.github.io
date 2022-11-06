@@ -36,7 +36,7 @@ pandoc --citeproc --number-sections \
 * ​`pandoc`​：执行 Pandoc 命 p 令
 * ​`--citeproc`​：处理文献引用，也可用 `-C`​ 代替
 * ​`--number-sections`​：对各级标题编号，形如 `1, 1.1, 1.1.1`​，也可用 `-N`​ 代替
-* ​`--csl gb-t-7714-2015-numeric-bilingual-no-uppercase-no-url-doi.csl`​：指定参考文献样式，中文报告一般用 GB/T 7714-2015 的格式，更多样式可以前往 [Zotero Style Repository](https://www.zotero.org/styles) 下载，需要注意的是pandoc目前不支持CSL-M的csl文件，那种多个作者能中文显示等、英文显示et al的就不能使用，会导致参考文献列表重复，需要把这类csl里的layout进行注释。
+* `--csl gb-t-7714-2015-numeric-bilingual-no-uppercase-no-url-doi.csl`：指定参考文献样式，中文报告一般用 GB/T 7714-2015 的格式，更多样式可以前往 [Zotero Style Repository](https://www.zotero.org/styles) 和[redleafnew/Chinese-STD-GB-T-7714-related-csl](https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl)下载，需要注意的是pandoc目前不支持CSL-M的csl文件，那种多个作者能中文显示等、英文显示et al的就不能使用，会导致参考文献列表重复，需要把这类csl里的layout进行注释。
 
   ```xml
   <bibliography entry-spacing="0" et-al-min="4" et-al-use-first="3" second-field-align="flush">
