@@ -137,13 +137,14 @@ pandoc --citeproc \
 如何设置多级标题我这里只点一下，网上教程很多  
 ​![image](pandoc/net-img-image-20221106224628-5870vl0-20221106232925-vpklj9f.png)
 
-最后的模板文件可以点击[下载​](https://github.com/Achuan-2/mini/blob/main/pandoc/templates_refine.docx)
 
 ### 修改之后的模板
 
 大概是这样，可能导出 word 之后还不能直接上交，还需要稍微修改，但是模板能够把主要样式以及字体设置完毕之后，已经省下了很多很多力气了，可以更愉快的用 md 来写稿，word 上交了。
 
 ![image](pandoc/net-img-image-20221106222340-5c1qk3g-20221106232925-eg41pat.png)
+
+最后的模板文件可以点击[下载​](https://github.com/Achuan-2/mini/blob/main/pandoc/templates_refine.docx)
 
 ## 以后导出使用模板
 
