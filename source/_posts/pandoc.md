@@ -1,5 +1,5 @@
 ---
-title: 设置word模板，让 pandoc 转换md为规范美观的docx
+title: 设置word模板，Markdown 也能自动转换为美观规范的 Word 文档
 categories: 写作
 tags:
   - pandoc
@@ -11,7 +11,7 @@ date: 2022-11-06 23:53:47
 updated: 2022-11-06 23:53:47
 ---
 
-首先先介绍下我为什么要用 pandoc 将 Markdown 转换为 Microsoft Word 的文件，以及写这篇文章。
+首先先介绍下我为什么要将 Markdown 转换为 Microsoft Word 的文件，以及写这篇文章。
 
 1. 正式的报告常常需要交 Word 格式的，而且需要引用参考文献。但我还是喜欢先用 Markdown 写稿子，最后再用 Word 来完善文稿内容和排版，让内容和样式相分离。
 2. 就算一些软件比如思源笔记、Typora 可以直接导出 docx 文件，但目前还不怎么不支持设置自定义的参数，导出的 docx 需要进行很大程度的修改，很费力，是重复劳动。
