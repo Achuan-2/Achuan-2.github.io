@@ -54,7 +54,7 @@ Quarto 可以说是下一代 RMarkdown ，相比 RMarkdown，将环境给大统�
 
 ​![image](Quarto/image-20221117114653-3cei725.png)​
 
-要在 VSCode，只需要安装 [Quato](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) 插件，即可开箱使用。
+要在 VSCode，只需要安装 [vscode-quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) 插件，即可开箱使用。
 
 用 VSCode 有几个好处
 
@@ -76,11 +76,13 @@ Quarto 可以说是下一代 RMarkdown ，相比 RMarkdown，将环境给大统�
 quarto install tinytex --update-path
 ```
 
-## qmd 书写
+## 个人用Quarto的流程
 
-前面提到 Quarto 只需要把 md 文件的后缀改成 qmd，并在开头加上 YAML，就可以进行渲染了。
+先在思源笔记内写稿子，导出为md，将md后缀改为qmd，在开头加上YMAL头进行渲染设置，点击VSCode右上方的渲染按钮进行渲染，得到文档。
 
 ​![image](Quarto/image-20221119160350-4c1ulmg.png)​
+
+## qmd 补充语法简单介绍
 
 Quarto 相比于 GFM，还是加了一些自己的排版语法的，具体可以去官方文档的 [Authoring](https://quarto.org/docs/authoring/markdown-basics.html) 章节查看。
 
@@ -220,7 +222,7 @@ cite-method: biblatex
 
 毕竟只需要将 YAML 内容粘贴到 qmd 最前面，就可以设置渲染格式了
 
-### GFM
+### GFM 模板
 
 官方配置文档：[GFM Markdown](https://quarto.org/docs/output-formats/gfm.html)
 
@@ -232,7 +234,6 @@ author:
 date: "2022.11.19"
 date-format: "YYYY.MM.DD"
 toc: true
-shift-heading-level-by: -1
 crossref:
   chapters: true
   fig-title: 图    # (default is "Figure")
@@ -246,9 +247,10 @@ format:
 ---
 ```
 
-强的地方在于生成的md，是带有交叉引用功能的（通过html锚点实现）
+- 在于生成的md，是带有交叉引用功能的（通过html锚点实现）
+- 可以把公式转换为图片（webtex），以用于不支持katex的网站
 
-### Word
+### Word 模板
 
 官方配置文档：[Word](https://quarto.org/docs/reference/formats/docx.html#title-author)
 
@@ -271,7 +273,7 @@ format:
 
 导出 Word 部分，其实用的就是 pandoc，但是相比 pandoc 就更方便了，写完直接点击渲染按钮就可以。如何设置 word 模板可以见之前写的：[设置word模板，Markdown 也能自动转换为美观规范的 Word 文档](https://www.achuan-2.top/posts/bc4b56d9.html)。里面也分享了我用的 word 文档。
 
-### PDF
+### 中文 PDF 模板
 
 官方配置文档：[PDF](https://quarto.org/docs/output-formats/pdf-basics.html)
 
