@@ -37,7 +37,7 @@ excerpt: Quarto可以说是RMarkdown的加强版，相比RMarkdown，将环境�
   * 写博客的文档：[Quarto - Creating a Website](https://quarto.org/docs/websites/)；
   * 写书的文档：[Quarto - Creating a Book](https://quarto.org/docs/books/)。
 
-Quarto 可以说是 RMarkdown 的加强版，相比 RMarkdown，将环境给大统一，更好的适配 VSCode，你甚至不需要有 R 环境、安装 Rstudio，就能用 Quarto 写文章和报告。我对 Quarto 的整体印象，可以概括为“枢纽”二字，能写代码，能与 Jupyter Notebook 相互转换，能将 Markdown 导出为各种常用格式，可以当成简易版的 LaTex 写报告，将 Markdown 的生态大大强化。
+Quarto 可以说是下一代 RMarkdown ，相比 RMarkdown，将环境给大统一，更好的适配 VSCode，你甚至不需要有 R 环境、安装 Rstudio，就能用 Quarto 写文章和报告。我对 Quarto 的整体印象，可以概括为“枢纽”二字，能写代码，能与 Jupyter Notebook 相互转换，能将 Markdown 导出为各种常用格式，可以当成简易版的 LaTex 写报告，将 Markdown 的生态大大强化。
 
 而 Quarto 对于 Markdown 的处理仅仅只是将文件后缀由 md 改为了 qmd，并在 yaml 中输入参数即可。（当然 Quarto 也有独属的 Markdown 书写方言，起强化 Markdown 排版作用）
 
