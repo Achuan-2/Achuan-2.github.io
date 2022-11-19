@@ -28,6 +28,9 @@ timeline:
 '朋友圈':
   layout: timeline
   title: 朋友圈
-  api: https://raw.githubusercontent.com/Achuan-2/hexo-friends-rss/main/data.json # 你的朋友圈数据文件地址
+  api: https://fastly.jsdelivr.net/gh/Achuan-2/hexo-friends-rss@main/data.json # 你的朋友圈数据文件地址
   type: fcircle
   limit: # 可通过这个限制最大数量
+
+
+  

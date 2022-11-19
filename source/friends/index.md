@@ -4,7 +4,8 @@ title: Friends
 sidebar: [朋友圈]
 ---
 
-{% friends api:https://raw.githubusercontent.com/Achuan-2/friends/output/v2/data.json %}
+{% friends api:https://fastly.jsdelivr.net/gh/Achuan-2/friends@output/v2/data.json %}
+
 
 ## ⚠添加友链
 
