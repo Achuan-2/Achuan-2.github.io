@@ -243,6 +243,8 @@ format:
 ---
 ```
 
+强的地方在于生成的md，是带有交叉引用功能的（通过html锚点实现）
+
 ### Word
 
 官方配置文档：[Word](https://quarto.org/docs/reference/formats/docx.html#title-author)
