@@ -1,6 +1,6 @@
 ---
 title: 设置word模板，Markdown 也能自动转换为美观规范的 Word 文档
-categories: 写作
+categories: Writing
 tags:
   - pandoc
   - Word
