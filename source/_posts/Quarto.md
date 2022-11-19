@@ -10,6 +10,7 @@ updated: 2022-11-19 16:43:44
 abbrlink:
 excerpt: Quarto可以说是RMarkdown的加强版，相比RMarkdown，将环境给大统一，更好的适配VSCode，你甚至不需要有R环境、安装Rstudio，就能用Quarto写文章和报告。我对Quarto的整体印象，可以概括为“枢纽”二字，能写代码，能与Jupyter Notebook相互转换，能将Markdown导出为各种常用格式，可以当成简易版的LaTex写报告，将Markdown的生态大大强化。
 ---
+# Quarto：Markdown又何必只是Markdown
 
 ## 为什么要用Quarto？
 
@@ -23,7 +24,6 @@ excerpt: Quarto可以说是RMarkdown的加强版，相比RMarkdown，将环境�
 > * Author documents as plain text markdown or [Jupyter](https://jupyter.org/) notebooks.
 > * Publish high-quality articles, reports, presentations, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.
 > * Author with scientific markdown, including equations, citations, crossrefs, figure panels, callouts, advanced layout, and more.
->
 
 简单来说，Quarto这个软件可以
 
@@ -44,11 +44,11 @@ Quarto可以说是RMarkdown的加强版，相比RMarkdown，将环境给大统�
 
 在[Quarto - Get Started](https://quarto.org/docs/get-started/)页面下载Quarto Cli软件，然后选择你喜欢的编辑器搭配环境即可。
 
-​![image](https://assets.b3logfile.com/siyuan/1610205759005/assets/image-20221119153936-9ercyyi.png)​
+​![image](Quarto/image-20221119153936-9ercyyi.png)​
 
 我这里推荐的是VSCode。微软有两种软件：一种是 VSCode，一种是其他软件。只要你吹VSCode，我们就是好朋友。
 
-​![image](https://assets.b3logfile.com/siyuan/1610205759005/assets/image-20221117114653-3cei725.png)​
+​![image](Quarto/image-20221117114653-3cei725.png)​
 
 要在VSCode，只需要安装[Quato](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)插件，即可开箱使用。
 
@@ -61,12 +61,10 @@ Quarto可以说是RMarkdown的加强版，相比RMarkdown，将环境给大统�
 > 注1：
 >
 > 虽然这里只介绍用VSCode，但Quarto本家的RStudio对Quarto的适配也非常好，代码运行结果可以直接在代码块显示（VSCode只能输出在终端或者渲染在最终文档里），可以切换为Visual模式（类似于Markdown笔记软件的即时渲染模式），Visual模式支持斜杆命令输入各种块。所以还是很强大的。但本人是坚定的VSCode拥护者，RStudio只能是陪衬辅助，不会是主力。
->
 
 > 注2：
 >
 > VSCode用qmd写R代码其实不是很方便，如果要用VSCode写R代码，我个人是建议用jupyter写，然后用`quarto convert xxx.ipynb`​转换为qmd，再进行渲染。嫌麻烦的话还是建议用RStudio吧。
->
 
 如果你需要导出pdf，又没有LaTeX环境，可以用quarto install安装mini版的tinytex
 
@@ -78,7 +76,7 @@ quarto install tinytex --update-path
 
 前面提到Quarto只需要把md文件的后缀改成qmd，并在开头加上YAML，就可以进行渲染了。
 
-​![image](https://assets.b3logfile.com/siyuan/1610205759005/assets/image-20221119160350-4c1ulmg.png)​
+​![image](Quarto/image-20221119160350-4c1ulmg.png)​
 
 Quarto相比于GFM，还是加了一些自己的排版语法的，具体可以去官方文档的[Authoring](https://quarto.org/docs/authoring/markdown-basics.html)章节查看。
 
@@ -336,7 +334,7 @@ format:
 * 对于输出PDF来说，比如`<region>`​这种格式不能直接输出显示，需要改成`\<region\>`​
 * 思源导出图片会加两边加零宽字符，导致alt无法转化为图片标题。需要用sublime text等软件去掉。
 
-  ​![image](https://assets.b3logfile.com/siyuan/1610205759005/assets/image-20221119144428-4xwickp.png)​
+  ​![image](Quarto/image-20221119144428-4xwickp.png)​
 
 ---
 
