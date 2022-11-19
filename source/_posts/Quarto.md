@@ -11,6 +11,8 @@ abbrlink:
 excerpt: Quarto可以说是RMarkdown的加强版，相比RMarkdown，将环境给大统一，更好的适配VSCode，你甚至不需要有R环境、安装Rstudio，就能用Quarto写文章和报告。我对Quarto的整体印象，可以概括为“枢纽”二字，能写代码，能与Jupyter Notebook相互转换，能将Markdown导出为各种常用格式，可以当成简易版的LaTex写报告，将Markdown的生态大大强化。
 ---
 
+关联文章：：[设置word模板，Markdown 也能自动转换为美观规范的 Word 文档](https://www.achuan-2.top/posts/bc4b56d9.html)
+
 ## 为什么要用Quarto？
 
 先简单介绍下Quarto，官网地址[https://quarto.org/](https://quarto.org/)。
