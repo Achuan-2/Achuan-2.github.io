@@ -1,5 +1,5 @@
 ---
-title: Quarto：Markdown又何必只是Markdown
+title: Quarto：Markdown 又何必只是 Markdown
 categories: Writing
 tags:
   - Markdown
