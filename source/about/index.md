@@ -19,3 +19,10 @@ date: 2022-10-26 12:44:17
 福建省泉州市丰泽区环清小学
 
 {% endtimeline %}
+
+## Contact
+
+- Email: achuan-2@outlook.com
+- Wechat: achuan1037
+  {% image index/wechat.png width:400px %}
+

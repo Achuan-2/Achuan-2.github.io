@@ -23,13 +23,16 @@ sidebar:
     wiki: '[知识库](/wiki/)'
     friends: '[友链](/friends/)'
     about: '[关于](/about/)'
+
   # Sidebar widgets
   widgets:
-    index: [welcome, recent,timeline] # for home/wiki/categories/tags/archives/404 pages
+    index: [welcome, recent, search, timeline] # for home/wiki/categories/tags/archives/404 pages
     page: [welcome, ghuser, toc] # for pages using 'layout:page'
-    post: [toc, ghrepo] # for pages using 'layout:post'
-    wiki: [toc, ghrepo, related] # for pages using 'layout:wiki'
-
+    post: [toc,search,ghrepo] # for pages using 'layout:post'
+    wiki: [search,toc, ghrepo, related] # for pages using 'layout:wiki'
+######## Index ########
+post-index: # 近期发布 分类 标签 归档 and ...
+    '说说': /shuoshuo/
 
 ######## Main ########
 breadcrumb:
@@ -56,6 +59,9 @@ article:
     enable: false
     max_count: 5
 
+search:
+  service: local_search # hexo, todo...
+  local_search: # npm i hexo-generator-search
 
 ######## Comments ########
 comments:
@@ -271,7 +277,7 @@ plugins:
   lazyload:
     enable: true # [hexo clean && hexo s] is required after changing this value.
     js: https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js
-    transition: blur # blur, fade
+    transition: fade # blur, fade
 
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
