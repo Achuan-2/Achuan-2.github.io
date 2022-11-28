@@ -26,7 +26,7 @@ sidebar:
 
   # Sidebar widgets
   widgets:
-    index: [welcome, recent, search, timeline] # for home/wiki/categories/tags/archives/404 pages
+    index: [welcome, search, recent, timeline] # for home/wiki/categories/tags/archives/404 pages
     page: [welcome, ghuser, toc] # for pages using 'layout:page'
     post: [toc,search,ghrepo] # for pages using 'layout:post'
     wiki: [search,toc, ghrepo, related] # for pages using 'layout:wiki'
