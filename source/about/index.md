@@ -3,6 +3,10 @@ title: About
 date: 2022-10-26 12:44:17
 ---
 
+## Self-Introduction
+
+xxxx
+
 ## Educational experience
 {% timeline %}
 <!-- node 2022年9月-Now -->
