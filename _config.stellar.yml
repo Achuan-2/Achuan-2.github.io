@@ -1,6 +1,6 @@
 ######## Stellar info ########
 stellar:
-  version: '1.11.0'
+  version: '1.17.1'
   homepage: 'https://xaoxuu.com/wiki/stellar/'
   repo: 'https://github.com/xaoxuu/hexo-theme-stellar'
   cdn_css: # Use cdn links instead of /css/main.css
@@ -60,8 +60,11 @@ article:
     max_count: 5
 
 search:
-  service: local_search # hexo, todo...
-  local_search: # npm i hexo-generator-search
+  service: local_search # local_search, todo...
+  local_search:
+    field: post # post, page, all
+    path: /search.json
+    content: true
 
 ######## Comments ########
 comments:

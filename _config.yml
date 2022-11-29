@@ -143,6 +143,6 @@ inject:
   script:
 
 
-search:
-  path: /search.xml
-  field: post,wiki
+# search:
+#   path: /search.xml
+#   field: post,wiki
