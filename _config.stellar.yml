@@ -63,7 +63,7 @@ article:
 search:
   service: local_search # local_search, todo...
   local_search:
-    field: post # post, page, all
+    field: all # post, page, all
     path: /search.json
     content: true
 
