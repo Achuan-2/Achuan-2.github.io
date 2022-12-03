@@ -1,14 +1,15 @@
-Test:
-  name: Test
-  title: 这是一个测试wiki
-  subtitle: 待完善
+Monthly_Letter:
+  name: Monthly Letter 
+  title: Monthly Letter
+  subtitle: 每月给自己写一封信
   cover: true
   logo:
-    src: /assets/ico/favicon.svg
+    src: /assets/pic/love_letter.svg
     small: 112px
     large: 240px
-  description: Stellar 是一个内置 wiki 系统的 hexo 主题，适合综合型站点使用。同时也拥有简约而精美的视觉设计和丰富的标签插件，帮助您简单从容地应对各种场合。
+  description: 启发自单单的vlog，每月写一封信给未来的阿巛，记录自己当时的碎碎念与心态变化。
   sidebar: [toc,sections]
   sections:
-    '分页1': [0, 9]
-    '分页2': [100, 199]
+    '2022': [202201, 202212]
+    '2023': [202301, 202312]
+

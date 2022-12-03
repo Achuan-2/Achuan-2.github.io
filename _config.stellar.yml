@@ -20,7 +20,7 @@ sidebar:
     title: '[config.title](/)' # you can set html tag like: '[<img no-lazy height="32px" src="xxx"/>](/)'
   menu:
     post: '[博客](/)'
-    wiki: '[知识库](/wiki/)'
+    wiki: '[仓库](/wiki/)'
     friends: '[友链](/friends/)'
     about: '[关于](/about/)'
 
@@ -32,6 +32,7 @@ sidebar:
     wiki: [search,toc, ghrepo, related] # for pages using 'layout:wiki'
 ######## Index ########
 post-index: # 近期发布 分类 标签 归档 and ...
+    '仓库': /wiki/
     '说说': /shuoshuo/
 
 ######## Main ########
