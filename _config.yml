@@ -146,3 +146,12 @@ inject:
 # search:
 #   path: /search.xml
 #   field: post,wiki
+
+#RSS订阅
+plugin:
+- hexo-generator-feed
+#Feed Atom
+feed:
+type: atom
+path: atom.xml
+limit: 20
