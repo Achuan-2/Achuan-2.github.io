@@ -159,7 +159,7 @@ feed:
 
 
 lazyload:
-  enable: true
+  enable: false
   onlypost: true
   loadingImg: /assets/pic/loading.gif
 
