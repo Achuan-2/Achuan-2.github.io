@@ -1,15 +1,13 @@
 ---
 title: 安装mambaforge
-updated: '2023-04-25 22:48:15'
-excerpt: >-
-  为什么要用mambaforge？anaconda臃肿下载condaforgeminiforge_acondaforgedistribution(githubcom)wgethttps_githubcomcondaforgeminiforgereleaseslatestdownloadmambaforgewindowsx_exe配置mambainit_~bash_profile​添加##__contentswithinthisblockaremanagedbycondainit__evalif[fthenf
+updated: '2023-04-25 23:58:42'
+excerpt: 还在用conda？
 tags:
   - 配置
 categories:
   - _posts
 permalink: /post/mabaforge.html
 comments: true
-abbrlink: c6467c9c
 ---
 
 
