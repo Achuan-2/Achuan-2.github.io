@@ -1,14 +1,14 @@
 ---
 title: 阿巛对信息时代整理信息的经验浅谈
-updated: '2023-04-25 22:34:16'
-excerpt: >-
-  图片管理方式日常摄影图片定期上传在onedrive的【dailylog】文件夹里课程讲座图片放在手机的相册【讲座课程】。手机的修图软件目前主要用的是醒图（滤镜模板很多）图叨叨（加相机水印）最近开始接触到lightroom不过还不熟悉。​​​​word和ppt文件管理方式发现word和ppt放在一起很舒服以前比如上一门课遇见一件事专门创建一个文件夹然后放ppt和word导致这些文件都很散乱。目前的管理思路是把这些文件都放在一起文稿类的一个文件夹汇报类的一个文件夹如果实在有必要再专门创建一个事件文件夹把对应的
+updated: '2023-04-25 22:37:16'
+excerpt: 睡不着觉，整理下
 tags:
   - blog
   - 阿巛随笔
-categories: []
+categories:
+  - _posts
 permalink: >-
-  /post/grandma-s-experience-of-sorting-information-in-the-information-era-24ibod.html
+  /post/grandma-s-experience-of-sorting-information-in-the-information-era-1ep3ij.html
 comments: true
 ---
 
@@ -20,25 +20,25 @@ comments: true
 
 手机的修图软件，目前主要用的是醒图（滤镜、模板很多）、图叨叨（加相机水印），最近开始接触到lightroom，不过还不熟悉。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234173.png)​
+​![image](assets/image-20230422010833-wv4rios.png)​
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234115.png)​
+​![image](assets/image-20230422010823-h0ez24f.png)​
 
 ## **Word和PPT文件管理方式**
 
 发现Word和PPT放在一起很舒服，以前比如上一门课，遇见一件事，专门创建一个文件夹，然后放PPT和Word，导致这些文件都很散乱。目前的管理思路是，把这些文件都放在一起，文稿类的一个文件夹，汇报类的一个文件夹，如果实在有必要再专门创建一个事件文件夹，把对应的文件以超链接的形式丢进去，这样也方便利用之前的创作心血。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234191.png)​
+​![image](assets/image-20230422005236-vt58qr2.png)​
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234241.png)​
+​![image](assets/image-20230422005829-3mfu339.png)​
 
 对于PPT，我设计了用于个人汇报的模板，针对不同的场景设计了一些母版样式
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234295.png)​
+​![image](assets/image-20230422011336-t3uvjlo.png)​
 
 对于Word文稿写作，也有一个样式模板，习惯是用思源笔记写初稿导出md，然后用quarto（下一代RMarkdown）将md渲染为我设计的word模板样式。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234594.png)​
+​![image](assets/image-20230422011817-ufdkb2y.png)​
 
 ## 待办管理方式
 
@@ -48,11 +48,11 @@ comments: true
 
 前还挖掘到滴答清单做临时笔记非常好用，特别是一些琐事的笔记，所以额外创建了一个【临时笔记】。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234890.png)​
+​![image](assets/image-20230422012052-t8b33sy.png)​
 
 手机的桌面的小组件主要放了两个分类，【收集箱】与【临时笔记】。
 
-​![83f9b576fb589d416c932eae94cda51](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234204.jpg)​
+​![83f9b576fb589d416c932eae94cda51](assets/83f9b576fb589d416c932eae94cda51-20230422014252-5gfgrtq.jpg)​
 
 ## 笔记管理方式
 
@@ -62,15 +62,15 @@ comments: true
 
 以Adobe Illustrator的笔记为例，展示双链笔记的渐进式笔记法特点
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234671.png)​
+​![image](assets/image-20230422013004-sifrfee.png)​
 
 下面是我“日记”的模板
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252234049.png)​
+​![image](assets/image-20230422012514-bbqlfy6.png)​
 
 另外说下，目前创建笔记文档我也是用双链来创建，利用软件的配置方法，可以让这些文档自动放在当月文档下，无需考虑分类，减小记笔记的摩檫力
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252235248.png)​
+​![image](assets/image-20230422014708-apq8fof.png)​
 
 ## 网盘资源
 
@@ -80,4 +80,4 @@ comments: true
 
 目前阿里云盘并不支持分享常见的zip、rar等压缩包，我目前主要用bandzip制作exe格式的压缩包。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252235808.png)​
+​![image](assets/image-20230422005810-bij84oh.png)​
