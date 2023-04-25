@@ -278,19 +278,20 @@ plugins:
 
   # image lazyload
   # https://www.npmjs.com/package/vanilla-lazyload
-  lazyload:
-    enable: true # [hexo clean && hexo s] is required after changing this value.
-    js: https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js
-    transition: fade # blur, fade
+lazyload:
+  enable: true # [hexo clean && hexo s] is required after changing this value.
+  js: https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js
+  transition: blur # blur, fade
 
+scrollreveal:
+  enable: false
+  js: https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
+  distance: 4px # 执行距离
+  duration: 400 # ms # 执行时长
+  interval: 100 # ms # 执行间隔（时间）
+  scale: 0.1 # 0.1~1 # 执行方式（缩放）
   # https://scrollrevealjs.org/api/reveal.html
-  scrollreveal:
-    enable: #true
-    js: https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
-    distance: 8px
-    duration: 500 # ms
-    interval: 100 # ms
-    scale: 1 # 0.1~1
+
 
   # https://fancyapps.com/docs/ui/fancybox/
   # available for {% image xxx %}
@@ -338,7 +339,7 @@ plugins:
 style:
   darkmode: auto # auto / always / false
   smooth_scroll: true # true / false
-  font-size: 17px
+  font-size: 16px
   font-family:
     logo: 'HarmonyOS_Regular,system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
     body: 'HarmonyOS_Regular,system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'

@@ -152,6 +152,6 @@ plugin:
 - hexo-generator-feed
 #Feed Atom
 feed:
-type: atom
-path: atom.xml
-limit: 20
+  type: atom
+  path: atom.xml
+  limit: 20
