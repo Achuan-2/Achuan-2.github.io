@@ -10,6 +10,7 @@ categories:
 permalink: >-
   /post/grandma-s-experience-of-sorting-information-in-the-information-era-1ep3ij.html
 comments: true
+abbrlink: d766b22
 ---
 
 

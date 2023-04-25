@@ -9,6 +9,7 @@ categories:
   - _posts
 permalink: /post/mabaforge.html
 comments: true
+abbrlink: c6467c9c
 ---
 
 

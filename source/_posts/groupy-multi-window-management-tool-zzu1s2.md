@@ -10,6 +10,7 @@ categories:
   - _posts
 permalink: /post/groupy-multi-window-management-tool-zzu1s2.html
 comments: true
+abbrlink: '291034'
 ---
 
 

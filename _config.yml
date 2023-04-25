@@ -155,3 +155,11 @@ feed:
   type: atom
   path: atom.xml
   limit: 20
+
+
+
+lazyload:
+  enable: true
+  onlypost: true
+  loadingImg: /assets/pic/loading.gif
+
