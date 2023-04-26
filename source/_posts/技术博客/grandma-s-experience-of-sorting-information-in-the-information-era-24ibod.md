@@ -1,10 +1,10 @@
 ---
 title: 阿巛对信息时代整理信息的经验浅谈
-updated: '2023-04-25 23:54:17'
+updated: '2023-04-26 11:02:01'
 excerpt: 睡不着觉，整理下
 tags:
-  - blog
   - 阿巛随笔
+  - 工具
 categories:
   - _posts
 permalink: >-
