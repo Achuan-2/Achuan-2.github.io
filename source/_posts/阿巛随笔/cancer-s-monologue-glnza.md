@@ -1,12 +1,12 @@
 ---
 title: 巨蟹座的独白
+date: '2023-04-26 13:45:07'
 updated: '2023-04-26 13:45:07'
 excerpt: 寄居蟹
 tags:
   - 心理学
 categories:
   - 阿巛随笔
-permalink: /post/cancer-s-monologue-glnza.html
 comments: true
 abbrlink: c873b400
 ---

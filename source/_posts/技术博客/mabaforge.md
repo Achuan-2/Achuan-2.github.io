@@ -1,12 +1,12 @@
 ---
 title: 安装mambaforge
+date:  '2023-04-25 23:58:42'
 updated: '2023-04-25 23:58:42'
 excerpt: 还在用conda？
 tags:
   - 配置
 categories:
   - _posts
-permalink: /post/mabaforge.html
 comments: true
 abbrlink: c6467c9c
 ---

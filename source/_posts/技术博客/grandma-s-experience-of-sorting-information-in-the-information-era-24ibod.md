@@ -1,5 +1,6 @@
 ---
 title: 阿巛对信息时代整理信息的经验浅谈
+date: '2023-04-26 11:02:01'
 updated: '2023-04-26 11:02:01'
 excerpt: 睡不着觉，整理下
 tags:
@@ -7,8 +8,6 @@ tags:
   - 工具
 categories:
   - _posts
-permalink: >-
-  /post/grandma-s-experience-of-sorting-information-in-the-information-era-1ep3ij.html
 comments: true
 abbrlink: d766b22
 ---
