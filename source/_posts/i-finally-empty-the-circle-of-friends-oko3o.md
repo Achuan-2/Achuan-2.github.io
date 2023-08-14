@@ -7,8 +7,6 @@ comments: true
 toc: true
 ---
 
-![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308141024575.jpg)
-
 
 
 我终于清空朋友圈了！！！  
