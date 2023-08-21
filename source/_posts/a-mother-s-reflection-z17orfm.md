@@ -1,14 +1,10 @@
 ---
 title: 一只23岁母单的反思
-date: '2023-08-14 13:45:07'
-updated: '2023-08-14 13:45:07'
-excerpt: 其实高中，大学，研究生都有动心的女生，不过因为种种问题都是止于暧昧。这里就简单分析下自己的问题和执念，就不讲对方的问题了。
-tags:
-  - 个人反思
-categories:
-  - 阿巛随笔
+date: '2023-08-14 10:32:30'
+updated: '2023-08-22 00:34:22'
+permalink: /post/a-mother-s-reflection-z17orfm.html
 comments: true
-abbrlink: 203d337
+toc: true
 ---
 
 
