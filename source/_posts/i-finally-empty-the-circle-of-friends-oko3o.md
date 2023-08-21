@@ -4,7 +4,7 @@ date: '2023-08-14 10:08:07'
 updated: '2023-08-14 10:08:07'
 excerpt: 寄居蟹
 tags:
-  - 个人提升
+  - 个人反思
 categories:
   - 阿巛随笔
 comments: true
