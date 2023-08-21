@@ -1,8 +1,8 @@
 ---
-title: VSCode 配置 matlab 运行环境
+title: VSCode 配置 Matlab 运行环境
 date: '2023-03-14 13:45:07'
 updated: '2023-03-14 13:45:07'
-excerpt: 寄居蟹
+excerpt: VSCode 也能用 Matlab
 tags:
   - 心理学
 categories:
