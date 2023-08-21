@@ -1,12 +1,14 @@
 ---
 title: 我终于清空朋友圈啦！
-updated: '2023-08-14'
-excerpt: ''
-permalink: /post/i-finally-empty-the-circle-of-friends-oko3o.html
+date: '2023-08-14 10:08:07'
+updated: '2023-08-14 10:08:07'
+excerpt: 寄居蟹
+tags:
+  - 个人提升
+categories:
+  - 阿巛随笔
 comments: true
-toc: true
 ---
-
 
 
 我终于清空朋友圈了！！！  
