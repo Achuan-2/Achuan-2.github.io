@@ -1,14 +1,15 @@
 ---
 title: 我终于清空朋友圈啦！
-date: '2023-08-14 10:08:07'
-updated: '2023-08-14 10:08:07'
+date: '2023-08-14 10:06:07'
+updated: '2023-08-22 00:37:32'
 excerpt: 我终于——清空朋友圈了！！！
 tags:
   - 个人反思
 categories:
   - 阿巛随笔
+permalink: /post/i-finally-empty-the-circle-of-friends-oko3o.html
 comments: true
-abbrlink: 2f1ec12c
+toc: true
 ---
 
 
