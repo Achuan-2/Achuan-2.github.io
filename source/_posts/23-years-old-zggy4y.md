@@ -8,6 +8,7 @@ tags:
 categories:
   - 阿巛随笔
 comments: true
+abbrlink: de805e74
 ---
 
 算是最多朋友祝我生日快乐的一次生日了，虽然也就三个人。

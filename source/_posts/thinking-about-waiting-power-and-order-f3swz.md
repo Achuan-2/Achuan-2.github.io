@@ -8,6 +8,7 @@ tags:
 categories:
   - 阿巛随笔
 comments: true
+abbrlink: ca84e3e4
 ---
 
 ## 等待力

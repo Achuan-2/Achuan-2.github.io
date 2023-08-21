@@ -2,12 +2,13 @@
 title: 我终于清空朋友圈啦！
 date: '2023-08-14 10:08:07'
 updated: '2023-08-14 10:08:07'
-excerpt: 我终于——清空朋友圈了！！！ 
+excerpt: 我终于——清空朋友圈了！！！
 tags:
   - 个人反思
 categories:
   - 阿巛随笔
 comments: true
+abbrlink: 2f1ec12c
 ---
 
 
