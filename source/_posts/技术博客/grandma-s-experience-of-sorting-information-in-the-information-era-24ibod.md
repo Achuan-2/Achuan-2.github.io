@@ -4,10 +4,10 @@ date: '2023-04-26 11:02:01'
 updated: '2023-04-26 11:02:01'
 excerpt: 睡不着觉，整理下
 tags:
-  - 阿巛随笔
+  - 个人反思
   - 工具
 categories:
-  - _posts
+  - 阿巛随笔
 comments: true
 abbrlink: d766b22
 ---

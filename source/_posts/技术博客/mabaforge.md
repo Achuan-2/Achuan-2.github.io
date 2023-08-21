@@ -5,8 +5,9 @@ updated: '2023-04-25 23:58:42'
 excerpt: 还在用conda？
 tags:
   - 配置
+  - Python
 categories:
-  - _posts
+  - 技术博客
 comments: true
 abbrlink: c6467c9c
 ---

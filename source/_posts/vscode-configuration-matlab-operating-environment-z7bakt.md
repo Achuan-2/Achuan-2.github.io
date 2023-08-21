@@ -4,9 +4,10 @@ date: '2023-03-14 13:45:07'
 updated: '2023-03-14 13:45:07'
 excerpt: VSCode 也能用 Matlab
 tags:
-  - 心理学
+  - VSCode
+  - Matlab
 categories:
-  - 阿巛随笔
+  - 技术博客
 comments: true
 abbrlink: c873b400
 ---

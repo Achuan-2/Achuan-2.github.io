@@ -1,6 +1,6 @@
 ---
 title: PSSM矩阵计算
-categories: 生信
+categories: 技术博客
 tags:
   - 作业
 abbrlink: 12770

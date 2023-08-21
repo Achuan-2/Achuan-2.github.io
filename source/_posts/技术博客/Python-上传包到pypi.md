@@ -1,6 +1,6 @@
 ---
 title: Python 上传包到pypi
-categories: Coding
+categories: 技术博客
 tags:
   - Python
 abbrlink: d2b2fba7

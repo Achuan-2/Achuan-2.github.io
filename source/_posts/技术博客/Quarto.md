@@ -1,6 +1,6 @@
 ---
 title: Quarto：Markdown 又何必只是 Markdown
-categories: Writing
+categories: 技术博客
 tags:
   - Markdown
   - Quarto
