@@ -1,15 +1,17 @@
 ---
 title: 关于等待力和秩序感的思考
-date: '2023-08-21 11:08:39'
-updated: '2023-08-21 11:08:39'
+date: '2023-08-21 10:29:41'
+updated: '2023-08-22 00:33:38'
 excerpt: 人需要有等待力和秩序感，掌握自我，掌握生活
 tags:
   - 个人反思
 categories:
   - 阿巛随笔
+permalink: /post/thinking-about-waiting-power-and-order-f3swz.html
 comments: true
-abbrlink: ca84e3e4
+toc: true
 ---
+
 
 ## 等待力
 
