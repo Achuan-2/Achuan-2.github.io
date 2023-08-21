@@ -1,10 +1,14 @@
 ---
 title: VSCode 配置 matlab 运行环境
-updated: '2023-08-12'
-excerpt: ''
-permalink: /post/vscode-configuration-matlab-operating-environment-z7bakt.html
+date: '2023-03-14 13:45:07'
+updated: '2023-03-14 13:45:07'
+excerpt: 寄居蟹
+tags:
+  - 心理学
+categories:
+  - 阿巛随笔
 comments: true
-toc: true
+abbrlink: c873b400
 ---
 
 
