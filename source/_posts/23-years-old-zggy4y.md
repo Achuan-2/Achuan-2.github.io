@@ -1,10 +1,13 @@
 ---
-title: 23岁啦！
-updated: '2023-08-08'
-excerpt: ''
-permalink: /post/23-years-old-zggy4y.html
+title: 23岁拉
+date: '2023-07-29 13:45:07'
+updated: '2023-07-29 13:45:07'
+excerpt: 寄居蟹
+tags:
+  - 个人反思
+categories:
+  - 阿巛随笔
 comments: true
-toc: true
 ---
 
 算是最多朋友祝我生日快乐的一次生日了，虽然也就三个人。
