@@ -4,7 +4,7 @@ date: '2023-08-21 11:08:39'
 updated: '2023-08-21 11:08:39'
 excerpt: 人需要有等待力和秩序感，掌握自我，掌握生活
 tags:
-  - 个人提升
+  - 个人反思
 categories:
   - 阿巛随笔
 comments: true
