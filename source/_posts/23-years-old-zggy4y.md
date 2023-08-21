@@ -1,8 +1,11 @@
 ---
-title: 岁啦！
-date: '2023-07-30 10:22:11'
-updated: '2023-08-22 00:38:17'
+title: 23岁啦
+date: '2023-07-29 13:45:07'
+updated: '2023-07-29 13:45:07'
+excerpt: 又老了一岁了
 tags:
+  - 个人反思
+categories:
   - 阿巛随笔
 permalink: /post/23-years-old-zggy4y.html
 comments: true
