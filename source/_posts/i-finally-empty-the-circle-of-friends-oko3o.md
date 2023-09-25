@@ -10,6 +10,7 @@ categories:
 permalink: /post/i-finally-empty-the-circle-of-friends-oko3o.html
 comments: true
 toc: true
+abbrlink: 2f1ec12c
 ---
 
 

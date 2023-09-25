@@ -10,6 +10,7 @@ categories:
 permalink: /post/thinking-about-waiting-power-and-order-f3swz.html
 comments: true
 toc: true
+abbrlink: ca84e3e4
 ---
 
 

@@ -12,6 +12,7 @@ categories:
   - 生活技巧
 comments: true
 toc: true
+abbrlink: 34aeefad
 ---
 
 

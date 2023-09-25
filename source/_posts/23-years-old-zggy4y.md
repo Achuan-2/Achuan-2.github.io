@@ -10,6 +10,7 @@ categories:
 permalink: /post/23-years-old-zggy4y.html
 comments: true
 toc: true
+abbrlink: de805e74
 ---
 
 
