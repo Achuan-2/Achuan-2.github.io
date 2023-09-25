@@ -57,7 +57,7 @@ cd "C:\Program Files\MATLAB\R2022b\extern\engines\pythonn" python setup.py insta
 
 添加脚本到 Matlab 路径中，在 matlab 终端中输入 `pathtool`​，然后弹出如下窗口
 
-​​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202308101027924.png)​​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308101027924.png)​​
 
 ## 不建议
 

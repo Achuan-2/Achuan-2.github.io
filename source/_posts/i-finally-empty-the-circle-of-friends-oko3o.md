@@ -34,4 +34,4 @@ abbrlink: 2f1ec12c
 
 当然了，不代表我不发动态了，我就是一个分享欲很强的人和喜欢写东西的人，不过我希望自己少发碎片化的生活记录，多写长长的随笔和博客，多思考多总结多沉淀，以后珍贵的回忆和随笔，都会优先写在在思源笔记里，再分享到网络里去
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202308141024199.jpg)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308141024199.jpg)​

@@ -24,25 +24,25 @@ abbrlink: d766b22
 
 dailylog 文件夹截图
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252309074.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252309074.png)​
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252309292.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252309292.png)​
 
 ## **Word和PPT文件管理方式**
 
 目前的管理方式是认为Word和PPT放在一起很舒服，以前比如上一门课，遇见一件事，会专门创建一个文件夹，然后放PPT和Word，导致这些文件都很散乱，虽然要找是能找到的。目前的管理思路是，把这些文件都放在一起，文稿类的一个文件夹，汇报类的一个文件夹，如果实在有必要再专门创建一个事件文件夹，把对应的文件以超链接的形式丢进去，这样也方便利用之前的创作心血。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252309259.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252309259.png)​
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252309925.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252309925.png)​
 
 对于PPT，我设计了用于个人汇报的模板，针对不同的场景设计了一些母版样式
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252309835.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252309835.png)​
 
 对于Word文稿写作，也有一个样式模板，习惯是用思源笔记写初稿导出md，然后用quarto（下一代RMarkdown）将md渲染为我设计的word模板样式。具体可见
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252309803.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252309803.png)​
 
 ## 手机电脑同步文件
 
@@ -56,11 +56,11 @@ dailylog 文件夹截图
 
 目前还挖掘到滴答清单做临时笔记非常好用，特别是一些琐事的笔记，所以额外创建了一个【临时笔记】。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252310543.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252310543.png)​
 
 手机的桌面的小组件主要放了两个分类，【收集箱】与【临时笔记】。
 
-​![83f9b576fb589d416c932eae94cda51](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252310981.jpg)​
+​![83f9b576fb589d416c932eae94cda51](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252310981.jpg)​
 
 ## 笔记管理方式
 
@@ -70,15 +70,15 @@ dailylog 文件夹截图
 
 以Adobe Illustrator的笔记为例，展示双链笔记的渐进式笔记法特点
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252310780.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252310780.png)​
 
 下面是我“日记”的模板
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252310547.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252310547.png)​
 
 另外说下，目前创建笔记文档我也是用双链来创建，利用软件的配置方法，可以让这些文档自动放在当月文档下，无需考虑分类，减小记笔记的摩檫力
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252310343.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252310343.png)​
 
 ## 网盘资源
 
@@ -90,4 +90,4 @@ dailylog 文件夹截图
 
 影视资源的寻找主要在酷安的阿里云盘软件评论区搜刮，很多影片一搜就有。
 
-​![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/202304252309456.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202304252309456.png)​
