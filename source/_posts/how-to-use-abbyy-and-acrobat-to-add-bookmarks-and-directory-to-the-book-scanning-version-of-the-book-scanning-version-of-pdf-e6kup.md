@@ -6,10 +6,10 @@ excerpt: >-
   从网上找的书籍资源，很多都是非官方的扫描版，不仅文件大，而且不能选中文字、没有书签目录，阅读体验很不好，介绍下如何用ABBYY和Acrobat
   给图书扫描版pdf添加书签和目录跳转
 tags:
-  - 技术博客
-categories:
   - 软件使用
   - 生活技巧
+categories:
+  - 技术博客
 comments: true
 toc: true
 abbrlink: 34aeefad
