@@ -1,6 +1,7 @@
 ---
 title: 用Python实现Needleman-Wunsch和Smith-Waterman算法
-categories: 技术博客
+categories: 
+ - 技术博客
 tags:
   - 作业
   - 生信
@@ -10,7 +11,7 @@ excerpt: >-
   最多的match数量、最高的比对得分、最高的identity）。Smith-Waterman是局部序列比对算法，最终得到的是2条序列在局部的最佳匹配片段（注意：即挑选出得分最高的比对片段）
 abbrlink: be13a22e
 date: 2022-10-09 16:11:28
-update: 2023-01-09 16:11:28
+updated: 2022-10-09 16:11:28
 ---
 
 
