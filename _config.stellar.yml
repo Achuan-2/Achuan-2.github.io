@@ -372,8 +372,8 @@ style:
         code: 85% # 14px
         codeblock: 0.8125rem # 13px
     font-family:
-        logo: 'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
-        body: 'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+        logo: 'LXGW WenKai Screen, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+        body: 'LXGW WenKai Screen, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
         code: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
         codeblock: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
     text-align: left

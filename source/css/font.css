@@ -98,10 +98,7 @@ table:not([class]) tr {
 table:not([class]) tr:hover {
     background: var(--block);
 }
-*[ff='title'] {
-    font-family: STZhongsong, 'Noto Serif SC', 'Microsoft Yahei', system-ui, Segoe UI, -apple-system,
-        Roboto, Ubuntu, Helvetica Neue, Arial, WenQuanYi Micro Hei, sans-serif;
-}
+
 blockquote {
     display: block;
     margin-left: 0;
@@ -137,7 +134,7 @@ blockquote {
     background: var(--card);
 }
 
-}
+
 @-moz-keyframes glow {
     from {
         background-position: 0%;
@@ -380,14 +377,7 @@ table:not([class]) {
 * {
     outline: none;
 }
-html {
-    font-family: 'Noto Serif SC', 'Microsoft Yahei', system-ui, Segoe UI, -apple-system, Roboto,
-        Ubuntu, Helvetica Neue, Arial, WenQuanYi Micro Hei, sans-serif;
-    font-size: 17px;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    scroll-behavior: smooth;
-}
+
 body {
     background: var(--site-bg);
     margin: 0;
@@ -3655,8 +3645,6 @@ nav.menu a.nav-item:hover {
     padding: 0.5rem 0;
     line-height: 1;
     box-sizing: border-box;
-    font-family: 'Noto Serif SC', 'Microsoft Yahei', system-ui, Segoe UI, -apple-system, Roboto,
-        Ubuntu, Helvetica Neue, Arial, WenQuanYi Micro Hei, sans-serif;
     color: var(--text-p0);
 }
 
