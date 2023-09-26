@@ -367,7 +367,7 @@ style:
     darkmode: auto # auto / always / false
     smooth_scroll: true # true / false
     font-size:
-        root: 16px
+        root: 17fontsize 更改为17pxpx
         body: .9375rem # 15px
         code: 85% # 14px
         codeblock: 0.8125rem # 13px
