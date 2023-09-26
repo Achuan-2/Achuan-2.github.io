@@ -4,10 +4,13 @@ categories: 技术博客
 tags:
   - 作业
   - 生信
-abbrlink: 8971
+excerpt: >-
+  Needleman-Wunsch和Smith-Waterman算法都是Pairwise
+  alignment算法，用于双序列比对。Needleman-Wunsch是全局序列比对算法，最终会得到2条序列在全局上最佳的匹配结果（e.g.
+  最多的match数量、最高的比对得分、最高的identity）。Smith-Waterman是局部序列比对算法，最终得到的是2条序列在局部的最佳匹配片段（注意：即挑选出得分最高的比对片段）
+abbrlink: be13a22e
 date: 2022-10-09 16:11:28
-updated: 
-excerpt: Needleman-Wunsch和Smith-Waterman算法都是Pairwise alignment算法，用于双序列比对。Needleman-Wunsch是全局序列比对算法，最终会得到2条序列在全局上最佳的匹配结果（e.g. 最多的match数量、最高的比对得分、最高的identity）。Smith-Waterman是局部序列比对算法，最终得到的是2条序列在局部的最佳匹配片段（注意：即挑选出得分最高的比对片段）
+update: 2023-01-09 16:11:28
 ---
 
 

@@ -6,10 +6,10 @@ tags:
   - 组学分析
   - 作业
   - 生信
-abbrlink: 6389
-date: 2022-10-25 12:21:25
-updated:
 excerpt: 复旦大学《实用生物信息学》第一次作业，使用Tophat2-cufflinks-cuffdiff流程来进行RNAseq差异基因分析
+abbrlink: 6e57daa8
+date: 2022-10-25 12:21:25
+updated: 2022-10-26 12:21:25
 ---
 
 
