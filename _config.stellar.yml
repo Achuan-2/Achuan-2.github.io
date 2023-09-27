@@ -18,7 +18,7 @@ sidebar:
         title: '[config.title](/)' # you can set html tag like: '[<img no-lazy height="32px" src="xxx"/>](/)'
     menu:
         post: '[博客](/)'
-        wiki: '[仓库](/wiki/)'
+        # wiki: '[仓库](/wiki/)'
         friends: '[友链](/friends/)'
         about: '[关于](/about/)'
     # Sidebar widgets
@@ -41,8 +41,10 @@ sidebar:
         page: toc, search # for custom pages using 'layout:page'
 
 ######## Index ########
+# 博客主页的标签页
 post-index: # 近期发布 分类 标签 归档 and ...
-    '仓库': /wiki/
+    '留言板': /about/#comments
+    # '仓库': /wiki/
     # '说说': /shuoshuo/
 
 ######## Main ########
@@ -185,7 +187,7 @@ footer:
             url: https://music.163.com/#/user/home?id=111010025
         comments:
             icon: '<img src="https://api.iconify.design/bx/comment-detail.svg"/>'
-            url: https://github.com/Achuan-2/Achuan-2.github.io/issues
+            url: /about/#comments
         email:
             icon: '<img src="https://api.iconify.design/clarity/email-outline-badged.svg"/>'
             url: 'mailto:achuan-2@outlook.com'
@@ -202,7 +204,7 @@ footer:
             - '[None](/wiki/)'
         '社交':
             - '[友链](/friends/)'
-            - '[留言板](//about/#comments)'
+            - '[留言板](/about/#comments)'
         '更多':
             - '[GitHub](https://github.com/Achuan-2/)'
     content: | # 支持 Markdown 格式
