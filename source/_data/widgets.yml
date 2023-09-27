@@ -1,36 +1,36 @@
 recent:
-  layout: recent
-  rss: # /atom.xml # npm i hexo-generator-feed
-  limit: 5 # Count of posts
+    layout: recent
+    rss: # /atom.xml # npm i hexo-generator-feed
+    limit: 5 # Count of posts
 toc:
-  layout: toc
-  list_number: false # 是否显示序号
-  min_depth: 2
-  max_depth: 5
-  fallback: recent # Use a backup widget when toc does not exist.
+    layout: toc
+    list_number: false # 是否显示序号
+    min_depth: 2
+    max_depth: 5
+    fallback: recent # Use a backup widget when toc does not exist.
 ghuser:
-  layout: ghuser
-  api: https://api.github.com
-  username: Achuan-2 # your github login username
-  avatar: true # show avatar or not
-  menu: false  # show menu or not
+    layout: ghuser
+    api: https://api.github.com
+    username: Achuan-2 # your github login username
+    avatar: true # show avatar or not
+    menu: false # show menu or not
 welcome:
-  layout: markdown
-  title: 欢迎来到阿巛同学的小窝
-  content: 阿巛同学想在这里偷偷地沉淀，一点点变成更厉害的人哦！🤫
+    layout: markdown
+    title: 欢迎来到阿巛同学的小窝
+    content: 阿巛同学想在这里偷偷地沉淀，一点点变成更厉害的人哦！🤫
 timeline:
-  layout: timeline
-  title: '<a href="https://github.com/Achuan-2/Achuan-2.github.io/issues" style="color:#03c7fa">近期动态</a>'
-  api: https://api.github.com/repos/Achuan-2/Achuan-2.github.io/issues?per_page=7 # 若你想限制数量，在api链接后面加上?per_page=1指限制为1条
-  user: Achuan-2 # 是否过滤只显示某个人发布的内容，如果要筛选多人，用英文逗号隔开
-  hide: # title,footer # 隐藏标题或底部 # 此功能需要 Stellar v1.13.0
+    layout: timeline
+    title: '<a href="https://github.com/Achuan-2/Achuan-2.github.io/issues" style="color:#03c7fa">近期动态</a>'
+    api: https://api.github.com/repos/Achuan-2/Achuan-2.github.io/issues?per_page=7 # 若你想限制数量，在api链接后面加上?per_page=1指限制为1条
+    user: Achuan-2 # 是否过滤只显示某个人发布的内容，如果要筛选多人，用英文逗号隔开
+    hide: # title,footer # 隐藏标题或底部 # 此功能需要 Stellar v1.13.0
 
 '朋友圈':
-  layout: timeline
-  title: 朋友圈
-  api: https://fastly.jsdelivr.net/gh/Achuan-2/hexo-friends-rss@main/data.json # 你的朋友圈数据文件地址
-  type: fcircle
-  limit: # 可通过这个限制最大数量
+    layout: timeline
+    title: 朋友圈
+    api: https://fastly.jsdelivr.net/gh/Achuan-2/hexo-friends-rss@main/data.json # 你的朋友圈数据文件地址
+    type: fcircle
+    limit: # 可通过这个限制最大数量
 
-
-  
+related:
+    layout: related

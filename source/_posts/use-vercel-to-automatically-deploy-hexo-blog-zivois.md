@@ -12,8 +12,6 @@ toc: true
 abbrlink: f5348a5e
 ---
 
-# 使用 Vercel 自动部署 hexo 博客
-
 使用 Vercel 自动部署 hexo 博客的好处
 
 * 可以直接在云端的Github Repo添加修改文件；

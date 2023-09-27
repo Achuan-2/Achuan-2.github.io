@@ -34,7 +34,7 @@ sidebar:
         others: search, recent # for 404 and ...
         #### 手动创建的页面 ####
         # 文章内页
-        post: search_blog, toc, ghrepo, ghissues # for pages using 'layout:post'
+        post: search_blog, toc, related # for pages using 'layout:post'
         # 文档内页
         wiki: search, ghrepo, toc, ghissues, related # for pages using 'layout:wiki'
         # 其它 layout:page 的页面
@@ -111,7 +111,7 @@ comments:
         data-category: Q&A
         data-category-id: DIC_kwDOIT0sJ84CSMyl
         data-mapping: pathname
-        data-strict: 0
+        data-strict: 1
         data-reactions-enabled: 1
         data-emit-metadata: 0
         data-input-position: bottom # top, bottom
