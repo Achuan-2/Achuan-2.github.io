@@ -3,11 +3,16 @@ title: About
 date: 2022-10-26 12:44:17
 ---
 
-## Self-Introduction
 
-xxxx
 
-## Educational experience
+{% tabs active:1 align:center %}
+
+<!-- tab 自我介绍 -->
+
+Hi~各位好，我是Achuan-2，2000年生，目前是复旦大学神经生物学研究生在读，爱好编程、尤克里里、摄影、陆冲。喜欢在网上分享自己的所见所感，希望能坚持维护更新这个博客呀！
+
+
+<!-- tab 教育经历 -->
 {% timeline %}
 <!-- node 2022年9月-Now -->
 复旦大学 脑科学转化研究院 神经生物学专业
@@ -21,12 +26,13 @@ xxxx
 福建省宁德市霞浦县水潮小学
 <!-- node 2007年9月-2009年6月 -->
 福建省泉州市丰泽区环清小学
-
 {% endtimeline %}
 
-## Contact
+<!-- tab 联系方式 -->
 
 - Email: achuan-2@outlook.com
 - Wechat: achuan1037
-  {% image index/wechat.png width:400px %}
+
+{% endtabs %}
+
 

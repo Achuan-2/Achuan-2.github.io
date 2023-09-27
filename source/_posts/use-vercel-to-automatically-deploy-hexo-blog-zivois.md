@@ -9,6 +9,7 @@ categories:
   - 技术博客
 comments: true
 toc: true
+abbrlink: f5348a5e
 ---
 
 # 使用 Vercel 自动部署 hexo 博客
