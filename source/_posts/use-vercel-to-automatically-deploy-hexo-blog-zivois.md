@@ -2,7 +2,7 @@
 title: 使用 Vercel 自动部署 hexo 博客
 date: '2023-09-27 14:56:12'
 updated: '2023-09-27 15:11:13'
-excerpt: Github 博客的repo提交commit修改后，Vercel自动部署生成静态文件，无需手动执行构建，避免了繁琐的手动部署过程；
+excerpt: Github 博客的repo提交commit修改后，Vercel自动部署生成静态文件，无需手动执行构建，避免了繁琐的手动部署过程
 tags:
   - hexo
 categories:
@@ -26,7 +26,7 @@ toc: true
 
 地址：[New Project – Vercel](https://vercel.com/new)
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202309271511638.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202309271513614.png)​
 
 ## 购买域名
 
@@ -40,7 +40,7 @@ toc: true
     * CNAME 记录地址：`cname-china.vercel-dns.com`​
 * 一般用CNAME就好
 
-  ​![Snipaste_2022-10-27_19-08-14](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202309271511512.png)​
+  ​![Snipaste_2022-10-27_19-08-14](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202309271513820.png)​
 
 ## Vercel hexo APP添加自定义域名
 
