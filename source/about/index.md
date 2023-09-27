@@ -1,5 +1,6 @@
 ---
 title: About
+sidebar: [welcome, ghuser]
 date: 2022-10-26 12:44:17
 ---
 
