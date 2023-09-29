@@ -1,7 +1,7 @@
 ---
 title: Matlab 控制 Gentl 协议高速相机
-date: '2023-07-12 13:31:30'
-updated: '2023-09-29 20:34:34'
+date: '2023-09-29 20:37:00'
+updated: '2023-09-29 20:37:00'
 comments: true
 toc: true
 ---
