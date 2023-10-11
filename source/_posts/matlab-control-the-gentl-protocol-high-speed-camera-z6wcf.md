@@ -1,7 +1,7 @@
 ---
 title: Matlab 控制 Gentl 协议高速相机
 date: '2023-09-29 20:37:00'
-updated: '2023-09-29 20:37:00'
+updated: '2023-10-11 14:08:03'
 tags:
   - Matlab
 categories:
@@ -22,9 +22,9 @@ toc: true
 
 相机需要使用USB 3.0 连接电脑，Basler Pylon Viewer 软件可以对相机进行参数设置并保存配置。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325641.png "Basler")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407524.png "Basler")​
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325896.png "Basler")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407904.png "Basler")​
 
 ### 控制相机
 
@@ -39,28 +39,28 @@ toc: true
 
 下载地址：[pylon Software for Image Capture ](https://www.baslerweb.com/en-us/software/pylon/)（如果需要保存为mp4，需要额外下载 pylon Supplementary Package for MPEG-4 Windows）
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325292.png "Pylon")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407222.png "Pylon")​
 
 一些设置经验总结
 
 * 设置分别率，即图像尺寸大小。
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325715.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407890.png)​
 * 设置相机曝光时间（曝光时间越短，快门速度越快，越能抓拍高速运动的物体）
 
   > 帧率只决定曝光时间的上限，如果帧率提高抓拍依然模糊，可以适当缩短曝光时间，虽然会造成图片亮度不足
   >
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325668.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407720.png)​
 * 增加相机输出图像的亮度：提高 gain（应该类似于相机的iso，亮度会提高，噪声也会提高）
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325588.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407511.png)​
 * 保存用户配置，实测除了拍摄图像的分辨率大小外，其他设置的参数比如帧率、曝光时间等都是能在Matlab用的。
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325526.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407469.png)​
 * 软件设置录制：上方菜单【Window】→【Record Settings】
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325582.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407261.png)​
 
 ## Matlab 环境配置和文档总结
 
@@ -72,7 +72,7 @@ toc: true
 
 ### 预览和结束预览
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325415.png "preview(obj")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407037.png "preview(obj")​
 
 * ​`preview`​ 预览 【[Ref](https://ww2.mathworks.cn/help/imaq/imaqdevice.preview.html)】
 * ​`closepreview`​ 结束预览 【[Ref](https://ww2.mathworks.cn/help/imaq/imaqdevice.closepreview.html)】
@@ -194,7 +194,7 @@ dev =
 
 1. **直接通过预览获取信息**：通过预览 `preview(vid)` ​判断相机预设的帧率和 Matlab 获取的帧率是否一致
 
-   ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325174.png)​
+   ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407179.png)​
 2. **计算实际帧率**：通过代码连续获取很多帧，并计时，计算帧率
 
    ```matlab
