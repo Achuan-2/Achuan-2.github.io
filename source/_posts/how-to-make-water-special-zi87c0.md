@@ -4,7 +4,7 @@ date: '2023-10-25 00:02:30'
 updated: '2023-10-25 12:01:15'
 excerpt: >-
   做这篇笔记的起因：看《Neuroscience: Exploring the Brain》的Chapter3
-  讲到水的极性使得一个良好的溶剂，也就是说其他带电的或极性分子易溶于水，大学化学没学好，高中化学早忘光了，简单补一补关于离子键、共价键、极性、氢键的知识。查完资料，表示日常见的水原来这么神奇，非常惊叹！
+  讲到水的极性使得一个良好的溶剂，其他带电的或极性分子易溶于水。大学化学没学好，高中化学早忘光了，简单补一补关于离子键、共价键、极性、氢键的知识。查完资料，表示日常见的水原来这么神奇，非常惊叹！
 tags:
   - 神经科学基础
   - 生物化学
@@ -16,7 +16,7 @@ toc: true
 
 
 
-> 做这篇笔记的起因：看《Neuroscience: Exploring the Brain》的Chapter3 讲到水的极性使得一个良好的溶剂，也就是说其他带电的或极性分子易溶于水，大学化学没学好，高中化学早忘光了，简单补一补关于离子键、共价键、极性、氢键的知识。查完资料，表示日常见的水原来这么神奇，非常惊叹！
+> 做这篇笔记的起因：看《Neuroscience: Exploring the Brain》的Chapter3 讲到水的极性使得一个良好的溶剂，其他带电的或极性分子易溶于水。大学化学没学好，高中化学早忘光了，简单补一补关于离子键、共价键、极性、氢键的知识。查完资料，表示日常见的水原来这么神奇，非常惊叹！
 
 我们地球的70%是海水，我们身体的65%是由水组成的，很难不意识到它在我们生活中的重要性。这个简单的事实就是为什么科学家们不断地在其他星球上寻找水——水的存在可能表明生命的存在。
 
@@ -26,9 +26,9 @@ toc: true
 
 水的分子结构很简单，H2O，它由一个氧原子和两个氢原子组成。每个氢原子通过一对共享的电子与氧共价键合，同时氧也有两对不共享的电子。因此，氧原子周围有4对电子，两对电子与氢形成共价键，两对电子位于氧原子的另一面。与氢相比，氧的电负性比氢高，即更容易吸引电子。于是水分子的电子密度分布不均匀，由于不共享的电子对，水在氧原子附近有部分负电荷（δ - ），在氢原子附近有部分正电荷（δ + ）。
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251202608.png)
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251434185.png)
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251202984.png)​​​​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251434383.png)​​​​
 
 氢原子附近的部分正电荷和氧原子附近的部分负电荷之间的静电吸引导致水分子互相吸引，同时亦使它们和其他极性分子互相吸引。这种吸引力被称为氢键。水的极性和氢键解释了许多水的特性：
 
@@ -44,7 +44,7 @@ toc: true
 
 每个水分子的氢侧携带轻微的正电荷，而氧侧携带轻微的负电荷。这有助于水将离子化合物分解（分离）成它们的正离子和负离子。离子化合物的正部分被水的氧侧吸引，而化合物的负部分被水的氢侧吸引。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251202690.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251434506.png)​
 
 水的溶解性对于细胞内的化学反应和分子运输至关重要。
 
@@ -66,13 +66,13 @@ toc: true
 
 在冰的结构中，每个氧原子与4个氢原子相连接而成四面体，每个氢原子与两个氧原子相连结。即氧原子的四个键(两个共价键，两个氢键)，指向一个四面体的四个顶点，每个水分子都被四个水分子所包围。但冰是一种很不紧凑的结构，这种四面体结构对空间的利用率较低，只有34%。当冰熔解时，一些氢键被破坏，四面体结构被瓦解，水分子可以比较紧密地堆积在一起，因此，冰在熔解时体积要缩小。因此冰比水疏松，密度只有水的0.9倍。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251202781.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251434938.png)​
 
 ‍
 
 从生态学意义上来看，浮冰通过隔离下面的水来减缓冻结过程，最冷的水在上方，湖泊底的水依然有4℃，保护水下的生物免受极端寒冷的影响。如果冰不能漂浮，湖水将自下而上冻结，杀死湖中所有的生态系统！
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251202011.png "湖水底部温度为4℃")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251434267.png "湖水底部温度为4℃")​
 
 ‍
 
@@ -108,7 +108,7 @@ toc: true
 
 表面张力是在水面上破皮所需的力的量度。其他液体也有表面张力，但由于氢键，水中的表面张力相当强。于是杯子里的水位实际上比杯子的高度要高依然不溢出、一些昆虫可以直接在水上行走、露水呈球形。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251202044.png "露水呈球形展示了水的表面张力")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310251434078.png "露水呈球形展示了水的表面张力")​
 
 ## 毛细作用
 
