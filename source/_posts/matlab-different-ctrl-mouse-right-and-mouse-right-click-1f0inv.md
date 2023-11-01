@@ -8,8 +8,6 @@ excerpt: >-
 tags:
   - Matlab
 categories:
-  - Notes
-  - '11'
   - 技术博客
 comments: true
 toc: true
