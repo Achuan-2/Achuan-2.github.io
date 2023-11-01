@@ -2,6 +2,9 @@
 title: Matlab 区别 Ctrl+ 鼠标左键和鼠标右键单击
 date: '2023-11-01 16:09:47'
 updated: '2023-11-01 16:46:05'
+excerpt: >-
+  UIFigure.SelectionType 返回 alt 同时代表 Ctrl+ 左键或单击右键，而项目又需要 ctrl+
+  左键和右键分别代表不同的事件，所以额外写了代码进行区分
 tags:
   - Matlab
 categories:
