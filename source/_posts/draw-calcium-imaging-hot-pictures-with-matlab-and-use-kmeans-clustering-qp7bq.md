@@ -5,8 +5,6 @@ updated: '2023-11-01 14:02:16'
 tags:
   - Matlab
 categories:
-  - Notes
-  - '10'
   - 技术博客
 comments: true
 toc: true
