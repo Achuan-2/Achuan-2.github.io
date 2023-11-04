@@ -1,5 +1,5 @@
 ---
-title: Matlab 如何给RGB图像指定区域批量赋值颜色
+title: Matlab 如何用二维mask给三维矩阵批量赋值
 date: '2023-11-05 00:34:33'
 updated: '2023-11-05 01:13:34'
 excerpt: >-
@@ -20,7 +20,7 @@ toc: true
 
 我通过细胞分割，得到二维的 roi mask，需要转化为有颜色的 roi mask，即需要把一个个 roi 所在的位置加上随机颜色，有颜色就代表生成的图片会是 RGB 三通道，就需要用二维矩阵的位置信息给三维矩阵赋值。
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050139768.png)​​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050242731.png)​​
 
 ## 解决方案
 
@@ -64,13 +64,13 @@ roi_3D = repmat(roi_position,1,1,3);
 color_mask(roi_3D) = repmat(rand(1,3)*255,sum(roi_position,'all'),1); 
 ```
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050139457.png "给空RGB的指定roi区域涂上随机颜色")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050242711.png "给空RGB的指定roi区域涂上随机颜色")​
 
 ### 只知道每个点坐标位置
 
 手动圈选 roi，我只能得到单个 stoke 中每个点的坐标信息，该如何变为 roi 的 outline，在 RGB 图像上绘制颜色呢？
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050139159.png "手动圈选的ROI只有每个点的坐标信息")​​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050242439.png "手动圈选的ROI只有每个点的坐标信息")​​
 
 也可以参考上面的做法，先是通过循环根据每个点的坐标信息给空二维 mask 填入 1，这样得到一个 roi 位置矩阵后，将其转化维三维矩阵，即可通过索引赋值实现需求。
 
@@ -96,3 +96,23 @@ roi_mask = poly2mask(stroke(:,1), stroke(:,2),img_size(1),img_size(2));
 ## 总结
 
 这篇博客介绍了如何将二维的ROI mask转化为有颜色的ROI mask。提供了两种解决方案。第一种是已知ROI的整体位置信息，可以直接利用逻辑矩阵的位置信息给三维矩阵赋值，实现批量填充颜色。第二种是只知道每个点的坐标位置，可以通过循环或者sub2ind函数将坐标转化为线性索引，然后进行批量赋值。此外，如果希望填充整个ROI区域而不是轮廓，可以使用poly2mask函数将ROI轮廓转化为ROI mask。
+
+‍
+
+## 补充
+
+如果是只给一个通道赋值，用二维mask就可以
+
+```matlab
+% 创建示例二维矩阵 masks 和三维矩阵 three
+masks = [1, 2, 1; 2, 2, 1; 1, 1, 2];
+HSV = cat(3, [1, 2, 3; 4, 5, 6; 7, 8, 9], [10, 11, 12; 13, 14, 15; 16, 17, 18], [19, 20, 21; 22, 23, 24; 25, 26, 27]);
+
+% 获取 masks 中值为 2 的位置
+mask_indices = masks == 2;
+
+% 将 three 矩阵中 mask_indices 对应位置的第二个维度的元素设置为 2
+HSV(:,:,2) = HSV(:,:,2) .* ~mask_indices + 2 * mask_indices;
+```
+
+‍
