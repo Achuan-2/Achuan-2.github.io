@@ -5,6 +5,7 @@ updated: '2023-11-04 22:54:05'
 excerpt: >-
   研究生的学校这学期，科研楼和宿舍楼下的新增了自动售货机，不是传统售货机那样，在外面选择商品，然后弹出来。而是扫码或人脸识别之后，就可以打开冰柜门，自由挑选，想拿多少拿多少（取决于钱包）。非常好奇其原理，于是简单查了查。
 tags:
+  - 博客
   - 生活百科
 categories:
   - 技术博客
@@ -16,7 +17,7 @@ toc: true
 
 研究生的学校这学期，科研楼和宿舍楼下的新增了自动售货机，不是传统售货机那样，在外面选择商品，然后弹出来。而是扫码或人脸识别之后，就可以打开冰柜门，自由挑选，想拿多少拿多少（取决于钱包）。非常好奇其原理，于是简单查了查。
 
-​![df4bb2a3a836407033c7dd36370ca4f](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042254621.jpg "学校的自动售货机")​
+​![df4bb2a3a836407033c7dd36370ca4f](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042334778.jpg "学校的自动售货机")​
 
 这类可开门的自动售货机大概有四种原理
 
@@ -37,7 +38,7 @@ toc: true
 
 要证明视觉识别技术很容易，我在冰柜门顶部已经发现了两个摄像头。要证明重力感应，也不难，只要有人遮住摄像头，拿走一个商品，如果还能判断你拿的是什么，就说明也用上了。但是我不敢，希望有勇士站出来，去勇敢验证！勇敢冲！
 
-​![29e1e2d7a08af0b1ee79a68f06e5a65](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042254304.jpg "终于找到它的摄像头了！一开始以为在货架顶端")​
+​![29e1e2d7a08af0b1ee79a68f06e5a65](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042303912.jpg "终于找到它的摄像头了！一开始以为在货架顶端")​
 
 ​![96b2ef7720fe0c9d49a1376d51c6061](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042254537.jpg "希望有人去遮挡摄像头，看看会不会真的影响个人征信啥的")​
 
