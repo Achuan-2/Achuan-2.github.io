@@ -3,6 +3,8 @@ title: Matlab 有没有像 np.clip 一样的函数，限制数组的最大值和
 date: '2023-11-05 01:25:44'
 updated: '2023-11-05 01:35:12'
 excerpt: 其实用max和min叠加就可以实现，限制数组的最大值和最小值
+tags:
+  - Matlab
 categories:
   - 技术博客
 comments: true
