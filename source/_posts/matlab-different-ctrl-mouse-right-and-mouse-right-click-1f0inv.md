@@ -82,8 +82,10 @@ end
 
 > ⚠ 注意：Matlab UIFigure KeyPressFcn 和 WindowKeyPressFcn 不一样
 >
-> * ​`KeyPressFcn`​ is evaluated only when the figure has focus (but not its children).
-> * ​`WindowKeyPressFcn`​, on the other hand, is evaluated whenever the figure or any of its children has focus.
+> * ​`KeyPressFcn`​​ is evaluated only when the figure has focus (but not its children).
+> * ​`WindowKeyPressFcn`​​, on the other hand, is evaluated whenever the figure or any of its children has focus.
+>
+> 对于要判断Ctrl是否按下，需要用WindowKeyPressFcn，如果用KeyPressFcn，一旦点击GUI其他组件，可能就失效，而调用鼠标左键的函数了。
 >
 > ref：[matlab: difference between KeyPressFcn and WindowKeyPressFcn - Stack Overflow](https://stackoverflow.com/questions/25174400/matlab-difference-between-keypressfcn-and-windowkeypressfcn)
 
