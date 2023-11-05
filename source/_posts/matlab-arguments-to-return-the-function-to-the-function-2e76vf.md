@@ -52,15 +52,15 @@ end
 
 ​`argName (dimensions) class {validators} = defaultValue`​​
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051730130.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051733668.png)​
 
 1. ​`(dimensions)`​​ ：输入大小，指定为包含两个或多个数值的以逗号分隔的列表，如 `(1,2)`​​、`(3,5,2)`​​ 或 `(1,:)`​​。冒号表示该维度可以包含任意长度。
 
-    * (1, 1)：表示标量
-    * (1, :)：表示行向量
-    * (:, 1)：表示列向量
-    * (: , :)：表示必须是3行的矩阵.
-    * (3, 4)：表示必须是3行, 4列的矩阵.
+    * ​`(1, 1) `​：表示标量
+    * ​`(1, :)`​：表示行向量
+    * ​`(:, 1)`​：表示列向量
+    * ​`(: , :)`​：表示必须是3行的矩阵.
+    * ​`(3, 4)`​：表示必须是3行, 4列的矩阵.
 2. ​`class`​ ：输入变量的类型:`double`​, `string`​,`char,`​ `cell,`​ 或者自定义的class。如果变量类型不符合，会自动进行转化，比如double类型被转化为uint8。
 3. ​`{validators}`​ - 用于参数验证的函数，验证函数支持<span style="font-weight: bold;" data-type="strong">自定义。</span> 有关验证函数的列表，请参阅 [参数验证函数](https://ww2.mathworks.cn/help/matlab/matlab_prog/argument-validation-functions.html)。举例：
 
@@ -206,50 +206,52 @@ ans =
 >
 > * 例子1：报错“输入参数太多”。
 >
->   * <span style="font-weight: bold;" data-type="strong">函数定义</span>
+>   <span style="font-weight: bold;" data-type="strong">函数定义</span>
 >
->     * ```matlab
->       function y = myFunction(x)
->       	arguments 
->           x
->       	end 
->       	y = x;
->       end
->       ```
->   * <span style="font-weight: bold;" data-type="strong">函数调用</span>
+>   ```matlab
+>   function y = myFunction(x)
+>   	arguments 
+>       x
+>   	end 
+>   	y = x;
+>   end
+>   ```
 >
->     * ```matlab
->       >> myFunction(x=1)
->       错误使用 myFunction
->       输入参数太多。
+>   <span style="font-weight: bold;" data-type="strong">函数调用</span>
 >
->       ```
+>   ```matlab
+>   >> myFunction(x=1)
+>   错误使用 myFunction
+>   输入参数太多。
+>
+>   ```
 > * 例子2：报错“函数要求名称 'Name1' 之前恰好有 1 个位置输入”。
 >
->   * <span style="font-weight: bold;" data-type="strong">函数定义</span>
+>   <span style="font-weight: bold;" data-type="strong">函数定义</span>
 >
->     * ```matlab
->       function y = myFunction(x,options)
->       	arguments 
->           x
->           options.Name1
->           options.Name2
->           end 
+>   ```matlab
+>   function y = myFunction(x,options)
+>   	arguments 
+>       x
+>       options.Name1
+>       options.Name2
+>       end 
 >
->       	y = x;
->       	disp(options);
->       end
->       ```
->   * <span style="font-weight: bold;" data-type="strong">函数调用</span>
+>   	y = x;
+>   	disp(options);
+>   end
+>   ```
 >
->     * ```matlab
+>   <span style="font-weight: bold;" data-type="strong">函数调用</span>
 >
->       >> myFunction(x=1,Name1="Hello",Name2="Matlab")
->       错误使用 myFunction
->        myFunction(x=1,Name1="Hello",Name2="Matlab")
->                     ↑
->       位置 2 处的参数无效。 函数要求名称 'Name1' 之前恰好有 1 个位置输入。
->       ```
+>   ```matlab
+>
+>   >> myFunction(x=1,Name1="Hello",Name2="Matlab")
+>   错误使用 myFunction
+>    myFunction(x=1,Name1="Hello",Name2="Matlab")
+>                 ↑
+>   位置 2 处的参数无效。 函数要求名称 'Name1' 之前恰好有 1 个位置输入。
+>   ```
 
 ## 官方示例
 
