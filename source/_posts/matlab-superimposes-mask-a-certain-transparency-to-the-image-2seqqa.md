@@ -1,8 +1,9 @@
 ---
-title: Matlab 把 mask 一定透明度叠加到图像上
+title: Matlab 把 ROI mask 以一定透明度叠加到黑白图像上
 date: '2023-11-05 10:42:56'
-updated: '2023-11-05 10:42:58'
-excerpt: 如何使用Matlab在图片上叠加上roi mask
+updated: '2023-11-05 11:34:17'
+excerpt: >-
+  本文主要介绍了两种将遮罩图像叠加在原始图像上的方法。第一种方法是将遮罩信息直接写入原始图像的HSV通道中，通过调整饱和度来控制透明度。第二种方法是使用imshow函数在图像上显示遮罩区域，并设置透明度。这些方法可以有效实现图像叠加效果。
 tags:
   - Matlab
 categories:
