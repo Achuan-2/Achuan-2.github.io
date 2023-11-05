@@ -9,7 +9,6 @@ categories:
   - 技术博客
 comments: true
 toc: true
-abbrlink: dd948bab
 ---
 
 
@@ -18,12 +17,12 @@ Matlab 版本：2023b
 
 Matlab 的 UIFigure WindowButtonDownFcn 回调可以监听鼠标点击事件，UIFigure.SelectionType 记录了鼠标点击情况，只返回以下四个值：
 
-* normal：代表单击鼠标左键；
-* extend：代表 Shift+ 左键、鼠标中键或左右键一起按
+* ​`normal`​：代表单击鼠标左键；
+* ​`extend`​：代表 Shift+ 左键、鼠标中键或左右键一起按
 
   * 备注：实测左右键一起按没用，事实上一般人也不会左右键一起按
-* alt：代表 Ctrl+ 左键，或者单击右键；
-* open：代表双击鼠标任意键
+* ​`alt`​：代表 Ctrl+ 左键，或者单击右键；
+* ​`open`​：代表双击鼠标任意键
 
   * 备注：我实测只有双击鼠标左键才会返回 open，双击右键不会
 
