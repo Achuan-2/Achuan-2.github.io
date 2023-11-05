@@ -7,6 +7,7 @@ excerpt: >-
   来兑换会员天数。作者打算继续使用 GLaDOS，等用完后再考虑其他机场。
 tags:
   - 科学上网
+  - 电脑技巧
 categories:
   - 技术博客
 comments: true
