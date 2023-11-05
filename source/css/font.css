@@ -4528,7 +4528,7 @@ h1.article-title {
 .md-text blockquote ol code,
 .md-text ul ol code,
 .md-text ol ol code {
-    font-size: inherit;
+    font-size: 85%;
     padding: 0;
     background: none;
 }
@@ -4893,5 +4893,3 @@ img[fancybox='true'] {
         --twikoo-theme: #409eff;
     }
 }
-
-
