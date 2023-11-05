@@ -1,5 +1,5 @@
 ---
-title: Matlab 如何把图像转为uint8
+title: Matlab 如何正确把图像转为uint8
 date: '2023-11-05 16:33:16'
 updated: '2023-11-05 16:46:14'
 excerpt: >-
