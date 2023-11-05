@@ -1,7 +1,7 @@
 ---
 title: Matlab 把 mask 一定透明度叠加到图像上
-date: '2023-10-31 22:39:19'
-updated: '2023-11-05 02:34:12'
+date: '2023-11-05 10:42:56'
+updated: '2023-11-05 10:42:58'
 excerpt: 如何使用Matlab在图片上叠加上roi mask
 tags:
   - Matlab
@@ -47,7 +47,7 @@ end
 
 ```
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050235088.png "将图片转化为hsv后，将roi信息写入saturation通道，实现图片叠加")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051042778.png "将图片转化为hsv后，将roi信息写入saturation通道，实现图片叠加")​
 
 ## 方法二：使用imshow
 
