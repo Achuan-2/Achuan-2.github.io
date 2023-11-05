@@ -4894,13 +4894,4 @@ img[fancybox='true'] {
     }
 }
 
-/* 文章显示标签 */
-.bread-nav #tag .breadcrumb-link,
-.post-list .post-card span.tag {
-    background-color: #76a3b3cc;
-    color: #fff;
-    padding: 0em 0.375em 0.08em !important;
-    border-radius: 0.3em;
-    margin: 0.25em !important;
-    display: inline-flex;
-}
+
