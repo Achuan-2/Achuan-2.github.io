@@ -1,7 +1,7 @@
 ---
 title: Matlab  arguments 让函数回归函数
-date: '2023-09-15 10:55:22'
-updated: '2023-11-05 17:30:23'
+date: '2023-11-05 17:30:50'
+updated: '2023-11-05 17:30:52'
 excerpt: >-
   Matlab  arguments 是Matlab 2019才有的语法，它让Matlab
   编写函数能以更简单的设置函数默认参数、支持键值对传参、支持参数验证以及自动参数类型转化等功能。习惯Python简单粗暴的编写函数的我，总算因为arguments这个语法，对Matlab的函数编写少了一丝敌意。目前class的类也是能用arguments语法对类属性进行设置。
@@ -52,7 +52,7 @@ end
 
 ​`argName (dimensions) class {validators} = defaultValue`​​
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051730681.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051730130.png)​
 
 1. ​`(dimensions)`​​ ：输入大小，指定为包含两个或多个数值的以逗号分隔的列表，如 `(1,2)`​​、`(3,5,2)`​​ 或 `(1,:)`​​。冒号表示该维度可以包含任意长度。
 
@@ -337,7 +337,7 @@ s2 = "--";
 fRepeat(x1,y1,s1,x2,y2,s2)
 ```
 
-​![Plot showing two lines](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051730363.png)​
+​![Plot showing two lines](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051730976.png)​
 
 ### 通过参数验证限制输出值
 
