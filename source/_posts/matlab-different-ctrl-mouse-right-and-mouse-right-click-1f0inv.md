@@ -1,7 +1,7 @@
 ---
 title: Matlab 区别 Ctrl+ 鼠标左键和鼠标右键单击
 date: '2023-11-01 16:09:47'
-updated: '2023-11-01 16:46:05'
+updated: '2023-11-05 12:41:13'
 excerpt: Matlab 非常脑残地用 alt 同时代表 Ctrl+ 左键或单击右键，而我的项目又需要 ctrl+ 左键和右键分别代表不同的事件，所以尝试写代码进行区分
 tags:
   - Matlab
