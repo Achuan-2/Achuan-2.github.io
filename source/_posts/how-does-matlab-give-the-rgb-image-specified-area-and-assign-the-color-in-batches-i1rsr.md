@@ -1,7 +1,7 @@
 ---
 title: Matlab 如何用二维mask给三维矩阵批量赋值
 date: '2023-11-05 00:34:33'
-updated: '2023-11-05 11:51:59'
+updated: '2023-11-05 17:00:31'
 excerpt: >-
   这篇博客介绍了如何将二维的ROI mask转化为有颜色的ROI
   mask。提供了两种解决方案。第一种是已知ROI的整体位置信息，可以直接利用逻辑矩阵的位置信息给三维矩阵赋值，实现批量填充颜色。第二种是只知道每个点的坐标位置，可以通过循环或者sub2ind函数将坐标转化为线性索引，然后进行批量赋值。此外，如果希望填充整个ROI区域而不是轮廓，可以使用poly2mask函数将ROI轮廓转化为ROI
@@ -12,7 +12,6 @@ categories:
   - 技术博客
 comments: true
 toc: true
-abbrlink: 2de03d23
 ---
 
 
@@ -106,7 +105,26 @@ linearIndices = sub2ind(size(outline), round(stroke(:, 2)),round(stroke(:, 1)));
 outline(linearIndices) = 1;
 ```
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050139194.png "使用sub2ind可以把坐标批量变为线性索引，从而实现批量赋值")​​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050139194.png "使用sub2ind可以把坐标批量变为线性索引，从而实现批量赋值")
+
+之所以要用sub2ind，而不是直接 `outline(round(stroke(:, 2)),round(stroke(:, 1)))`​，是因为matlab 索引传入列表的时候会认为你要提取子矩阵，而不是对应索引的的几个点
+
+```matlab
+>> a = rand(3,3)
+
+a =
+
+    0.5752    0.3532    0.0430
+    0.0598    0.8212    0.1690
+    0.2348    0.0154    0.6491
+
+>> b = a([1,2],[2,2]) # 返回的值并不是以为的(1,2),(2,2)两个点，而是得到第一行到第二行的第二列，由于y输入了两个2，得到两次第二列的值，返回四个点
+
+b =
+
+    0.3532    0.3532
+    0.8212    0.8212
+```
 
 如果希望填充的是 roi 的整个区域，而不是 roi 轮廓，可以使用 poly2mask，可以直接把 roi 轮廓变为 mask
 
@@ -120,6 +138,14 @@ roi_mask = poly2mask(stroke(:,1), stroke(:,2),img_size(1),img_size(2));
 ## 总结
 
 这篇博客介绍了如何将二维的 ROI mask 转化为有颜色的 ROI mask。提供了两种解决方案。第一种是已知 ROI 的整体位置信息，可以直接利用逻辑矩阵的位置信息给三维矩阵赋值，实现批量填充颜色。第二种是只知道每个点的坐标位置，可以通过循环或者 sub2ind 函数将坐标转化为线性索引，然后进行批量赋值。此外，如果希望填充整个 ROI 区域而不是轮廓，可以使用 poly2mask 函数将 ROI 轮廓转化为 ROI mask。
+
+‍
+
+‍
+
+## Ref
+
+* [【Matlab】如何提取矩阵中特定位置的元素？_matlab sub2ind 提取矩阵中每一行的特定元素-CSDN博客](https://blog.csdn.net/YaoYee_21/article/details/110248515)
 
 ‍
 
