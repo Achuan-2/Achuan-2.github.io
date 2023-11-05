@@ -253,6 +253,7 @@ pre:not([class]):has(> code) {
         sans-serif;
     box-sizing: border-box;
 }
+
 @media screen and (min-width: 500px) {
     .md-text .highlight,
     pre:not([class]):has(> code) {
@@ -4892,4 +4893,8 @@ img[fancybox='true'] {
         --twikoo-secondtext: #a1a2b8;
         --twikoo-theme: #409eff;
     }
+}
+
+.md-text blockquote .highlight {
+    background: #dcf5e8 !important;
 }
