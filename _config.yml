@@ -129,6 +129,7 @@ markdown_it_plus:
 
 inject:
     head:
+        - <link href="/css/code_language.css" rel="stylesheet">
         - <link href="/css/font.css" rel="stylesheet">
         - <link href="/css/scrollbar.css" rel="stylesheet">
         - <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css" media="all" />

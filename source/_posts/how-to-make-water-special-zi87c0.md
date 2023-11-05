@@ -12,6 +12,7 @@ categories:
   - 神经科学入门到入土
 comments: true
 toc: true
+abbrlink: 1c273c0b
 ---
 
 

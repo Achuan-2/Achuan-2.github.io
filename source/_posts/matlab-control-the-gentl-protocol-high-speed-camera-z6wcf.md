@@ -8,6 +8,7 @@ categories:
   - 技术博客
 comments: true
 toc: true
+abbrlink: 6eabca6e
 ---
 
 > 由于科研项目需要，需要使用 Matlab 控制高速相机拍摄小鼠行为，并与三光子显微镜成像同步，在此总结下，如何使用 Matlab 来控制相机进行采集图像和录制视频

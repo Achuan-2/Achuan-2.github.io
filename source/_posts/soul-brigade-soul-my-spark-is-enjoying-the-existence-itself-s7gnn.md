@@ -12,6 +12,7 @@ categories:
   - 阿巛随笔
 comments: true
 toc: true
+abbrlink: cf0a2858
 ---
 
 
