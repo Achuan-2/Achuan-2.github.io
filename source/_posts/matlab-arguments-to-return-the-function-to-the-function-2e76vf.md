@@ -13,6 +13,8 @@ comments: true
 toc: true
 ---
 
+![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311061540015.png)
+
 
 
 Matlab  arguments 是Matlab 2019才有的语法，它让Matlab 编写函数能以更简单的设置函数默认参数、支持键值对传参、支持参数验证以及自动参数类型转化等功能。习惯Python简单粗暴的编写函数的我，总算因为arguments这个语法，对Matlab的函数编写少了一丝敌意。目前class也是能用arguments语法对类属性进行设置。
