@@ -10,7 +10,8 @@ categories:
   - 技术博客
 comments: true
 toc: true
-abbrlink: 99fd534
+cover: >-
+  https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311061540015.png
 ---
 
 
@@ -72,8 +73,6 @@ h.AlphaData=binary_mask*alpha;
 ```
 
 ​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051133051.png "使用imshow绘制两层，调整顶层mask透明度，实现图片叠加")​
-
-​​​
 
 > ⚠注意：使用imshow的CData更改图像，scale不会改变……所以是需要让两张图片的最大灰度值相差不大的，比如都设置成255. 如果一个最大灰度值是255，一个最大灰度值只是1，就会导致图片过曝惨白一片。
 
