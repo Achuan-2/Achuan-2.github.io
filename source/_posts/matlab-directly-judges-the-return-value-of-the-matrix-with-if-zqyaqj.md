@@ -8,10 +8,9 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html
 comments: true
 toc: true
-cover: >-
-  https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311061540015.png
 ---
 
 
