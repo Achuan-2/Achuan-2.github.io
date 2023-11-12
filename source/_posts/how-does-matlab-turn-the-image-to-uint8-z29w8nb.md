@@ -9,10 +9,9 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: post/how-does-matlab-turn-the-image-to-uint8-z29w8nb.html
 comments: true
 toc: true
-cover: >-
-  https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311061540015.png
 ---
 
 
