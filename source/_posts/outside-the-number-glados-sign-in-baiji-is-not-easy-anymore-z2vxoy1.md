@@ -7,11 +7,11 @@ excerpt: >-
   来兑换会员天数。作者打算继续使用 GLaDOS，等用完后再考虑其他机场。
 tags:
   - 科学上网
+  - 电脑技巧
 categories:
   - 技术博客
 comments: true
 toc: true
-abbrlink: e0e7da59
 ---
 
 
@@ -24,7 +24,7 @@ abbrlink: e0e7da59
 
 不过 Pro 套餐的 100 天 + 原来的 365 天，现在就有 465 天啦！希望之后的网速体验好些！
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042332734.png "GLaDOS的套餐")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311052038630.png "GLaDOS的套餐")​
 
 ​​
 
@@ -34,7 +34,7 @@ abbrlink: e0e7da59
 
 去看下 GlaDOS 的签到才发现，可能从八月份起，就没有再签到了，自己原来利用 Github Action 进行签到的 repo 已经被关掉了。也简单搜了下，发现应该是官方去和 Github 反馈了，一系列用 Github Action 自动打卡的 repo 都被封了。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042332450.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311042332411.png)​
 
 此外，目前 GLaDOS 的签到赠送天数也从原来签到就送一天，变为了签到随机赠送 Points，满 100 Points 兑换 10 天会员。
 

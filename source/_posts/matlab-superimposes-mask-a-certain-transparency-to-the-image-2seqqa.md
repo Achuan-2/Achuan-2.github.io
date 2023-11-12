@@ -1,7 +1,7 @@
 ---
 title: Matlab 把 ROI mask 以一定透明度叠加到黑白图像上
-date: '2023-11-05 10:42:56'
-updated: '2023-11-05 11:34:17'
+date: '2023-11-05 18:55:30'
+updated: '2023-11-05 18:55:32'
 excerpt: >-
   本文主要介绍了两种将遮罩图像叠加在原始图像上的方法。第一种方法是将遮罩信息直接写入原始图像的HSV通道中，通过调整饱和度来控制透明度。第二种方法是使用imshow函数在图像上显示遮罩区域，并设置透明度。这些方法可以有效实现图像叠加效果。
 tags:
@@ -10,7 +10,6 @@ categories:
   - 技术博客
 comments: true
 toc: true
-abbrlink: 99fd534
 ---
 
 
@@ -72,8 +71,6 @@ h.AlphaData=binary_mask*alpha;
 ```
 
 ​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311051133051.png "使用imshow绘制两层，调整顶层mask透明度，实现图片叠加")​
-
-​​​
 
 > ⚠注意：使用imshow的CData更改图像，scale不会改变……所以是需要让两张图片的最大灰度值相差不大的，比如都设置成255. 如果一个最大灰度值是255，一个最大灰度值只是1，就会导致图片过曝惨白一片。
 
