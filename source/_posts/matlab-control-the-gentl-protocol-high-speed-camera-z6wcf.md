@@ -6,10 +6,12 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html
 comments: true
 toc: true
-abbrlink: 6eabca6e
 ---
+
+
 
 > 由于科研项目需要，需要使用 Matlab 控制高速相机拍摄小鼠行为，并与三光子显微镜成像同步，在此总结下，如何使用 Matlab 来控制相机进行采集图像和录制视频
 
@@ -23,9 +25,9 @@ abbrlink: 6eabca6e
 
 相机需要使用USB 3.0 连接电脑，Basler Pylon Viewer 软件可以对相机进行参数设置并保存配置。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407524.png "Basler")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233517.png "Basler")​
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407904.png "Basler")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233435.png "Basler")​
 
 ### 控制相机
 
@@ -34,46 +36,45 @@ abbrlink: 6eabca6e
 
   * Matlab Gentl Toolbox（不支持使用webcam、winvideo检测相机）
   * Python：[basler/pypylon-samples (github.com)](https://github.com/basler/pypylon-samples)
-  * [Basler Pylon 相机 C++ SDK](siyuan://blocks/20230621142609-8k26r83)
 
 ### Pylon Viewer的使用
 
 下载地址：[pylon Software for Image Capture ](https://www.baslerweb.com/en-us/software/pylon/)（如果需要保存为mp4，需要额外下载 pylon Supplementary Package for MPEG-4 Windows）
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407222.png "Pylon")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233249.png "Pylon")​
 
 一些设置经验总结
 
 * 设置分别率，即图像尺寸大小。
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407890.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233697.png)​
 * 设置相机曝光时间（曝光时间越短，快门速度越快，越能抓拍高速运动的物体）
 
   > 帧率只决定曝光时间的上限，如果帧率提高抓拍依然模糊，可以适当缩短曝光时间，虽然会造成图片亮度不足
   >
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407720.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233271.png)​
 * 增加相机输出图像的亮度：提高 gain（应该类似于相机的iso，亮度会提高，噪声也会提高）
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407511.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233299.png)​
 * 保存用户配置，实测除了拍摄图像的分辨率大小外，其他设置的参数比如帧率、曝光时间等都是能在Matlab用的。
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407469.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233875.png)​
 * 软件设置录制：上方菜单【Window】→【Record Settings】
 
-  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407261.png)​
+  ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130233500.png)​
 
 ## Matlab 环境配置和文档总结
 
-* **Matlab 环境配置**：需要安装两个 Toolbox
+* <span style="font-weight: bold;" data-type="strong">Matlab 环境配置</span>：需要安装两个 Toolbox
 
   * GenTL Support from Image Acquisition Toolbox
   * Image Acquisition Toolbox
-* **videoinput 文档**：[Create video input object - MATLAB - MathWorks 中国](https://ww2.mathworks.cn/help/imaq/videoinput.html?requestedDomain=cn)，主要使用的函数总结
+* <span style="font-weight: bold;" data-type="strong">videoinput 文档</span>：[Create video input object - MATLAB - MathWorks 中国](https://ww2.mathworks.cn/help/imaq/videoinput.html?requestedDomain=cn)，主要使用的函数总结
 
 ### 预览和结束预览
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407037.png "preview(obj")​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130232920.png "preview(obj")​
 
 * ​`preview`​ 预览 【[Ref](https://ww2.mathworks.cn/help/imaq/imaqdevice.preview.html)】
 * ​`closepreview`​ 结束预览 【[Ref](https://ww2.mathworks.cn/help/imaq/imaqdevice.closepreview.html)】
@@ -193,10 +194,10 @@ dev =
 
 ## 测试帧率和帧率稳定性
 
-1. **直接通过预览获取信息**：通过预览 `preview(vid)` ​判断相机预设的帧率和 Matlab 获取的帧率是否一致
+1. <span style="font-weight: bold;" data-type="strong">直接通过预览获取信息</span>：通过预览 `preview(vid)` ​判断相机预设的帧率和 Matlab 获取的帧率是否一致
 
    ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111407179.png)​
-2. **计算实际帧率**：通过代码连续获取很多帧，并计时，计算帧率
+2. <span style="font-weight: bold;" data-type="strong">计算实际帧率</span>：通过代码连续获取很多帧，并计时，计算帧率
 
    ```matlab
    %%%%%% 计算实际帧率
@@ -226,7 +227,7 @@ dev =
    ```
 
    ​![test_camera_FPS](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202310111325622.png "十次计算的相机FPS")​
-3. **测试录制视频帧率实际稳定性**：控制相机拍摄手机秒表录制一段视频，potplayer 前进一秒，看看视频里的秒表是不是也是前进一秒；严格测试是视频逐帧前进，看秒表前进的时间和计算的是否一致，（注意手机的屏幕刷新率注意需要提高到 120Hz）。
+3. <span style="font-weight: bold;" data-type="strong">测试录制视频帧率实际稳定性</span>：控制相机拍摄手机秒表录制一段视频，potplayer 前进一秒，看看视频里的秒表是不是也是前进一秒；严格测试是视频逐帧前进，看秒表前进的时间和计算的是否一致，（注意手机的屏幕刷新率注意需要提高到 120Hz）。
 
 ## 录制视频
 
