@@ -2,13 +2,17 @@
 title: 用 Matlab 绘制钙成像热图，并使用kmeans聚类
 date: '2023-10-27 21:47:18'
 updated: '2023-11-01 14:02:16'
+excerpt: 得逐渐学习怎么分析实验数据了呢
 tags:
   - Matlab
+  - 科研绘图
+  - 编程
 categories:
   - 技术博客
+permalink: >-
+  post/draw-calcium-imaging-hot-pictures-with-matlab-and-use-kmeans-clustering-qp7bq.html
 comments: true
 toc: true
-abbrlink: dd10cb69
 ---
 
 
@@ -25,11 +29,11 @@ abbrlink: dd10cb69
 
 关于钙荧光信号的聚类，最简单粗暴的就是kmeans了吧，但看到有文章用回归模型来聚类，不太懂，了解下
 
-​![clusterpng](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311011402328.png)​
+​![clusterpng](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130243430.png)​
 
-​![cluster2](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311011402954.png)
+​![cluster2](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130243924.png)
 
-​![cluster](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311011402280.png)​​
+​![cluster](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311130243993.png)​​
 
 ```matlab
 % 生成随机的神经元钙信号数据
