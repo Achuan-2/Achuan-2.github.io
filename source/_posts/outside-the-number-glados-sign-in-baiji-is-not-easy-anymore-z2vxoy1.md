@@ -10,6 +10,7 @@ tags:
   - 电脑技巧
 categories:
   - 技术博客
+permalink: post/outside-the-number-glados-sign-in-baiji-is-not-easy-anymore-z2vxoy1.html
 comments: true
 toc: true
 ---
