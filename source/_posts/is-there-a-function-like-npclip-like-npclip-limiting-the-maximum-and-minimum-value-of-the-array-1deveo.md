@@ -7,10 +7,10 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: >-
+  post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html
 comments: true
 toc: true
-cover: >-
-  https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311061540015.png
 ---
 
 
