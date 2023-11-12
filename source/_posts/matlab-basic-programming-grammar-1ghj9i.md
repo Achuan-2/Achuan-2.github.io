@@ -7,7 +7,7 @@ tags:
   - Matlab
 categories:
   - 技术博客
-permalink: matlab-basic-programming-grammar-1ghj9i.html
+permalink: /post/matlab-basic-programming-grammar-1ghj9i.html
 comments: true
 toc: true
 ---
@@ -93,7 +93,7 @@ toc: true
     end
     ```
 
-    注：Matlab 2019b起函数已经支持设置默认值、键值对传参、参数验证等功能了，详见[Matlab  arguments 让函数回归函数](/matlab-arguments-to-return-the-function-to-the-function-2e76vf)
+    注：Matlab 2019b起函数已经支持设置默认值、键值对传参、参数验证等功能了，详见[Matlab  arguments 让函数回归函数](/post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html)
   * 匿名函数
 
     语法
