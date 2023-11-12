@@ -7,6 +7,7 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: post/how-does-matlab-convert-graphics-into-outline-zo6ihg.html
 comments: true
 toc: true
 ---
@@ -59,7 +60,7 @@ end
 
 原来的 mask 图
 
-​​![fudan](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311121904717.png)​​
+​​![fudan](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311121904150.png)​​
 
 得到的outline图
 
