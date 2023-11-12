@@ -2,6 +2,9 @@
 title: Matlab 'Hello World' vs "Hello World" 单引号和双引号有何区别
 date: '2023-11-13 02:24:10'
 updated: '2023-11-13 02:24:12'
+excerpt: Matlab 的单引号和双引号包裹字符代表的意义有所不同，不像 Python 几乎没有区别，使用需要注意
+tags:
+  - Matlab
 categories:
   - 技术博客
 permalink: >-
