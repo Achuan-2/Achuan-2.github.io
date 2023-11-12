@@ -8,6 +8,7 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: post/matlab-superimposes-mask-a-certain-transparency-to-the-image-2seqqa.html
 comments: true
 toc: true
 ---
