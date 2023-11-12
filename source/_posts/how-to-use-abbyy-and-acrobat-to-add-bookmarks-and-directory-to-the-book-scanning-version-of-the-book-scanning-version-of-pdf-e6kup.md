@@ -6,14 +6,19 @@ excerpt: >-
   从网上找的书籍资源，很多都是非官方的扫描版，不仅文件大，而且不能选中文字、没有书签目录，阅读体验很不好，介绍下如何用ABBYY和Acrobat
   给图书扫描版pdf添加书签和目录跳转
 tags:
+  - 技术博客
   - 软件使用
   - 生活技巧
 categories:
+  - 软件使用
+  - 生活技巧
   - 技术博客
+permalink: >-
+  post/how-to-use-abbyy-and-acrobat-to-add-bookmarks-and-directory-to-the-book-scanning-version-of-the-book-scanning-version-of-pdf-e6kup.html
 comments: true
 toc: true
-abbrlink: 34aeefad
 ---
+
 
 
 > 摘要：从网上找的书籍资源，很多都是非官方的扫描版，不仅文件大，而且不能选中文字、没有书签目录，阅读体验很不好，介绍下如何用ABBYY和Acrobat 给图书扫描版pdf添加书签和目录跳转
@@ -22,34 +27,34 @@ abbrlink: 34aeefad
 
 点击【识别文档】
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308282304858.png)​
+​![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308282304858.png)​
 
 设置OCR语言，点击识别
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308282313720.png)​
+​![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308282313720.png)​
 
 ## Acrobat 添加书签和目录跳转
 
 ### 添加书签
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308282314966.png)​
+​![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308282314966.png)​
 
 给书签分层级
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308282320715.png)​
+​![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308282320715.png)​
 
 ### 目录跳转
 
 选中文件，右键创建链接
 
-​​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308282321229.png)​​
+​​​![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308282321229.png)​​
 
 设置【链接类型】为不可见矩形，【链接动作】为跳至页面视图
 
 ‍
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308282320705.png)
+​​![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308282320705.png)
 
 根据之前设置的书签或者直接输入页码跳转，快速跳转到对应页面，然后点击【设置链接】，完成设置链接后，又回返回原来位置。
 
-​​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202308282323267.png)​​​
+​​​![image](https://cdn.staticaly.com/gh/Achuan-2/PicBed@pic/assets/202308282323267.png)​​​
