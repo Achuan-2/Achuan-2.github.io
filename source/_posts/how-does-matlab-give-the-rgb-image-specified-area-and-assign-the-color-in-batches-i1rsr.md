@@ -10,10 +10,10 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: >-
+  post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html
 comments: true
 toc: true
-cover: >-
-  https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311061540015.png
 ---
 
 
@@ -107,7 +107,7 @@ linearIndices = sub2ind(size(outline), round(stroke(:, 2)),round(stroke(:, 1)));
 outline(linearIndices) = 1;
 ```
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050139194.png "使用sub2ind可以把坐标批量变为线性索引，从而实现批量赋值")
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311050139194.png "使用sub2ind可以把坐标批量变为线性索引，从而实现批量赋值")​
 
 之所以要用sub2ind，而不是直接 `outline(round(stroke(:, 2)),round(stroke(:, 1)))`​，是因为matlab 索引传入列表的时候会认为你要提取子矩阵，而不是对应索引的的几个点
 
