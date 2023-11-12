@@ -9,6 +9,7 @@ tags:
   - Matlab
 categories:
   - 技术博客
+permalink: /post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html
 comments: true
 toc: true
 ---
