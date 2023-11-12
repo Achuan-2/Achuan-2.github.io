@@ -7,7 +7,7 @@ tags:
   - Matlab
 categories:
   - 技术博客
-permalink: /posts/matlab-basic-programming-grammar-1ghj9i.html
+permalink: matlab-basic-programming-grammar-1ghj9i.html
 comments: true
 toc: true
 ---
