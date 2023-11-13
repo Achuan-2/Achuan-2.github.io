@@ -1,7 +1,7 @@
 ---
 title: Matlab 'Hello World' vs "Hello World" 单引号和双引号有何区别
 date: '2023-11-13 02:24:10'
-updated: '2023-11-13 02:24:12'
+updated: '2023-11-13 14:16:32'
 excerpt: Matlab 的单引号和双引号包裹字符代表的意义有所不同，不像 Python 几乎没有区别，使用需要注意
 tags:
   - Matlab
@@ -50,7 +50,7 @@ ans =
 
 ## 拼接
 
-* 方括号`[]`​拼接方式只适用于 char，因为本质上char就是数组，本质上就是在用逗号合并数组的方法合并字符数组。
+* 方括号`[]`​​拼接方式只适用于 char，因为本质上char就是数组，本质上就是在用逗号合并数组的方法合并字符数组。
 
   ```matlab
   >> ['Hello','World'] 
@@ -67,7 +67,7 @@ ans =
 
       "Hello"    "World"
   ```
-* 加号`+`​拼接方式只用于 string
+* 加号`+`​​拼接方式只用于 string
 
   ```matlab
   >> 'Hello' + 'World'
@@ -82,7 +82,7 @@ ans =
 
       "HelloWorld"
   ```
-* 函数`strcat`​既可用于string也可用于char
+* 函数`strcat`​​既可用于string也可用于char
 
   ```matlab
   >> strcat('Hello','World')
@@ -96,6 +96,21 @@ ans =
   ans = 
 
       "HelloWorld"
+  ```
+* sprintf也既可用于string也可用于char
+
+  ```matlab
+  >> sprintf('Hello %s','World')
+
+  ans =
+
+      'Hello World'
+
+  >> sprintf("Hello %s","World")
+
+  ans = 
+
+      "Hello World"
   ```
 
 ## 判断字符数
