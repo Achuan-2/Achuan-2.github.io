@@ -5,6 +5,7 @@ updated: '2023-11-14 16:13:11'
 excerpt: Matlab 有内置函数bwlabel 可以给二值化图像，根据区域的连通性进行编号
 tags:
   - Matlab
+  - 编程
 categories:
   - 技术博客
 permalink: /post/how-to-give-the-roi-number-in-mask-zm8e9p.html
