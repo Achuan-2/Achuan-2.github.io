@@ -1,7 +1,7 @@
 ---
 title: 为什么小孔成像才能成像，大孔不能成像？
-date: '2023-06-19 14:57:53'
-updated: '2023-11-19 10:17:30'
+date: '2023-11-19 10:19:03'
+updated: '2023-11-19 10:19:05'
 tags:
   - 摄影
   - 光学
@@ -11,6 +11,8 @@ permalink: >-
   /post/why-can-small-hole-imaging-be-used-and-large-holes-cannot-be-imaged-z2rx7bz.html
 comments: true
 toc: true
+excerpt: >-
+  墨子在战国时代便发现了小孔成像，而在西方中世纪人们利用只有一个小孔的屋子来临摹窗外的风景，发端于小孔成像原理的各种成像工具，帮助艺术家们绘制更繁复的细节。小孔成像是最简单的成像原理。所以为什么小孔可以成像而大孔不能成像？实际上，想要成像，就要求一点发出的光在光屏处成聚焦或者汇聚的形成。
 ---
 
 
@@ -19,11 +21,11 @@ toc: true
 
 小孔能够成像是因为小孔由于够小，可以认为一个点发出的光只打到光屏上的一个点，<span style="font-weight: bold;" data-type="strong">光屏上各个光点有序组合，物体的点与光屏上的点一一映射，因此形成了像</span>。
 
-​![BV1AR4y1J7P5_017515](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311191018501.jpg)​
+​![BV1AR4y1J7P5_017515](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311191019971.jpg)​
 
 而大孔由于一个点到光屏上是发散的，再加上不同点到光屏上的点会重合，导致光屏上的任意光点和原发光体并没有一一对应关系，所以成不了清晰的像，变成了一坨光斑。
 
-​![BV1AR4y1J7P5_009426](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311191018801.jpg)​
+​![BV1AR4y1J7P5_009426](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311191019672.jpg)​
 
 墨子在战国时代便发现了小孔成像，而在西方中世纪人们利用只有一个小孔的屋子来临摹窗外的风景，发端于小孔成像原理的各种成像工具，帮助艺术家们绘制更繁复的细节。
 
