@@ -4,7 +4,7 @@ date: '2023-11-19 10:19:03'
 updated: '2023-11-19 10:19:05'
 tags:
   - 摄影
-  - 光学
+  - 成像原理
 categories:
   - 光学笔记
 permalink: >-
@@ -21,7 +21,7 @@ excerpt: >-
 
 小孔能够成像是因为小孔由于够小，可以认为一个点发出的光只打到光屏上的一个点，<span style="font-weight: bold;" data-type="strong">光屏上各个光点有序组合，物体的点与光屏上的点一一映射，因此形成了像</span>。
 
-​![BV1AR4y1J7P5_017515](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311191019971.jpg)​
+​![BV1AR4y1J7P5_017515](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202311191020273.jpg)​
 
 而大孔由于一个点到光屏上是发散的，再加上不同点到光屏上的点会重合，导致光屏上的任意光点和原发光体并没有一一对应关系，所以成不了清晰的像，变成了一坨光斑。
 
