@@ -4,6 +4,11 @@ date: '2023-11-24 01:43:19'
 updated: '2023-11-25 22:01:00'
 permalink: /post/matlab-background-asynchronous-execution-function-z1zmis9.html
 comments: true
+tags:
+  - Matlab
+  - 编程
+categories:
+  - 技术博客
 toc: true
 ---
 
