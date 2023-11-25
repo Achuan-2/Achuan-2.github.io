@@ -5,10 +5,11 @@ updated: '2023-11-13 14:16:32'
 excerpt: Matlab 的单引号和双引号包裹字符代表的意义有所不同，不像 Python 几乎没有区别，使用需要注意
 tags:
   - Matlab
+  - 编程
 categories:
   - 技术博客
 permalink: >-
-  post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html
+  /post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html
 comments: true
 toc: true
 ---
