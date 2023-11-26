@@ -1,7 +1,7 @@
 ---
 title: JS DOM 操作
-date: '2021-10-18 23:24:59'
-updated: '2023-11-26 22:17:31'
+date: '2023-11-26 22:19:46'
+updated: '2023-11-26 22:19:48'
 excerpt: 整理下JS的DOM操作，话说自己的JS一直都徘徊在小白入门水平震荡
 tags:
   - Javascript
