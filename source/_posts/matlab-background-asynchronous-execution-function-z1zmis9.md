@@ -1,6 +1,6 @@
 ---
 title: Matlab 后台异步执行函数
-date: '2023-11-24 01:43:19'
+date: '2023-11-25 01:43:19'
 updated: '2023-11-25 22:01:00'
 permalink: /post/matlab-background-asynchronous-execution-function-z1zmis9.html
 comments: true
@@ -10,6 +10,12 @@ tags:
 categories:
   - 技术博客
 toc: true
+excerpt: >-
+  当在 MATLAB 中运行普通代码时，必须等待该代码完成运行，然后才能运行其他代码。
+
+
+  其实Matlab 目前的多线程编程已经优化的挺好的，看到有些文章使用 Timer 计时器函数曲线救国，以实现多任务后台同时运行，然而 Timer
+  只是单线程定时执行函数，只是可以指定什么时候执行什么任务，当一个任务运行的时候依然是串行方式，并不是真正的异步，是依然会堵塞主线程的
 ---
 
 
