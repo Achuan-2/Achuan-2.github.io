@@ -1,6 +1,6 @@
 ---
 title: 协程 Coroutine 是什么？Python 的async用法
-date: '2023-11-24 11:19:23'
+date: '2023-11-25 22:04:22'
 updated: '2023-11-25 22:04:34'
 permalink: /post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html
 comments: true
@@ -10,6 +10,9 @@ tags:
 categories:
   - 技术博客
 toc: true
+excerpt: >-
+  协程的作用是在执行函数A时可以随时中断去执行函数B，然后中断函数B继续执行函数A（可以自由切换）。
+  但这一过程并不是函数调用，这一整个过程看似像多线程，然而协程只有一个线程执行。协程就是一个人干多个活，如果一个任务进行过程中有比较多的等待时间，并不需要自己参与，就可以利用这段时间去干别的事情。
 ---
 
 
