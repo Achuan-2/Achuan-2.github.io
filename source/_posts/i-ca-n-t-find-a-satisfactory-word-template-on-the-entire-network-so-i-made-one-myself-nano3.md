@@ -1,5 +1,5 @@
 ---
-title: 全网找不到满意的word模板，于是我自己做了一个
+title: 全网找不到满意的word模板，于是就自己动手吧
 date: '2023-12-15 00:14:47'
 updated: '2023-12-15 00:14:49'
 excerpt: >-
@@ -22,7 +22,7 @@ toc: true
 
 ## 样式预览
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150014441.png)​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150020813.png)​​
 
 ## 模板分享
 
@@ -61,7 +61,7 @@ toc: true
 
 修改表格需要点击表格后，在【表设计】下拉，点击【修改表格样式】，进行修改
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150014846.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150020258.png)​
 
 ### 列表样式
 
@@ -71,9 +71,9 @@ toc: true
 
 在下图①的位置点击，可以看到列表样式有两个样式，分别对应无序列表和有序列表样式，右键修改。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150014078.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150020437.png)​
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150014745.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150020186.png)​
 
 #### 修改列表缩进
 
