@@ -1,5 +1,5 @@
 ---
-title: 全网找不到满意的word模板，于是就自己动手吧
+title: 全网找不到满意的 Markdown 转 Docx 模板，那就自己动手吧
 date: '2023-12-15 00:14:47'
 updated: '2023-12-15 11:14:36'
 excerpt: >-
@@ -8,7 +8,7 @@ excerpt: >-
 
 
   幸运的是，pandoc 可以设置 word
-  模板，用于导出时的自动格式化，美化文档，但是很奇怪的是，全网很少人分享自己是如何制作模板的。我自己在制作模板中遇到很多问题，比如怎么设置表格样式、怎么设置列表样式。2023.12.15
+  模板，用于导出时的自动格式化，美化文档，但是很奇怪的是，全网很少人分享自己是如何具体制作模板的，就算有也只是泛泛而谈。我自己在制作模板中遇到很多问题，比如怎么设置表格样式、怎么设置列表样式。2023.12.15
   日，我终于突然解决了设置模板的有序列表和无序列表样式问题，使得自己的模板很大程度可用了，所以分享下目前在用的 word
   模板，也当做一个抛砖引用，希望有更多人能分享自己的 word 模板！😁
 tags:
@@ -31,11 +31,11 @@ toc: true
 
 pandoc 不设置模板导出 docx 的样式
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312151117257.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312151118881.png)​
 
 设置本模板导出 docx 的样式
 
-​​​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312151117327.png)​​​​
+​​​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312151117278.png)​​​​
 
 ## 模板分享
 
