@@ -22,7 +22,7 @@ toc: true
 
 > 前排：之前一直很馋 utools 的剪贴板插件，可以对图片、文本进行分类，我最喜欢的剪贴板工具是 CopyQ，一直觉得它很强大，却不知道该如何实现这个功能，一直以为不行，还傻傻去 GitHub 提了个 feature request，后来得到热心大佬的分享，观摩（抄袭）了他的 repo，突然发现自己过去是真的不会用 CopyQ，所以写下这篇分享，记录目前的用法，也分享给不了解不熟悉 CopyQ 的朋友们。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002297.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004796.png)​
 
 CopyQ 官方网站：[CopyQ (hluk.github.io)](https://hluk.github.io/CopyQ/)
 
@@ -45,7 +45,7 @@ CopyQ 官方网站：[CopyQ (hluk.github.io)](https://hluk.github.io/CopyQ/)
 * 隐藏工具栏和工具栏文本标签
 * 显示标签树（标签页会以树形展示在页面左侧）和显示标签页条目计数
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002640.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004544.png)​
 
 ### 设置文本编辑器为 sublime text3
 
@@ -56,15 +56,15 @@ CopyQ 官方网站：[CopyQ (hluk.github.io)](https://hluk.github.io/CopyQ/)
   subl --wait %1
   ```
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002477.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004438.png)​
 
 效果预览：
 
-​![CopyQ 打开 sumlime](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002284.webp)​
+​![CopyQ 打开 sumlime](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004383.webp)​
 
 ### 设置标签页存放路径用于同步
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002688.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004809.png)​
 
 > ⚠️ 如果发现设置了路径，标签页数据并没有同步到指定路径，可以试着更改标签页名再更改回来
 
@@ -72,11 +72,11 @@ CopyQ 官方网站：[CopyQ (hluk.github.io)](https://hluk.github.io/CopyQ/)
 
 如何添加命令：【文件】-【命令/全局快捷键】
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002669.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004735.png)​
 
 命令面板支持添加/删除命令，选择命令是自动执行、还是需要菜单点击，还是按快捷键执行
 
-​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002433.png)​​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004228.png)​​
 
 建议前往 Github 的这个仓库 →[GFDGIT/CopyQ_lazy](https://github.com/GFDGIT/CopyQ_lazy/tree/main)，观摩大佬的配置。
 
@@ -84,7 +84,7 @@ CopyQ 官方网站：[CopyQ (hluk.github.io)](https://hluk.github.io/CopyQ/)
 
 ### 复制为纯文本
 
-```bash
+```ini
 [Command]
 Name=\x590d\x5236\x4e3a\x7eaf\x6587\x672c
 Command="
@@ -104,7 +104,7 @@ Shortcut=ctrl+shift+c
 
 ### 去除换行
 
-```bash
+```ini
 [Command]
 Name=\x53bb\x9664\x6362\x884c
 Command="
@@ -116,6 +116,23 @@ Command="
     print(single_line ,end=\"\")'|copyq: 
     add(input())"
 InMenu=true
+```
+
+### 保存复制时间
+
+```ini
+[Command]
+Name=\x4fdd\x5b58\x590d\x5236\x65f6\x95f4
+Command="
+    copyq:
+    var time = dateString('yyyy-MM-dd hh:mm:ss')
+    var tagsMime = 'application/x-copyq-tags'
+    var timeMime = 'application/x-copyq-user-item-time'
+
+    setData(timeMime, time)
+    setData(tagsMime, time)"
+Automatic=true
+Icon=\xf017
 ```
 
 ### 筛选图片、文件、URL 等
@@ -194,7 +211,7 @@ Icon=\xf0b0
 Shortcut=shift+f, f, i, u
 ```
 
-​​![CopyQ 筛选](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162002514.webp)​​
+​​![CopyQ 筛选](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312162004451.webp)​​
 
 ### 支持复制文件
 
