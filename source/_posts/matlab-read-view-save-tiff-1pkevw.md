@@ -31,6 +31,48 @@ img_stack = tiffreadVolume(filepath);
 
 > tiffreadVolume 需要 Matlab 2020b 以上
 
+有些成像软件（比如多光子成像软件Scanimage），会把多通道的图片合并在一个tif里，要读取单个通道的话可以用下面的自定义函数
+
+```matlab
+function varargout =  tiff_read_volume(filepath,nChannel)
+    %tiff_read_volume - 读取Tiff图像的灰度值.
+    %
+    %   USAGE
+    %       imgStack = tiff_read_volume(filepath);
+    %       [imgCh1,imgCh2] = tiff_read_volume(filepath,'nChannel',2);
+    %
+    %   INPUT PARAMETERS
+    %       filepath             -   图像文件的路径
+    %       属性
+    %         'nChannel'     -  默认为1
+    %
+    %   OUTPUT PARAMETERS
+    %       imgStack         -   输出nChannel个图像
+  
+    % 设置默认参数
+    arguments
+        filepath string;
+        nChannel double = 1;
+    end
+
+
+    % read info
+    imgStack = tiffreadVolume(filepath);
+  
+    % 如果 Tif 只有一个通道，直接输出读的结果即可
+    if nChannel == 1
+        varargout{1} = imgStack;
+        return
+    end
+
+    % 如果 Tif 有多个通道，则需要分割出各个通道图像
+    varargout = cell(1,nChannel);
+    for iChannel = 1:nChannel
+        varargout{iChannel}= imgStack(:, :, iChannel:nChannel:end);
+    end
+end
+```
+
 ## 查看 Tiff 
 
 ### Single Tiff
@@ -51,7 +93,7 @@ f = figure();
 slice_viewer = sliceViewer(img_stack,"Parent",f);
 ```
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312201741151.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202059607.png)​
 
 > * 从左向右水平拖动鼠标会更改对比度，垂直上下拖动鼠标会更改亮度。
 > * 单击并拖动鼠标时按住Ctrl键可加速更改。按住Shift键同时单击并拖动鼠标会减慢更改速率。
@@ -63,11 +105,11 @@ f = figure();
 orthoslice_viewer = orthosliceViewer(img_stack,"Parent",f);
 ```
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312201741070.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202059746.png)​
 
 #### ​​volumeViewer​​
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312201741191.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202059820.png)​
 
 ## 保存 Tiff
 
