@@ -160,6 +160,5 @@ feed:
 lazyload:
     enable: true
     onlypost: true 
-    loadingImg: /assets/pic/loading.gif
     isSPA: true # 针对单页面应用，当滚动条滚动到图片位置时就会向后端请求图片
     preloadRatio: 3
