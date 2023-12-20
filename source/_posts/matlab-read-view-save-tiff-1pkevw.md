@@ -1,5 +1,5 @@
 ---
-title: Matlab 读取、查看、保存Tiff
+title: Matlab 如何读取、查看、保存Tiff
 date: '2023-12-20 11:17:44'
 updated: '2023-12-20 17:40:26'
 excerpt: 对Matlab 读取、查看、保存Tiff文件做一个系统的总结
@@ -15,12 +15,16 @@ toc: true
 
 
 
+> 总结：Tiff 是 tagged image file format 的缩写。在科研领域，常用于无损保存图片。
+>
+> 本文主要探讨如何使用 Matlab 读取、查看、保存 Tiff 图像，思考了 Matlab 如何把 metadata 写入 Tiff 图像，并写了一些自定义函数方便调用。
+
 ## 读取 Tiff
 
 ### Single Tiff
 
 ```matlab
-img= imread(filepath);
+img= imread(filepath); 
 ```
 
 ### Stacked Tiff
@@ -30,8 +34,24 @@ img_stack = tiffreadVolume(filepath);
 ```
 
 > tiffreadVolume 需要 Matlab 2020b 以上
+>
+> 如果用 imread 则需要用索引循环提取，不太方便。
+>
+> ```matlab
+> tiff_file = 'input.tif';
+> info = imfinfo(tiff_file);
+> num_images = numel(info);
+>
+> % 创建一个三维数组来存储图像数据
+> image_stack = zeros(info(1).Height, info(1).Width, num_images, 'uint16');
+>
+> % 逐个读取图像并存储在三维数组中
+> for i = 1:num_images
+>     image_stack(:, :, i) = imread(tiff_file, i);
+> end
+> ```
 
-有些成像软件（比如多光子成像软件Scanimage），会把多通道的图片合并在一个tif里，要读取单个通道的话可以用下面的自定义函数
+有些成像软件（比如多光子成像软件 Scanimage），会把多通道的图片合并在一个 tif 里，要读取单个通道的话可以用下面的自定义函数
 
 ```matlab
 function varargout =  tiff_read_volume(filepath,nChannel)
@@ -39,7 +59,7 @@ function varargout =  tiff_read_volume(filepath,nChannel)
     %
     %   USAGE
     %       imgStack = tiff_read_volume(filepath);
-    %       [imgCh1,imgCh2] = tiff_read_volume(filepath,'nChannel',2);
+    %       [imgCh1,imgCh2] = tiff_read_volume(filepath,2);
     %
     %   INPUT PARAMETERS
     %       filepath             -   图像文件的路径
@@ -54,7 +74,6 @@ function varargout =  tiff_read_volume(filepath,nChannel)
         filepath string;
         nChannel double = 1;
     end
-
 
     % read info
     imgStack = tiffreadVolume(filepath);
@@ -73,7 +92,7 @@ function varargout =  tiff_read_volume(filepath,nChannel)
 end
 ```
 
-## 查看 Tiff 
+## 查看 Tiff
 
 ### Single Tiff
 
@@ -84,7 +103,7 @@ imshow(img,[]);% 后一个参数是调整显示范围，建议加上，默认是
 
 ### Stacked Tiff
 
-以GUI形式动态查看stack： sliceViewer、orthosliceViewer和volumeViewer
+以 GUI 形式动态查看 stack： sliceViewer、orthosliceViewer 和 volumeViewer
 
 #### ​sliceViewer​​​​
 
@@ -93,10 +112,10 @@ f = figure();
 slice_viewer = sliceViewer(img_stack,"Parent",f);
 ```
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202059607.png)​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202329829.png)​​
 
 > * 从左向右水平拖动鼠标会更改对比度，垂直上下拖动鼠标会更改亮度。
-> * 单击并拖动鼠标时按住Ctrl键可加速更改。按住Shift键同时单击并拖动鼠标会减慢更改速率。
+> * 单击并拖动鼠标时按住 Ctrl 键可加速更改。按住 Shift 键同时单击并拖动鼠标会减慢更改速率。
 
 #### ​​orthosliceViewer​​
 
@@ -105,15 +124,20 @@ f = figure();
 orthoslice_viewer = orthosliceViewer(img_stack,"Parent",f);
 ```
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202059746.png)​
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202329206.png)​​
 
-#### ​​volumeViewer​​
+#### volumeViewer
 
-​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202059820.png)​
+```matlab
+% 打开GUI界面，选择文件加载
+volumeViewer
+```
+
+​​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312202329220.png)​​
 
 ## 保存 Tiff
 
-可以用imwrite、Tiff库和第三方的实现方式
+可以用 imwrite、Tiff 库和第三方的实现方式
 
 ### imwrite
 
@@ -126,7 +150,7 @@ filepath = 'output.tif';
 imwrite(img,filepath);
 ```
 
-保存metadata到文件
+保存 metadata 到文件
 
 ```matlab
 info = imfinfo("input.tif");
@@ -159,7 +183,7 @@ function tiff_save_volume(imgStack,filepath)
 end
 ```
 
-保存metadata到文件
+保存 metadata 到文件
 
 ```matlab
 info = imfinfo("input.tif");
@@ -182,9 +206,9 @@ function tiff_save_volume(imgStack,filepath,info)
 end
 ```
 
-#### 基于imwrite的tif保存函数
+#### 基于 imwrite 的 tif 保存函数
 
-写了一个函数，既可以保存单帧的tif，也可以保存多帧tif，既可以直接保存，也可以写入特定的图像信息
+写了一个函数，既可以保存单帧的 tif，也可以保存多帧 tif，既可以直接保存，也可以写入特定的图像信息
 
 ```matlab
 function tiff_save_imwrite(input_img, filepath, info)
@@ -251,7 +275,7 @@ tiff_save_imwrite(img_stack, 'test.tif', info);
 
 ```
 
-> ℹ imwrite如果要保存ImageJ的图像信息或者希望保存的图像信息被ImageJ正确读取，可以在Description添加`ImageJ=1.53q\nunit=um....`​，imwrite是不支持给tif写入ResolutionUnit的，但是用这种方法就可以让ImageJ正确读取ResolutionUnit单位。
+> ⚠ imwrite 如果要保存 ImageJ 的图像信息或者希望保存的图像信息被 ImageJ 正确读取，可以在 Description 添加 `ImageJ=1.53q\nunit=um....`​，imwrite 是不支持给 tif 写入 ResolutionUnit 的，但是用这种方法就可以让 ImageJ 正确读取 ResolutionUnit 单位。
 >
 > ```matlab
 > imwrite(I, 'myLovelyImage.tif', 'TIF', 'Resolution', [1/pixSizeX 1/pixSizeY], 'Description', sprintf('ImageJ=1.53q\nunit=um\n'));
@@ -259,27 +283,42 @@ tiff_save_imwrite(img_stack, 'test.tif', info);
 >
 > ref：[Simplest way to save tif in Matlab with resolution in um - Usage &amp; Issues - Image.sc Forum](https://forum.image.sc/t/simplest-way-to-save-tif-in-matlab-with-resolution-in-um/67893/2)
 
+‍
+
 ### Tiff
 
-imwrite虽然也能保存Tiff，但是更推荐使用Tiff库。imwrite只能保存简单的信息，不能保存ResolutionUnit信息到文件（除非写入到Description字段），而且保存多帧Tif的速度慢，而使用LibTIFF库保存Tiff，就可以尽可能的保存Metadata，保存速度也比imwrite快。
+imwrite 虽然也能保存 Tiff，但是更推荐使用 Tiff 库。imwrite 只能保存简单的信息，不能保存 ResolutionUnit 信息到文件（除非写入到 Description 字段），而且保存多帧 Tif 的速度慢，而使用 LibTIFF 库保存 Tiff，就可以尽可能的保存 Metadata，保存速度也比 imwrite 快。
 
 Tiff 对象的官方文档：[https://ww2.mathworks.cn/help/matlab/ref/tiff.html](https://ww2.mathworks.cn/help/matlab/ref/tiff.html)
 
 使用 `Tiff()`​ 函数保存图片文件时，在将数据写入文件之前，必须先设置以下标记：
 
-* ​`ImageWidth`​​：
-* ​`ImageLength`​​：
-* ​`Compression`​​：
-* ​`PlanarConfiguration`​：
-* ​`BitsPerSample`​​：数据为int16、uint16，该值为16，数据为uint8该值为8
-* ​`Photometric`​​
-* ​`SamplesPerPixel`​​
+* ​`ImageWidth`​​：图像宽度
+* ​`ImageLength`​​：图像长度
+* ​`Compression`​：压缩情况，一般选择无压缩 ​`Tiff.Compression.None`​
+* ​`PlanarConfiguration`​：存储配置。chunky 是连续存储每个像素的分量值，seperate 是分开存储每个通道。在科研中处理的大多数为单通道灰度图像，这个设置都可。​`Tiff.PlanarConfiguration.Chunky`​
+* ​`BitsPerSample`​​：数据为 int16、uint16，该值为 16，数据为 uint8 该值为 8
+* ​`Photometric`​：图像数据颜色空间。有好多种可以选，具体可以 doc 看看。科研处理的灰度图像，一般选'MinIsBlack'，即像素值为 0 时是黑色的。​`Tiff.Photometric.MinIsBlack`​
+* ​`SamplesPerPixel`​：一个像素几个采样数，一般为 1
 
-> ℹ `RowsPerStrip`​是什么
+|标记类型|解释|一般设置的值|
+| --------| ----------------------| -------------------------------|
+|​`ImageWidth`​|图像宽度|根据实际图像尺寸设置：`size(img,2)`​|
+|​`ImageLength`​|图像长度|根据实际图像尺寸设置：`size(img,1)`​|
+|​`Compression`​|压缩情况|​`Tiff.Compression.None`​|
+|​`PlanarConfiguration`​|存储配置|​`Tiff.PlanarConfiguration.Chunky`​|
+|​`BitsPerSample`​|数据类型|根据实际数据类型设置：8，16，32|
+|​`Photometric`​|图像数据颜色空间|​`Tiff.Photometric.MinIsBlack`​|
+|​`SamplesPerPixel`​|一个像素几个采样数|1|
+|​`SampleFormat`​|int 类型还是 uint 类型|​`Tiff.SampleFormat.UInt` ​or `Tiff.SampleFormat.Int`​|
+
+‍
+
+> ℹ `RowsPerStrip` ​是什么
 >
 > 例如，如果一个 512x512 的图像被设置为 `RowsPerStrip`​ 为 16，则这意味着每个条将包含 16 行的数据。因此，整个图像将被分成 512 / 16 = 32 个条来存储。每个条可以单独被读取和写入，这有助于处理大图像，因为你可以一次只加载和处理图像的一部分，而不是整个图像。
 
-自定义保存Tiff的函数
+自定义保存 Tiff 的函数
 
 ```matlab
 function tiff_save_lib(input_img, filepath, tagstruct)
@@ -363,7 +402,7 @@ end
 
 ```
 
-自定义读取Tif的必要Tag函数
+自定义读取 Tif 的必要 Tag 函数
 
 ```matlab
 function tagstruct = tiff_read_tag(filepath)
@@ -425,10 +464,10 @@ tiff_save_lib(img, 'test.tif', tagstruct);
 
 ### 第三方实现方式
 
-[rharkes/Fast_Tiff_Write](https://github.com/rharkes/Fast_Tiff_Write)：这个repo实现了更快速的保存大文件，但是如下问题
+[rharkes/Fast_Tiff_Write](https://github.com/rharkes/Fast_Tiff_Write)：这个 repo 实现了更快速的保存大文件，但是如下问题
 
-* 只能保存uint16、uint8、single数据
-* 我暂时不知道怎么保存metadata，最重要就是XResolution、YResolution和ResolutionUnit
+* 只能保存 uint16、uint8、single 数据
+* 我暂时不知道怎么保存 metadata，最重要就是 XResolution、YResolution 和 ResolutionUnit
 
 ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312201741281.png)​
 
