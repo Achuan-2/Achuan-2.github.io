@@ -158,7 +158,7 @@ feed:
     limit: 20
 
 lazyload:
-    enable: true
+    enable: false
     onlypost: true 
     isSPA: true # 针对单页面应用，当滚动条滚动到图片位置时就会向后端请求图片
     preloadRatio: 3
