@@ -374,8 +374,8 @@ style:
         code: 85% # 14px
         codeblock: 0.8125rem # 13px
     font-family:
-        logo: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji,LXGW WenKai Screen, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
-        body: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, LXGW WenKai Screen, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+        logo: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji,hyksk, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+        body: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, hyksk, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
         code: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
         codeblock: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
     text-align: left

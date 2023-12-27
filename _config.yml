@@ -130,11 +130,11 @@ markdown_it_plus:
 inject:
     head:
         - <link href="/css/title_number.css" rel="stylesheet">
+        - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bofeng/hyksk_webfont/dist/hyksk.css" />
         - <link href="/css/post_tag.css" rel="stylesheet">
         - <link href="/css/code_language.css" rel="stylesheet">
         - <link href="/css/font.css" rel="stylesheet">
         - <link href="/css/scrollbar.css" rel="stylesheet">
-        - <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css" media="print" onload="this.media='all'">
         - <link rel="preconnect" href="https://s1.hdslb.com/" />
         - <link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" />
         - <link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" />
@@ -159,6 +159,6 @@ feed:
 
 lazyload:
     enable: false
-    onlypost: true 
+    onlypost: true
     isSPA: true # 针对单页面应用，当滚动条滚动到图片位置时就会向后端请求图片
     preloadRatio: 3
