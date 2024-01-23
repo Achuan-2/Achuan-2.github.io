@@ -12,7 +12,7 @@
     "version": "7.0.0"
   },
   "dependencies": {
-    "hexo": "^7.0.0",
+    "hexo": "^7.1.1",
     "hexo-abbrlink": "^2.2.1",
     "hexo-asset-image": "github:foreveryang321/hexo-asset-image",
     "hexo-deployer-git": "^4.0.0",
