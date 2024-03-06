@@ -18,7 +18,7 @@ toc: true
 
 我在Zlibrary下载了《神经科学：探索脑》第四版的中文电子版。
 
-​![Clip_2024-03-06_21-46-50](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062207969.png)​
+​![Clip_2024-03-06_21-46-50](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062209704.png)​
 
 本来这个版本是有书签的，但是我想用ABBYY进行OCR识别，由于书有986页，全部一起OCR到中途会提示内存不足，我拆分为两份，分别进行OCR，然后再进行合并，但是后面就发现一个问题——原来的书签不见了！
 
