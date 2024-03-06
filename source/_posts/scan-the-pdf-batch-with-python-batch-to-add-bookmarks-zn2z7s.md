@@ -18,13 +18,19 @@ toc: true
 
 我在Zlibrary下载了《神经科学：探索脑》第四版的中文电子版。
 
-​![Clip_2024-03-06_21-46-50](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062150567.png)​
+​![Clip_2024-03-06_21-46-50](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062154866.png)​
 
 本来这个版本是有书签的，但是我想用ABBYY进行OCR识别，由于书有986页，全部一起OCR到中途会提示内存不足，我拆分为两份，分别进行OCR，然后再进行合并，但是后面就发现一个问题——原来的书签不见了！
 
-那当然不可能再一个个敲
+那当然不可能再一个个敲！那怎么办？
 
 于是在GPT的帮助下，用python写了一个代码，可以批量把原先pdf的书签导出到另一个pdf去
+
+提问过程：
+
+​![Clip_2024-03-06_21-54-01](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062154322.png)​
+
+代码如下：
 
 ```python
 import fitz  # PyMuPDF:pip install pymupdf
@@ -108,9 +114,9 @@ print("书签导入完成。")
 * 术语表@905
 * 参考文献@927
 
-然后再根据代码，将这个列表转化为书签，导入到pdf即可
+然后将这个列表放进一个txt文件，运行代码，即可将书签导入到pdf！
 
-转换代码
+代码如下
 
 ```python
 import fitz  # PyMuPDF:pip install pymupdf
@@ -162,3 +168,7 @@ add_bookmarks_to_pdf(pdf_path, output_pdf_path,bookmarks)
 ```
 
 > 注意：因为目录和实际的pdf页码有差别，需要考虑offset，比如这本书目录和实际pdf页码差距为32，需要给目录的页码都加上32.
+
+感慨：编程真的能提高效率！有了GPT之后，真的是无脑编程，只要有想法，敢去做！
+
+‍
