@@ -18,7 +18,7 @@ toc: true
 
 我在Zlibrary下载了《神经科学：探索脑》第四版的中文电子版。
 
-​![Clip_2024-03-06_21-46-50](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062154866.png)​
+​![Clip_2024-03-06_21-46-50](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062207969.png)​
 
 本来这个版本是有书签的，但是我想用ABBYY进行OCR识别，由于书有986页，全部一起OCR到中途会提示内存不足，我拆分为两份，分别进行OCR，然后再进行合并，但是后面就发现一个问题——原来的书签不见了！
 
@@ -66,6 +66,10 @@ copy_bookmarks(source_pdf_path, target_pdf_path, output_pdf_path)
 print("书签导入完成。")
 
 ```
+
+成果展示
+
+​![Clip_2024-03-06_22-01-49](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202403062207870.png)​
 
 事情到这里本来就结束了，但是我又突然有一个idea，如果一个本来没有书签的pdf，我该如何快速的添加书签呢。
 
@@ -130,9 +134,9 @@ def parse_bookmarks_from_txt(txt_path,offset):
         for line in file:
             if line.strip():  # 跳过空行
                 # 计算行前的空格数来确定层级
-                # 假设每个层级的缩进是1个空格，可以根据实际情况调整
+                # 假设每个层级的缩进是2个空格，可以根据实际情况调整
                 indent = len(line) - len(line.lstrip())
-                level = indent // 2 + 1  # 计算层级，假定每1个空格代表一级缩进
+                level = indent // 2 + 1  # 计算层级，假定每2个空格代表一级缩进
                 # 移除星号和空格，然后分割标题和页码
                 title, page = line.strip().removeprefix('*').strip().split('@')
                 bookmarks.append([level, title.strip(), int(page)+offset])
