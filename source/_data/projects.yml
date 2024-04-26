@@ -8,7 +8,7 @@ Monthly_Letter:
     small: 112px
     large: 240px
   description: 启发自单单的vlog，每月写一封信给未来的阿巛，记录自己当时的碎碎念与心态变化。
-  sidebar: [toc,sections]
+  leftbar: [toc,sections]
   sections:
     '2022': [202201, 202212]
     '2023': [202301, 202312]
