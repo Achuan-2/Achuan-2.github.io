@@ -11,6 +11,7 @@ categories:
 permalink: post/matlab-superimposes-mask-a-certain-transparency-to-the-image-2seqqa.html
 comments: true
 toc: true
+abbrlink: 99fd534
 ---
 
 

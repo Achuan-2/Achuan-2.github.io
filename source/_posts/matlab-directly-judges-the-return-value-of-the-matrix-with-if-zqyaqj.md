@@ -11,6 +11,7 @@ categories:
 permalink: post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html
 comments: true
 toc: true
+abbrlink: 40f49a73
 ---
 
 

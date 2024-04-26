@@ -11,6 +11,7 @@ permalink: >-
   post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html
 comments: true
 toc: true
+abbrlink: 4e5a6efe
 ---
 
 

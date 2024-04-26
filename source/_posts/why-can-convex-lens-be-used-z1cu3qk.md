@@ -11,6 +11,7 @@ categories:
 permalink: /post/why-can-convex-lens-be-used-z1cu3qk.html
 comments: true
 toc: true
+abbrlink: b868644f
 ---
 
 

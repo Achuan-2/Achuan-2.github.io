@@ -11,6 +11,7 @@ categories:
 permalink: post/how-do-you-know-what-you-took-by-automatic-vending-machine-jeapx.html
 comments: true
 toc: true
+abbrlink: a85a8dad
 ---
 
 

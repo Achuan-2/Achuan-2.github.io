@@ -13,6 +13,7 @@ categories:
 permalink: post/outside-the-number-glados-sign-in-baiji-is-not-easy-anymore-z2vxoy1.html
 comments: true
 toc: true
+abbrlink: e0e7da59
 ---
 
 

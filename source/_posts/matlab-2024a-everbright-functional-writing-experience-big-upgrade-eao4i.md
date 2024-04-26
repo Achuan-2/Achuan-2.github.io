@@ -13,6 +13,7 @@ permalink: >-
   /post/matlab-2024a-everbright-functional-writing-experience-big-upgrade-eao4i.html
 comments: true
 toc: true
+abbrlink: 7f7023fd
 ---
 
 

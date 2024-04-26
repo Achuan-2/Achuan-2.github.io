@@ -12,6 +12,7 @@ permalink: >-
   /post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html
 comments: true
 toc: true
+abbrlink: 3191cda4
 ---
 
 

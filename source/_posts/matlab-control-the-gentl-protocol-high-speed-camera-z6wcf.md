@@ -9,6 +9,7 @@ categories:
 permalink: post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html
 comments: true
 toc: true
+abbrlink: 6eabca6e
 ---
 
 

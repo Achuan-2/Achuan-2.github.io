@@ -12,6 +12,7 @@ categories:
 permalink: /post/book-recommendation-self-study-is-the-door-craft-zja4yb.html
 comments: true
 toc: true
+abbrlink: 2396dc22
 ---
 
 

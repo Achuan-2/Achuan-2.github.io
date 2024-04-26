@@ -11,6 +11,7 @@ categories:
 permalink: /post/why-can-human-eyes-see-virtual-statues-z1og6up.html
 comments: true
 toc: true
+abbrlink: 618a8cf5
 ---
 
 

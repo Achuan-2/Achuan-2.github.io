@@ -10,6 +10,7 @@ categories:
 permalink: post/matlab-different-ctrl-mouse-right-and-mouse-right-click-1f0inv.html
 comments: true
 toc: true
+abbrlink: dd948bab
 ---
 
 

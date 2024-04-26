@@ -12,6 +12,7 @@ categories:
 permalink: post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html
 comments: true
 toc: true
+abbrlink: 4d88915f
 ---
 
 

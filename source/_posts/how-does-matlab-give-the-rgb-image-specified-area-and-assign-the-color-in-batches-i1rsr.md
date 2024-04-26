@@ -14,6 +14,7 @@ permalink: >-
   post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html
 comments: true
 toc: true
+abbrlink: 2de03d23
 ---
 
 

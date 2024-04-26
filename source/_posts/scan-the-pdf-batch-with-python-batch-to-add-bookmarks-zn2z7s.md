@@ -12,6 +12,7 @@ categories:
 permalink: /post/scan-the-pdf-batch-with-python-batch-to-add-bookmarks-zn2z7s.html
 comments: true
 toc: true
+abbrlink: 96619ceb
 ---
 
 

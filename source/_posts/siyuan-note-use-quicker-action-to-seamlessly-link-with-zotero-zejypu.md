@@ -14,6 +14,7 @@ permalink: >-
   /post/siyuan-note-use-quicker-action-to-seamlessly-link-with-zotero-zejypu.html
 comments: true
 toc: true
+abbrlink: 915b18a9
 ---
 
 

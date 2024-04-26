@@ -11,6 +11,7 @@ categories:
 permalink: /post/what-is-the-color-why-can-we-see-color-1v2pq4.html
 comments: true
 toc: true
+abbrlink: bbfb0abc
 ---
 
 

@@ -13,6 +13,7 @@ permalink: >-
   post/matlab-custom-code-supports-roller-amplification-and-drag-pictures-20eamw.html
 comments: true
 toc: true
+abbrlink: 6b21aaa
 ---
 
 

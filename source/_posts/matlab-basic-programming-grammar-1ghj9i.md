@@ -10,6 +10,7 @@ categories:
 permalink: post/matlab-basic-programming-grammar-1ghj9i.html
 comments: true
 toc: true
+abbrlink: c1a27385
 ---
 
 

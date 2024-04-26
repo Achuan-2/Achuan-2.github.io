@@ -17,6 +17,7 @@ permalink: >-
   post/how-to-use-abbyy-and-acrobat-to-add-bookmarks-and-directory-to-the-book-scanning-version-of-the-book-scanning-version-of-pdf-e6kup.html
 comments: true
 toc: true
+abbrlink: 34aeefad
 ---
 
 

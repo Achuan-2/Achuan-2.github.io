@@ -11,6 +11,7 @@ categories:
 permalink: /post/js-dom-operation-1rrvs2.html
 comments: true
 toc: true
+abbrlink: e1318fd7
 ---
 
 

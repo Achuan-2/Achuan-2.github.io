@@ -14,6 +14,7 @@ categories:
 permalink: /post/groupy-2-multi-window-management-tool-upgrade-experience-ocrer.html
 comments: true
 toc: true
+abbrlink: 4ce7862a
 ---
 
 

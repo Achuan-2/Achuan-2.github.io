@@ -11,6 +11,7 @@ permalink: >-
   post/matlab-reshape-scan-and-fill-in-columns-easy-to-step-on-the-pit-18flah.html
 comments: true
 toc: true
+abbrlink: e4891e75
 ---
 
 

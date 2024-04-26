@@ -14,6 +14,7 @@ permalink: >-
   post/python-uses-npvectorize-directional-function-to-perform-batch-processing-ipcdn.html
 comments: true
 toc: true
+abbrlink: 336ec1d0
 ---
 
 
