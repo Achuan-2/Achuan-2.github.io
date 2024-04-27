@@ -1,5 +1,5 @@
 ---
-title: 2024.04.27 stellar主题更新 v1.28.0 及装修
+title: stellar主题更新 v1.28.0 及个性化修改
 date: '2024-04-27 12:33:25'
 updated: '2024-04-27 13:30:44'
 permalink: /post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html
