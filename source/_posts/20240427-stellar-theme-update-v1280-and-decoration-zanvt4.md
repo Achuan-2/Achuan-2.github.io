@@ -13,6 +13,7 @@ tags:
   - Hexo博客搭建
 categories:
   - 各类笔记
+abbrlink: b872c36d
 ---
 
 

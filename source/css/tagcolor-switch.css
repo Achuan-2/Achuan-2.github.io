@@ -18,3 +18,11 @@
   color: var(--text-p4); /* 或 --text-p2，设置为灰色 */
 }
 
+.bread-nav #post-tag a::before{
+    content: '#';
+}
+
+.bread-nav #post-tag a{
+    color: var(--tag-text-color);
+    background-color: var(--tag-bg-color);
+}
