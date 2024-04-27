@@ -29,8 +29,8 @@ menubar:
         # title: 标题
         # url: 点击跳转到哪，支持相对路径和绝对路径
         - id: post
-          theme: '#1BCDFC'
-          icon: solar:documents-bold-duotone
+        #   theme: '#1BCDFC'
+        #   icon: solar:documents-bold-duotone
           title: 博客
           url: /
         # - id: wiki
@@ -39,13 +39,13 @@ menubar:
         #   title: 文档
         #   url: /wiki/
         - id: social
-          theme: '#F44336'
-          icon: solar:chat-square-like-bold-duotone
+        #   theme: '#F44336'
+        #   icon: solar:chat-square-like-bold-duotone
           title: 友链
           url: /friends/
         - id: explore
-          theme: '#FA6400'
-          icon: solar:planet-bold-duotone
+        #   theme: '#FA6400'
+        #   icon: solar:planet-bold-duotone
           title: 关于
           url: /about/
 
@@ -56,7 +56,7 @@ site_tree:
     # 主页配置
     home:
         leftbar: welcome, recent
-        rightbar: tagcloud
+        rightbar: randomdoc,categories,tagcloud
     # 博客列表页配置
     index_blog:
         base_dir: blog # 只影响自动生成的页面路径
