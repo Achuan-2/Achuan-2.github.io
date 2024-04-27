@@ -13,7 +13,7 @@
   }
   
 
-  #post-meta {
+#post-meta {
   font-size: 12px; 
   color: var(--text-p4); /* 或 --text-p2，设置为灰色 */
 }

@@ -1,3 +1,4 @@
+/* 文章内更新日期始终显示 */
 .bread-nav div#post-meta span.updated {
     visibility: visible !important;
 }
