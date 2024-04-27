@@ -5,6 +5,12 @@ updated: '2024-04-27 13:30:44'
 permalink: /post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html
 comments: true
 toc: true
+excerpt: >-
+  stellar
+  主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前的很多的自定义样式都失效了。所以又折腾了一上午，重新美化了一下。
+tags:
+  - 折腾
+  - Hexo博客搭建
 ---
 
 
