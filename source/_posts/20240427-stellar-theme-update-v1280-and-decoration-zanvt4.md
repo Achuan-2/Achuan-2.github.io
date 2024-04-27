@@ -21,15 +21,15 @@ stellar 主题有段时间大改样式，当时没时间更新主题。感觉现
 
 ## 目前的博客样式
 
-​![Clip_2024-04-27_12-14-58](https://fastly.jsdelivr.net/assets/Clip_2024-04-27_12-14-58-20240427121503-vlzsk3v.png "主页")​
+​![Clip_2024-04-27_12-14-58](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-14-58-20240427121503-vlzsk3v.png "主页")​
 
-​![Clip_2024-04-27_11-19-05](https://fastly.jsdelivr.net/assets/Clip_2024-04-27_11-19-05-20240427111907-krckfdm.png "文章内")​
+​![Clip_2024-04-27_11-19-05](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_11-19-05-20240427111907-krckfdm.png "文章内")​
 
 ## 之前的历史快照
 
-​![image](https://fastly.jsdelivr.net/assets/image-20230926104442-ig83unh.png "2023.09.26")​
+​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20230926104442-ig83unh.png "2023.09.26")​
 
-​![image](https://fastly.jsdelivr.net/assets/image-20231105162526-h0wksqr.png "2023.11.05")​
+​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20231105162526-h0wksqr.png "2023.11.05")​
 
 ## 代码更改记录
 
@@ -45,15 +45,15 @@ stellar之前是接受了我的[pull request](https://github.com/xaoxuu/hexo-the
 
 > 现在我基本是使用「[思源笔记](https://github.com/siyuan-note/siyuan)」来管理笔记和写博客，思源笔记有一个「[发布工具](https://github.com/terwer/siyuan-plugin-publisher)」插件，可以很便捷的把思源笔记里的文章上传到各个平台，非常省心，再结合思源笔记的数据库功能可以很方面的管理发布的文章
 >
-> ​![Clip_2024-04-27_12-43-28](https://fastly.jsdelivr.net/assets/Clip_2024-04-27_12-43-28-20240427124338-tlz4y8f.png "发布工具")​
+> ​![Clip_2024-04-27_12-43-28](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-43-28-20240427124338-tlz4y8f.png "发布工具")​
 >
-> ​![Clip_2024-04-27_13-02-42](https://fastly.jsdelivr.net/assets/Clip_2024-04-27_13-02-42-20240427130249-xfw7ivx.png "用思源笔记的数据库来管理博客文章")​
+> ​![Clip_2024-04-27_13-02-42](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_13-02-42-20240427130249-xfw7ivx.png "用思源笔记的数据库来管理博客文章")​
 
 ### 添加分类 widget
 
 这样在主页就知道自己文章有多少分类了
 
-​![Clip_2024-04-27_13-04-40](https://fastly.jsdelivr.net/assets/Clip_2024-04-27_13-04-40-20240427130443-v5nfsi9.png)​
+​![Clip_2024-04-27_13-04-40](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_13-04-40-20240427130443-v5nfsi9.png)​
 
 1. 在 `/themes/stellar/layout/_partial/widgets/`​ 下新建 `categories.ejs`​，填入以下内容：
 
