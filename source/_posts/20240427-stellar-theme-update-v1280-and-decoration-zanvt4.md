@@ -11,7 +11,6 @@ excerpt: >-
 tags:
   - 折腾
   - Hexo博客搭建
-abbrlink: b872c36d
 ---
 
 
@@ -20,17 +19,27 @@ abbrlink: b872c36d
 
 stellar 主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前的很多的自定义样式都失效了。所以又折腾了一上午，重新美化了一下。
 
-## 目前的博客样式
+## 博客界面
+
+### 目前的博客样式
 
 ​![Clip_2024-04-27_12-14-58](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-14-58-20240427121503-vlzsk3v.png "主页")​
 
 ​![Clip_2024-04-27_11-19-05](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_11-19-05-20240427111907-krckfdm.png "文章内")​
 
-## 之前的历史快照
+### 之前的历史快照
 
 ​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20230926104442-ig83unh.png "2023.09.26")​
 
 ​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20231105162526-h0wksqr.png "2023.11.05")​
+
+## 目前我是怎么发Hexo博客的
+
+现在我基本是使用「[思源笔记](https://github.com/siyuan-note/siyuan)」来管理笔记和写博客，这是一个管理和编辑体验很好的双链笔记软件。思源笔记有一个「[发布工具](https://github.com/terwer/siyuan-plugin-publisher)」插件，可以很便捷的把思源笔记里的文章上传到各个平台，非常省心，再结合思源笔记的数据库功能可以很方便的管理发布的文章。
+
+​![Clip_2024-04-27_12-43-28](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-43-28-20240427124338-tlz4y8f.png "发布工具")​
+
+​![Clip_2024-04-27_13-02-42](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_13-02-42-20240427130249-xfw7ivx.png "用思源笔记的数据库来管理博客文章")​
 
 ## 代码更改记录
 
@@ -44,17 +53,40 @@ stellar之前是接受了我的[pull request](https://github.com/xaoxuu/hexo-the
 
 作为基本只用Markdown语法写博客的人来说，实在太不友好了，所以又把删掉的代码给加了回来。
 
-> 现在我基本是使用「[思源笔记](https://github.com/siyuan-note/siyuan)」来管理笔记和写博客，思源笔记有一个「[发布工具](https://github.com/terwer/siyuan-plugin-publisher)」插件，可以很便捷的把思源笔记里的文章上传到各个平台，非常省心，再结合思源笔记的数据库功能可以很方面的管理发布的文章
->
-> ​![Clip_2024-04-27_12-43-28](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-43-28-20240427124338-tlz4y8f.png "发布工具")​
->
-> ​![Clip_2024-04-27_13-02-42](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_13-02-42-20240427130249-xfw7ivx.png "用思源笔记的数据库来管理博客文章")​
+并且改进了下 `themes\stellar\scripts\filters\index.js`​，减少误替换的情况发生。
+
+```js
+'use strict';
+
+hexo.extend.filter.register('after_render:html', require('./lib/img_lazyload').processSite);
+hexo.extend.filter.register('after_render:html', require('./lib/img_onerror').processSite);
+
+function change_image(data) {
+    if (this.theme.config.tag_plugins.image.parse_markdown) {
+        // Step 1: 删除所有零宽空格字符
+        data.content = data.content.replace(/\u200B/g, '');
+
+        // Step 2: 修改正则表达式，只在行首或前面只有空格和缩进时替换图片链接
+        data.content = data.content.replace(
+            /^(?:\s*)!\[(.*?)\]\((.*?)\s*(?:"(.*?)")?\)/gm,
+            '{% image $2 $3 %}'
+        );
+    }
+    return data;
+}
+
+
+
+hexo.extend.filter.register('before_post_render', change_image, 9);
+```
 
 ### 添加分类 widget
 
 这样在主页就知道自己文章有多少分类了
 
-​![Clip_2024-04-27_13-04-40](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_13-04-40-20240427130443-v5nfsi9.png)​
+​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240427141259-4ro3r3w.png)​
+
+‍
 
 1. 在 `/themes/stellar/layout/_partial/widgets/`​ 下新建 `categories.ejs`​，填入以下内容：
 
