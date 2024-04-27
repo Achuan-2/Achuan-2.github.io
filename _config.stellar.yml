@@ -56,7 +56,7 @@ site_tree:
     # 主页配置
     home:
         leftbar: welcome, recent
-        rightbar: randomdoc,categories,tagcloud
+        rightbar: randomdoc,categories,tagcloud, new_comment
     # 博客列表页配置
     index_blog:
         base_dir: blog # 只影响自动生成的页面路径
@@ -526,3 +526,5 @@ data_services:
     js: /js/services/weibo.js
   memos:
     js: /js/services/memos.js
+  giscus:
+    js: /js/services/giscus_new.js
