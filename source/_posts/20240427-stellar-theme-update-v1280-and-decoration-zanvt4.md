@@ -16,7 +16,6 @@ tags:
   - 前端
 categories:
   - 其他笔记
-  - 各类笔记
 abbrlink: b872c36d
 ---
 
