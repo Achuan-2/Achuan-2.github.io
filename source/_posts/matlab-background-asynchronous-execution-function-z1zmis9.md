@@ -8,7 +8,7 @@ tags:
   - Matlab
   - 编程
 categories:
-  - 技术博客
+  - 其他笔记
 toc: true
 excerpt: >-
   当在 MATLAB 中运行普通代码时，必须等待该代码完成运行，然后才能运行其他代码。

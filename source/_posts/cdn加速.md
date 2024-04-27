@@ -7,7 +7,7 @@ tags:
   - Github
   - 图床
 categories:
-  - 技术博客
+  - 其他笔记
 comments: true
 toc: true
 abbrlink: 8b29a079

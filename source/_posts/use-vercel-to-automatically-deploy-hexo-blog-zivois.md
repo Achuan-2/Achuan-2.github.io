@@ -6,7 +6,7 @@ excerpt: Github 博客的repo提交commit修改后，Vercel自动部署生成静
 tags:
   - hexo
 categories:
-  - 技术博客
+  - 其他笔记
 comments: true
 toc: true
 abbrlink: f5348a5e

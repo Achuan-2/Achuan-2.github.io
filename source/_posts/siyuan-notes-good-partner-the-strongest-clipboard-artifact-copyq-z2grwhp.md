@@ -11,7 +11,7 @@ tags:
   - 思源笔记
   - CopyQ
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   /post/siyuan-notes-good-partner-the-strongest-clipboard-artifact-copyq-z2grwhp.html
 comments: true

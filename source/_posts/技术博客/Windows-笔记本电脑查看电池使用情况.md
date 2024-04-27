@@ -1,6 +1,7 @@
 ---
 title: Windows 笔记本电脑查看电池使用情况
-categories: 技术博客
+categories: 
+  - 其他笔记
 tags:
   - Windows
 abbrlink: e977bfe7

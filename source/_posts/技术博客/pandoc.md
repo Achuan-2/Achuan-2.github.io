@@ -1,6 +1,7 @@
 ---
 title: 设置word模板，Markdown 也能自动转换为美观规范的 Word 文档
-categories: 技术博客
+categories: 
+  - 其他笔记
 tags:
   - pandoc
   - Word

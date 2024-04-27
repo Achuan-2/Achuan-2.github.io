@@ -6,7 +6,7 @@ excerpt: Matlab 非常脑残地用 alt 同时代表 Ctrl+ 左键或单击右键�
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: post/matlab-different-ctrl-mouse-right-and-mouse-right-click-1f0inv.html
 comments: true
 toc: true

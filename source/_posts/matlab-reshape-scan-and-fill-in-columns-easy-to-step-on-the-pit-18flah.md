@@ -6,7 +6,7 @@ excerpt: Matlab 的 reshape 会先将输入数据按列扫描变为一维列向�
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   post/matlab-reshape-scan-and-fill-in-columns-easy-to-step-on-the-pit-18flah.html
 comments: true

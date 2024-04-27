@@ -6,7 +6,7 @@ excerpt: 简单整理Matlab的数据类型和编程逻辑语法，作为速查�
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: post/matlab-basic-programming-grammar-1ghj9i.html
 comments: true
 toc: true

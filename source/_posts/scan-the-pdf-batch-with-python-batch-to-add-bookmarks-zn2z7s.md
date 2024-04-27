@@ -8,7 +8,7 @@ tags:
   - 电脑技巧
   - 编程
 categories:
-  - 电脑技巧
+  - 其他笔记
 permalink: /post/scan-the-pdf-batch-with-python-batch-to-add-bookmarks-zn2z7s.html
 comments: true
 toc: true

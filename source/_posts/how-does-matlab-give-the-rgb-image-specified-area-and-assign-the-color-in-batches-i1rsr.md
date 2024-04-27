@@ -9,7 +9,7 @@ excerpt: >-
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html
 comments: true

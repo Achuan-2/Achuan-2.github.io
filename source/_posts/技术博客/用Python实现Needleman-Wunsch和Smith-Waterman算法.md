@@ -1,7 +1,7 @@
 ---
 title: 用Python实现Needleman-Wunsch和Smith-Waterman算法
 categories: 
- - 技术博客
+  - 其他笔记
 tags:
   - 作业
   - 生信

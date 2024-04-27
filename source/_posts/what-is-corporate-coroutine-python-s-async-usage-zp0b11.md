@@ -8,7 +8,7 @@ tags:
   - Matlab
   - 编程
 categories:
-  - 技术博客
+  - 其他笔记
 toc: true
 excerpt: >-
   协程的作用是在执行函数A时可以随时中断去执行函数B，然后中断函数B继续执行函数A（可以自由切换）。

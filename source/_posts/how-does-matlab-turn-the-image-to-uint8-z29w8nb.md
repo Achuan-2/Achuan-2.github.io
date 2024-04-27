@@ -8,7 +8,7 @@ excerpt: >-
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: post/how-does-matlab-turn-the-image-to-uint8-z29w8nb.html
 comments: true
 toc: true

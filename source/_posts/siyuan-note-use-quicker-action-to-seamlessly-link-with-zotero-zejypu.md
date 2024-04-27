@@ -9,7 +9,7 @@ tags:
   - 思源笔记
   - Zotero
 categories:
-  - 电脑技巧
+  - 其他笔记
 permalink: >-
   /post/siyuan-note-use-quicker-action-to-seamlessly-link-with-zotero-zejypu.html
 comments: true

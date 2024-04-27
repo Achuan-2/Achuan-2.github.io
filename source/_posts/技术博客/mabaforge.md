@@ -7,7 +7,7 @@ tags:
   - 配置
   - Python
 categories:
-  - 技术博客
+  - 其他笔记
 comments: true
 abbrlink: c6467c9c
 ---

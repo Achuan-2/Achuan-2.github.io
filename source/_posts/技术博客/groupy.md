@@ -9,7 +9,7 @@ tags:
   - 软件
   - Windows
 categories:
-  - 技术博客
+  - 其他笔记
 comments: true
 abbrlink: '291034'
 ---

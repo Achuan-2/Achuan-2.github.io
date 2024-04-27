@@ -7,8 +7,9 @@ excerpt: >-
   functions，即局部函数。
 tags:
   - Matlab
-categories:
   - 编程
+categories:
+  - 其他笔记
 permalink: >-
   /post/matlab-2024a-everbright-functional-writing-experience-big-upgrade-eao4i.html
 comments: true

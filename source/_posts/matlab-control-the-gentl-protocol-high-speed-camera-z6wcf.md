@@ -5,7 +5,7 @@ updated: '2023-10-11 14:08:03'
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html
 comments: true
 toc: true
@@ -86,11 +86,11 @@ abbrlink: 6eabca6e
 
   Data logging is controlled with the `TriggerType`​ property.
 
-  |Trigger Type|Logging Behavior|
-  | ------------| -----------------------------------------------------------------------------------------------|
-  |​`'hardware'`​|Data logging occurs when the condition specified in the object's `TriggerCondition`​ property is met via the `TriggerSource`​.|
-  |​`'immediate'`​|Data logging occurs immediately.|
-  |​`'manual'`​|Data logging occurs when the `trigger`​ function is call|
+  | Trigger Type    | Logging Behavior                                                                                                               |
+  | --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+  | ​`'hardware'`​  | Data logging occurs when the condition specified in the object's `TriggerCondition`​ property is met via the `TriggerSource`​. |
+  | ​`'immediate'`​ | Data logging occurs immediately.                                                                                               |
+  | ​`'manual'`​    | Data logging occurs when the `trigger`​ function is call                                                                       |
 * ​`trigger`​：如果 `triggerconfig(vid,"manual")`​，则 `start` ​后，需要 `trigger` ​相机才会开始采集；【[Ref](https://ww2.mathworks.cn/help/imaq/imaqdevice.trigger.html)】
 * ​`vid.FramesPerTrigger`​：specifies the number of frames the video input object acquires each time it executes a trigger using the selected video source. 【[Ref](https://ww2.mathworks.cn/help/imaq/framespertrigger.html)】
 
@@ -276,9 +276,9 @@ vid = videoinput('gentl',1,'Mono8');
 set(vid, 'ROIPosition', [400 0 960 640 ]);
 ```
 
-|Parameters|Explanation|
-| ----------| -----------------------------------------------------------------------------------------------------|
-|​`XOffset`​|Position of the upper left corner of the ROI, measured in pixels.|
-|​`YOffset`​|Position of the upper left corner of the ROI, measured in pixels.|
-|​`Width`​|Width of the ROI, measured in pixels. The sum of `XOffset`​ and `Width`​ cannot exceed the width specified in `VideoResolution`​.|
-|​`Height`​|Height of the ROI, measured in pixels. The sum of `YOffset`​ and `Height`​ cannot exceed the height specified in `VideoResolution`​.|
+| Parameters  | Explanation                                                                                                                          |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| ​`XOffset`​ | Position of the upper left corner of the ROI, measured in pixels.                                                                    |
+| ​`YOffset`​ | Position of the upper left corner of the ROI, measured in pixels.                                                                    |
+| ​`Width`​   | Width of the ROI, measured in pixels. The sum of `XOffset`​ and `Width`​ cannot exceed the width specified in `VideoResolution`​.    |
+| ​`Height`​  | Height of the ROI, measured in pixels. The sum of `YOffset`​ and `Height`​ cannot exceed the height specified in `VideoResolution`​. |

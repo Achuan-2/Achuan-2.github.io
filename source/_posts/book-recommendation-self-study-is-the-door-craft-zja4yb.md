@@ -7,8 +7,9 @@ excerpt: >-
   —— 书里不用讲官方标准库里的每个模块、每个函数究竟如何使用，因为那些在官方文档里定义得非常清楚……
 tags:
   - 思源笔记
-categories:
   - 读书
+categories:
+  - 其他笔记
 permalink: /post/book-recommendation-self-study-is-the-door-craft-zja4yb.html
 comments: true
 toc: true

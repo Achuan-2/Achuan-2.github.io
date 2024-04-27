@@ -10,7 +10,7 @@ tags:
   - 电脑技巧
   - 软件使用
 categories:
-  - 高效软件
+  - 其他笔记
 permalink: /post/groupy-2-multi-window-management-tool-upgrade-experience-ocrer.html
 comments: true
 toc: true

@@ -9,7 +9,7 @@ excerpt: >-
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   post/python-uses-npvectorize-directional-function-to-perform-batch-processing-ipcdn.html
 comments: true

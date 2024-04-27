@@ -7,7 +7,7 @@ tags:
   - Matlab
   - 编程
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: /post/how-to-give-the-roi-number-in-mask-zm8e9p.html
 comments: true
 toc: true

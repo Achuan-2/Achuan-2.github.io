@@ -8,7 +8,7 @@ excerpt: >-
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   post/matlab-custom-code-supports-roller-amplification-and-drag-pictures-20eamw.html
 comments: true

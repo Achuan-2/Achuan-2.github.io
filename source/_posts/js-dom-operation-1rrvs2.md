@@ -7,7 +7,7 @@ tags:
   - Javascript
   - 编程
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: /post/js-dom-operation-1rrvs2.html
 comments: true
 toc: true

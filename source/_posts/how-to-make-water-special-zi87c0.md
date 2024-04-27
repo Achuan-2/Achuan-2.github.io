@@ -6,10 +6,10 @@ excerpt: >-
   做这篇笔记的起因：看《Neuroscience: Exploring the Brain》的Chapter3
   讲到水的极性使得一个良好的溶剂，其他带电的或极性分子易溶于水。大学化学没学好，高中化学早忘光了，简单补一补关于离子键、共价键、极性、氢键的知识。查完资料，表示日常见的水原来这么神奇，非常惊叹！
 tags:
-  - 神经科学基础
+  - 神经科学
   - 生物化学
 categories:
-  - 神经科学入门到入土
+  - 神经科学笔记
 permalink: post/how-to-make-water-special-zi87c0.html
 comments: true
 toc: true

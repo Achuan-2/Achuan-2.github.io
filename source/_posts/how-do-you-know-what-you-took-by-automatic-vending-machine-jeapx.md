@@ -7,7 +7,7 @@ excerpt: >-
 tags:
   - 生活百科
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: post/how-do-you-know-what-you-took-by-automatic-vending-machine-jeapx.html
 comments: true
 toc: true

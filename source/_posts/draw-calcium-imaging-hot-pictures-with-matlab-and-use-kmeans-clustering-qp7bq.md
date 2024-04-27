@@ -8,7 +8,7 @@ tags:
   - 科研绘图
   - 编程
 categories:
-  - 技术博客
+  - 神经科学笔记
 permalink: >-
   post/draw-calcium-imaging-hot-pictures-with-matlab-and-use-kmeans-clustering-qp7bq.html
 comments: true

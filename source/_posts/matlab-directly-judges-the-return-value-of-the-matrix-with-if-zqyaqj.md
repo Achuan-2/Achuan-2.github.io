@@ -7,7 +7,7 @@ excerpt: >-
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html
 comments: true
 toc: true

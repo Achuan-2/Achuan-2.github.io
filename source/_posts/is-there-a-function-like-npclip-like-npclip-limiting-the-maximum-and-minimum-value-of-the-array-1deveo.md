@@ -6,7 +6,7 @@ excerpt: 其实用max和min叠加就可以实现，限制数组的最大值和�
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html
 comments: true

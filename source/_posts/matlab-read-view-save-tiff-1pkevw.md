@@ -4,10 +4,11 @@ date: '2023-12-20 11:17:44'
 updated: '2023-12-20 17:40:26'
 excerpt: 对Matlab 读取、查看、保存Tiff文件做一个系统的总结
 tags:
+  - 编程
   - Matlab
   - 图像处理
 categories:
-  - 编程
+  - 其他笔记
 permalink: /post/matlab-read-view-save-tiff-1pkevw.html
 comments: true
 toc: true
@@ -302,16 +303,16 @@ Tiff 对象的官方文档：[https://ww2.mathworks.cn/help/matlab/ref/tiff.html
 * ​`Photometric`​：图像数据颜色空间。有好多种可以选，具体可以 doc 看看。科研处理的灰度图像，一般选'MinIsBlack'，即像素值为 0 时是黑色的。​`Tiff.Photometric.MinIsBlack`​
 * ​`SamplesPerPixel`​：一个像素几个采样数，一般为 1
 
-|标记类型|解释|一般设置的值|
-| --------| ----------------------| -------------------------------|
-|​`ImageWidth`​|图像宽度|根据实际图像尺寸设置：`size(img,2)`​|
-|​`ImageLength`​|图像长度|根据实际图像尺寸设置：`size(img,1)`​|
-|​`Compression`​|压缩情况|​`Tiff.Compression.None`​|
-|​`PlanarConfiguration`​|存储配置|​`Tiff.PlanarConfiguration.Chunky`​|
-|​`BitsPerSample`​|数据类型|根据实际数据类型设置：8，16，32|
-|​`Photometric`​|图像数据颜色空间|​`Tiff.Photometric.MinIsBlack`​|
-|​`SamplesPerPixel`​|一个像素几个采样数|1|
-|​`SampleFormat`​|int 类型还是 uint 类型|​`Tiff.SampleFormat.UInt` ​or `Tiff.SampleFormat.Int`​|
+| 标记类型                | 解释                   | 一般设置的值                                           |
+| ----------------------- | ---------------------- | ------------------------------------------------------ |
+| ​`ImageWidth`​          | 图像宽度               | 根据实际图像尺寸设置：`size(img,2)`​                   |
+| ​`ImageLength`​         | 图像长度               | 根据实际图像尺寸设置：`size(img,1)`​                   |
+| ​`Compression`​         | 压缩情况               | ​`Tiff.Compression.None`​                              |
+| ​`PlanarConfiguration`​ | 存储配置               | ​`Tiff.PlanarConfiguration.Chunky`​                    |
+| ​`BitsPerSample`​       | 数据类型               | 根据实际数据类型设置：8，16，32                        |
+| ​`Photometric`​         | 图像数据颜色空间       | ​`Tiff.Photometric.MinIsBlack`​                        |
+| ​`SamplesPerPixel`​     | 一个像素几个采样数     | 1                                                      |
+| ​`SampleFormat`​        | int 类型还是 uint 类型 | ​`Tiff.SampleFormat.UInt` ​or `Tiff.SampleFormat.Int`​ |
 
 ‍
 

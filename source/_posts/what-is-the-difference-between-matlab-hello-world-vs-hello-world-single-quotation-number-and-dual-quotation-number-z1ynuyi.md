@@ -7,7 +7,7 @@ tags:
   - Matlab
   - 编程
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   /post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html
 comments: true

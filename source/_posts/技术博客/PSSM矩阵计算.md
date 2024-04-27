@@ -1,6 +1,7 @@
 ---
 title: PSSM矩阵计算
-categories: 技术博客
+categories: 
+  - 其他笔记
 tags:
   - 作业
 excerpt: >-

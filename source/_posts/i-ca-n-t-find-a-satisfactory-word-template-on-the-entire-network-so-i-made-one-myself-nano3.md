@@ -8,7 +8,7 @@ tags:
   - 折腾
   - 思源笔记
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: >-
   /post/i-ca-n-t-find-a-satisfactory-word-template-on-the-entire-network-so-i-made-one-myself-nano3.html
 comments: true
@@ -65,20 +65,20 @@ pandoc --reference-doc template.docx -s input.md  -o output.docx
 
 一般样式如下：
 
-|样式名|描述|本模板样式|
-| :----------------------------: | :----------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
-|Normal（正文)|word 的基础样式，还会应用于列表项和列表子项|字号小四，中文字体为宋体，英文 Times New Roman<br />1.5 倍行距|
-|First Paragraph|段落首段|首行缩进，<br />字号小四，中文字体为宋体，英文 Times New Roman<br />1.5 倍行距，段前 9 磅<br />|
-|Body Text（正文文本）|在正文段落中应用（除段落首段）|首行缩进，<br />字号小四，中文字体为宋体，英文 Times New Roman<br />1.5 倍行距，段前 9 磅<br />|
-|Compact|表格单元格|字号 10，中文字体为宋体，英文 Times New Roman|
-|Heading 1（标题 1）|一级标题|字号小二，加粗，中文字体为黑体，英文 Times New Roman，<br />段前 24 磅，段后 24 磅<br />|
-|Heading 2（标题 2）|二级标题|字号三号，加粗，中文字体为黑体，英文 Times New Roman|
-|Heading 3（标题 3）|三级标题|字号 13，加粗，中文字体为黑体，英文 Times New Roman|
-|Heading 4（标题 4）|四级标题|字号小四，中文字体为黑体，英文 Times New Roman|
-|Heading 5（标题 5）|五级标题|字号小四，中文字体为黑体，英文 Times New Roman|
-|Heading 6（标题 6）|六级标题|字号小四，中文字体为黑体，英文 Times New Roman|
-|Block Text（文本块）|引述块样式|四周添加 1 磅边框，左侧设置为 6 磅粗边框|
-|Source Code|行内代码和代码块样式|底纹设置为灰色，四周添加 1 磅边框|
+|        样式名         |                    描述                     |                                           本模板样式                                            |
+| :-------------------: | :-----------------------------------------: | :---------------------------------------------------------------------------------------------: |
+|     Normal（正文)     | word 的基础样式，还会应用于列表项和列表子项 |                 字号小四，中文字体为宋体，英文 Times New Roman<br />1.5 倍行距                  |
+|    First Paragraph    |                  段落首段                   | 首行缩进，<br />字号小四，中文字体为宋体，英文 Times New Roman<br />1.5 倍行距，段前 9 磅<br /> |
+| Body Text（正文文本） |       在正文段落中应用（除段落首段）        | 首行缩进，<br />字号小四，中文字体为宋体，英文 Times New Roman<br />1.5 倍行距，段前 9 磅<br /> |
+|        Compact        |                 表格单元格                  |                          字号 10，中文字体为宋体，英文 Times New Roman                          |
+|  Heading 1（标题 1）  |                  一级标题                   |    字号小二，加粗，中文字体为黑体，英文 Times New Roman，<br />段前 24 磅，段后 24 磅<br />     |
+|  Heading 2（标题 2）  |                  二级标题                   |                      字号三号，加粗，中文字体为黑体，英文 Times New Roman                       |
+|  Heading 3（标题 3）  |                  三级标题                   |                       字号 13，加粗，中文字体为黑体，英文 Times New Roman                       |
+|  Heading 4（标题 4）  |                  四级标题                   |                         字号小四，中文字体为黑体，英文 Times New Roman                          |
+|  Heading 5（标题 5）  |                  五级标题                   |                         字号小四，中文字体为黑体，英文 Times New Roman                          |
+|  Heading 6（标题 6）  |                  六级标题                   |                         字号小四，中文字体为黑体，英文 Times New Roman                          |
+| Block Text（文本块）  |                 引述块样式                  |                            四周添加 1 磅边框，左侧设置为 6 磅粗边框                             |
+|      Source Code      |            行内代码和代码块样式             |                                底纹设置为灰色，四周添加 1 磅边框                                |
 
 修改表格样式和列表样式比较特殊
 
@@ -115,7 +115,7 @@ pandoc --reference-doc template.docx -s input.md  -o output.docx
 
    ```markdown
    | header 1 | header 2 |
-   | :--------: | :--------: |
+   | :------: | :------: |
    |  cell 1  |  cell 2  |
    |  cell 3  |  cell 4  |
    |  cell 5  |  cell 6  |

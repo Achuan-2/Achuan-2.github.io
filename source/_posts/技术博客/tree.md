@@ -1,6 +1,7 @@
 ---
 title: tree 查看文件目录神器
-categories: 技术博客
+categories: 
+  - 其他笔记
 tags:
   - Linux
   - Windows

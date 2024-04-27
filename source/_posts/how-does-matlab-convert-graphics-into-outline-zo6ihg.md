@@ -6,7 +6,7 @@ excerpt: Matlab 自带 bwboundaries 函数，能够解析图形，返回图片�
 tags:
   - Matlab
 categories:
-  - 技术博客
+  - 其他笔记
 permalink: post/how-does-matlab-convert-graphics-into-outline-zo6ihg.html
 comments: true
 toc: true

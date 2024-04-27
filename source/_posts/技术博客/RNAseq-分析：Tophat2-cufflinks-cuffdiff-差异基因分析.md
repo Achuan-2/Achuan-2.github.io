@@ -1,7 +1,7 @@
 ---
 title: RNAseq 分析：Tophat2+cufflinks+cuffdiff+差异基因分析
 categories:
-  - 技术博客
+  - 其他笔记
 tags:
   - 组学分析
   - 作业
@@ -27,12 +27,12 @@ NONO 是一种 DNA/RNA 结合蛋白，该文揭示了 **NONO在小鼠胚胎干�
 
 本次实验选取了四个 Run（测序数据），分别为 SRR8734708（set1_WT_D0）、SRR8734712（set1_NonoKO_D0）、SRR8734718（Set2_WT_D0）和 SRR8734722（Set2_NonoKO_D0）。
 
-|RUN|GROUP|
-| ----------| --------------|
-|SRR8734708|set1_WT_D0|
-|SRR8734712|set1_NonoKO_D0|
-|SRR8734718|Set2_WT_D0|
-|SRR8734722|Set2_NonoKO_D0|
+| RUN        | GROUP          |
+| ---------- | -------------- |
+| SRR8734708 | set1_WT_D0     |
+| SRR8734712 | set1_NonoKO_D0 |
+| SRR8734718 | Set2_WT_D0     |
+| SRR8734722 | Set2_NonoKO_D0 |
 
 ### 数据下载
 
