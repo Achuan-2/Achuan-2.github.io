@@ -39,7 +39,7 @@ related:
 # 标签云组件
 tagcloud:
   layout: tagcloud
-  title: 标签云
+  title: 标签索引
   # 标签云配置
   min_font: 12
   max_font: 24
@@ -50,3 +50,22 @@ tagcloud:
   start_color: # 开始的颜色。您可使用十六进位值（#b700ff），rgba（rgba(183, 0, 255, 1)），hsla（hsla(283, 100%, 50%, 1)）或 颜色关键字。此变量仅在 color 参数开启时才有用。
   end_color: # 结束的颜色。您可使用十六进位值（#b700ff），rgba（rgba(183, 0, 255, 1)），hsla（hsla(283, 100%, 50%, 1)）或 颜色关键字。此变量仅在 color 参数开启时才有用。
   show_count: false # 显示每个标签的文章总数
+categories:
+	layout: categories
+	title: 分类索引
+
+randomdoc:
+  layout: markdown
+  title: ''
+  linklist:
+    columns: 1
+    items:
+      - icon: '<img src="https://api.iconify.design/ion:dice-outline.svg"/>'
+        title: 随机抽一篇文章吧
+        url: 'javascript:toRandomPost()'
+  content: |
+    <span id="welcome-info" ></span>
+
+
+
+

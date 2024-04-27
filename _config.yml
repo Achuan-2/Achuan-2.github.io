@@ -129,7 +129,9 @@ markdown_it_plus:
 
 inject:
     head:
+        - <script src="/js/random.js"></script> # 随机文章
         - <link href="/css/appearence.css" rel="stylesheet">
+        - <link href="/css/tagcolor-switch.css" rel="stylesheet">
         - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bofeng/hyksk_webfont/dist/hyksk.css" />
         # - <link href="/css/post_tag.css" rel="stylesheet">
         # - <link href="/css/code_language.css" rel="stylesheet">
