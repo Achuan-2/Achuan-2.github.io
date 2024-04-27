@@ -14,6 +14,7 @@ categories:
 permalink: /post/write-a-wechat-public-account-article-with-markdown-zatxal.html
 comments: true
 toc: true
+abbrlink: 352a956b
 ---
 
 
