@@ -11,6 +11,8 @@ excerpt: >-
 tags:
   - 折腾
   - Hexo博客搭建
+categories:
+  - 各类笔记
 ---
 
 
