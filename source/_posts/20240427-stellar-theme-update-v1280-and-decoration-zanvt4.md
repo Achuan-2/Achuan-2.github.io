@@ -1,7 +1,7 @@
 ---
-title: 2024.04.27 stellar主题更新 v1.28.0 及装修
+title: Hexo stellar主题更新 v1.28.0 及个性化修改
 date: '2024-04-27 12:33:25'
-updated: '2024-04-27 13:30:44'
+updated: '2024-04-27 18:36:29'
 permalink: /post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html
 comments: true
 toc: true
@@ -10,17 +10,19 @@ excerpt: >-
   主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前的很多的自定义样式都失效了。所以又折腾了一上午，重新美化了一下。
 tags:
   - 折腾
-  - Hexo博客搭建
+  - Hexo
+  - 博客
+  - 编程
+  - 前端
 categories:
+  - 其他笔记
   - 各类笔记
 abbrlink: b872c36d
 ---
 
 
 
-
-
-stellar 主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前的很多的自定义样式都失效了。所以又折腾了一上午，重新美化了一下。
+Hexo stellar 主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前写的很多自定义样式都失效了。所以折腾了一上午，重新美化了一下。希望自己以后坚持每周都写一篇博客吧🐦。
 
 ## 博客界面
 
@@ -91,84 +93,85 @@ hexo.extend.filter.register('before_post_render', change_image, 9);
 
 ‍
 
-1. 在 `/themes/stellar/layout/_partial/widgets/`​ 下新建 `categories.ejs`​，填入以下内容：
+在 `/themes/stellar/layout/_partial/widgets/`​ 下新建 `categories.ejs`​，填入以下内容：
 
-    ```js
-    <% function layoutCategoriesDiv() { var el='' ; if (site.categories===undefined || site.categories.length===0) { return
-        el; } var opts=Object.assign({}, item); delete opts['title']; delete opts['layout']; opts.class='category ' ;
-        el+=`<widget class="widget-wrapper${scrollreveal(' ')} categories-widget">`;
+```js
+<% function layoutCategoriesDiv() { var el='' ; if (site.categories===undefined || site.categories.length===0) { return
+    el; } var opts=Object.assign({}, item); delete opts['title']; delete opts['layout']; opts.class='category ' ;
+    el+=`<widget class="widget-wrapper${scrollreveal(' ')} categories-widget">`;
 
-        if (item.title) {
-        el += '<div class="widget-header categories-header dis-select">';
-            el += '<span class="name">' + item.title + '</span>';
-            el += '</div>';
-        }
+    if (item.title) {
+    el += '<div class="widget-header categories-header dis-select">';
+        el += '<span class="name">' + item.title + '</span>';
+        el += '</div>';
+    }
 
-        el += '<div class="widget-body">';
-            // Generate categories list
-            site.categories.each(function(category) {
-            el += `<div class="${opts.class}">`;
-                el += `<svg class="category-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <path d="M18 10h-5" opacity=".5" />
-                    <path d="M10 3h6.5c.464 0 .697 0 .892.026a3 3 0 0 1 2.582 2.582c.026.195.026.428.026.892"
-                        opacity=".5" />
-                    <path
-                        d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" />
-                </svg>`;
-                el += `<a href="${url_for(category.path)}">${category.name} (${category.length})</a>`;
-                el += `</div>`;
-            });
-            el += '</div>';
-        el += '</widget>'; // Close widget-wrapper
-        return el;
-        }
-        %>
-        <%- layoutCategoriesDiv() %>
-    ```
-2. 在 `themes/stellar/source/css/_layout/widgets/`​ 下新建 `categories.styl`​ 文件，填入以下内容：
+    el += '<div class="widget-body">';
+        // Generate categories list
+        site.categories.each(function(category) {
+        el += `<div class="${opts.class}">`;
+            el += `<svg class="category-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M18 10h-5" opacity=".5" />
+                <path d="M10 3h6.5c.464 0 .697 0 .892.026a3 3 0 0 1 2.582 2.582c.026.195.026.428.026.892"
+                    opacity=".5" />
+                <path
+                    d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" />
+            </svg>`;
+            el += `<a href="${url_for(category.path)}">${category.name} (${category.length})</a>`;
+            el += `</div>`;
+        });
+        el += '</div>';
+    el += '</widget>'; // Close widget-wrapper
+    return el;
+    }
+    %>
+    <%- layoutCategoriesDiv() %>
+```
 
-    ```css
-    // categories widget 样式
-    .widget-wrapper.categories-widget .widget-body {
-        border-radius: $border-card;
-        padding: 12px 20px;
-        background: var(--alpha50); // 这里设置背景
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); // 添加阴影效果
-      }
+在 `themes/stellar/source/css/_layout/widgets/`​ 下新建 `categories.styl`​ 文件，填入以下内容：
 
-    // 每个分类的样式
-    .category
-      line-height: 1.5
-      margin: 8px 0
-      display: flex // 使用flex布局来确保图标和文本在同一行
-      align-items: center // 垂直居中对齐
+```css
+// categories widget 样式
+.widget-wrapper.categories-widget .widget-body {
+    border-radius: $border-card;
+    padding: 12px 20px;
+    background: var(--alpha50); // 这里设置背景
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); // 添加阴影效果
+  }
 
-    .category-icon
-      width: 16px
-      height: 16px
-      vertical-align: middle
-      margin-right: 8px
+// 每个分类的样式
+.category
+  line-height: 1.5
+  margin: 8px 0
+  display: flex // 使用flex布局来确保图标和文本在同一行
+  align-items: center // 垂直居中对齐
 
-    .category a
-      display: inline-block // 链接以行内块方式显示
-      word-break: break-word
-      color: var(--text-p2)
-      font-family: system-ui
-      font-weight: 300
-      font-size: 16px
-      text-decoration: none
-      &:hover
-        color: $color-hover
-        text-decoration: underline
+.category-icon
+  width: 16px
+  height: 16px
+  vertical-align: middle
+  margin-right: 8px
 
-    // Variables
-    $color-hover = #0366d6
+.category a
+  display: inline-block // 链接以行内块方式显示
+  word-break: break-word
+  color: var(--text-p2)
+  font-family: system-ui
+  font-weight: 300
+  font-size: 16px
+  text-decoration: none
+  &:hover
+    color: $color-hover
+    text-decoration: underline
+
+// Variables
+$color-hover = #0366d6
 
 
-    ```
+```
 
-> 参考：[Stellar 主题中添加分类索引 Widget - 宇宙尽头的餐馆 (flyalready.cn)](https://www.flyalready.cn/Stellar%20%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E7%B4%A2%E5%BC%95%20Widget)
+> 参考：[Stellar 主题中添加分类索引 Widget - 宇宙尽头的餐馆](https://www.flyalready.cn/Stellar%20%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E7%B4%A2%E5%BC%95%20Widget)
 
 ### 随机文章按钮
 
@@ -185,9 +188,9 @@ hexo.extend.filter.register('after_render:html', function (data) {
 })
 ```
 
-> 参考：[Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆 (flyalready.cn)](https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E9%9A%8F%E6%9C%BA%E6%96%87%E7%AB%A0%E8%B7%B3%E8%BD%AC)
+> 参考：[Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆：随机文章按钮](https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E9%9A%8F%E6%9C%BA%E6%96%87%E7%AB%A0%E8%B7%B3%E8%BD%AC)
 >
-> 备注：文章路径需要用`encodeURIComponent`​来编码，否则如果文章路径里有连字符，没有在前面加上域名地址，导致打开识别
+> 备注：文章路径需要用`encodeURIComponent`​来编码，否则如果文章路径里有连字符，没有在前面加上域名地址，导致打开失败。
 
 ### 增强标签显示
 
@@ -298,7 +301,7 @@ return el;
  
 ```
 
-> 参考：[Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆 (flyalready.cn)](https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E5%9C%A8%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE%E6%98%BE%E7%A4%BA)
+> 参考：[Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆：在文章页面添加标签显示](https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E5%9C%A8%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE%E6%98%BE%E7%A4%BA)
 
 ### 自定义css
 
@@ -375,4 +378,4 @@ table a:not([class]) {
 }
 ```
 
-> 参考：[Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆 (flyalready.cn)](https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E8%B6%85%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4)
+> 参考：[Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆：超链接样式调整](https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E8%B6%85%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4)
