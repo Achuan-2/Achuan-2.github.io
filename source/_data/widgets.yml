@@ -71,7 +71,7 @@ new_comment:
   title: 最新评论
   api: https://recent-comment.vercel.app/ #你的 vercel 函数地址
   type: giscus
-  limit: 10 # 限制获取数量，这是客户端，刚刚是服务端
+  limit: 20 # 限制获取数量，这是客户端，刚刚是服务端
 
 
 
