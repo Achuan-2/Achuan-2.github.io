@@ -16,7 +16,6 @@ tags:
   - 前端
 categories:
   - 其他笔记
-abbrlink: b872c36d
 ---
 
 
@@ -378,3 +377,108 @@ table a:not([class]) {
 ```
 
 > 参考：[Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆：超链接样式调整](https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E8%B6%85%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4)
+
+### 添加最新评论组件
+
+参考：[Stellar展示最新评论 - 星日语 (weekdaycare.cn)](https://weekdaycare.cn/posts/twikoo-new/#giscus)
+
+**vercel app准备**
+
+1. 部署 repo 至 Vercel：[Achuan-2/recent-comment (github.com)](https://github.com/Achuan-2/recent-comment)
+2. 需要在vercel中设置环境变量
+
+    |name|description|
+    | :-----| :--------------------|
+    |​`LIMIT`​|获取数量|
+    |​`GITHUB_REPO_OWNER`​|Github用户名|
+    |​`GITHUB_REPO_NAME`​|仓库名|
+    |​`GITHUB_CATEGORY_ID`​|Discussions分类名称|
+    |​`GITHUB_TOKEN`​|Github Access Token|
+3. 配置完成后请redeploy！
+4. 查看是否能正确输出最新评论的json数据
+
+**stellar主题修改**
+
+1. 在 `theme/source/js/services/`​ 下新建 giscus_new.js
+
+    ```js
+    utils.jq(() => {
+        $(function () {
+            const els = document.getElementsByClassName('ds-giscus');
+            for (var i = 0; i < els.length; i++) {
+                const el = els[i];
+                const api = el.getAttribute('api');
+                if (api == null) {
+                    continue;
+                }
+                const default_avatar = def.avatar;
+                // layout
+                utils.request(el, api, function (data) {
+                    const limit = el.getAttribute('limit');
+                    data.forEach((item, i) => {
+                        if (limit && i >= limit) {
+                            return;
+                        }
+                        comment = item.body.length > 50 ? item.body.substring(0, 50) + '...' : item.body;
+                        var cell = '<div class="timenode" index="' + i + '">';
+                        cell += '<div class="header">';
+                        cell += '<div class="user-info">';
+                        cell += '<img src=" + (item.author.avatarUrl || default_avatar) + " onerror="javascript:this.src=\\" + default_avatar + "\\";">';
+                        cell += '<span>' + item.author.login + '</span>';
+                        cell += '</div>';
+                        cell += '<span>' + new Date(item.createdAt).toLocaleString() + '</span>';
+                        cell += '</div>';
+                        cell += '<a class="body" href="' + item.url + '" target="_blank" rel="external nofollow noopener noreferrer">';
+                        cell += comment;
+                        cell += '</a>';
+                        cell += '</div>';
+                        $(el).append(cell);
+                    });
+                });
+            }
+        });
+    });
+    ```
+2. ​`_config.stellar.yml`​主题配置中引入
+
+    ```yaml
+    data_services:
+      ...
+      giscus:
+        js: /js/services/giscus_new.js
+
+    ```
+3. 在 `_data/widgets.yml`​ 中创建小组件，并在`_config.stellar.yml`​中选择在哪里展示
+
+    ```yaml
+    new_comment:
+      layout: timeline
+      title: 最新评论
+      api: https://xxx.vercel.app # 你的 vercel 函数地址
+      type: giscus
+      limit: 16 # 限制获取数量，这是客户端，刚刚是服务端
+
+    ```
+
+**成果展示**
+
+​![Clip_2024-04-28_01-36-04](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-28_01-36-04-20240428013606-bqbi3ns.png)​
+
+### Fix 使用搜索功能搜到的部分文章无法打开
+
+我目前使用思源笔记这个笔记软件的「发布工具」插件把笔记发布到hexo  
+发布工具支持在yaml里放永久链接
+
+由于永久链接是`/post/id.html`​形式，而使用local search搜索的时候，这些文档则会打开为`https://post/id.html`​,导致失败  
+所以需要对data.path进行检测，如果以'//'开头，则path字符串只取第二位到最后一位，使其能正常打开
+
+在`themes\stellar\source\js\search\local-search.js`​进行修改
+
+```diff
+- var dataUrl = data.path;
++ var dataUrl = data.path.startsWith('//') ? data.path.slice(1) : data.path;
+```
+
+已提交Pull request：[https://github.com/xaoxuu/hexo-theme-stellar/pull/450](https://github.com/xaoxuu/hexo-theme-stellar/pull/450)
+
+‍
