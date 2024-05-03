@@ -12,8 +12,6 @@ comments: true
 toc: true
 ---
 
-![image](assets/886f6acd-90cd-48b6-a296-980ae5df647e-20240503223645-ghjwd4f.webp)
-
 
 
 > 💡 你如何度过每一天，也就如何度过这一生。
