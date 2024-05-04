@@ -7,7 +7,7 @@ excerpt: >-
   是怎么管理笔记的。
 tags:
   - 思源笔记
-  - 笔记软件
+  - 知识管理
 categories:
   - 阿巛随笔
 permalink: /post/my-note-management-method-in-onenote-wolai-zrqwln.html
@@ -17,9 +17,11 @@ toc: true
 
 
 
-本文的语雀链接：[我过去在 onenote，wolai 的笔记管理方法 (yuque.com)](https://www.yuque.com/achuan-2/siyuan/ssskm9gab9mgsyin)
+本文的语雀链接：[https://www.yuque.com/achuan-2/siyuan/ssskm9gab9mgsyin](https://www.yuque.com/achuan-2/siyuan/ssskm9gab9mgsyin)
 
 其实我用的笔记软件不多，真正作为主力笔记软件的，只有三个软件，依次为onenote，wolai和思源笔记。简单回顾下过去在 onenote、wolai 是怎么管理笔记的。
+
+​![我过去在 onenote、wolai 的笔记管理方法](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/%E6%88%91%E8%BF%87%E5%8E%BB%E5%9C%A8%20onenote%E3%80%81wolai%20%E7%9A%84%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95-20240504182518-77blt0t.png)​
 
 ## OneNote
 
@@ -42,7 +44,7 @@ toc: true
 另外，当时我在个人日记上就会记录当天做了什么，记了什么笔记，并丢一个笔记链接在里面，其实和现在自己使用的dailynote比较像，只不过OneNote不支持直接在日记页面新建文档，我还是得找个适当的分类，在那里新建笔记。还养成了周总结、月总结的习惯。
 
 > **补充说明：OneNote的链接功能其实很强**  
-> OneNote很早就支持复制笔记链接的，有些大佬也分享自己用OneNote的链接来管理主题笔记、笔记目录的方法，可惜当时的我并没有发现管理链接这个方法的优秀之处。一直使用文档树分类的习惯，只在个人日记里使用到笔记链接。  
+> OneNote很早就支持复制笔记链接的，有些大佬也分享自己用OneNote的链接来管理主题笔记、笔记目录的方法，可惜当时的我并没有发现管理链接这个方法的优秀之处。一直使用笔记本（文档树）进行分类、管理层级，只在个人日记里使用到笔记链接。  
 > 我也是写这篇笔记才发现，**原来OneNote老早就支持[[]]的自动链接功能**！！！比如在笔记里打[[经济泡沫]]，如果这篇笔记已经存在了，就会自动链接，就算那个笔记后来改名了依然还能正确跳转！如果不存在，则会自动在当前分区新建该笔记。只是和目前的双链笔记相比，只是单向链接，不支持双向链接。
 
 下面是之前一些过去的OneNote笔记截图
