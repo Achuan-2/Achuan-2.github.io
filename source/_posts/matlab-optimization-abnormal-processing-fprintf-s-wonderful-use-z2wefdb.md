@@ -14,9 +14,9 @@ comments: true
 toc: true
 ---
 
+# Matlab 优化异常处理：fprintf的妙用
 
-
-​![Matlab 优化异常处理：fprintf的妙用](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Matlab%20%E4%BC%98%E5%8C%96%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%EF%BC%9Afprintf%E7%9A%84%E5%A6%99%E7%94%A8-20240507170909-9a4kpt8.png)​
+​![Matlab 优化异常处理：fprintf的妙用](http://127.0.0.1:6806/assets/Matlab%20优化异常处理：fprintf的妙用-20240507170909-9a4kpt8.png)​
 
 > **总结**
 >
@@ -40,11 +40,11 @@ end
 
 但是有一个问题——**就是不会显示到底哪一行出错了，不方便调试查看**
 
-###### ​![Clip_2024-05-07_16-43-14](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-07_16-43-14-20240507164317-prk7b3f.png)​
+###### ​![Clip_2024-05-07_16-43-14](http://127.0.0.1:6806/assets/Clip_2024-05-07_16-43-14-20240507164317-prk7b3f.png)​
 
 ‍
 
-其实 matlab 的命令行不仅仅可以输出纯文字，**还可以输出超链接**，这个超链接除了可以跳转文字，**还可以执行命令**，比如将超链接的 href 设置为 `matlab:clc`​ 点击就可以清屏，设置为 `matlab:fprintf`​ 点击就可以输出文字！
+其实 matlab 的命令行不仅仅可以输出纯文字，**还可以输出超链接**，这个超链接除了可以跳转网页，**还可以执行命令**，比如将超链接的 href 设置为 `matlab:clc`​ 点击就可以清屏，设置为 `matlab:fprintf`​ 点击就可以输出文字！
 
 所以我们可以把代码错误的具体位置信息封装起来，**需要的时候点击输出到控制台！这个报错的代码行号是可以直接点击跳转的！**
 
