@@ -20,6 +20,8 @@ toc: true
 
 
 
+![MOC面向主题地去管理笔记链接](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/MOC%E9%9D%A2%E5%90%91%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%8E%BB%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E9%93%BE%E6%8E%A5-20240512105740-xzkvbuo.png)
+
 个人认为，双链笔记的核心**并不在于双向链接**，对我而言，我接触到双链笔记软件这 3 年以来的主要收获可以概括为两个点，一个是「**笔记应该是渐进式的**」，目前我觉得这个理念不仅仅应该应用在笔记上，也应该用在生活上——生活也应该是渐进式的；另一个收获便是「**面向主题地去管理笔记链接**」。
 
 「面向主题地去管理笔记链接」，这一方法在双链笔记圈被叫做 MOC，Map of Contents，直接翻译叫做内容地图，我更喜欢将其翻译为索引笔记、主题笔记。
@@ -40,7 +42,7 @@ toc: true
 >
 > 多说一句，电子笔记界的元老之一 OneNote 就是在 2003 年 11 月发布的[*](https://zh.m.wikipedia.org/wiki/Microsoft_OneNote)，OneNote 牛逼！要知道同样“古老”的 Evernote 是在 2008 年才发布的[*](https://zh.m.wikipedia.org/wiki/Evernote)。
 >
-> ​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511220615-c5ilv1o.png)​
+> ![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511220615-c5ilv1o.png)
 
 而将 MOC 这一概念应用到电子笔记软件里并大力宣扬的人叫 Nick Milo，他是 Obsidian 社区的大神。在他的文章《[What can we call higher-order notes?](https://notes.linkingyourthinking.com/Cards/What+are+higher-order+notes)》，将 MOC 认为是高阶笔记，认为它灵活，能满足收集、概述、结构化、导航等目的，还方便链接知识、重塑想法和构建新想法：
 
@@ -109,7 +111,7 @@ MOC 笔记方法强调不需要管理笔记本体，管理链接就好了。
 - [[概念笔记2]]
 - [[概念笔记3]]
 - 简单概念4
-- 困难概念4
+- 不了解概念5
 ```
 
 也可以在索引后添加内容概括，添加引用关系。例如：
@@ -142,17 +144,25 @@ MOC 笔记方法强调不需要管理笔记本体，管理链接就好了。
 
 比如我收集了一些神经科学方面的教材，在这里我用了列表来管理笔记，一些已经读的书、在读的书，我还可以直接在 MOC 里添加一些网页资料。
 
-​![Clip_2024-05-11_22-54-07](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_22-54-07-20240511225409-wjv8hdc.png)​
+![Clip_2024-05-11_22-54-07](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_22-54-07-20240511225409-wjv8hdc.png)
 
 由于《神经系统组成》这个概念比较大、涉及的内容多，所以我将其升级为主题笔记
 
-​![Clip_2024-05-11_23-16-47](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-16-47-20240511231649-hfconcy.png)​
+![Clip_2024-05-11_23-16-47](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-16-47-20240511231649-hfconcy.png)
 
 ‍
 
 用表格也能管理索引，不过由于思源笔记不少主题提供了列表转表格功能，再加上目前思源笔记有数据库功能，可以当成高级表格使用，我就比较少用表格了。下面是一个用表格管理链接的例子：
 
-​![Clip_2024-05-11_23-29-41](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-29-41-20240511232949-m7t1zcg.png)​
+|笔记|分类维度 I|维度 II|
+| ---------------| ------------| ---------|
+|[[概念笔记1]]|类型 A|D|
+|[[概念笔记2]]|类型 B|D|
+|[[概念笔记3]]|类型 A,B|E|
+|[[概念笔记4]]|类型 A|D,E|
+|[[概念笔记5]]|类型 C|E|
+
+![Clip_2024-05-11_23-29-41](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-29-41-20240511232949-m7t1zcg.png)
 
 而数据库这个功能在笔记管理上，除了可以当成高级表格使用外，思源笔记还有一个特色功能——「添加到数据库」，可以很轻松的将一个笔记放进数据库，所以目前数据库又多了一个功能——收集零散的概念笔记，创建了一个笔记之后，可以暂时不着急去思考这篇笔记要放在主题笔记的哪个位置，可以用数据库先存放这些笔记，等时机恰当再进行整理。数据库尤其适合整理名词概念类的笔记，零散杂乱，用列表整理其实挺头疼的，完全不知道该放在哪里，等列表长了，也不方便查看，用数据库整理就非常的适合。
 
