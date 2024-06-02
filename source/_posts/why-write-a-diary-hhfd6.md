@@ -43,7 +43,7 @@ toc: true
 
 ‍
 
-### 周复盘
+### 月复盘
 
 ​![月复盘模板](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/%E6%9C%88%E5%A4%8D%E7%9B%98%E6%A8%A1%E6%9D%BF-20240602114021-2x7rbpr.png)​
 
