@@ -15,6 +15,8 @@ toc: true
 
 
 
+​![gpt-1717300320488](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/gpt-1717300320488-20240602115217-k27srd5.png)​
+
 回顾我过去的日记，发现写的都是抱怨的内容和无用的唠叨，没有什么意义，都是废话。
 
 后来我才发现，
