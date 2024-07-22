@@ -6,6 +6,20 @@ permalink: >-
   /post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html
 comments: true
 toc: true
+excerpt: >-
+  ❓什么是CNN激活图？
+
+  激活图就像是CNN的"思维过程"，展示了网络在识别图像时各个层次的关注点。简单说，它让我们窥探AI是如何"看"世界的！
+
+  ❓激活图具体代表什么
+
+  激活图上的每个值 (激活值) 代表了网络对该位置和对应特征的响应程度。 值越大，表示网络对该位置和特征越敏感，认为它越重要。
+
+  越深的层的激活图提取的特征越来越抽象：大多数卷积神经网络在第一个卷积层中学习检测颜色和边缘等特征。在更深的卷积层中，网络学习检测更复杂的特征。通过可视化激活图，我们可以观察不同卷积层学习到的特征，以及这些特征如何随着网络深度的增加而变得更加抽象和高级。
+tags:
+  - Matlab
+categories:
+  - 深度学习
 ---
 
 
