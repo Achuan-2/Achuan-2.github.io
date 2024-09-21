@@ -19,11 +19,12 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20.x'
+        node-version: '20.10.0'
 
     - name: Install Hexo and dependencies
       run: |
         npm install hexo-cli -g
+        npm i hexo-theme-stellar
         npm install
 
     - name: Generate static files
