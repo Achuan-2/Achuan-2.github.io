@@ -24,7 +24,8 @@ jobs:
 
     - name: Install Hexo and dependencies
       run: |
-        npm install hexo-cli -g
+
+        npm install hexo-cli
         hexo init
         npm i hexo-theme-stellar
         npm install
