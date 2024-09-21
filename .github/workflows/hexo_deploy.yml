@@ -27,6 +27,8 @@ jobs:
         npm install
         npm install -g hexo-cli
         npm i hexo-theme-stellar
+        ls
+        
 
 
     - name: Generate static files
