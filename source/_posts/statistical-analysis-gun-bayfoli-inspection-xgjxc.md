@@ -246,20 +246,10 @@ toc: true
 
   * 概率密度函数（PDF）：自由度越高，函数越扁
 
-    **卡方分布的概率密度函数为：**
-
-    $f_{k}(x)={\frac {1}{2^{\frac {k}{2}}\Gamma ({\frac {k}{2}})}}x^{{\frac {k}{2}}-1}e^{\frac {-x}{2}}$  
-
-    其中${\displaystyle x\geq 0}$，当${\displaystyle x\leq 0}$时${\displaystyle f_{k}(x)=0}$。这里Γ代表Gamma函数。
-
     ​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240923212000-tufj7e9.png)​
   * 累积分布函数（CDF）
 
     **卡方分布的累积分布函数为：**
-
-    $F_{k}(x)={\frac {\gamma {\Bigl (}{\frac {k}{2}},{\frac {x}{2}}{\Bigr )}}{\Gamma ({\frac {k}{2}})}}$，
-
-    其中γ(k,z)为不完全Γ函数
 
     ​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240923212010-su3vysq.png)​
 
