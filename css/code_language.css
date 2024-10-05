@@ -1,0 +1,95 @@
+/* 代码块显示语言 */
+.md-text .highlight .code {
+    vertical-align: top;
+}
+.md-text .highlight .code:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 0.5rem;
+    opacity: 0.25;
+    font-weight: 700;
+    color: var(--theme);
+}
+.md-text .highlight.matlab .code:before {
+    content: 'Matlab';
+}
+.md-text .highlight.yaml .code:before {
+    content: 'YAML';
+}
+.md-text .highlight.json .code:before {
+    content: 'JSON';
+}
+.md-text .highlight.diff .code:before {
+    content: 'diff';
+}
+.md-text .highlight.html .code:before {
+    content: 'HTML';
+}
+.md-text .highlight.js .code:before,
+.md-text .highlight.javascript .code:before {
+    content: 'JS';
+}
+.md-text .highlight.css .code:before {
+    content: 'CSS';
+}
+.md-text .highlight.less .code:before {
+    content: 'Less';
+}
+.md-text .highlight.stylus .code:before {
+    content: 'Stylus';
+}
+.md-text .highlight.bash .code:before {
+    content: 'bash';
+}
+.md-text .highlight.shell .code:before {
+    content: 'shell';
+}
+.md-text .highlight.sh .code:before {
+    content: 'sh';
+}
+.md-text .highlight.ini .code:before {
+    content: 'ini';
+}
+.md-text .highlight.c .code:before {
+    content: 'C';
+}
+.md-text .highlight.cpp .code:before {
+    content: 'C++';
+}
+.md-text .highlight.objc .code:before,
+.md-text .highlight.objectivec .code:before {
+    content: 'Objective-C';
+}
+.md-text .highlight.swift .code:before {
+    content: 'Swift';
+}
+.md-text .highlight.java .code:before {
+    content: 'Java';
+}
+.md-text .highlight.python .code:before {
+    content: 'Python';
+}
+.md-text .highlight.php .code:before {
+    content: 'PHP';
+}
+.md-text .highlight.rust .code:before,
+.md-text .highlight.rs .code:before {
+    content: 'Rust';
+}
+.md-text .highlight.sql .code:before {
+    content: 'SQL';
+}
+.md-text .highlight.ruby .code:before {
+    content: 'Ruby';
+}
+.md-text .highlight.makefile .code:before {
+    content: 'Makefile';
+}
+.md-text .highlight.go .code:before {
+    content: 'Go';
+}
+.md-text .highlight.typescript .code:before,
+.md-text .highlight.ts .code:before {
+    content: 'TS';
+}

@@ -1,0 +1,755 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.28.0" theme-name="Stellar" theme-version="1.28.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>RNAseq 分析：Tophat2+cufflinks+cuffdiff+差异基因分析 - Achuan-2</title>
+
+  
+    <meta name="description" content="复旦大学《实用生物信息学》第一次作业，使用Tophat2-cufflinks-cuffdiff流程来进行RNAseq差异基因分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RNAseq 分析：Tophat2+cufflinks+cuffdiff+差异基因分析">
+<meta property="og:url" content="http://achuan-2.top/post/6e57daa8.html">
+<meta property="og:site_name" content="Achuan-2">
+<meta property="og:description" content="复旦大学《实用生物信息学》第一次作业，使用Tophat2-cufflinks-cuffdiff流程来进行RNAseq差异基因分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/pipeline-20221023131537-gg5rnwh.svg">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220923111615-szjl96s.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220923232239-tkxtdyv.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220926232618-otpzdnj.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220927195628-y81zt42.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220928193453-vtzwja0.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220928192709-10579bp.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220924223301-uunvmdm.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20220928231232-lzbzun2.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/Snipaste_2022-10-26_08-41-47-20221026084153-s33gjur.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/Snipaste_2022-10-26_09-45-07-20221026094508-gu7vli7.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/Snipaste_2022-10-26_09-44-43-20221026094454-yjonve6.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/Snipaste_2022-10-25_23-45-22-20221025234524-qiue995.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/Snipaste_2022-10-25_23-45-53-20221025234555-akrjhuo.png">
+<meta property="og:image" content="http://achuan-2.top/post/6e57daa8/image-20221003224834-2o60cnv.png">
+<meta property="article:published_time" content="2022-10-25T04:21:25.000Z">
+<meta property="article:modified_time" content="2022-10-26T04:21:25.000Z">
+<meta property="article:author" content="Achuan-2">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="组学分析">
+<meta property="article:tag" content="生信">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://achuan-2.top/post/6e57daa8/pipeline-20221023131537-gg5rnwh.svg">
+  
+  
+  
+  <meta name="keywords" content="作业,组学分析,生信">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Achuan-2" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.28.0">
+
+  
+    <link rel="shortcut icon" href="/assets/ico/favicon.svg">
+  
+
+  
+
+  <script src="/js/random.js"></script><link href="/css/appearence.css" rel="stylesheet"><link href="/css/tagcolor-switch.css" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bofeng/hyksk_webfont/dist/hyksk.css" /><link href="/css/scrollbar.css" rel="stylesheet"><link rel="preconnect" href="https://s1.hdslb.com/" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/ico/Achuan.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Achuan-2</div><div class="sub normal cap">一条没有故事的巛</div><div class="sub hover cap" style="opacity:0"> 闪闪发亮，闪闪发亮</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/"><span>博客</span></a><a class="nav-item" title="友链" href="/friends/"><span>友链</span></a><a class="nav-item" title="关于" href="/about/"><span>关于</span></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/post/jiefang-poor-analysis-ancova-rxm1i.html"><span class="title">协方差分析 (ANCOVA)</span></a><a class="item title" href="/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html"><span class="title">生活窍门丨为什么油性笔可以写在塑料上</span></a><a class="item title" href="/post/anova-variance-analysis-g7i0c.html"><span class="title">ANOVA方差分析</span></a><a class="item title" href="/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html"><span class="title">Matlab 深度学习丨基于ResNet的新冠肺炎X光胸片检测</span></a><a class="item title" href="/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html"><span class="title">沉浸式翻译终于支持富文本翻译了</span></a><a class="item title" href="/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html"><span class="title">JS丨MutationObserver（DOM 变动观察器）</span></a><a class="item title" href="/post/T%20Test.html"><span class="title">统计分析丨T检验</span></a><a class="item title" href="/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html"><span class="title">MATLAB 深度学习丨可视化卷积神经网络CNN的激活图</span></a><a class="item title" href="/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html"><span class="title">Matlab 深度学习丨使用深度学习对网络摄像头图像进行分类</span></a><a class="item title" href="/post/why-write-a-diary-hhfd6.html"><span class="title">为什么要写日记？</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Achuan-2/" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/icon-park/github.svg"/></a><a class="social" href="https://music.163.com/#/user/home?id=111010025" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/ri:netease-cloud-music-line.svg"/></a><a class="social" href="/about/#comments" rel="noopener noreferrer"><img src="https://api.iconify.design/bx/comment-detail.svg"/></a><a class="social" href="mailto:achuan-2@outlook.com" rel="noopener noreferrer"><img src="https://api.iconify.design/clarity/email-outline-badged.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/">其他笔记</a></div><div id="post-tag" style="margin: 5px 0px;"> <span>&nbsp标签：</span><a class="cap breadcrumb-link" href="/tags/%E4%BD%9C%E4%B8%9A/">作业</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E7%94%9F%E4%BF%A1/">生信</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E7%BB%84%E5%AD%A6%E5%88%86%E6%9E%90/">组学分析</a>&nbsp</div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2022-10-25T04:21:25.000Z">2022-10-25 12:21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2022-10-26T04:21:25.000Z">2022-10-26 12:21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>RNAseq 分析：Tophat2+cufflinks+cuffdiff+差异基因分析</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/pipeline-20221023131537-gg5rnwh.svg" alt="本次分析的整体流程"></div><div class="image-meta"><span class="image-caption center">本次分析的整体流程</span></div></div>
+<h2 id="一-数据来源"><a class="markdownIt-Anchor" href="#一-数据来源"></a> 一、数据来源</h2>
+<h3 id="数据简介"><a class="markdownIt-Anchor" href="#数据简介"></a> 数据简介</h3>
+<p>本次分析的数据来源于在 2020 年五月发表在 Nucleic Acids Res 的《Nono deficiency compromises TET1 chromatin association and impedes neuronal differentiation of mouse embryonic stem cells》（doi: <a target="_blank" rel="noopener" href="https://doi.org/10.1093/nar/gkaa213">10.1093/nar/gkaa213</a>）。该文由复旦大学生物医学研究所表观遗传学实验室，哈佛大学医学院附属布莱根妇女医院内分泌系、哈佛大学医学院附属波士顿儿童医院新生医学与表观遗传学研究室共同发表，第一作者为 Wenjing Li 和 Violetta Karwacki-Neisius，石雨江教授和吴飞珍副研究员为共同通讯作者。该文涉及的代码见 <a target="_blank" rel="noopener" href="https://github.com/FeizhenWu/Nono">FeizhenWu/Nono</a>。</p>
+<p>NONO 是一种 DNA/RNA 结合蛋白，该文揭示了 <strong>NONO在小鼠胚胎干细胞(mESCs)的神经元分化过程中起着关键作用，Nono缺失会影响到TET1与染色质结合并阻碍小鼠胚胎干细胞的神经分化</strong>：Nono 基因缺失将使得神经元分化的关键特定基因上调失败，从而阻碍了神经元谱系的定型；许多 NONO 调控的基因也是 DNA 去甲基化酶 TET1 的靶向基因；将野生型 NONO 蛋白重新引入 NONO KO 细胞，不仅使得大部分 NONO/TET1 共调控基因的恢复正常表达，还可以挽救 NONO 缺陷的 mESCs 的神经分化缺陷；作者还发现 NONO 能通过其 DNA 结合域直接与 TET1 相互作用，并将 TET1 招募到基因位点以调节 5-羟甲基胞嘧啶水平。NONO 的缺失会导致 TET1 与染色质显著分离，使得神经元基因的 DNA 羟甲基化失调。</p>
+<p>该文涉及的 RNA-seq 测序数据在 NCBI SRA 数据库编号为 <a target="_blank" rel="noopener" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA527295">PRJNA527295</a>。测序的细胞为小鼠胚胎干细胞（E14TG2a），分别对三类 mESCs 细胞进行测序（WT，Nono KO，Nono KO+WT），使用 Illumina HiSeq 2500 测序仪进行转录组 RNA 测序。</p>
+<p>本次实验选取了四个 Run（测序数据），分别为 SRR8734708（set1_WT_D0）、SRR8734712（set1_NonoKO_D0）、SRR8734718（Set2_WT_D0）和 SRR8734722（Set2_NonoKO_D0）。</p>
+<table>
+<thead>
+<tr>
+<th>RUN</th>
+<th>GROUP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRR8734708</td>
+<td>set1_WT_D0</td>
+</tr>
+<tr>
+<td>SRR8734712</td>
+<td>set1_NonoKO_D0</td>
+</tr>
+<tr>
+<td>SRR8734718</td>
+<td>Set2_WT_D0</td>
+</tr>
+<tr>
+<td>SRR8734722</td>
+<td>Set2_NonoKO_D0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数据下载"><a class="markdownIt-Anchor" href="#数据下载"></a> 数据下载</h3>
+<p>在服务器上创建项目文件夹 <code>mkdir ~/workplace/homework1</code></p>
+<p>通过在 NCBI 的 SRA 数据库输入 SRR id，打开 <a target="_blank" rel="noopener" href="https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP188551&amp;o=acc_s%3Aa&amp;s=SRR8734722,SRR8734718,SRR8734708,SRR8734712">Run Selector</a>，选择 4 个 Run 后勾选 Selected，下载 Metadata 和 Accession List，上传到服务器项目文件夹中。</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220923111615-szjl96s.png"></div></div>
+<p><code>SRR_Acc_List.txt</code> 文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SRR8734722</span><br><span class="line">SRR8734718</span><br><span class="line">SRR8734708</span><br><span class="line">SRR8734712</span><br></pre></td></tr></table></figure>
+<p>服务器项目文件夹创建 <code>group.csv</code>，记录 SRR ID 和分组信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SRR8734708,set1_WT_D0</span><br><span class="line">SRR8734712,set1_NonoKO_D0</span><br><span class="line">SRR8734718,set2_WT_D0</span><br><span class="line">SRR8734722,set2_NonoKO_D0</span><br></pre></td></tr></table></figure>
+<p>然后在服务器上使用 sratoolkit 软件的 fastq-dump 命令进行下载测序数据。fastq-dump 可以下载 fastq 格式的文件，也可以将下载好的 sra 格式文件转换为 fastq 格式。</p>
+<ol>
+<li>
+<p>配置 sratoolkit（v2.11.0）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vdb-config --interactive</span><br><span class="line"><span class="comment"># 然后按s，o，e，完成配置</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编写 slurm 作业脚本：<code>vim ~/scripts/fastq-dump.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#SBATCH -J fastq-dump</span></span><br><span class="line"><span class="comment">#SBATCH -p dna</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --mem=10G</span></span><br><span class="line"><span class="comment">#SBATCH --cpus-per-task=2</span></span><br><span class="line"><span class="comment">#SBATCH -o slurm.%j.%x.out        # STDOUT</span></span><br><span class="line"><span class="comment">#SBATCH -e slurm.%j.%x.err        # STDERR</span></span><br><span class="line"><span class="comment">#SBATCH --mail-type=END</span></span><br><span class="line"><span class="comment">#SBATCH --mail-user=jxsu22@m.fudan.edu.cn</span></span><br><span class="line"></span><br><span class="line">fastq-dump --split-3 --gzip <span class="variable">$1</span> --outdir <span class="variable">$2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行 shell 脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PROJECT=/home/u22211520038/workplace/homework1</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT</span></span><br><span class="line"><span class="built_in">cat</span> <span class="variable">$PROJECT</span>/SRR_Acc_List.txt| <span class="keyword">while</span> <span class="built_in">read</span> <span class="built_in">id</span>;<span class="keyword">do</span></span><br><span class="line">    sbatch ~/scripts/fastq-dump.sh <span class="variable">$&#123;id&#125;</span> <span class="variable">$PROJECT</span>/01_rawdata/ </span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>下载完成</p>
+</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220923232239-tkxtdyv.png" alt="cat $PROJECT/log/slurm.*.fastq-dump*.out"></div><div class="image-meta"><span class="image-caption center">cat $PROJECT/log/slurm.*.fastq-dump*.out</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220926232618-otpzdnj.png" alt="ll -h $PROJECT/01_rawdata/"></div><div class="image-meta"><span class="image-caption center">ll -h $PROJECT/01_rawdata/</span></div></div>
+<h2 id="二-分析过程"><a class="markdownIt-Anchor" href="#二-分析过程"></a> 二、分析过程</h2>
+<h3 id="1-trim_galore-去除低质量的-reads-和-adaptor"><a class="markdownIt-Anchor" href="#1-trim_galore-去除低质量的-reads-和-adaptor"></a> 1、trim_galore 去除低质量的 reads 和 adaptor</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/FelixKrueger/TrimGalore">Trim Galore</a> 使用 Perl 语言对 <a target="_blank" rel="noopener" href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> 和 <a target="_blank" rel="noopener" href="https://github.com/marcelm/cutadapt">Cutadapt</a> 进行了封装。可以用于过滤低质量碱基和去除序列 3’ 末端的 adapter。可适用于所有高通量测序，包括 RRBS(Reduced Representation Bisulfite-Seq ),、Illumina、Nextera 和 smallRNA 测序平台的双端和单端数据。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">trim_galore --version</span></span><br><span class="line"></span><br><span class="line">                        Quality-/Adapter-/RRBS-/Speciality-Trimming</span><br><span class="line">                                [powered by Cutadapt]</span><br><span class="line">                                  version 0.6.7</span><br><span class="line"></span><br><span class="line">                               Last update: 11 05 2020</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<ul>
+<li><code>--fastqc</code>：Run FastQC in the default mode on the FastQ file once trimming is complete.</li>
+<li><code>--illumina</code>：Adapter sequence to be trimmed is the first 13bp of the Illumina universal adapter AGATCGGAAGAGC instead of the default auto-detection of adapter sequence.</li>
+<li><code>-o/--output_dir &lt;DIR&gt;</code>：If specified all output will be written to this directory instead of the current directory. If the directory doesn’t exist it will be created for you.</li>
+<li><code>--gzip</code>：Compress the output file with <code>gzip</code>. If the input files are gzip-compressed the output files will be automatically gzip compressed as well.</li>
+</ul>
+<p>实操过程</p>
+<ol>
+<li>
+<p>编写 trim_galore 的 slurm 作业脚本：<code>vim ~/scripts/trim_galore.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#SBATCH -J trim_galore</span></span><br><span class="line"><span class="comment">#SBATCH -p dna</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --mem=20G</span></span><br><span class="line"><span class="comment">#SBATCH --cpus-per-task=4</span></span><br><span class="line"><span class="comment">#SBATCH -o slurm.%j.%x.out        # STDOUT</span></span><br><span class="line"><span class="comment">#SBATCH -e slurm.%j.%x.err        # STDERR</span></span><br><span class="line"><span class="comment">#SBATCH --mail-type=END  # 发送哪一种email通知：BEGIN,END,FAIL,ALL</span></span><br><span class="line"><span class="comment">#SBATCH --mail-user=jxsu22@m.fudan.edu.cn</span></span><br><span class="line"></span><br><span class="line">mode=<span class="variable">$1</span></span><br><span class="line">SRR=<span class="variable">$2</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$mode</span>&quot;</span> == <span class="string">&quot;single&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果是单端</span></span><br><span class="line">    trim_galore --illumina --fastqc  <span class="variable">$SRR</span>.fastq.gz</span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$mode</span>&quot;</span> == <span class="string">&quot;paired&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果是多端</span></span><br><span class="line">    trim_galore --illumina --fastqc --paired <span class="variable">$&#123;SRR&#125;</span>_1.fastq.gz <span class="variable">$&#123;SRR&#125;</span>_2.fastq.gz</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行 shell 脚本，将 trim_galore 作业脚本提交到 slurm 系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PROJECT=/home/u22211520038/workplace/homework1</span><br><span class="line">mode=paired</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT</span>/01_rawdata/</span><br><span class="line"><span class="built_in">cat</span> <span class="variable">$PROJECT</span>/SRR_Acc_List.txt| <span class="keyword">while</span> <span class="built_in">read</span> SRR;<span class="keyword">do</span> </span><br><span class="line">    sbatch ~/scripts/trim_galore.sh <span class="variable">$mode</span> <span class="variable">$SRR</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行结束：在项目 <code>$PROJECT/01_rawdata/</code> 文件夹下，新生成了双端测序的过滤文件，以 SRR8734708 测序文件为例：</p>
+<p><code>SRR8734708_1.fastq.gz-&gt; SRR8734708_1_val_1.fq.gz</code></p>
+<p><code>SRR8734708_2.fastq.gz-&gt;SRR8734708_2_val_2.fq.gz</code></p>
+</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220927195628-y81zt42.png" alt="ll -lh $PROJECT/01_rawdata/"></div><div class="image-meta"><span class="image-caption center">ll -lh $PROJECT/01_rawdata/</span></div></div>
+<blockquote>
+<p>如果是单端测序模式，trim_galore 则会默认生成带 trimed.fq.gz 的数据文件</p>
+</blockquote>
+<h3 id="2-使用-tophat2-比对和-cufflinks-计算基因表达"><a class="markdownIt-Anchor" href="#2-使用-tophat2-比对和-cufflinks-计算基因表达"></a> 2、使用 Tophat2 比对和 Cufflinks 计算基因表达</h3>
+<p><a target="_blank" rel="noopener" href="https://ccb.jhu.edu/software/tophat/index.shtml">Tophat2</a> 是一个比对工具，本身实际不能比对，而是通过调用 bowtie/bowtie2 进行比对。Tophat 最初只能调用 bowtie，2012 年 4 月 9 日 Tophat 发布了 2.0.0 版本，宣布支持 bowtie2 的比对，将其称之为 Tophat2。进行比对时，需要输入<u>基因组的索引</u>，而不是直接输入基因组序列，这是为了比对更加快速、减小计算内存，帮助比对软件更快速的找到目标区域。</p>
+<p><a target="_blank" rel="noopener" href="http://cole-trapnell-lab.github.io/cufflinks/">Cufflinks</a> 是一个主要用于基因表达量的计算和差异表达基因分析的软件包。其下主要包含 cufflinks，cuffmerge，cuffcompare 和 cuffdiff 等几支主要的程序。</p>
+<ul>
+<li>cufflinks 可以通过 tophat2 生成的 accepted_hits.bam 文件计算基因的 FPKM 值、输出基因组注释 gtf 文件。</li>
+<li>cuffdiff 则可以通过 tophat2 生成的 accepted_hits.bam 文件和基因组注释 gtf 文件计算差异表达基因。</li>
+</ul>
+<p>实操过程</p>
+<ol>
+<li>
+<p>先准备参考基因组</p>
+<ol>
+<li>
+<p>参考基因组地址</p>
+<ul>
+<li>基因索引文件文件：<code>/home/public/share/Genomes/mm10_Bowtie2Index</code></li>
+<li>基因注释文件地址：<code>/home/public/share/Genomes/mm10_genes.gtf</code></li>
+</ul>
+</li>
+<li>
+<p>将参考基因组软连接到项目文件夹下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PROJECT=/home/u22211520038/workplace/homework1</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="variable">$PROJECT</span>/00_index</span><br><span class="line"><span class="comment"># 参考基因组</span></span><br><span class="line"><span class="built_in">ln</span> -s /home/public/share/Genomes/mm10_Bowtie2Index <span class="variable">$PROJECT</span>/00_index</span><br><span class="line"><span class="comment"># 基因注释</span></span><br><span class="line"><span class="built_in">ln</span> -s /home/public/share/Genomes/mm10_genes.gtf <span class="variable">$PROJECT</span>/00_index</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>编写运行 tophat2 和 cufflinks 的脚本：<code>vim tophat2_cufflinks.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#SBATCH -J tophat2_cufflinks</span></span><br><span class="line"><span class="comment">#SBATCH -p dna</span></span><br><span class="line"><span class="comment">#SBATCH -N 4</span></span><br><span class="line"><span class="comment">#SBATCH --mem=20G</span></span><br><span class="line"><span class="comment">#SBATCH --cpus-per-task=4</span></span><br><span class="line"><span class="comment">#SBATCH -o slurm.%j.%x.out        # STDOUT</span></span><br><span class="line"><span class="comment">#SBATCH -e slurm.%j.%x.err        # STDERR</span></span><br><span class="line"><span class="comment">#SBATCH --mail-type=END  # 发送哪一种email通知：BEGIN,END,FAIL,ALL</span></span><br><span class="line"><span class="comment">#SBATCH --mail-user=jxsu22@m.fudan.edu.cn</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Usage:&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;   tophat2_cufflinks.sh &#123;mode&#125; &#123;threads&#125; &#123;transcriptome-index&#125; &#123;bowtie2-index&#125; &#123;SRR&#125; &#123;fq1&#125; [&#123;fq2&#125;] &quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">INDEX=<span class="variable">$PWD</span>/00_index</span><br><span class="line">DATA=<span class="variable">$PWD</span>/01_rawdata</span><br><span class="line">RESULT=<span class="variable">$PWD</span>/02_result</span><br><span class="line"></span><br><span class="line">mode=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="variable">$mode</span> <span class="comment"># 检测字符是否为空</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;please input the mode(single or paired)&quot;</span></span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">threads=<span class="variable">$2</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="variable">$threads</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;please input the number of threads&quot;</span></span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">Annotation=<span class="variable">$3</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="variable">$Annotation</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;please input transcriptome-index(/share/Genomes/Homo_sapiens/UCSC/hg19/Annotation/Genes/hg19_genes/genes.gff)&quot;</span> </span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">bowtie2Index=<span class="variable">$4</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="variable">$bowtie2Index</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;please input bowtie2-index(/share/Genomes/Homo_sapiens/UCSC/hg19/Sequence/Bowtie2Index/genome)&quot;</span> </span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">SRR=<span class="variable">$5</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="variable">$SRR</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;please input SRR id&quot;</span></span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">fq1=<span class="variable">$6</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="variable">$fq1</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;please input fasta1&quot;</span></span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$mode</span>&quot;</span> == <span class="string">&quot;paired&quot;</span> ];<span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">   fq2=<span class="variable">$7</span></span><br><span class="line">   <span class="keyword">if</span> <span class="built_in">test</span> -z <span class="variable">$fq2</span></span><br><span class="line">   <span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">&quot;please input fasta1&quot;</span></span><br><span class="line">      <span class="built_in">exit</span></span><br><span class="line">   <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#====================================================</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Running info&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Project:    &quot;</span><span class="variable">$PWD</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Read:       &quot;</span><span class="variable">$SRR</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Annotation: &quot;</span><span class="variable">$Annotation</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Genome:     &quot;</span><span class="variable">$bowtie2Index</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot; &quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">########################RUN##############################</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$&#123;RESULT&#125;</span>/tophat2/<span class="variable">$&#123;SRR&#125;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$&#123;RESULT&#125;</span>/cufflinks/<span class="variable">$&#123;SRR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$mode</span>&quot;</span> == <span class="string">&quot;single&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果是单端</span></span><br><span class="line">    tophat2 -p <span class="variable">$&#123;threads&#125;</span> -o <span class="variable">$&#123;RESULT&#125;</span>/tophat2/<span class="variable">$&#123;SRR&#125;</span> <span class="variable">$&#123;INDEX&#125;</span>/<span class="variable">$&#123;bowtie2Index&#125;</span> <span class="variable">$&#123;DATA&#125;</span>/<span class="variable">$&#123;fq1&#125;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$mode</span>&quot;</span> == <span class="string">&quot;paired&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果是多端</span></span><br><span class="line">    tophat2 -p <span class="variable">$&#123;threads&#125;</span> -o <span class="variable">$&#123;RESULT&#125;</span>/tophat2/<span class="variable">$&#123;SRR&#125;</span> <span class="variable">$&#123;INDEX&#125;</span>/<span class="variable">$&#123;bowtie2Index&#125;</span> <span class="variable">$&#123;DATA&#125;</span>/<span class="variable">$&#123;fq1&#125;</span> <span class="variable">$&#123;DATA&#125;</span>/<span class="variable">$&#123;fq2&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">cufflinks -p <span class="variable">$&#123;threads&#125;</span> -o <span class="variable">$&#123;RESULT&#125;</span>/cufflinks/<span class="variable">$&#123;SRR&#125;</span> -G <span class="variable">$&#123;INDEX&#125;</span>/<span class="variable">$Annotation</span> <span class="variable">$&#123;RESULT&#125;</span>/tophat2/<span class="variable">$&#123;SRR&#125;</span>/accepted_hits.bam</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot; &quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot; Running <span class="variable">$&#123;SRR&#125;</span> is compeleted.&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot; &quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行 shell 脚本，将该作业脚本提交到 slurm 系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PROJECT=/home/u22211520038/workplace/homework1</span><br><span class="line">mode=paired</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT</span></span><br><span class="line"><span class="built_in">cat</span> <span class="variable">$PROJECT</span>/SRR_Acc_List.txt | <span class="keyword">while</span> <span class="built_in">read</span> SRR;<span class="keyword">do</span></span><br><span class="line">    sbatch ~/scripts/Tophat_Cufflinks.sh \</span><br><span class="line">        <span class="variable">$mode</span> \</span><br><span class="line">        4 \</span><br><span class="line">        mm10_genes.gtf \</span><br><span class="line">        mm10_Bowtie2Index/genome \</span><br><span class="line">        <span class="variable">$&#123;SRR&#125;</span> \</span><br><span class="line">        <span class="variable">$&#123;SRR&#125;</span>_1_val_1.fq.gz \</span><br><span class="line">        <span class="variable">$&#123;SRR&#125;</span>_2_val_2.fq.gz </span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行结束：在项目 $PROJECT/02_result/文件夹下，tophat2 和 cufflinks 文件夹分别存放两个软件运行的结果。</p>
+<ol>
+<li>tophat2 的运行结果</li>
+</ol>
+</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220928193453-vtzwja0.png" alt="tree -L 2 ${Project}/02_result/tophat2"></div><div class="image-meta"><span class="image-caption center">tree -L 2 ${Project}/02_result/tophat2</span></div></div>
+<pre><code>  其中最有用的是 accepted_hits.bam，记录了 reads 比对到参考基因组的数据
+</code></pre>
+<ol start="2">
+<li>cufflinks 的运行结果：</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220928192709-10579bp.png"></div></div>
+<pre><code>  其中常用的是 `genes.fpkm_tracking` 和 `transcripts.gtf` 文件
+
+  * `genes.fpkm_tracking`：isoforms (可以理解为 gene 的各个外显子)的 fpkm 计算结果；
+  * `transcripts.gtf`：转录组的 gtf，该文件包含 Cufflinks 的组装结果 isoforms；
+</code></pre>
+<h3 id="3-fpkm-转化为-tpm"><a class="markdownIt-Anchor" href="#3-fpkm-转化为-tpm"></a> 3、FPKM 转化为 TPM</h3>
+<p>在 RNA-Seq 的分析中，需要对基因或转录本的 read counts 数目进行标准化（normalization）。因为落在一个基因区域内的 read counts 数目取决于基因长度和测序深度，一个基因越长，测序深度越高，落在其内部的 read counts 数目就会相对越多。在进行基因差异表达的分析时，往往是在多个样本中比较不同基因的表达量，如果不进行数据标准化，比较结果是没有意义的。read counts 数目标准化的两个关键因素就是基因长度和测序深度，常常用 RPKM (Reads Per Kilobase Million), FPKM (Fragments Per Kilobase Million) 和 TPM (Transcripts Per Million)作为标准化数值。</p>
+<p>RPKM 和 FPKM 的定义是相同的，唯一的区別是 FPKM 用于双端测序文库，而 RPKM 用于单端测序文库。</p>
+<p>FPKM 和 TPM 都能够矫正掉<u>基因长度</u>及<u>测序深度</u>对 gene 表达定量的影响，区别在于</p>
+<ul>
+<li>FPKM 先计算比对到每个基因的 read 数占 reads 总数的比例，再考虑基因的长度；</li>
+<li>而 TPM 是先考虑基因的长度，再把 read counts 转化为占处理之后的总数的比例。</li>
+</ul>
+<p>之所以要将 FPKM 转化为 TPM，是因为 TPM 可以使得每个样本的表达量<strong>总和都是1 Million</strong>，使得 TPM 中的基因表达量可以直接进行样本间的比较。</p>
+<p>编写 FPKM2TPM.R 脚本，改进自 <code>/home/public/software/wfz_scripts/FPKM2TPM.R</code>，主要改进点是把输出文件的 xls 格式改成了 tsv 文件格式。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/home/u22211520038/.conda/envs/achuan/bin/Rscript</span></span><br><span class="line"><span class="comment"># ====================================================================</span></span><br><span class="line">suppressPackageStartupMessages<span class="punctuation">(</span>library<span class="punctuation">(</span><span class="string">&quot;optparse&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># ====================================================================</span></span><br><span class="line">option_list <span class="operator">&lt;-</span> <span class="built_in">list</span><span class="punctuation">(</span></span><br><span class="line">  make_option<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;-f&quot;</span><span class="punctuation">,</span> <span class="string">&quot;--files&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">    type <span class="operator">=</span> <span class="string">&quot;character&quot;</span><span class="punctuation">,</span> default <span class="operator">=</span> <span class="string">&quot;genes.fpkm_tracking&quot;</span><span class="punctuation">,</span></span><br><span class="line">    help <span class="operator">=</span> <span class="string">&quot;To specify fpkm files generated by cufflinks with comma-separate [default %default]&quot;</span></span><br><span class="line">  <span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">  make_option<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;-l&quot;</span><span class="punctuation">,</span> <span class="string">&quot;--labels&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">    type <span class="operator">=</span> <span class="string">&quot;character&quot;</span><span class="punctuation">,</span> default <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    help <span class="operator">=</span> <span class="string">&quot;To specify labels [default %default]&quot;</span></span><br><span class="line">  <span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">  make_option<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;-o&quot;</span><span class="punctuation">,</span> <span class="string">&quot;--output&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">    type <span class="operator">=</span> <span class="string">&quot;character&quot;</span><span class="punctuation">,</span> default <span class="operator">=</span> <span class="string">&quot;Expression&quot;</span><span class="punctuation">,</span></span><br><span class="line">    help <span class="operator">=</span> <span class="string">&quot;To specify output file [default %default]&quot;</span></span><br><span class="line">  <span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">parser <span class="operator">&lt;-</span> OptionParser<span class="punctuation">(</span></span><br><span class="line">  usage <span class="operator">=</span> <span class="string">&quot;%prog [options]&quot;</span><span class="punctuation">,</span> option_list <span class="operator">=</span> option_list<span class="punctuation">,</span></span><br><span class="line">  description <span class="operator">=</span> <span class="string">&quot;\nThe script is to convert FPKMs into TPMs.&quot;</span><span class="punctuation">,</span></span><br><span class="line">  epilogue <span class="operator">=</span> <span class="string">&quot;Feizhen Wu(wufz@fudan.edu.cn), July 09, 2018.\n&quot;</span></span><br><span class="line"><span class="punctuation">)</span></span><br><span class="line">arguments <span class="operator">&lt;-</span> parse_args<span class="punctuation">(</span>parser<span class="punctuation">,</span> positional_arguments <span class="operator">=</span> <span class="number">0</span><span class="punctuation">,</span> print_help_and_exit <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">)</span></span><br><span class="line">opt <span class="operator">&lt;-</span> arguments<span class="operator">$</span>options</span><br><span class="line">files <span class="operator">&lt;-</span> strsplit<span class="punctuation">(</span>opt<span class="operator">$</span>files<span class="punctuation">,</span> <span class="string">&quot;,&quot;</span><span class="punctuation">)</span><span class="punctuation">[[</span><span class="number">1</span><span class="punctuation">]</span><span class="punctuation">]</span></span><br><span class="line">labels <span class="operator">&lt;-</span> strsplit<span class="punctuation">(</span>opt<span class="operator">$</span>labels<span class="punctuation">,</span> <span class="string">&quot;,&quot;</span><span class="punctuation">)</span><span class="punctuation">[[</span><span class="number">1</span><span class="punctuation">]</span><span class="punctuation">]</span></span><br><span class="line">output <span class="operator">&lt;-</span> opt<span class="operator">$</span>output</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">library<span class="punctuation">(</span>data.table<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>pheatmap<span class="punctuation">)</span></span><br><span class="line">FPKM2TPM <span class="operator">&lt;-</span> <span class="keyword">function</span><span class="punctuation">(</span>myfile<span class="punctuation">,</span> myName <span class="operator">=</span> myfile<span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="keyword">if</span> <span class="punctuation">(</span>myName <span class="operator">==</span> myfile<span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">    myName <span class="operator">&lt;-</span> sub<span class="punctuation">(</span>pattern <span class="operator">=</span> <span class="string">&quot;(.*)\\..*$&quot;</span><span class="punctuation">,</span> replacement <span class="operator">=</span> <span class="string">&quot;\\1&quot;</span><span class="punctuation">,</span> basename<span class="punctuation">(</span>myfile<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line">  cat<span class="punctuation">(</span><span class="string">&quot;The label of&quot;</span><span class="punctuation">,</span> myfile<span class="punctuation">,</span> <span class="string">&quot; was assigned as &quot;</span><span class="punctuation">,</span> myName<span class="punctuation">,</span> <span class="string">&quot;!\n&quot;</span><span class="punctuation">)</span></span><br><span class="line">  <span class="keyword">if</span> <span class="punctuation">(</span>file.access<span class="punctuation">(</span>myfile<span class="punctuation">)</span> <span class="operator">==</span> <span class="operator">-</span><span class="number">1</span><span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">    stop<span class="punctuation">(</span>sprintf<span class="punctuation">(</span><span class="string">&quot;Specified file ( %s ) does not exist&quot;</span><span class="punctuation">,</span> myfile<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line">  Exp <span class="operator">&lt;-</span> fread<span class="punctuation">(</span>myfile<span class="punctuation">,</span> header <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">)</span><span class="punctuation">[</span><span class="punctuation">,</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;gene_id&quot;</span><span class="punctuation">,</span> <span class="string">&quot;FPKM&quot;</span><span class="punctuation">)</span><span class="punctuation">]</span></span><br><span class="line">  Exp <span class="operator">&lt;-</span> Exp<span class="punctuation">[</span><span class="operator">!</span>grep<span class="punctuation">(</span><span class="string">&quot;^Mir&quot;</span><span class="punctuation">,</span> Exp<span class="operator">$</span>gene_id<span class="punctuation">)</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">  Exp <span class="operator">&lt;-</span> Exp<span class="punctuation">[</span><span class="operator">!</span>grep<span class="punctuation">(</span><span class="string">&quot;^MIR&quot;</span><span class="punctuation">,</span> Exp<span class="operator">$</span>gene_id<span class="punctuation">)</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">  Exp <span class="operator">&lt;-</span> Exp<span class="punctuation">[</span><span class="operator">!</span>duplicated<span class="punctuation">(</span>Exp<span class="operator">$</span>gene_id<span class="punctuation">)</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">  ss <span class="operator">&lt;-</span> <span class="built_in">sum</span><span class="punctuation">(</span>Exp<span class="operator">$</span>FPKM<span class="punctuation">)</span></span><br><span class="line">  Exp<span class="operator">$</span>Tpm <span class="operator">&lt;-</span> Exp<span class="operator">$</span>FPKM <span class="operator">/</span> ss <span class="operator">*</span> <span class="number">10</span><span class="operator">^</span><span class="number">6</span></span><br><span class="line">  Tpm <span class="operator">&lt;-</span> Exp<span class="punctuation">[</span><span class="punctuation">,</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">3</span><span class="punctuation">)</span><span class="punctuation">]</span></span><br><span class="line">  Fpkm <span class="operator">&lt;-</span> Exp<span class="punctuation">[</span><span class="punctuation">,</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">)</span><span class="punctuation">]</span></span><br><span class="line">  <span class="built_in">names</span><span class="punctuation">(</span>Tpm<span class="punctuation">)</span> <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;gene_id&quot;</span><span class="punctuation">,</span> myName<span class="punctuation">)</span></span><br><span class="line">  <span class="built_in">names</span><span class="punctuation">(</span>Fpkm<span class="punctuation">)</span> <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;gene_id&quot;</span><span class="punctuation">,</span> myName<span class="punctuation">)</span></span><br><span class="line">  Result <span class="operator">&lt;-</span> <span class="built_in">list</span><span class="punctuation">(</span><span class="punctuation">)</span></span><br><span class="line">  Result<span class="operator">$</span>Tpm <span class="operator">&lt;-</span> Tpm</span><br><span class="line">  Result<span class="operator">$</span>Fpkm <span class="operator">&lt;-</span> Fpkm</span><br><span class="line">  <span class="built_in">return</span><span class="punctuation">(</span>Result<span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ===================================</span></span><br><span class="line"><span class="keyword">if</span> <span class="punctuation">(</span><span class="built_in">length</span><span class="punctuation">(</span>labels<span class="punctuation">)</span> <span class="operator">&gt;</span> <span class="number">0</span><span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">  Exp1 <span class="operator">&lt;-</span> FPKM2TPM<span class="punctuation">(</span>files<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span><span class="punctuation">,</span> labels<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span> <span class="keyword">else</span> <span class="punctuation">&#123;</span></span><br><span class="line">  Exp1 <span class="operator">&lt;-</span> FPKM2TPM<span class="punctuation">(</span>files<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">Exp_Tpm <span class="operator">&lt;-</span> Exp1<span class="operator">$</span>Tpm</span><br><span class="line">Exp_Fpkm <span class="operator">&lt;-</span> Exp1<span class="operator">$</span>Fpkm</span><br><span class="line">i <span class="operator">&lt;-</span> 2</span><br><span class="line"><span class="keyword">while</span> <span class="punctuation">(</span>i <span class="operator">&lt;=</span> <span class="built_in">length</span><span class="punctuation">(</span>files<span class="punctuation">)</span><span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="keyword">if</span> <span class="punctuation">(</span>i <span class="operator">&lt;=</span> <span class="built_in">length</span><span class="punctuation">(</span>labels<span class="punctuation">)</span><span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">    Exp1 <span class="operator">&lt;-</span> FPKM2TPM<span class="punctuation">(</span>files<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">,</span> labels<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">&#125;</span> <span class="keyword">else</span> <span class="punctuation">&#123;</span></span><br><span class="line">    Exp1 <span class="operator">&lt;-</span> FPKM2TPM<span class="punctuation">(</span>files<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line">  Exp_Fpkm <span class="operator">&lt;-</span> merge<span class="punctuation">(</span>Exp_Fpkm<span class="punctuation">,</span> Exp1<span class="operator">$</span>Fpkm<span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;gene_id&quot;</span><span class="punctuation">)</span></span><br><span class="line">  Exp_Tpm <span class="operator">&lt;-</span> merge<span class="punctuation">(</span>Exp_Tpm<span class="punctuation">,</span> Exp1<span class="operator">$</span>Tpm<span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;gene_id&quot;</span><span class="punctuation">)</span></span><br><span class="line">  i <span class="operator">&lt;-</span> i <span class="operator">+</span> <span class="number">1</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">fwrite<span class="punctuation">(</span>Exp_Tpm<span class="punctuation">,</span> file <span class="operator">=</span> paste<span class="punctuation">(</span>output<span class="punctuation">,</span> <span class="string">&quot;_TPM.tsv&quot;</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="built_in">quote</span> <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;\t&quot;</span><span class="punctuation">,</span> row.names <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br><span class="line">fwrite<span class="punctuation">(</span>Exp_Fpkm<span class="punctuation">,</span> file <span class="operator">=</span> paste<span class="punctuation">(</span>output<span class="punctuation">,</span> <span class="string">&quot;_FPKM&quot;</span><span class="punctuation">,</span> <span class="string">&quot;.tsv&quot;</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="built_in">quote</span> <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;\t&quot;</span><span class="punctuation">,</span> row.names <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">Exp <span class="operator">&lt;-</span> Exp_Tpm<span class="punctuation">[</span><span class="punctuation">,</span> <span class="operator">-</span><span class="number">1</span><span class="punctuation">]</span></span><br><span class="line">p <span class="operator">&lt;-</span> cor<span class="punctuation">(</span>Exp<span class="punctuation">)</span></span><br><span class="line">pdf<span class="punctuation">(</span>file <span class="operator">=</span> paste<span class="punctuation">(</span>output<span class="punctuation">,</span> <span class="string">&quot;_TPM_correlation.pdf&quot;</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> height <span class="operator">=</span> <span class="number">360</span> <span class="operator">/</span> <span class="number">100</span><span class="punctuation">,</span> width <span class="operator">=</span> <span class="number">437</span> <span class="operator">/</span> <span class="number">100</span><span class="punctuation">,</span> onefile <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br><span class="line">pheatmap<span class="punctuation">(</span>p<span class="punctuation">)</span></span><br><span class="line">dev.off<span class="punctuation">(</span><span class="punctuation">)</span></span><br><span class="line">write.table<span class="punctuation">(</span>p<span class="punctuation">,</span> file <span class="operator">=</span> paste<span class="punctuation">(</span>output<span class="punctuation">,</span> <span class="string">&quot;_TPM_correlation.tsv&quot;</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="built_in">quote</span> <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>接下来编写 shell 脚本以批量传入参数运行，将 cufflinks 计算得到的各样本 FPKM 转化为 TPM。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">PROJECT=/home/u22211520038/workplace/homework1</span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$PROJECT</span>/02_result/fpkm</span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$PROJECT</span>/02_result/FPKM2TPM</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT</span>/02_result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建软链接，并以分组命名</span></span><br><span class="line"><span class="built_in">cat</span> <span class="variable">$PROJECT</span>/group.csv | <span class="keyword">while</span> IFS=<span class="string">&quot;,&quot;</span> <span class="built_in">read</span> -r SRR group;<span class="keyword">do</span></span><br><span class="line">    <span class="built_in">ln</span> -s <span class="variable">$PROJECT</span>/02_result/cufflinks/<span class="variable">$&#123;SRR&#125;</span>/genes.fpkm_tracking <span class="variable">$PROJECT</span>/02_result/fpkm/<span class="variable">$&#123;group&#125;</span>.fpkm</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获得fkpm的列表</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT</span>/02_result/fpkm</span><br><span class="line">delim=<span class="string">&quot;&quot;</span></span><br><span class="line">fpkm_list=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> `<span class="built_in">ls</span> *.fpkm`; <span class="keyword">do</span></span><br><span class="line">  temp=<span class="string">&quot;<span class="variable">$&#123;delim&#125;</span><span class="variable">$&#123;item##*/&#125;</span>&quot;</span></span><br><span class="line">  fpkm_list=<span class="string">&quot;<span class="variable">$&#123;fpkm_list&#125;</span><span class="variable">$&#123;temp&#125;</span>&quot;</span></span><br><span class="line">  delim=<span class="string">&quot;,&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过Rscript进行FPKM转化TPM的转化</span></span><br><span class="line">~/scripts/FPKM2TPM.R  -f <span class="variable">$fpkm_list</span> -o <span class="variable">$PROJECT</span>/02_result/FPKM2TPM/Expression</span><br></pre></td></tr></table></figure>
+<p>FPKM2TPM.R 还会调用 pheatmap 包根据各样本的 TPM 表达量来绘制热图</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220924223301-uunvmdm.png"></div></div>
+<p>‍</p>
+<h3 id="4-用-cuffdiff-计算基因差异表达"><a class="markdownIt-Anchor" href="#4-用-cuffdiff-计算基因差异表达"></a> 4、用 cuffdiff 计算基因差异表达</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">cuffdiff -h</span></span><br><span class="line">Usage:   cuffdiff [options] &lt;transcripts.gtf&gt; &lt;sample1_hits.sam&gt; &lt;sample2_hits.sam&gt; [... sampleN_hits.sam]</span><br><span class="line">   Supply replicate SAMs as comma separated lists for each condition: sample1_rep1.sam,sample1_rep2.sam,...sample1_repM.sam</span><br></pre></td></tr></table></figure>
+<p>了解 cuffdiff 的输入参数，需要输入 transcripts.gtf 和 sample_hits.bam 文件(或 sam 格式的文件）。</p>
+<p>使用 cuffdiff 时需要注意</p>
+<ul>
+<li>样本重复和多样本分别以逗号和空格分隔：当一个样本有多个 replicate 时，使用逗号隔开。对于多个 sample，用空格隔开，以计算 samples 间的基因表达的差异性。</li>
+<li>log2(fold_change)的值是 log2(sample2/sample1)，在统计上下调关系时需要注意输入的 sample 顺序，一般是 WT sample 在前，实验组 sample 在后。</li>
+</ul>
+<p>这一步将使用 cuffdiff 根据 Tophat2 生成的各样本比对文件 accepted_hits.bam 以及小鼠的基因组注释文件寻找差异基因。</p>
+<ol>
+<li>
+<p>先编写 cuffdiff 的作业脚本：<code>vim ~/scripts/cuffdiff.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#SBATCH -J cuffdiff</span></span><br><span class="line"><span class="comment">#SBATCH -p dna</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --mem=8G</span></span><br><span class="line"><span class="comment">#SBATCH --cpus-per-task=2</span></span><br><span class="line"><span class="comment">#SBATCH -o slurm.%j.%x.out   # STDOUT</span></span><br><span class="line"><span class="comment">#SBATCH -e slurm.%j.%x.err   # STDERR</span></span><br><span class="line"><span class="comment">#SBATCH --mail-type=END  # 发送哪一种email通知：BEGIN,END,FAIL,ALL</span></span><br><span class="line"><span class="comment">#SBATCH --mail-user=jxsu22@m.fudan.edu.cn</span></span><br><span class="line"></span><br><span class="line">outdir=<span class="variable">$1</span></span><br><span class="line">gtf=<span class="variable">$2</span></span><br><span class="line">bam_dir=<span class="variable">$3</span></span><br><span class="line">label1=<span class="variable">$4</span></span><br><span class="line">label2=<span class="variable">$5</span></span><br><span class="line"></span><br><span class="line">sample1=$(<span class="built_in">ls</span> <span class="variable">$bam_dir</span>/*<span class="variable">$label1</span>* | xargs | <span class="built_in">tr</span> <span class="string">&#x27; &#x27;</span> <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">sample2=$(<span class="built_in">ls</span> <span class="variable">$bam_dir</span>/*<span class="variable">$label2</span>* | xargs | <span class="built_in">tr</span> <span class="string">&#x27; &#x27;</span> <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">cuffdiff -p 2 -o <span class="variable">$outdir</span> \</span><br><span class="line">    -L <span class="variable">$label1</span>,<span class="variable">$label2</span> \</span><br><span class="line">    <span class="variable">$gtf</span> \</span><br><span class="line">    <span class="variable">$sample1</span> \ <span class="comment"># Separate different samples with space</span></span><br><span class="line">    <span class="variable">$sample2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>然后运行 shell 脚本，提交该任务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">PROJECT=/home/u22211520038/workplace/homework1</span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$PROJECT</span>/02_result/bam</span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$PROJECT</span>/02_result/cuffdiff</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建软链接，并以分组命名</span></span><br><span class="line"><span class="built_in">cat</span> <span class="variable">$PROJECT</span>/group.csv | <span class="keyword">while</span> IFS=<span class="string">&quot;,&quot;</span> <span class="built_in">read</span> -r SRR group;<span class="keyword">do</span></span><br><span class="line">    <span class="built_in">ln</span> -s <span class="variable">$PROJECT</span>/02_result/tophat2/<span class="variable">$&#123;SRR&#125;</span>/accepted_hits.bam <span class="variable">$PROJECT</span>/02_result/bam/<span class="variable">$&#123;group&#125;</span>.bam</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT</span>/02_result/cuffdiff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行cuffdiff，进行差异基因分析</span></span><br><span class="line">sbatch ~/scripts/cuffdiff.sh \</span><br><span class="line">    <span class="variable">$PROJECT</span>/02_result/cuffdiff \</span><br><span class="line">    <span class="variable">$PROJECT</span>/00_index/mm10_genes.gtf \</span><br><span class="line">    <span class="variable">$PROJECT</span>/02_result/bam \</span><br><span class="line">    WT \</span><br><span class="line">    NonoKO</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>查看运行结果</p>
+<p><code>ll $&#123;Project&#125;/02_result/cuffdiff</code></p>
+</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20220928231232-lzbzun2.png" alt="ll ${Project}/02_result/cuffdiff"></div><div class="image-meta"><span class="image-caption center">ll ${Project}/02_result/cuffdiff</span></div></div>
+<p>可以看到生成了很多文件，后面的差异基因分析将主要用到 gene_exp.dff。其中第三列是基因名，第五列和第六列是比较的两个样本名，第 10 列是 log2(foldchange)值，第 12 列是 pvalue。</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/Snipaste_2022-10-26_08-41-47-20221026084153-s33gjur.png" alt="less -SN ${Project}/02_result/cuffdiff/gene_exp.diff"></div><div class="image-meta"><span class="image-caption center">less -SN ${Project}/02_result/cuffdiff/gene_exp.diff</span></div></div>
+<h2 id="三-r-语言代码"><a class="markdownIt-Anchor" href="#三-r-语言代码"></a> 三、R 语言代码</h2>
+<p>准备需要的 R 包</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="punctuation">(</span><span class="operator">!</span>require<span class="punctuation">(</span><span class="string">&quot;BiocManager&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span> install.packages<span class="punctuation">(</span><span class="string">&quot;BiocManager&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">if</span> <span class="punctuation">(</span><span class="operator">!</span>require<span class="punctuation">(</span><span class="string">&quot;pheatmap&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span> BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;pheatmap&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">if</span> <span class="punctuation">(</span><span class="operator">!</span>require<span class="punctuation">(</span><span class="string">&quot;clusterProfiler&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span> BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;clusterProfiler&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">if</span> <span class="punctuation">(</span><span class="operator">!</span>require<span class="punctuation">(</span><span class="string">&quot;org.Mm.eg.db&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span> BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;org.Mm.eg.db&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">if</span> <span class="punctuation">(</span><span class="operator">!</span>require<span class="punctuation">(</span><span class="string">&quot;cowplot&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span> BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;cowplot&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>设置工作目录</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setwd<span class="punctuation">(</span><span class="string">&#x27;~/workplace/homework1/02_result&#x27;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>从 cuffdiff 生成的 gene_exp.diff，进行解析，提取 | log2(foadchange) |&gt;1.5，p_value&lt;0.05 的差异基因，保存为 <code>DiffGenes_FC1.5.txt</code></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DEG <span class="operator">&lt;-</span> read.table<span class="punctuation">(</span><span class="string">&quot;./cuffdiff/gene_exp.diff&quot;</span><span class="punctuation">,</span> header <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">)</span></span><br><span class="line">DEG <span class="operator">&lt;-</span> DEG<span class="punctuation">[</span><span class="punctuation">,</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">3</span><span class="punctuation">,</span> <span class="number">10</span><span class="punctuation">,</span> <span class="number">12</span><span class="punctuation">)</span><span class="punctuation">]</span></span><br><span class="line">DEG <span class="operator">&lt;-</span> DEG<span class="punctuation">[</span><span class="built_in">is.finite</span><span class="punctuation">(</span>DEG<span class="operator">$</span>log2.fold_change.<span class="punctuation">)</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">DEG <span class="operator">&lt;-</span> DEG<span class="punctuation">[</span><span class="built_in">abs</span><span class="punctuation">(</span>DEG<span class="operator">$</span>log2.fold_change.<span class="punctuation">)</span> <span class="operator">&gt;</span> log2<span class="punctuation">(</span><span class="number">1.5</span><span class="punctuation">)</span> <span class="operator">&amp;</span> DEG<span class="operator">$</span>p_value <span class="operator">&lt;</span> <span class="number">0.05</span><span class="punctuation">,</span> <span class="punctuation">]</span> <span class="comment"># 提取log2(foadchange)&gt;1.5，p_value&lt;0.05的差异基因</span></span><br><span class="line"><span class="built_in">names</span><span class="punctuation">(</span>DEG<span class="punctuation">)</span> <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;genes&quot;</span><span class="punctuation">,</span> <span class="string">&quot;foldchange&quot;</span><span class="punctuation">,</span> <span class="string">&quot;pvalue&quot;</span><span class="punctuation">)</span></span><br><span class="line">DEG<span class="operator">$</span>regulation <span class="operator">&lt;-</span> <span class="string">&quot;up&quot;</span></span><br><span class="line">DEG<span class="operator">$</span>regulation<span class="punctuation">[</span>DEG<span class="operator">$</span>foldchange <span class="operator">&lt;</span> <span class="number">0</span><span class="punctuation">]</span> <span class="operator">&lt;-</span> <span class="string">&quot;down&quot;</span></span><br><span class="line">DEG <span class="operator">&lt;-</span> DEG<span class="punctuation">[</span>order<span class="punctuation">(</span><span class="built_in">abs</span><span class="punctuation">(</span>DEG<span class="operator">$</span>foldchange<span class="punctuation">)</span><span class="punctuation">,</span> decreasing <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="punctuation">]</span> <span class="comment"># 按照foldchange绝对值大小进行倒序排序</span></span><br><span class="line">write.table<span class="punctuation">(</span>DEG<span class="punctuation">,</span> file <span class="operator">=</span> <span class="string">&quot;plot/DiffGenes_FC1.5.txt &quot;</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;\t&quot;</span><span class="punctuation">,</span> <span class="built_in">quote</span> <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">,</span> row.names <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>绘制差异基因的图</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bar-plot</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br><span class="line">  tab <span class="operator">&lt;-</span> as.data.frame<span class="punctuation">(</span>table<span class="punctuation">(</span>DEG<span class="operator">$</span>regulation<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">  tab<span class="operator">$</span>Var1 <span class="operator">&lt;-</span> factor<span class="punctuation">(</span>tab<span class="operator">$</span>Var1<span class="punctuation">,</span> levels <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;up&quot;</span><span class="punctuation">,</span> <span class="string">&quot;down&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">  p <span class="operator">&lt;-</span> ggplot<span class="punctuation">(</span>tab<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> Var1<span class="punctuation">,</span> y <span class="operator">=</span> Freq<span class="punctuation">,</span> label <span class="operator">=</span> Freq<span class="punctuation">,</span> fill <span class="operator">=</span> Var1<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">    geom_bar<span class="punctuation">(</span>stat <span class="operator">=</span> <span class="string">&quot;identity&quot;</span><span class="punctuation">)</span></span><br><span class="line">  p <span class="operator">&lt;-</span> p <span class="operator">+</span> geom_text<span class="punctuation">(</span>position <span class="operator">=</span> position_dodge<span class="punctuation">(</span><span class="number">0.9</span><span class="punctuation">)</span><span class="punctuation">,</span> vjust <span class="operator">=</span> <span class="number">0</span><span class="punctuation">,</span> size <span class="operator">=</span> <span class="number">3</span><span class="punctuation">)</span> <span class="operator">+</span> ylim<span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span> <span class="built_in">max</span><span class="punctuation">(</span>tab<span class="operator">$</span>Freq<span class="punctuation">)</span> <span class="operator">*</span> <span class="number">1.1</span><span class="punctuation">)</span></span><br><span class="line">  p <span class="operator">&lt;-</span> p <span class="operator">+</span> theme_classic<span class="punctuation">(</span><span class="number">8</span><span class="punctuation">)</span> <span class="operator">+</span> xlab<span class="punctuation">(</span><span class="string">&quot;differential expression&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> ylab<span class="punctuation">(</span><span class="string">&quot;Number of genes&quot;</span><span class="punctuation">)</span></span><br><span class="line">  p <span class="operator">&lt;-</span> p <span class="operator">+</span> ggtitle<span class="punctuation">(</span><span class="string">&quot;diffgenes&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> theme<span class="punctuation">(</span>legend.position <span class="operator">=</span> <span class="string">&quot;none&quot;</span><span class="punctuation">)</span></span><br><span class="line">  p <span class="operator">&lt;-</span> p <span class="operator">+</span> theme<span class="punctuation">(</span>plot.title <span class="operator">=</span> element_text<span class="punctuation">(</span>hjust <span class="operator">=</span> <span class="number">0.5</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">  p</span><br><span class="line">  ggsave<span class="punctuation">(</span>p<span class="punctuation">,</span> filename <span class="operator">=</span> <span class="string">&quot;plot/diffgene_number_barplot.pdf&quot;</span><span class="punctuation">,</span> width <span class="operator">=</span> <span class="number">2.2</span><span class="punctuation">,</span> height <span class="operator">=</span> <span class="number">2.2</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># heatmap</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  library<span class="punctuation">(</span>scales<span class="punctuation">)</span></span><br><span class="line">  library<span class="punctuation">(</span>pheatmap<span class="punctuation">)</span></span><br><span class="line">  dd <span class="operator">&lt;-</span> read.table<span class="punctuation">(</span><span class="string">&quot;FPKM2TPM/Expression_TPM.tsv&quot;</span><span class="punctuation">,</span> header <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">)</span></span><br><span class="line">  <span class="comment"># 取Top50的差异基因在各个样本的TPM</span></span><br><span class="line">  DEG1 <span class="operator">&lt;-</span> DEG<span class="punctuation">[</span>order<span class="punctuation">(</span><span class="built_in">abs</span><span class="punctuation">(</span>DEG<span class="operator">$</span>foldchange<span class="punctuation">)</span><span class="punctuation">,</span> decreasing <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">  num <span class="operator">&lt;-</span> 50</span><br><span class="line">  DEG1 <span class="operator">&lt;-</span> DEG1<span class="punctuation">[</span><span class="number">1</span><span class="operator">:</span>num<span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">  dd1 <span class="operator">&lt;-</span> dd<span class="punctuation">[</span>dd<span class="operator">$</span>gene_id <span class="operator">%in%</span> DEG1<span class="operator">$</span>genes<span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">  row.names<span class="punctuation">(</span>dd1<span class="punctuation">)</span> <span class="operator">&lt;-</span> dd1<span class="operator">$</span>gene_id</span><br><span class="line">  dd1<span class="operator">$</span>gene_id <span class="operator">&lt;-</span> <span class="literal">NULL</span></span><br><span class="line">  <span class="built_in">names</span><span class="punctuation">(</span>dd1<span class="punctuation">)</span> <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;set1_NonoKO_D0&quot;</span><span class="punctuation">,</span> <span class="string">&quot;set1_WT_D0&quot;</span><span class="punctuation">,</span> <span class="string">&quot;set2_NonoKO_D0&quot;</span><span class="punctuation">,</span> <span class="string">&quot;set2_WT_D0&quot;</span><span class="punctuation">)</span></span><br><span class="line">  dd2 <span class="operator">&lt;-</span> t<span class="punctuation">(</span>apply<span class="punctuation">(</span>dd1<span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">,</span> rescale<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">  <span class="comment"># 绘制热图</span></span><br><span class="line">  pdf<span class="punctuation">(</span>file <span class="operator">=</span> <span class="string">&quot;plot/top_50gene.pdf&quot;</span><span class="punctuation">,</span> width <span class="operator">=</span> <span class="number">3</span><span class="punctuation">,</span> height <span class="operator">=</span> <span class="number">7</span><span class="punctuation">)</span></span><br><span class="line">  pheatmap<span class="punctuation">(</span>dd2<span class="punctuation">,</span> cutree_rows <span class="operator">=</span> <span class="number">2</span><span class="punctuation">,</span> cutree_cols <span class="operator">=</span> <span class="number">2</span><span class="punctuation">,</span> fontsize_row <span class="operator">=</span> <span class="number">8</span><span class="punctuation">)</span></span><br><span class="line">  dev.off<span class="punctuation">(</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>GO 富集和 KEGG 富集分析代码</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>clusterProfiler<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>org.Mm.eg.db<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>cowplot<span class="punctuation">)</span></span><br><span class="line">gene <span class="operator">&lt;-</span> bitr<span class="punctuation">(</span>DEG<span class="operator">$</span>genes<span class="punctuation">,</span></span><br><span class="line">  fromType <span class="operator">=</span> <span class="string">&quot;SYMBOL&quot;</span><span class="punctuation">,</span></span><br><span class="line">  toType <span class="operator">=</span> <span class="string">&quot;ENTREZID&quot;</span><span class="punctuation">,</span></span><br><span class="line">  OrgDb <span class="operator">=</span> org.Mm.eg.db</span><br><span class="line"><span class="punctuation">)</span> <span class="comment"># 选择小鼠数据库</span></span><br><span class="line"></span><br><span class="line">geneList <span class="operator">&lt;-</span> bitr<span class="punctuation">(</span>dd<span class="operator">$</span>gene_id<span class="punctuation">,</span></span><br><span class="line">  fromType <span class="operator">=</span> <span class="string">&quot;SYMBOL&quot;</span><span class="punctuation">,</span></span><br><span class="line">  toType <span class="operator">=</span> <span class="string">&quot;ENTREZID&quot;</span><span class="punctuation">,</span></span><br><span class="line">  OrgDb <span class="operator">=</span> org.Mm.eg.db</span><br><span class="line"><span class="punctuation">)</span> <span class="comment"># 选择小鼠数据库</span></span><br><span class="line"><span class="comment"># 对样本间的差异基因进行GO富集分析</span></span><br><span class="line">ego <span class="operator">&lt;-</span> enrichGO<span class="punctuation">(</span></span><br><span class="line">  gene <span class="operator">=</span> gene<span class="operator">$</span>ENTREZID<span class="punctuation">,</span></span><br><span class="line">  universe <span class="operator">=</span> <span class="built_in">names</span><span class="punctuation">(</span>geneList<span class="operator">$</span>ENTREZID<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">  OrgDb <span class="operator">=</span> org.Mm.eg.db<span class="punctuation">,</span> <span class="comment"># 选择小鼠数据库</span></span><br><span class="line">  ont <span class="operator">=</span> <span class="string">&quot;BP&quot;</span><span class="punctuation">,</span></span><br><span class="line">  pAdjustMethod <span class="operator">=</span> <span class="string">&quot;BH&quot;</span><span class="punctuation">,</span></span><br><span class="line">  pvalueCutoff <span class="operator">=</span> <span class="number">0.01</span><span class="punctuation">,</span></span><br><span class="line">  qvalueCutoff <span class="operator">=</span> <span class="number">0.05</span><span class="punctuation">,</span></span><br><span class="line">  readable <span class="operator">=</span> <span class="literal">TRUE</span></span><br><span class="line"><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 对样本间的差异基因进行KEGG富集分析</span></span><br><span class="line">kk <span class="operator">&lt;-</span> enrichKEGG<span class="punctuation">(</span></span><br><span class="line">  gene <span class="operator">=</span> gene<span class="operator">$</span>ENTREZID<span class="punctuation">,</span></span><br><span class="line">  organism <span class="operator">=</span> <span class="string">&quot;mmu&quot;</span><span class="punctuation">,</span> <span class="comment"># 选择小鼠</span></span><br><span class="line">  pvalueCutoff <span class="operator">=</span> <span class="number">0.05</span><span class="punctuation">,</span></span><br><span class="line">  pAdjustMethod <span class="operator">=</span> <span class="string">&quot;BH&quot;</span><span class="punctuation">,</span></span><br><span class="line">  qvalueCutoff <span class="operator">=</span> <span class="number">0.05</span></span><br><span class="line"><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">p1 <span class="operator">&lt;-</span> dotplot<span class="punctuation">(</span>ego<span class="punctuation">,</span> showCategory <span class="operator">=</span> <span class="number">5</span><span class="punctuation">,</span> orderBy <span class="operator">=</span> <span class="string">&quot;x&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> ggtitle<span class="punctuation">(</span><span class="string">&quot;dotplot for GOBP&quot;</span><span class="punctuation">)</span></span><br><span class="line">p2 <span class="operator">&lt;-</span> dotplot<span class="punctuation">(</span>kk<span class="punctuation">,</span> showCategory <span class="operator">=</span> <span class="number">5</span><span class="punctuation">,</span> orderBy <span class="operator">=</span> <span class="string">&quot;x&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> ggtitle<span class="punctuation">(</span><span class="string">&quot;dotplot for KEGG&quot;</span><span class="punctuation">)</span></span><br><span class="line">pp <span class="operator">&lt;-</span> plot_grid<span class="punctuation">(</span>p1<span class="punctuation">,</span> p2<span class="punctuation">,</span> ncol <span class="operator">=</span> <span class="number">1</span><span class="punctuation">)</span></span><br><span class="line">ggsave<span class="punctuation">(</span>p1<span class="punctuation">,</span> filename <span class="operator">=</span> <span class="string">&quot;plot/GO_enrichment.pdf&quot;</span><span class="punctuation">)</span></span><br><span class="line">ggsave<span class="punctuation">(</span>p2<span class="punctuation">,</span> filename <span class="operator">=</span> <span class="string">&quot;plot/KEGG_enrichment.pdf&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<h2 id="四-分析结果"><a class="markdownIt-Anchor" href="#四-分析结果"></a> 四、分析结果</h2>
+<p>筛选差异基因，提取 | log2(foldchange) | &gt; 1.5，p_value&lt;0.05 的差异基因共 2599 个，上调基因共 947 个（log2(foldchange)&gt;=0），下调基因 1652 个（log2(foldchange)&lt;0）</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/Snipaste_2022-10-26_09-45-07-20221026094508-gu7vli7.png" alt="上下调基因数目比较"></div><div class="image-meta"><span class="image-caption center">上下调基因数目比较</span></div></div>
+<p>按照 foldchange 的值由高到低进行排序，取 Top50 的差异基因，绘制热图。发现 set1_NonoKO_D0 和 set2_NonoKO_D0 的基因特征比较类似，而 set2_WT_D0 的上调基因含量过于高了，不确定是样本问题。NonoKO 细胞的 Mid1、Maf、Pcdh18 等众多基因下调，而 Hist1h2ah、Ftl1、Hprt 基因上调。</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/Snipaste_2022-10-26_09-44-43-20221026094454-yjonve6.png" alt="Top50差异基因在各样本的表达量"></div><div class="image-meta"><span class="image-caption center">Top50差异基因在各样本的表达量</span></div></div>
+<p>进行 GO 富集和 KEGG 富集分析</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/Snipaste_2022-10-25_23-45-22-20221025234524-qiue995.png" alt="GO的Biological process富集分析"></div><div class="image-meta"><span class="image-caption center">GO的Biological process富集分析</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/Snipaste_2022-10-25_23-45-53-20221025234555-akrjhuo.png" alt="KEGG富集分析"></div><div class="image-meta"><span class="image-caption center">KEGG富集分析</span></div></div>
+<p>通过 GO 的 Biological process 富集分析，发现这些差异基因主要在 epithelial tube morphogenesis、renal system development、mesenchyme development、kidney development、mesenchymal cell<br>
+differentiation 富集</p>
+<p>通过 KEGG 富集分析，这些差异基因主要在 Proteoglycans in cancer、Focal adhesion、Axon guidance、ECM-receptor interaction、Basal cell carcinoma 等代谢途径富集</p>
+<h2 id="五-存在的问题"><a class="markdownIt-Anchor" href="#五-存在的问题"></a> 五、存在的问题</h2>
+<ul>
+<li>trim_galore 过滤双端数据的时候，忘记加–paired 参数，发现 trim_galore 过滤双端数据生成的最终文件不是 trimed.fq.gz，而是 val_1.fq.gz 和 val_2.fq.gz.</li>
+<li>一开始不明白 cuffdiff 的 gene_exp.diff 其中的 foldchange 是怎么计算的，四个样本输进去后会有 6 个组的比较，也就是说所有样本之间都进行比较了，包括 set1 的 WT 组和 set2 的 WT 组。后来经过助教的指导才发现自己没看仔细 cuffdiff 的使用规则，同一组的不同重复用逗号分割，不同组间应该用空格分割，说明无论做什么事情还是要仔细，不要一开始就犯错，理解有问题。</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="/post/6e57daa8/image-20221003224834-2o60cnv.png" alt="cuffdiff计算两组间的差异基因，却出现6组比较"></div><div class="image-meta"><span class="image-caption center">cuffdiff计算两组间的差异基因，却出现6组比较</span></div></div>
+<ul>
+<li>cuffdiff 的 log（foldchange）是 sample2/sample1，log（foldchange）&gt;0 代表 gene 在 sample2 中上调，log（foldchange）&lt;0 代表 gene 在 sample2 中下调。开始运行 cuffdiff 的时候，没有注意输入顺序，把 KO 放在了 WT 前面，造成上下调基因输出相反。</li>
+<li>本次实验的样本量太少，set1 和 set2 同一组的 WT 小鼠的基因表达量差异也很大，GO 富集和 KEGG 富集分析的结果并不能说明什么，需要扩大样本量找到的差异基因才更有说服力。</li>
+</ul>
+<p>‍</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/d2b2fba7.html">Python 上传包到pypi</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/134ab329.html">PSSM矩阵计算</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="Achuan-2/Achuan-2.github.io" data-repo-id="R_kgDOIT0sJw" data-category="Q&A" data-category-id="DIC_kwDOIT0sJ84CSMyl" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">项目</span><a href="/wiki/">None</a></div><div class="sitemap-group"><span class="fs15">社交</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs15">更多</span><a target="_blank" rel="noopener" href="https://github.com/Achuan-2/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Achuan-2</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="toc-text"> 一、数据来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%AE%80%E4%BB%8B"><span class="toc-text"> 数据简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%8B%E8%BD%BD"><span class="toc-text"> 数据下载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="toc-text"> 二、分析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-trim_galore-%E5%8E%BB%E9%99%A4%E4%BD%8E%E8%B4%A8%E9%87%8F%E7%9A%84-reads-%E5%92%8C-adaptor"><span class="toc-text"> 1、trim_galore 去除低质量的 reads 和 adaptor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8-tophat2-%E6%AF%94%E5%AF%B9%E5%92%8C-cufflinks-%E8%AE%A1%E7%AE%97%E5%9F%BA%E5%9B%A0%E8%A1%A8%E8%BE%BE"><span class="toc-text"> 2、使用 Tophat2 比对和 Cufflinks 计算基因表达</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-fpkm-%E8%BD%AC%E5%8C%96%E4%B8%BA-tpm"><span class="toc-text"> 3、FPKM 转化为 TPM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%94%A8-cuffdiff-%E8%AE%A1%E7%AE%97%E5%9F%BA%E5%9B%A0%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE"><span class="toc-text"> 4、用 cuffdiff 计算基因差异表达</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-r-%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81"><span class="toc-text"> 三、R 语言代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C"><span class="toc-text"> 四、分析结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text"> 五、存在的问题</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.28.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"giscus":{"js":"/js/services/giscus_new.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.swiper-slide img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
+<script>var posts=["/post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html","/post/a-mother-s-reflection-z17orfm.html","/post/20231104-updated-win11-23h2-1xki6y.html","/post/23-years-old-zggy4y.html","post/c873b400.html","post/8b29a079.html","/post/book-recommendation-self-study-is-the-door-craft-zja4yb.html","/post/draw-calcium-imaging-hot-pictures-with-matlab-and-use-kmeans-clustering-qp7bq.html","/post/groupy-2-multi-window-management-tool-upgrade-experience-ocrer.html","/post/how-does-matlab-convert-graphics-into-outline-zo6ihg.html","/post/how-does-matlab-turn-the-image-to-uint8-z29w8nb.html","/post/how-do-you-know-what-you-took-by-automatic-vending-machine-jeapx.html","/post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html","/post/how-to-give-the-roi-number-in-mask-zm8e9p.html","/post/how-to-use-abbyy-and-acrobat-to-add-bookmarks-and-directory-to-the-book-scanning-version-of-the-book-scanning-version-of-pdf-e6kup.html","/post/how-to-make-water-special-zi87c0.html","/post/i-ca-n-t-find-a-satisfactory-word-template-on-the-entire-network-so-i-made-one-myself-nano3.html","/post/js-dom-operation-1rrvs2.html","/post/i-finally-empty-the-circle-of-friends-oko3o.html","/post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html","/post/matlab-basic-programming-grammar-1ghj9i.html","/post/matlab-2024a-everbright-functional-writing-experience-big-upgrade-eao4i.html","/post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html","/post/matlab-background-asynchronous-execution-function-z1zmis9.html","/post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html","/post/matlab-custom-code-supports-roller-amplification-and-drag-pictures-20eamw.html","/post/matlab-different-ctrl-mouse-right-and-mouse-right-click-1f0inv.html","/post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html","/post/matlab-read-view-save-tiff-1pkevw.html","/post/matlab-reshape-scan-and-fill-in-columns-easy-to-step-on-the-pit-18flah.html","/post/matlab-superimposes-mask-a-certain-transparency-to-the-image-2seqqa.html","post/a86a49b6.html","/post/outside-the-number-glados-sign-in-baiji-is-not-easy-anymore-z2vxoy1.html","/post/python-uses-npvectorize-directional-function-to-perform-batch-processing-ipcdn.html","post/e93c4010.html","/post/scan-the-pdf-batch-with-python-batch-to-add-bookmarks-zn2z7s.html","/post/siyuan-note-use-quicker-action-to-seamlessly-link-with-zotero-zejypu.html","/post/siyuan-notes-good-partner-the-strongest-clipboard-artifact-copyq-z2grwhp.html","/post/thinking-about-waiting-power-and-order-f3swz.html","post/3bc3857.html","post/cf0a2858.html","post/f5348a5e.html","/post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html","post/c873b400.html","/post/what-is-the-color-why-can-we-see-color-1v2pq4.html","/post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html","/post/why-can-convex-lens-be-used-z1cu3qk.html","/post/write-a-wechat-public-account-article-with-markdown-zatxal.html","/post/why-can-human-eyes-see-virtual-statues-z1og6up.html","/post/why-can-small-hole-imaging-be-used-and-large-holes-cannot-be-imaged-z2rx7bz.html","post/134ab329.html","post/d2b2fba7.html","post/e977bfe7.html","post/50f47788.html","post/d766b22.html","post/6e57daa8.html","post/291034.html","post/c6467c9c.html","post/595885f1.html","post/bc4b56d9.html","post/be13a22e.html","/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html","/post/T Test.html","/post/anova-variance-analysis-g7i0c.html","/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html","/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html","/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html","/post/jiefang-poor-analysis-ancova-rxm1i.html","/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html","/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html","/post/matlab-optimization-abnormal-processing-fprintf-s-wonderful-use-z2wefdb.html","/post/my-note-management-method-in-onenote-wolai-zrqwln.html","/post/think-about-how-i-should-spend-my-day-zl38tl.html","/post/moc-manage-the-notes-link-to-the-theme-4uatt.html","/post/why-write-a-diary-hhfd6.html"];function toRandomPost(){ var randomPath = posts[Math.floor(Math.random()*posts.length)]; var encodedPath = encodeURIComponent(randomPath); window.open('/' + encodedPath, "_self"); };</script>

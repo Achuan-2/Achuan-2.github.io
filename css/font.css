@@ -253,6 +253,7 @@ pre:not([class]):has(> code) {
         sans-serif;
     box-sizing: border-box;
 }
+
 @media screen and (min-width: 500px) {
     .md-text .highlight,
     pre:not([class]):has(> code) {
@@ -4528,7 +4529,7 @@ h1.article-title {
 .md-text blockquote ol code,
 .md-text ul ol code,
 .md-text ol ol code {
-    font-size: inherit;
+    font-size: 85%;
     padding: 0;
     background: none;
 }
@@ -4894,13 +4895,6 @@ img[fancybox='true'] {
     }
 }
 
-/* 文章显示标签 */
-.bread-nav #tag .breadcrumb-link,
-.post-list .post-card span.tag {
-    background-color: #76a3b3cc;
-    color: #fff;
-    padding: 0em 0.375em 0.08em !important;
-    border-radius: 0.3em;
-    margin: 0.25em !important;
-    display: inline-flex;
+.md-text blockquote .highlight {
+    background: #dcf5e8 !important;
 }

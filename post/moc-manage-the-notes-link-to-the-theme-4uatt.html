@@ -1,0 +1,706 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.28.0" theme-name="Stellar" theme-version="1.28.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>MOC：面向主题地去管理笔记链接 - Achuan-2</title>
+
+  
+    <meta name="description" content="「面向主题地去管理笔记链接」，这一方法在双链笔记圈被叫做 MOC，Map of Contents，直接翻译叫做内容地图，我更喜欢将其翻译为索引笔记、主题笔记。使用MOC不仅仅能使得管理笔记更自由，可以根据需要让笔记出现在不同的MOC笔记里，很轻松地进行笔记复用，实现知识的持续性积累。更重要的是，使用MOC管理笔记，会让你养成「面向主题」的笔记习惯，「以问题为导向」去收集信息、整理信息，让你更多地去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MOC：面向主题地去管理笔记链接">
+<meta property="og:url" content="http://achuan-2.top/post/moc-manage-the-notes-link-to-the-theme-4uatt.html">
+<meta property="og:site_name" content="Achuan-2">
+<meta property="og:description" content="「面向主题地去管理笔记链接」，这一方法在双链笔记圈被叫做 MOC，Map of Contents，直接翻译叫做内容地图，我更喜欢将其翻译为索引笔记、主题笔记。使用MOC不仅仅能使得管理笔记更自由，可以根据需要让笔记出现在不同的MOC笔记里，很轻松地进行笔记复用，实现知识的持续性积累。更重要的是，使用MOC管理笔记，会让你养成「面向主题」的笔记习惯，「以问题为导向」去收集信息、整理信息，让你更多地去">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/MOC%E9%9D%A2%E5%90%91%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%8E%BB%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E9%93%BE%E6%8E%A5-20240512105740-xzkvbuo.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511002803-wbt2q85.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511005134-i8sjf0y.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-25_17-45-44-20240525174551-iub1ahb.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-25_17-46-02-20240525174606-771ke3v.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-25_17-46-51-20240525174653-it6yo9o.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_22-54-07-20240511225409-wjv8hdc.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-16-47-20240511231649-hfconcy.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-29-41-20240511232949-m7t1zcg.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511233638-yeg0o4z.png">
+<meta property="article:published_time" content="2024-05-12T03:05:26.000Z">
+<meta property="article:modified_time" content="2024-05-12T08:32:27.000Z">
+<meta property="article:author" content="Achuan-2">
+<meta property="article:tag" content="思源笔记">
+<meta property="article:tag" content="知识管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/MOC%E9%9D%A2%E5%90%91%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%8E%BB%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E9%93%BE%E6%8E%A5-20240512105740-xzkvbuo.png">
+  
+  
+  
+  <meta name="keywords" content="思源笔记,知识管理">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Achuan-2" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.28.0">
+
+  
+    <link rel="shortcut icon" href="/assets/ico/favicon.svg">
+  
+
+  
+
+  <script src="/js/random.js"></script><link href="/css/appearence.css" rel="stylesheet"><link href="/css/tagcolor-switch.css" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bofeng/hyksk_webfont/dist/hyksk.css" /><link href="/css/scrollbar.css" rel="stylesheet"><link rel="preconnect" href="https://s1.hdslb.com/" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/ico/Achuan.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Achuan-2</div><div class="sub normal cap">一条没有故事的巛</div><div class="sub hover cap" style="opacity:0"> 闪闪发亮，闪闪发亮</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/"><span>博客</span></a><a class="nav-item" title="友链" href="/friends/"><span>友链</span></a><a class="nav-item" title="关于" href="/about/"><span>关于</span></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/post/jiefang-poor-analysis-ancova-rxm1i.html"><span class="title">协方差分析 (ANCOVA)</span></a><a class="item title" href="/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html"><span class="title">生活窍门丨为什么油性笔可以写在塑料上</span></a><a class="item title" href="/post/anova-variance-analysis-g7i0c.html"><span class="title">ANOVA方差分析</span></a><a class="item title" href="/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html"><span class="title">Matlab 深度学习丨基于ResNet的新冠肺炎X光胸片检测</span></a><a class="item title" href="/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html"><span class="title">沉浸式翻译终于支持富文本翻译了</span></a><a class="item title" href="/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html"><span class="title">JS丨MutationObserver（DOM 变动观察器）</span></a><a class="item title" href="/post/T%20Test.html"><span class="title">统计分析丨T检验</span></a><a class="item title" href="/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html"><span class="title">MATLAB 深度学习丨可视化卷积神经网络CNN的激活图</span></a><a class="item title" href="/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html"><span class="title">Matlab 深度学习丨使用深度学习对网络摄像头图像进行分类</span></a><a class="item title" href="/post/why-write-a-diary-hhfd6.html"><span class="title">为什么要写日记？</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Achuan-2/" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/icon-park/github.svg"/></a><a class="social" href="https://music.163.com/#/user/home?id=111010025" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/ri:netease-cloud-music-line.svg"/></a><a class="social" href="/about/#comments" rel="noopener noreferrer"><img src="https://api.iconify.design/bx/comment-detail.svg"/></a><a class="social" href="mailto:achuan-2@outlook.com" rel="noopener noreferrer"><img src="https://api.iconify.design/clarity/email-outline-badged.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/">其他笔记</a></div><div id="post-tag" style="margin: 5px 0px;"> <span>&nbsp标签：</span><a class="cap breadcrumb-link" href="/tags/%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0/">思源笔记</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/">知识管理</a>&nbsp</div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-05-12T03:05:26.000Z">2024-05-12 11:05</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-05-12T08:32:27.000Z">2024-05-12 16:32</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>MOC：面向主题地去管理笔记链接</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/MOC%E9%9D%A2%E5%90%91%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%8E%BB%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E9%93%BE%E6%8E%A5-20240512105740-xzkvbuo.png"></div></div>
+<p>个人认为，双链笔记的核心<strong>并不在于双向链接</strong>，对我而言，我接触到双链笔记软件这 3 年以来的主要收获可以概括为两个点：</p>
+<ul>
+<li>一个是「<strong>笔记应该是渐进式的</strong>」，目前我觉得这个理念不仅仅应该应用在笔记上，也应该用在生活上——生活也应该是渐进式的，这个之后我会写一篇文章重点介绍我的收获。</li>
+<li>另一个收获便是「<strong>面向主题地去管理笔记链接</strong>」，也就是本文章要介绍的笔记理念。</li>
+</ul>
+<p>「<strong>面向主题地去管理笔记链接</strong>」，这一方法在双链笔记圈常常被叫做 MOC，Map of Contents，直接翻译叫做内容地图，我更喜欢将其翻译为索引笔记、主题笔记。</p>
+<p>MOC是我目前强烈推荐的笔记管理方法，它有着传统笔记分类法、标签管理难以替代的优势。Markdown笔记格式、OneNote软件本身就支持管理笔记链接的方式来组织信息，在如今大热的新一代笔记软件——双链笔记软件中，MOC的作用还得了大大加强，不仅仅能自上而下地管理笔记，还能代替标签进行自下而上的渐进式积累零碎笔记，是一个特别实用、好用的笔记管理方法。</p>
+<h2 id="moc-的起源"><a class="markdownIt-Anchor" href="#moc-的起源"></a> MOC 的起源</h2>
+<p>MOC这个名词据说最早是由程序员 <a target="_blank" rel="noopener" href="https://x.com/LionKimbro/media">Lion Kimbro</a> 在 2003 年写的《<a target="_blank" rel="noopener" href="https://users.speakeasy.net/~lion/nb/book.pdf">How to Make a Complete Map of Every Thought You Think</a>》一书中提出的。当时 2003 的他还在用活页笔记本维护纸质笔记系统。</p>
+<p>而将 MOC 这一概念应用到电子笔记软件里并大力宣扬的人叫 <a target="_blank" rel="noopener" href="https://x.com/nickmilo?lang=zh">Nick Milo</a>，他是 Obsidian 社区的大神。在他的文章《<a target="_blank" rel="noopener" href="https://notes.linkingyourthinking.com/Cards/What+are+higher-order+notes">What can we call higher-order notes?</a>》，将 MOC 认为是高阶笔记，认为它灵活，能满足收集、概述、结构化、导航等笔记目的，还方便链接知识、重塑想法和构建新想法。之后MOC这一管理笔记的理念被越来越多人了解并推崇。</p>
+<blockquote>
+<p><strong>MOC (Map of Content)</strong>  -A flexible higher-order note that serves all the above purposes of gathering, outlining, structuring, and navigating. In addition, it is an active thinking tool that allows for the reshaping, connecting, and building of ideas</p>
+<p>——Nick Milo <a target="_blank" rel="noopener" href="https://notes.linkingyourthinking.com/Cards/What+are+higher-order+notes">《What can we call higher-order notes?》</a> 2020-06-28</p>
+</blockquote>
+<p>而本篇文章提到的MOC管理笔记方法，融合了INKP笔记法、PARA信息管理系统的理念，已经是个人“改编过”的笔记方法理念了，欢迎其他小伙伴提出意见，交流讨论。</p>
+<h2 id="文件夹和标签管理笔记的弊端"><a class="markdownIt-Anchor" href="#文件夹和标签管理笔记的弊端"></a> 文件夹和标签管理笔记的弊端</h2>
+<p>用文件夹和标签费心维护一个精致复杂的笔记系统其实是费力不讨好的，下面会介绍文件夹和标签管理笔记的弊端。</p>
+<h3 id="文件夹"><a class="markdownIt-Anchor" href="#文件夹"></a> 文件夹</h3>
+<p>传统的笔记方法喜欢用文件夹进行笔记分类，文件夹分类非常简单，只需要建立一个文件夹，然后将笔记丢进去。这和用 Windows 电脑的资源管理器管理文件、用代码编辑器管理代码项目体验很一致。</p>
+<p>文件夹分类需要遵循严格的层次结构，文件夹分类的最大弊端就在于此，<strong>一篇笔记只能放在一个分类下。</strong> 如果希望一篇笔记出现在多个分类文件夹下，只能复制出这篇笔记的副本，放到其他分类下，但这时候这些「克隆笔记」的内容如何同步就又是一个问题了。此外，一个文件夹也只能放在另一个文件夹下。这就造成了单纯只用文件夹分类，会导致<strong>过去的笔记难以复用</strong>，<strong>很容易创建重复的笔记</strong>，不断造轮子。</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511002803-wbt2q85.png"></div></div>
+<h3 id="标签"><a class="markdownIt-Anchor" href="#标签"></a> 标签</h3>
+<p>后来，很多笔记软件开始加入标签这个功能，一篇笔记可以打上多个不同的标签，终于能实现一篇笔记进行多分类了，还可以对标签进行 AND、OR、NOT 等高级联合查询笔记，但标签依然存在很大的问题：</p>
+<ul>
+<li><strong>标签的管理笔记问题。</strong> 大部分笔记软件的标签功能<strong>其实并没有整理功能</strong>，可能只有简单的按时间排序功能，一个标签里的笔记只能在一个维度上堆积。标签在整理汇总功能上，甚至还不如文件夹（文件夹起码还可以对笔记进行自定义排序）。在某种意义上，<strong>标签更像是一个快捷搜索的功能，一个汇集想法的功能，而不是分类归档功能</strong>。</li>
+<li><strong>创建多个重复标签的问题。</strong> 随着笔记越来越多，标签越来越多，管理标签也会变得非常头疼。因为标签的创建可能非常随意，可能重复创建一个标签，以不同的命名形式存在，比如 <code>#神经科学</code>，<code>#脑科学</code>、<code>#神经生物学</code>，如何把这些重复标签合并，将相关的文档聚合在一起呢？虽然一些笔记软件可以标签合并，但是本质问题没有解决，<strong>我还是会创建重复标签，那过一段时间就需要合并标签</strong>，除非我能牢固记住所有的标签命名。</li>
+<li><strong>标签依然存在无法多分类的问题。</strong> 为了管理众多标签，很多笔记软件支持通过父子标签来管理标签，然而，<strong>父子标签的这种分类其实也只是单分类，过去使用文件夹单分类的问题，在另一个维度——管理标签上又出现了</strong>：这就意味着你创建一个 <code>#睡眠</code> 的标签，收集了很多笔记，你之前将其放在 <code>#神经科学</code> 这个标签下，现在你又创建了一个 <code>#健康</code> 标签，如何把 <code>#睡眠</code> 这个标签同时放在 <code>#神经科学</code> 标签和 <code>#健康</code> 标签里就是一个问题。只能把之前整理的那些睡眠笔记，合并成一篇《睡眠》笔记，然后打上 <code>#神经科学</code> 标签和 <code>#健康</code> 标签。这也就是说，<strong>当标签完成它的汇聚信息功能之后，这个标签的功能就丧失了，就应该转化为文档了，否则你难以对这个标签本身进行多分类</strong>。就如一个文件夹下的所有笔记不方便出现在其他文件夹里一样</li>
+<li><strong>标签管理笔记的复用问题。</strong> 标签管理的笔记最好是模块化的卡片笔记，标签本身适合是一个比较广泛的主题，比如 <code>#个人碎碎念</code>、<code>#神经科学</code>，因为永远也没有汇集完的一天，也不太需要整理为一个文档（正如前面所说的标签多分类问题）。但是标签尽管能对卡片笔记进行多分类，并不意味着它就可以很好的为笔记进行服务了，比如你记了一篇关于《熬夜危害》的笔记，为一个卡片笔记打上<code>#神经科学</code>、<code>#睡眠</code>、<code>#生活百科</code>、<code>#健康</code>等标签，<strong>并不意味着这篇笔记可以被复用</strong>，更多情况是<strong>你打的标签可能更多是起美观、总结出关键词的作用。</strong> 以后想要用到这篇《熬夜危害》的笔记，要么在一个个标签里下滑寻找，要么使用搜索功能，这和文件夹体系其实没什么太大区别。</li>
+<li><strong>标签体系与双链功能。</strong> 标签体系如果加入双链功能，就可以用<code>[[</code>快速搜索找到符合的笔记进行引用了，然而一旦加了双链功能后，双链就可以替代标签了，又何必再用标签呢？毕竟标签对笔记的多分类、信息汇聚功能，使用双链也能做到，甚至需要的信息汇聚之后，直接在双链文档就能进行整理了，而不像标签只是一个标签，无法整理标签内的信息。其实<strong>标签就是这么一个矛盾的功能，很鸡肋，食之无味弃之可惜</strong>。</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511005134-i8sjf0y.png"></div></div>
+<h2 id="由管理文件和写代码获得的启示"><a class="markdownIt-Anchor" href="#由管理文件和写代码获得的启示"></a> 由管理文件和写代码获得的启示</h2>
+<p>用文件夹管理笔记，存在的主要问题在于笔记只能属于一个分类，而且层次结构一旦过深，处于深层结构的笔记就容易被遗忘。我们可以先看看 Windows 电脑的资源管理器管理文件和程序员写代码项目是怎么解决用文件夹管理文件的这些问题的：</p>
+<ul>
+<li>Windows 电脑的资源管理器管理文件，如果遇到一个文件需要出现在多个文件夹的需求，可以用「<strong>快捷方式」</strong> 创建一个指向该文件的链接，使得这个文件可以在多个文件夹里出现。同时为了避免层级深的文件被遗忘、将常用的文件夹放在更方便的位置，也可以用快捷方式将文件放在桌面或者其他地方，同时 Windows 电脑的资源管理器还有「<strong>快捷访问</strong>」的功能，能将常用文件夹置顶。</li>
+<li>程序员写代码项目常常会有一个 main 文件（或者 run 文件、index 文件），main 文件执行主要的程序功能，而 main 文件的文件一般比较简洁，<strong>可以自上而下地把所需要的代码功能的逻辑先大致写出来，不考虑具体实现，写完大概逻辑之后再具体一个个实现这些功能。</strong> 这些功能代码存放的文件夹层级可以很深，但通过 main 文件里的代码链接我就可以跳转到对应的功能代码，所以层级很深也无所谓，或者把所有功能代码都放在一个叫 <code>utils</code> 的文件夹里也可以。程序员喜欢会将一个重复使用的功能封装为模块，这样其他代码需要的时候就可以直接调用，不需要重复写一样的代码，后面要改代码还需要一个个修改。而要调用模块的代码，只需要声明这个模块的位置在哪里就可以了。</li>
+</ul>
+<p>从 Windows 电脑的资源管理器管理文件和程序员写代码项目这两个例子来看，我们可以有如下感悟</p>
+<ul>
+<li>可以用链接的方式管理笔记，使得<strong>一篇笔记可以出现在多个地方</strong>。写了一篇《多巴胺》笔记，可以把这个笔记的链接放在《神经科学》这篇笔记下面，也可以放在《神经递质》笔记下面，还可以放在《帕金森病》、《手机上瘾》等笔记下面。</li>
+<li>用链接的方式可以根据需要对笔记的链接进行<strong>随意排序、分类</strong>，<strong>可以忽略这篇笔记的实际存放位置、根据需要决定这篇笔记的展示位置。</strong> 笔记本体可以按照原来的层级分类存放，也可以全部放在一个文件夹里不分层级，更加省心 <strong>。</strong></li>
+<li>笔记可以像写代码一样，<strong>尽量模块化</strong>，笔记模块化后不仅仅能在未来需要用的时候省力，写作时就是组装各种模块，还有助于知识的复利积累。比如一篇《多巴胺》笔记，其他笔记涉及到多巴胺这个名词的段落，在思源笔记里就可以建立双向链接关系，这样既可以回顾《多巴胺》这篇笔记，又可以补充《多巴胺》这篇笔记的信息，比如你在《为什么刷手机会上瘾》这篇笔记中，发现多巴胺原来正是驱动你不断刷手机的元凶之一，你发现原来多巴胺并不给予快乐，只是给你欲望和动力，《为什么刷手机会上瘾》引用《多巴胺》笔记之后，以后再看《多巴胺》这篇笔记和它的反向链接，就可以回顾起这些知识点了。通过不断的完善，《多巴胺》这篇笔记就会越来越完善，会涉及越来越多的领域，变成自己的知识财富。</li>
+</ul>
+<p>以上的感悟，其实很大程度上就是 MOC 的核心理念了——管理链接而非本体、面向主题组织信息。</p>
+<p>接下来就正式介绍 MOC 笔记方法了。</p>
+<h2 id="moc管理链接而非本体"><a class="markdownIt-Anchor" href="#moc管理链接而非本体"></a> MOC：管理链接而非本体</h2>
+<p><strong>MOC推崇管理笔记的索引链接而非笔记本体。</strong> 可以根据需要让笔记的链接随意出现在不同的笔记里，很轻松地进行笔记复用，让过去记的笔记能在不同的主题笔记下发挥不同作用，一篇概念笔记可以属于多篇主题笔记，一篇主题笔记管理着众多概念笔记，一篇主题笔记又可以出现在其他的主题笔记里，笔记之间可以彼此嵌套引用，这有利于知识的持续性积累，形成自己的知识网络！</p>
+<h3 id="使用moc的前提"><a class="markdownIt-Anchor" href="#使用moc的前提"></a> 使用MOC的前提</h3>
+<p>需要笔记软件支持提供笔记链接才行，比如老大哥「OneNote」，新型双链本地笔记软件「思源笔记」和「Obsidian」 等，就能很好支持MOC来管理笔记。</p>
+<p>Markdown 其实天生就支持 MOC，使用 Markdown 的链接支持跳转文件， 只是缺少双链，少了将 MOC 当做标签的自下而上积累的功能。这样看来，其实用 Word 也能链接文件，实现 MOC，就是不太便捷。</p>
+<p>一般云笔记也支持提供笔记链接，但是需要考虑引用笔记的便捷程度、笔记路径更改路径不失效、内链标题是否支持自动更新、新建文档能否指定路径等问题。</p>
+<p>我目前的主力笔记软件是「<strong>思源笔记</strong>」，思源笔记主要有如下创建笔记链接的方式：</p>
+<ul>
+<li>可以在文档树选中文档右键进行复制块引用或者在打开的文档的页签右键进行复制块引用</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-25_17-45-44-20240525174551-iub1ahb.png"></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-25_17-46-02-20240525174606-771ke3v.png"></div></div>
+<ul>
+<li><code>[[+输入文字</code>，或是选中一段文字后输入<code>Alt+[</code>，检索引用已有笔记或者直接创建新笔记，并建立链接。</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-25_17-46-51-20240525174653-it6yo9o.png"></div></div>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<h3 id="怎么管理笔记链接"><a class="markdownIt-Anchor" href="#怎么管理笔记链接"></a> 怎么<strong>管理笔记链接</strong></h3>
+<p>在思源笔记里要使用 MOC，很简单，你需要定一个目前你感兴趣的主题，可以与你的专业有关，也可以是你自己的兴趣爱好，比如可以一个是大主题《神经科学》，也可以是小主题《熬夜的危害》，这个主题向的笔记，我称之为「<strong>主题笔记</strong>」，主题既可以是纯知识型的笔记，也可以是实践型的项目笔记，主题笔记起统筹主题下所有信息的作用。然后在主题笔记下通过块引来引用或新建相关的笔记，与主题相关的笔记，我喜欢称之为「<strong>概念笔记」，</strong> 概念笔记的理念类似于卡片笔记，卡片笔记侧重将一个名词模块化，解释清楚，便于复用，但概念笔记并仅仅停留在卡片，如果一篇概念笔记的内容已经积累太多了，是可以直接升级为主题笔记进行拆解和内容补充的。主题笔记和概念笔记的想法参考了L先生的INKP笔记法，在他的《打开心智》一书中有具体阐述。</p>
+<p>管理链接的形式主要有下面几种：</p>
+<ul>
+<li>列表型MOC</li>
+<li>表格型MOC</li>
+<li>数据库型MOC</li>
+<li>白板型MOC</li>
+</ul>
+<p>我会以《神经科学》这个主题笔记为例，介绍自己是怎么在思源笔记里使用 MOC 收集和管理笔记的。</p>
+<p>首先，我一般会给主题笔记的标题<strong>添加 @ 前缀</strong>，以区分概念笔记，并且添加 @ 前缀也有利于快速搜索，因为我搜“神经科学”可能会搜到其他概念笔记，而搜“@神经科学”就可以直接命中这篇主题笔记。并且我如果未来要搜索关于神经科学下的概念笔记，比如《神经科学经典教科书》这篇笔记直接搜索不到，也可以通过搜索《@神经科学》这篇主题笔记去寻找。</p>
+<p>然后，我就会在《@神经科学》这篇主题笔记，存放所有关于神经科学的笔记。我最常用的管理链接的方式是列表，因为列表创建非常方便、可以轻松实现层级分类、层级折叠。</p>
+<p>列表管理笔记索引的方式，可以单纯用列表管理这些索引，如果有些笔记暂时还没记录、还不了解、或者觉得很简单没必要升级为一篇笔记，可以单纯用文字记录、占位，之后有需要再块引新建文档（是的，<strong>我不会先在文档树找个位置新建文档</strong>，然后把笔记链接丢在主题笔记，而习惯直接在主题笔记通过「<strong>块引新建文档</strong>」直接新建文档）。例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [[概念笔记1]]</span><br><span class="line"><span class="bullet">-</span> [[概念笔记2]]</span><br><span class="line"><span class="bullet">-</span> [[概念笔记3]]</span><br><span class="line"><span class="bullet">-</span> 简单概念4</span><br><span class="line"><span class="bullet">-</span> 待了解概念5</span><br></pre></td></tr></table></figure>
+<p>也可以在索引后添加内容概括，甚至添加引用关系。例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [[方法1]] 通过方式 A 给出了解决方法。</span><br><span class="line"><span class="bullet">-</span> [[方法2]] 从 B 的角度分析 [[方法1]] 的原理，并用 C 改进了方案，提高了方法的成功率。</span><br><span class="line"><span class="bullet">-</span> [[方法3]] 用 [[理论7]] 降低了 [[方法1]] 的使用成本。</span><br><span class="line"><span class="bullet">-</span> [[方法4]] 通过方式 D 给出的一种解决办法。</span><br><span class="line"><span class="bullet">-</span> [[方法5]] 将 [[方法1]] 与 [[方法4]] 结合，继承了二者各自的优势。</span><br><span class="line"><span class="bullet">-</span> [[文献6]] 对这些方法所试图解决的问题 I 进行了反思，提出在情况 E 下，这个问题可以用方式 F 直接规避，也就不需要解决了。</span><br><span class="line"><span class="bullet">-</span> 注：问题 I 与 [[问题II]] 相关。</span><br></pre></td></tr></table></figure>
+<p>当主题笔记的记录变多时，可以对其下的内容进行更细致的分类。如果某一分类的内容足够多，也可以考虑将其独立为一个新的 MOC，并在原来的 MOC 里留下指向这个新 MOC 的链接。 例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> 类型 A</span><br><span class="line"><span class="bullet">    -</span> [[概念笔记1]] （概括）</span><br><span class="line"><span class="bullet">    -</span> [[概念笔记2]] （概括）</span><br><span class="line"><span class="bullet">    -</span> [[概念笔记3]] （概括）</span><br><span class="line"><span class="bullet">    -</span> 概念7：（概括）</span><br><span class="line"><span class="bullet">-</span> 类型 B</span><br><span class="line"><span class="bullet">    -</span> [[概念笔记4]]</span><br><span class="line"><span class="bullet">    -</span> [[概念笔记5]] （概括）</span><br><span class="line"><span class="bullet">-</span> 类型 C</span><br><span class="line"><span class="bullet">    -</span> [[概念笔记6]]</span><br><span class="line"><span class="bullet">-</span> [[类型 D]]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>备注：以上几个列表型MOC例子改编自：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/603647786">笔记系统：MOC（内容地图）的组织 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p>实际例子：我收集了一些神经科学方面的教材，在这里我用了列表来管理笔记，一些已经读的书、在读的书，我还可以直接在 MOC 里添加一些网页资料。</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_22-54-07-20240511225409-wjv8hdc.png"></div></div>
+<p>由于《神经系统组成》这个概念比较大、涉及的内容多，所以我将其升级为主题笔记（这里其实还是用列表型MOC，只是用了主题自带的列表转导图功能）</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-16-47-20240511231649-hfconcy.png"></div></div>
+<p>‍</p>
+<p>用表格也能管理索引，不过由于思源笔记不少主题提供了列表转表格功能，再加上目前思源笔记有数据库功能，可以当成高级表格使用，我就比较少用表格了。下面是一个用表格管理链接的例子：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-05-11_23-29-41-20240511232949-m7t1zcg.png"></div></div>
+<p>而数据库这个功能在笔记管理上，除了可以当成高级表格使用外，思源笔记还有一个特色功能——「<strong>添加到数据库</strong>」，可以很轻松的将一个笔记放进<strong>多个数据库里</strong>，于是目前数据库又多了一个功能——<strong>收集零散的概念笔记</strong>，创建了一个笔记之后，可以暂时不着急去思考这篇笔记要放在主题笔记的哪个位置，可以用数据库先存放这些笔记，等时机恰当再进行整理（至于是用列表整理还是就用数据库整理根据自己的喜好）。数据库尤其适合整理名词概念类的笔记，零散杂乱，用列表整理其实挺头疼的，完全不知道该放在哪里，等列表长了，也不方便查看，用数据库整理就非常的适合。</p>
+<p>「添加到数据库」功能很适合搭配渐进式笔记法，两者搭配将使得创建笔记更加无压，数据库从此变成一个类似标签的功能，我们可以快速新建一个文档，记完笔记，然后将这篇笔记添加到指定数据库，就完成了这篇笔记的记录和收集，而不用再寻找对应的主题笔记，思考这篇笔记要放在主题笔记的哪个位置。</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240511233638-yeg0o4z.png"></div></div>
+<p>而至于白板型的MOC，我暂时没有这个需求，就不多说了，可以用Excalidraw插件实现白板型MOC，或者使用外部的白板软件管理思源笔记的块Markdown链接实现。</p>
+<h3 id="用moc管理笔记的好处"><a class="markdownIt-Anchor" href="#用moc管理笔记的好处"></a> 用MOC<strong>管理笔记的好处</strong></h3>
+<ul>
+<li>
+<p><strong>任意的笔记管理方式</strong>：管理链接不受制于一个软件的文件系统，只需要它能提供链接功能，我们就可以根据自己的需要设计我们管理笔记的方式。你可以新建一个文档，用字母排序、创建时间排序管理你需要的笔记，也可以按作者排序、按领域、按主题来管理任何笔记。并且这些管理方式可以共存，同时展现。并且除了简单的层级结构以外， 你可以采用更多维度的方式来展现索引，将深层结构平铺开来，比如用表格、思维导图甚至白板管理索引。</p>
+</li>
+<li>
+<p><strong>更轻松的笔记分类方式</strong>：用链接的方式可以根据需要对笔记的链接进行分类，可以忽略这篇笔记的实际存放位置、根据需要决定这篇笔记的展示位置。笔记本体可以全部放在一个文件夹里不分层级，这样就不用再像用文件夹分类的方式，纠结这篇笔记属于哪个分类，觉得这个笔记和某个 MOC 有关，就丢进去，以后觉得无关再删除这条笔记链接，就完成了笔记分类删除。</p>
+</li>
+<li>
+<p><strong>笔记多分类和知识图谱</strong>：通过粘贴链接，让一个笔记出现在多个 MOC 里，实现笔记多分类。一个 MOC 笔记可以放入其他多个 MOC 笔记里，层层嵌套，笔记之间形成多对多的关系，最终形成自己的知识图谱。</p>
+</li>
+<li>
+<p><strong>轻松复用过去的笔记</strong>：MOC 推崇管理链接，所以可以直接引用过去的笔记，实现知识复用，有利于知识复利。</p>
+</li>
+<li>
+<p><strong>引用外部链接，汇集更多信息</strong>：可以引用内部的笔记链接，也可以引用外部的链接，比如网页链接、其他软件的笔记和项目链接，笔记软件的链接也可以被外部软件引用。把所有需要的信息，无论是这个笔记软件的还是其他软件的，都整理在一起，而且由于他们都是链接，彼此非常统一。</p>
+</li>
+<li>
+<p><strong>兼容自上而下管理和自下而上的渐进式积累</strong>。MOC管理笔记，推崇以自上而下为主，自下而上为辅的笔记管理。自上而下就是先通过积累形成若干个主题，再从这些主题出发，想清楚自己缺少什么，需要去弥补什么，然后有意识地去获取知识来填充这些主题，完善这些主题。自下而上则是先积累素材，再组装成型。MOC可以和双链笔记的dailynote笔记法（渐进式笔记法）相兼容。举例，我今天学习了通货膨胀的相关笔记，但是对于经济学的我其实了解很粗浅，暂时没有调研计划，就先把通货膨胀这篇笔记的链接丢在《@经济学》这个主题笔记里（可以用列表或者数据库型MOC），等以后积累多了，再整理已有笔记，补充其他笔记，把这篇主题笔记给完善好。</p>
+</li>
+<li>
+<p><strong>代替标签功能</strong>：</p>
+<ul>
+<li>可以在概念笔记的文档顶部，块引多个主题笔记完成打标签的步骤，可以在主题笔记的反链面板看到这些概念笔记，如果嫌弃用块引的方式打标签不仅仅污染笔记内容，反链面板管理笔记也不方便，可以选择思源笔记的数据库来代替标签功能。只需要点击「点击到数据库」功能，选择对应数据库就完成打标签的步骤，一篇笔记所属的数据库，会显示在右上方，悬浮即可查看，数据库还可以对所属条目进行排序、筛选等更高阶管理。</li>
+<li>前面提到标签分类的一大问题是会创建很多重复标签，而在思源笔记里使用 MOC 的话，很大程度是可以解决这个问题的，因为思源笔记的文档是可以设置「<strong>命名</strong>」、「<strong>别名</strong>」的，如果你创建了一个《神经科学》MOC 笔记，害怕以后会把一些笔记会记到《脑科学》、《神经生物学》笔记里，或者害怕这篇笔记之后搜索找不到，那你就给《神经科学》这个 MOC 笔记打上脑科学、神经生物学别名就好了。合并重复文档也很简单，全选 MOC 笔记的内容，然后粘贴到另一个 MOC 笔记里就好了。思源笔记还提供了「转移引用」功能，能将一篇笔记的引用转移到另一篇笔记。所以思源笔记的双链其实是可以代替标签功能的，所以你可以把这些 MOC 笔记当成标签来使用，在 MOC 笔记里对引用这些标签的内容进行整理</li>
+<li>前面也说到标签还有一个问题是信息汇聚完了，需要把标签本身转化为文档，否则难以复用，而用 MOC 的方式，本来创建的就是文档，可以直接在 MOC 笔记页面把汇聚的信息整理，MOC笔记还能引用其他MOC笔记，很方便复用。</li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+<h2 id="moc面向主题地组织信息"><a class="markdownIt-Anchor" href="#moc面向主题地组织信息"></a> MOC：面向主题地组织信息</h2>
+<p>MOC 的另一个核心理念，在于<strong>面向主题地组织信息</strong>。使用MOC管理笔记，会让你养成「<strong>面向主题</strong>」的笔记习惯，「<strong>以问题为导向</strong>」、「<strong>以行动为导向</strong>」去收集信息、整理信息，这能让使用者更多地去主动思考我需要什么、我学到了什么、还有哪些不足，而不是被动地接收信息，只是停留在收集信息这个粗浅水平上。</p>
+<p>前面《@神经科学》主题笔记就是一个主题，我将所有我记的关于神经科学的笔记都汇总在这里，但是其实《@神经科学》这个主题很大，已经是一个领域了，其实管理很费劲。</p>
+<p>很多时候，<strong>我们可以拆解大领域为一个个个小主题。</strong> 比如我，最近比较关心睡眠这个主题，那我就新建《@睡眠》这个主题笔记，收集所有我感兴趣的信息，如睡眠周期、睡眠与肌电脑电关系、古往今来对梦的认识、熬夜危害等等话题，其中我对熬夜危害特别感兴趣，因为自己总是熬夜，想通过了解危害让自己不敢熬夜。<strong>那我可以将熬夜升级为主题笔记</strong>，在《@睡眠》笔记下块引创建《@熬夜》这篇主题笔记，收集关于熬夜的各种信息，如经常熬夜会有哪些危害、熬夜之后补觉有没有用、同样的睡眠时间早起还是晚睡对身体危害更大等信息。</p>
+<p>这就是「面向主题」的思想——<strong>针对当前感兴趣的主题有目的地去汇总、组织信息。</strong> 传统通过文件夹、标签管理笔记的方式，<strong>只是将单篇笔记进行分类归档，一个文件夹、一个标签下的笔记之间的关系实际还是零乱随意的</strong>。而将一个主题的信息整合在一篇「主题笔记」里，通过建立一个个的主题笔记，我们不再仅仅局限于查看一条条具体的概念笔记，而是可以站在一个更高的视角，<strong>以一种更有概括性的方式来回顾所有的笔记，思考这些笔记之间的关系是什么，帮助大脑为主题知识构建良好的线索，在脑海里建立起知识地图，更有序、更持久地将信息保留在脑中。</strong></p>
+<p>然而，「面向主题」的魅力不仅仅在此。</p>
+<p>许多人并不知道自己想要什么、需要什么，自己的知识缺口是什么，而是被动地接收各种渠道推送过来的信息，漫无目的地去浏览、学习。这就导致这些信息难以与生活建立关联，无法发挥真正的价值。</p>
+<p>「面向主题」的学习，是一种有目的地主动学习、主动阅读，<strong>主动学习非常重要</strong>。被动接收信息，容易让自己患上「<strong>数字囤积症</strong>」，陷入「<strong>收藏者谬误</strong>」，以为收藏到就是学习到，只收集不思考，勤于分类，却懒于产出自己的观点。你有没有发现，当存在迫切的目标或 ddl，收集信息、做事就会特别快，并且完成确切的目标之后会特别有成就感，这就是主动学习的魅力。比起无目的地被动接受信息，主动学习可以更加高效、可以进行更加深入的思考，并且主动学习的内容是与我们自身相关的，能与自身建立关联，建立起记忆，有回忆和情感价值。更进一步地，有目的地收集一个主题的信息，而不是零散的收集五花八门的信息，能让自己在一个主题内有系统完整地学习，更好的吸收信息内化成个人观点、理清各个概念之间的联系，形成系统的知识体系。所谓的知识管理，我认为是<strong>想知道答案去主动探索知识，经过长时间有目的有方向地积累后，形成自己独到的知识体系，而非被动接收信息而不消化，或是搭建起精致的分类体系，对信息分门别类、热衷于囤积信息，却没有产出。</strong></p>
+<p>很多人记笔记有几个误区：</p>
+<ul>
+<li><strong>认为笔记记得越多越好</strong>。其实笔记的数量和自己的认知提升没有正相关性，如果这些笔记乱七八糟，来自各种领域，非常零散，你只是记录没有思考、吸收、转化为自己的观点，那么这些笔记或许对你有害无益，你以为你记了就知道了，把「持有」当成了「拥有」，实际上别人一问依然只能含含糊糊回答。</li>
+<li><strong>认为新建一篇笔记，我就要将其分类，分的越细致越好</strong>，于是使用图书馆分类法等复杂的分类管理系统来进行笔记分类。然而知识的价值并不体现在它的组织和分类形式上，而是体现在它是否能对与你相关的人或事产生影响。</li>
+</ul>
+<p>使用了MOC来管理我的笔记后，我发现：</p>
+<p><strong>不应该推崇笔记的数量</strong>。笔记的数量并不代表一个人的知识丰富程度，主题笔记才能代表个人的知识体系。我们的目标应该是努力丰富和完善主题笔记，而不是去积累大量零散、不相关的概念笔记，积累概念笔记是过程，而非结果。</p>
+<p><strong>使用图书馆分类法管理笔记进而维护起精致却庞杂的个人笔记分类体系其实没有必要，反而或许弊大于利。</strong> 过于执着分类很容易让人对各个领域都<strong>浅尝辄止</strong>，容易让我热衷于囤积与当下目标并不相关的信息，热衷于把信息存放在一个个分类目录下。这就会导致，看似笔记井井有条，搭建了一个精致完善的分类体系，实则脑子里却没有形成自己的知识体系。看似什么都懂实际什么都不精，只知其然，而不知其所以然，没有专精自己真正应该掌握的专业领域。记录的很多信息其实网上一搜就有答案，没有对信息进行更进一步的加工，没有和其他的笔记联动起来，形成自己独有的见解。浪费时间和精力记的这些笔记于自己实际的正向作用很小，记完可能就不再完善了，还容易在整理笔记上花费太多时间甚至影响自己的工作效率。</p>
+<p>所以<strong>我推崇「面向主题地管理笔记」而不推崇用图书馆分类法搭建个人图书馆</strong>。我建议是根据自己的兴趣爱好、职业领域去长期且持续关注若干主题，建立若干相关项目，有的放矢，长期持续地去主动积累相关信息、积累自己的见解，真正对某些领域有所深刻了解。我一直都非常羡慕视频网站上的一些博主，他们可以有计划的罗列选题，然后安排时间去学习了解，制作视频，一些选题或许过去他们并不了解，却通过几周的调研查找资料，最终能向观众简单科普概念、介绍原理。我也很想成为这样的人，而他们这种方式其实就是面向主题地去执行任务。</p>
+<p>此外，随着AIGC时代的到来，很多知识我们是可以直接问AI的，加速我们对信息的处理效率。但是有一点是AI没办法帮我们做的，那就是建立知识之间的关系、创造独属于个人的见解。而主题笔记实际上就是我们大脑的工作台，通过随心所欲把相关笔记拆散、排布、组合，组装出自己的看法。只要打开这篇主题笔记，自己所有关于这个话题已知的知识，整理的领域内最新的前沿进展以及个人在学习过程中的心得感悟就全都在里面了，一目了然。这就是独属于自己的知识财富，不仅代表着自己独到的思考，还蕴含着自己的回忆和感情，这是网页搜索引擎和AI无法替代和产出的。</p>
+<h2 id="moc学以致用而不是纸上谈兵"><a class="markdownIt-Anchor" href="#moc学以致用而不是纸上谈兵"></a> MOC：学以致用而不是纸上谈兵</h2>
+<p><strong>MOC还与PARA信息管理系统的理念相辅相成</strong>。PARA系统是由 Tiago Forte 提出的一种管理信息的方法，将笔记内容划分为四个部分：Projects（项目）、Areas（领域）、Resources（资源）和 Archives（归档），它点明了“<strong>实践就是知识的最终归宿，知识必须有利于推进项目，否则便是有害无益的</strong>”，推崇以行动为导向。而MOC则给予了笔记管理的具体方式，展示以主题为导向组织笔记的优势。</p>
+<p>搭建一个精致的分类体系，会让使用者倾向于囤积信息，而非「以我为主，为我所用」。「以我为主，为我所用」的意思是说，一切我们所学到的知识，最终都是为了更好地增进对这个世界的理解，指导我们的行动。只有能够落实到实践中，能够用起来的知识，才是有意义的。无法用起来的知识，囤积在笔记里、记忆里，最终都会慢慢蒙尘，成为被遗忘在仓库里的陈旧累赘。</p>
+<p>很多人其实很热衷于笔记分类，我过去也是。为什么要进行笔记分类呢？我想笔记分类有两个目的，一方面是为了方便汇聚信息进行思考，另一方面则是为了未来方便查找到笔记。而面向主题的笔记管理方式，完全能起到这两个作用，并且管理笔记会更轻松——<strong>创建一个主题笔记最重要的是把这个主题笔记完善好，不用再去在乎这个主题笔记属于哪个分类目录下。</strong> 你只需要专注把这个主题下的所有信息汇总、组织起来，经过消化吸收、整理思考，得到自己的观点，能切实对自己的生活、工作有改善，这就足够了。举例，《@熬夜》这篇主题笔记属于哪个分类，属于 <code>健康</code> 还是 <code>神经科学</code>，都无所谓，只要你能保证以后需要能找到这篇笔记就行，最重要的是有没有用这篇笔记正确认识到熬夜的危害，养成更健康的作息习惯。《@学习Solidworks制图》这篇主题笔记属于<code>软件学习</code>还是<code>研究生学习</code>分类，也不重要，重要的是经过学习之后，能否建立一些模型，并3D打印出来。<strong>与其纠结某个主题属于哪个分类，怎么把笔记弄得看起来井井有条，不如多对实际的主题内容进行思考，产出自己的观点，做出实际成绩，切实去改变自己，让自己变得更优秀、身体变得更健康、生活变得更顺心，这才是更重要的。</strong></p>
+<p>我现在的笔记管理方式就是PARA系统与MOC管理方式组合使用，先明确自己的领域是什么，兴趣是什么，列出对自己当下重要的主题，制作项目执行计划，通过“实践→复盘→完善笔记→再去实践”的正向反馈循环，渐进式完善相关主题笔记，在前进过程中实现认知和能力的升级。</p>
+<p>“<strong>学以致用</strong>”这个成语早就告诉我们，应该是为了实际应用去学习知识，而不是让学习的知识在收藏夹积灰，只是把记笔记当成一个消磨时间的兴趣爱好。所有的知识，如果只是放在那边囤积起来，它是永远都无法发挥作用的。唯有让知识流动起来，一遍又一遍地经过你的思考，不断完善、修改、丰富自身，指导我们的实践，并从中获得反馈再次自我完善，才能真正地创造价值！</p>
+<h2 id="使用-moc-可能出现的问题"><a class="markdownIt-Anchor" href="#使用-moc-可能出现的问题"></a> 使用 MOC 可能出现的问题</h2>
+<h3 id="我使用思源笔记基于moc管理笔记的相关设置"><a class="markdownIt-Anchor" href="#我使用思源笔记基于moc管理笔记的相关设置"></a> 我使用思源笔记基于MOC管理笔记的相关设置</h3>
+<p>我只使用一个笔记本，<strong>我新建文档不是在文档树找一个适当地方新建，而是直接在MOC页面，选中以前感兴趣的概念和问题，使用「块引新建文档」功能新建文档</strong>，为此我对笔记本进行了设置，使得新建文档、块引新建文档都统一按月存放：</p>
+<ul>
+<li>块引新建文档路径：<code>/Notes/&#123;&#123;now | date "2006/2006-01"&#125;&#125;/</code></li>
+<li>通过页签/Ctrl+N 新建文档的存放路径：<code>/Notes/&#123;&#123;now | date "2006/2006-01"&#125;&#125;/&#123;&#123;now | date "2006-01-02 15:04:05"&#125;&#125;</code></li>
+</ul>
+<p>这样我就可以专心在 MOC 页面块引新建文档，不需要考虑这些新建文档的存放位置了。</p>
+<h3 id="要放弃文件夹和标签只用-moc-管理笔记吗"><a class="markdownIt-Anchor" href="#要放弃文件夹和标签只用-moc-管理笔记吗"></a> 要放弃文件夹和标签，只用 MOC 管理笔记吗</h3>
+<p>不必非此即彼，<strong>一个健康的笔记管理系统应该使用多种功能、多种理念</strong>。MOC 也不是完全没有缺点。</p>
+<p>我自己使用 MOC 管理笔记，新建概念笔记可以不在乎存放的路径，但是新建一个领域的MOC 我还是需要考虑下的，比如说 《@神经科学》、《@光学》，我喜欢在笔记本建立一个主题文档，将这些 MOC 笔记丢进去。并且目前思源笔记对 MOC 笔记的导出也不够友好，导出 Markdown 只能以脚注形式导出。所以你如果经常需要导出笔记分享给别人，可能需要斟酌下（期待官方或者大佬开发相关功能）。</p>
+<p>MOC 管理笔记有一个日常使用问题，笔记导航如何持续存在于可视界面。用文件夹思维进行分类，文档树就是一个笔记导航，一直固定在一侧，这篇笔记看完，通过文档树可以去打开其他笔记。而使用 MOC，其实你的笔记导航是一篇笔记，你如果需要这个导航一直固定在一侧，就需要 MOC 笔记一直不关闭，比较好的方案是通过分屏来打开主题下的一篇笔记或者干脆悬浮查看笔记，如果不分屏的话，MOC 笔记可能被关闭、被其他笔记顶出可视区域，要看其他主题下的笔记，就又得找到这个 MOC 笔记。</p>
+<p>MOC管理笔记还有一个问题，通过概念笔记要回到主题笔记不是那么方便，要么在概念笔记里放主题笔记的链接，要么通过概念笔记的反向链接面板找到主题笔记，但是这都很麻烦。<strong>我现在喜欢在主题笔记里建立一个数据库MOC</strong>，把概念笔记放进去，这样概念笔记就可以通过文档显示的所属数据库快速找到相关主题笔记。数据库管理笔记其实很灵活，可筛选和排序，只是不方便管理具有层级关系的笔记，这时候其实把数据库当成Inbox收集箱，等时机恰当，再批量复制块引用，用列表MOC来管理笔记。</p>
+<p>标签很大程度上是可以被 MOC 笔记代替的，MOC 可以代替标签的汇总功能，还能在笔记里对汇总信息进行整理，只会比用标签管理笔记更好。所以我现在几乎没有使用标签功能。</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@nickmilo22/in-what-ways-can-we-form-useful-relationships-between-notes-9b9ec46973c6">In what ways can we form useful relationships between notes? | by Nick Milo | Medium</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/603635401">笔记间关联方式：文件夹，标签，双链与 MOC - 知乎 (zhihu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/603647786">笔记系统：MOC（内容地图）的组织 - 知乎 (zhihu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/deerain/gannbs/hb0gsd">MOC - 管理链接而非本体 (yuque.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/wWkLV8MVzMm_XF1ES7ljCQ">双链其实不重要！详解双链笔记的管理核心 (qq.com)</a></li>
+</ul>
+<p>‍</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/why-write-a-diary-hhfd6.html">为什么要写日记？</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/matlab-optimization-abnormal-processing-fprintf-s-wonderful-use-z2wefdb.html">Matlab 优化异常处理：fprintf的妙用</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="Achuan-2/Achuan-2.github.io" data-repo-id="R_kgDOIT0sJw" data-category="Q&A" data-category-id="DIC_kwDOIT0sJ84CSMyl" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">项目</span><a href="/wiki/">None</a></div><div class="sitemap-group"><span class="fs15">社交</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs15">更多</span><a target="_blank" rel="noopener" href="https://github.com/Achuan-2/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Achuan-2</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#moc-%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-text"> MOC 的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E5%92%8C%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E7%9A%84%E5%BC%8A%E7%AB%AF"><span class="toc-text"> 文件夹和标签管理笔记的弊端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text"> 文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE"><span class="toc-text"> 标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B1%E7%AE%A1%E7%90%86%E6%96%87%E4%BB%B6%E5%92%8C%E5%86%99%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%BE%97%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-text"> 由管理文件和写代码获得的启示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#moc%E7%AE%A1%E7%90%86%E9%93%BE%E6%8E%A5%E8%80%8C%E9%9D%9E%E6%9C%AC%E4%BD%93"><span class="toc-text"> MOC：管理链接而非本体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8moc%E7%9A%84%E5%89%8D%E6%8F%90"><span class="toc-text"> 使用MOC的前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E9%93%BE%E6%8E%A5"><span class="toc-text"> 怎么管理笔记链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8moc%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-text"> 用MOC管理笔记的好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#moc%E9%9D%A2%E5%90%91%E4%B8%BB%E9%A2%98%E5%9C%B0%E7%BB%84%E7%BB%87%E4%BF%A1%E6%81%AF"><span class="toc-text"> MOC：面向主题地组织信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#moc%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8%E8%80%8C%E4%B8%8D%E6%98%AF%E7%BA%B8%E4%B8%8A%E8%B0%88%E5%85%B5"><span class="toc-text"> MOC：学以致用而不是纸上谈兵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-moc-%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text"> 使用 MOC 可能出现的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E4%BD%BF%E7%94%A8%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0%E5%9F%BA%E4%BA%8Emoc%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE"><span class="toc-text"> 我使用思源笔记基于MOC管理笔记的相关设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A6%81%E6%94%BE%E5%BC%83%E6%96%87%E4%BB%B6%E5%A4%B9%E5%92%8C%E6%A0%87%E7%AD%BE%E5%8F%AA%E7%94%A8-moc-%E7%AE%A1%E7%90%86%E7%AC%94%E8%AE%B0%E5%90%97"><span class="toc-text"> 要放弃文件夹和标签，只用 MOC 管理笔记吗</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.28.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"giscus":{"js":"/js/services/giscus_new.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.swiper-slide img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
+<script>var posts=["/post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html","/post/a-mother-s-reflection-z17orfm.html","/post/20231104-updated-win11-23h2-1xki6y.html","/post/23-years-old-zggy4y.html","post/c873b400.html","post/8b29a079.html","/post/book-recommendation-self-study-is-the-door-craft-zja4yb.html","/post/draw-calcium-imaging-hot-pictures-with-matlab-and-use-kmeans-clustering-qp7bq.html","/post/groupy-2-multi-window-management-tool-upgrade-experience-ocrer.html","/post/how-does-matlab-convert-graphics-into-outline-zo6ihg.html","/post/how-does-matlab-turn-the-image-to-uint8-z29w8nb.html","/post/how-do-you-know-what-you-took-by-automatic-vending-machine-jeapx.html","/post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html","/post/how-to-give-the-roi-number-in-mask-zm8e9p.html","/post/how-to-use-abbyy-and-acrobat-to-add-bookmarks-and-directory-to-the-book-scanning-version-of-the-book-scanning-version-of-pdf-e6kup.html","/post/how-to-make-water-special-zi87c0.html","/post/i-ca-n-t-find-a-satisfactory-word-template-on-the-entire-network-so-i-made-one-myself-nano3.html","/post/js-dom-operation-1rrvs2.html","/post/i-finally-empty-the-circle-of-friends-oko3o.html","/post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html","/post/matlab-basic-programming-grammar-1ghj9i.html","/post/matlab-2024a-everbright-functional-writing-experience-big-upgrade-eao4i.html","/post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html","/post/matlab-background-asynchronous-execution-function-z1zmis9.html","/post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html","/post/matlab-custom-code-supports-roller-amplification-and-drag-pictures-20eamw.html","/post/matlab-different-ctrl-mouse-right-and-mouse-right-click-1f0inv.html","/post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html","/post/matlab-read-view-save-tiff-1pkevw.html","/post/matlab-reshape-scan-and-fill-in-columns-easy-to-step-on-the-pit-18flah.html","/post/matlab-superimposes-mask-a-certain-transparency-to-the-image-2seqqa.html","post/a86a49b6.html","/post/outside-the-number-glados-sign-in-baiji-is-not-easy-anymore-z2vxoy1.html","/post/python-uses-npvectorize-directional-function-to-perform-batch-processing-ipcdn.html","post/e93c4010.html","/post/scan-the-pdf-batch-with-python-batch-to-add-bookmarks-zn2z7s.html","/post/siyuan-note-use-quicker-action-to-seamlessly-link-with-zotero-zejypu.html","/post/siyuan-notes-good-partner-the-strongest-clipboard-artifact-copyq-z2grwhp.html","/post/thinking-about-waiting-power-and-order-f3swz.html","post/3bc3857.html","post/cf0a2858.html","post/f5348a5e.html","/post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html","post/c873b400.html","/post/what-is-the-color-why-can-we-see-color-1v2pq4.html","/post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html","/post/why-can-convex-lens-be-used-z1cu3qk.html","/post/write-a-wechat-public-account-article-with-markdown-zatxal.html","/post/why-can-human-eyes-see-virtual-statues-z1og6up.html","/post/why-can-small-hole-imaging-be-used-and-large-holes-cannot-be-imaged-z2rx7bz.html","post/134ab329.html","post/d2b2fba7.html","post/e977bfe7.html","post/50f47788.html","post/d766b22.html","post/6e57daa8.html","post/291034.html","post/c6467c9c.html","post/595885f1.html","post/bc4b56d9.html","post/be13a22e.html","/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html","/post/T Test.html","/post/anova-variance-analysis-g7i0c.html","/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html","/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html","/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html","/post/jiefang-poor-analysis-ancova-rxm1i.html","/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html","/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html","/post/matlab-optimization-abnormal-processing-fprintf-s-wonderful-use-z2wefdb.html","/post/my-note-management-method-in-onenote-wolai-zrqwln.html","/post/think-about-how-i-should-spend-my-day-zl38tl.html","/post/moc-manage-the-notes-link-to-the-theme-4uatt.html","/post/why-write-a-diary-hhfd6.html"];function toRandomPost(){ var randomPath = posts[Math.floor(Math.random()*posts.length)]; var encodedPath = encodeURIComponent(randomPath); window.open('/' + encodedPath, "_self"); };</script>

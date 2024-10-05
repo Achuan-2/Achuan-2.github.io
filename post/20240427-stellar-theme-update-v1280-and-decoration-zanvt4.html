@@ -1,0 +1,669 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.28.0" theme-name="Stellar" theme-version="1.28.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>Hexo stellar主题更新 v1.28.0 及个性化修改 - Achuan-2</title>
+
+  
+    <meta name="description" content="stellar 主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前的很多的自定义样式都失效了。所以又折腾了一上午，重新美化了一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo stellar主题更新 v1.28.0 及个性化修改">
+<meta property="og:url" content="http://achuan-2.top/post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html">
+<meta property="og:site_name" content="Achuan-2">
+<meta property="og:description" content="stellar 主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前的很多的自定义样式都失效了。所以又折腾了一上午，重新美化了一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-14-58-20240427121503-vlzsk3v.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_11-19-05-20240427111907-krckfdm.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20230926104442-ig83unh.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20231105162526-h0wksqr.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-43-28-20240427124338-tlz4y8f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_13-02-42-20240427130249-xfw7ivx.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240427141259-4ro3r3w.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-28_01-36-04-20240428013606-bqbi3ns.png">
+<meta property="article:published_time" content="2024-04-27T04:33:25.000Z">
+<meta property="article:modified_time" content="2024-04-27T10:36:29.000Z">
+<meta property="article:author" content="Achuan-2">
+<meta property="article:tag" content="折腾">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-14-58-20240427121503-vlzsk3v.png">
+  
+  
+  
+  <meta name="keywords" content="折腾,Hexo,博客,编程,前端">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Achuan-2" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.28.0">
+
+  
+    <link rel="shortcut icon" href="/assets/ico/favicon.svg">
+  
+
+  
+
+  <script src="/js/random.js"></script><link href="/css/appearence.css" rel="stylesheet"><link href="/css/tagcolor-switch.css" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bofeng/hyksk_webfont/dist/hyksk.css" /><link href="/css/scrollbar.css" rel="stylesheet"><link rel="preconnect" href="https://s1.hdslb.com/" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/ico/Achuan.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Achuan-2</div><div class="sub normal cap">一条没有故事的巛</div><div class="sub hover cap" style="opacity:0"> 闪闪发亮，闪闪发亮</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/"><span>博客</span></a><a class="nav-item" title="友链" href="/friends/"><span>友链</span></a><a class="nav-item" title="关于" href="/about/"><span>关于</span></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/post/jiefang-poor-analysis-ancova-rxm1i.html"><span class="title">协方差分析 (ANCOVA)</span></a><a class="item title" href="/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html"><span class="title">生活窍门丨为什么油性笔可以写在塑料上</span></a><a class="item title" href="/post/anova-variance-analysis-g7i0c.html"><span class="title">ANOVA方差分析</span></a><a class="item title" href="/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html"><span class="title">Matlab 深度学习丨基于ResNet的新冠肺炎X光胸片检测</span></a><a class="item title" href="/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html"><span class="title">沉浸式翻译终于支持富文本翻译了</span></a><a class="item title" href="/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html"><span class="title">JS丨MutationObserver（DOM 变动观察器）</span></a><a class="item title" href="/post/T%20Test.html"><span class="title">统计分析丨T检验</span></a><a class="item title" href="/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html"><span class="title">MATLAB 深度学习丨可视化卷积神经网络CNN的激活图</span></a><a class="item title" href="/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html"><span class="title">Matlab 深度学习丨使用深度学习对网络摄像头图像进行分类</span></a><a class="item title" href="/post/why-write-a-diary-hhfd6.html"><span class="title">为什么要写日记？</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Achuan-2/" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/icon-park/github.svg"/></a><a class="social" href="https://music.163.com/#/user/home?id=111010025" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/ri:netease-cloud-music-line.svg"/></a><a class="social" href="/about/#comments" rel="noopener noreferrer"><img src="https://api.iconify.design/bx/comment-detail.svg"/></a><a class="social" href="mailto:achuan-2@outlook.com" rel="noopener noreferrer"><img src="https://api.iconify.design/clarity/email-outline-badged.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/">其他笔记</a></div><div id="post-tag" style="margin: 5px 0px;"> <span>&nbsp标签：</span><a class="cap breadcrumb-link" href="/tags/Hexo/">Hexo</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E6%8A%98%E8%85%BE/">折腾</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp</div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-04-27T04:33:25.000Z">2024-04-27 12:33</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-04-27T10:36:29.000Z">2024-04-27 18:36</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Hexo stellar主题更新 v1.28.0 及个性化修改</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>Hexo stellar 主题有段时间大改样式，当时没时间更新主题。感觉现在主题比较稳定了，终于找到时间把主题更新一下。由于stellar经过作者大改，我之前写的很多自定义样式都失效了。所以折腾了一上午，重新美化了一下。希望自己以后坚持每周都写一篇博客吧🐦。</p>
+<h2 id="博客界面"><a class="markdownIt-Anchor" href="#博客界面"></a> 博客界面</h2>
+<h3 id="目前的博客样式"><a class="markdownIt-Anchor" href="#目前的博客样式"></a> 目前的博客样式</h3>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-14-58-20240427121503-vlzsk3v.png" alt="主页"></div><div class="image-meta"><span class="image-caption center">主页</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_11-19-05-20240427111907-krckfdm.png" alt="文章内"></div><div class="image-meta"><span class="image-caption center">文章内</span></div></div>
+<h3 id="之前的历史快照"><a class="markdownIt-Anchor" href="#之前的历史快照"></a> 之前的历史快照</h3>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20230926104442-ig83unh.png" alt="2023.09.26"></div><div class="image-meta"><span class="image-caption center">2023.09.26</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20231105162526-h0wksqr.png" alt="2023.11.05"></div><div class="image-meta"><span class="image-caption center">2023.11.05</span></div></div>
+<h2 id="目前我是怎么发hexo博客的"><a class="markdownIt-Anchor" href="#目前我是怎么发hexo博客的"></a> 目前我是怎么发Hexo博客的</h2>
+<p>现在我基本是使用「<a target="_blank" rel="noopener" href="https://github.com/siyuan-note/siyuan">思源笔记</a>」来管理笔记和写博客，这是一个管理和编辑体验很好的双链笔记软件。思源笔记有一个「<a target="_blank" rel="noopener" href="https://github.com/terwer/siyuan-plugin-publisher">发布工具</a>」插件，可以很便捷的把思源笔记里的文章上传到各个平台，非常省心，再结合思源笔记的数据库功能可以很方便的管理发布的文章。</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_12-43-28-20240427124338-tlz4y8f.png" alt="发布工具"></div><div class="image-meta"><span class="image-caption center">发布工具</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-27_13-02-42-20240427130249-xfw7ivx.png" alt="用思源笔记的数据库来管理博客文章"></div><div class="image-meta"><span class="image-caption center">用思源笔记的数据库来管理博客文章</span></div></div>
+<h2 id="代码更改记录"><a class="markdownIt-Anchor" href="#代码更改记录"></a> 代码更改记录</h2>
+<h3 id="markdown图片title标题失效"><a class="markdownIt-Anchor" href="#markdown图片title标题失效"></a> Markdown图片title标题失效</h3>
+<p>Markdown 的完整图片语法是 <code>![anchor text](img_src &quot;title&quot;)</code>，一些笔记软件像语雀、思源笔记目前都是支持解析title作为图片标题的，一些hexo主题如butterfly应该也是支持的（也是我提的建议）。</p>
+<p>stellar之前是接受了我的<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/commit/4be3e6e123b7d22f00d5a4d419c954bb2557cf67">pull request</a>，可以解析Markdown的图片title语法作为图片标题，</p>
+<p>但现在直接把解析Markdown标题的删掉了（见<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/issues/340">issue讨论</a>，<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/commit/e92cb81296e34e85d54bf26f35b6eda83d78b534">代码改动</a>）。</p>
+<p>作为基本只用Markdown语法写博客的人来说，实在太不友好了，所以又把删掉的代码给加了回来。</p>
+<p>并且改进了下 <code>themes\stellar\scripts\filters\index.js</code>，减少误替换的情况发生。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;after_render:html&#x27;</span>, <span class="built_in">require</span>(<span class="string">&#x27;./lib/img_lazyload&#x27;</span>).<span class="property">processSite</span>);</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;after_render:html&#x27;</span>, <span class="built_in">require</span>(<span class="string">&#x27;./lib/img_onerror&#x27;</span>).<span class="property">processSite</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">change_image</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">theme</span>.<span class="property">config</span>.<span class="property">tag_plugins</span>.<span class="property">image</span>.<span class="property">parse_markdown</span>) &#123;</span><br><span class="line">        <span class="comment">// Step 1: 删除所有零宽空格字符</span></span><br><span class="line">        data.<span class="property">content</span> = data.<span class="property">content</span>.<span class="title function_">replace</span>(<span class="regexp">/\u200B/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Step 2: 修改正则表达式，只在行首或前面只有空格和缩进时替换图片链接</span></span><br><span class="line">        data.<span class="property">content</span> = data.<span class="property">content</span>.<span class="title function_">replace</span>(</span><br><span class="line">            <span class="regexp">/^(?:\s*)!\[(.*?)\]\((.*?)\s*(?:&quot;(.*?)&quot;)?\)/gm</span>,</span><br><span class="line">            <span class="string">&#x27;&#123;% image $2 $3 %&#125;&#x27;</span></span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;before_post_render&#x27;</span>, change_image, <span class="number">9</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="添加分类-widget"><a class="markdownIt-Anchor" href="#添加分类-widget"></a> 添加分类 widget</h3>
+<p>这样在主页就知道自己文章有多少分类了</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20240427141259-4ro3r3w.png"></div></div>
+<p>‍</p>
+<p>在 <code>/themes/stellar/layout/_partial/widgets/</code> 下新建 <code>categories.ejs</code>，填入以下内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">function</span> <span class="title function_">layoutCategoriesDiv</span>(<span class="params"></span>) &#123; <span class="keyword">var</span> el=<span class="string">&#x27;&#x27;</span> ; <span class="keyword">if</span> (site.<span class="property">categories</span>===<span class="literal">undefined</span> || site.<span class="property">categories</span>.<span class="property">length</span>===<span class="number">0</span>) &#123; <span class="keyword">return</span></span><br><span class="line">    el; &#125; <span class="keyword">var</span> opts=<span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, item); <span class="keyword">delete</span> opts[<span class="string">&#x27;title&#x27;</span>]; <span class="keyword">delete</span> opts[<span class="string">&#x27;layout&#x27;</span>]; opts.<span class="property">class</span>=<span class="string">&#x27;category &#x27;</span> ;</span><br><span class="line">    el+=<span class="string">`&lt;widget class=&quot;widget-wrapper<span class="subst">$&#123;scrollreveal(<span class="string">&#x27; &#x27;</span>)&#125;</span> categories-widget&quot;&gt;`</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (item.<span class="property">title</span>) &#123;</span><br><span class="line">    el += <span class="string">&#x27;&lt;div class=&quot;widget-header categories-header dis-select&quot;&gt;&#x27;</span>;</span><br><span class="line">        el += <span class="string">&#x27;&lt;span class=&quot;name&quot;&gt;&#x27;</span> + item.<span class="property">title</span> + <span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">        el += <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    el += <span class="string">&#x27;&lt;div class=&quot;widget-body&quot;&gt;&#x27;</span>;</span><br><span class="line">        <span class="comment">// Generate categories list</span></span><br><span class="line">        site.<span class="property">categories</span>.<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params">category</span>) &#123;</span><br><span class="line">        el += <span class="string">`&lt;div class=&quot;<span class="subst">$&#123;opts.<span class="keyword">class</span>&#125;</span>&quot;&gt;`</span>;</span><br><span class="line">            el += <span class="string">`&lt;svg class=&quot;category-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;16&quot; height=&quot;16&quot;</span></span><br><span class="line"><span class="string">                viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;&gt;</span></span><br><span class="line"><span class="string">                &lt;path d=&quot;M18 10h-5&quot; opacity=&quot;.5&quot; /&gt;</span></span><br><span class="line"><span class="string">                &lt;path d=&quot;M10 3h6.5c.464 0 .697 0 .892.026a3 3 0 0 1 2.582 2.582c.026.195.026.428.026.892&quot;</span></span><br><span class="line"><span class="string">                    opacity=&quot;.5&quot; /&gt;</span></span><br><span class="line"><span class="string">                &lt;path</span></span><br><span class="line"><span class="string">                    d=&quot;M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z&quot; /&gt;</span></span><br><span class="line"><span class="string">            &lt;/svg&gt;`</span>;</span><br><span class="line">            el += <span class="string">`&lt;a href=&quot;<span class="subst">$&#123;url_for(category.path)&#125;</span>&quot;&gt;<span class="subst">$&#123;category.name&#125;</span> (<span class="subst">$&#123;category.length&#125;</span>)&lt;/a&gt;`</span>;</span><br><span class="line">            el += <span class="string">`&lt;/div&gt;`</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        el += <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line">    el += <span class="string">&#x27;&lt;/widget&gt;&#x27;</span>; <span class="comment">// Close widget-wrapper</span></span><br><span class="line">    <span class="keyword">return</span> el;</span><br><span class="line">    &#125;</span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;%- <span class="title function_">layoutCategoriesDiv</span>() %&gt;</span><br></pre></td></tr></table></figure>
+<p>在 <code>themes/stellar/source/css/_layout/widgets/</code> 下新建 <code>categories.styl</code> 文件，填入以下内容：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">// categories widget 样式</span><br><span class="line"><span class="selector-class">.widget-wrapper</span><span class="selector-class">.categories-widget</span> <span class="selector-class">.widget-body</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: $border-card;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">12px</span> <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--alpha50); // 这里设置背景</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">2px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>); // 添加阴影效果</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">// 每个分类的样式</span><br><span class="line"><span class="selector-class">.category</span></span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1.5</span></span><br><span class="line">  margin: <span class="number">8px</span> <span class="number">0</span></span><br><span class="line">  display: flex // 使用flex布局来确保图标和文本在同一行</span><br><span class="line">  align-items: center // 垂直居中对齐</span><br><span class="line"></span><br><span class="line">.category-icon</span><br><span class="line">  width: <span class="number">16px</span></span><br><span class="line">  height: <span class="number">16px</span></span><br><span class="line">  vertical-align: middle</span><br><span class="line">  margin-right: <span class="number">8px</span></span><br><span class="line"></span><br><span class="line">.category a</span><br><span class="line">  display: inline-block // 链接以行内块方式显示</span><br><span class="line">  word-break: break-word</span><br><span class="line">  color: <span class="built_in">var</span>(--text-p2)</span><br><span class="line">  font-family: system-ui</span><br><span class="line">  font-weight: <span class="number">300</span></span><br><span class="line">  font-size: <span class="number">16px</span></span><br><span class="line">  text-decoration: none</span><br><span class="line">  &amp;:hover</span><br><span class="line">    color: $color-hover</span><br><span class="line">    text-decoration: underline</span><br><span class="line"></span><br><span class="line">// Variables</span><br><span class="line">$color-hover = <span class="number">#0366d6</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.flyalready.cn/Stellar%20%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E7%B4%A2%E5%BC%95%20Widget">Stellar 主题中添加分类索引 Widget - 宇宙尽头的餐馆</a></p>
+</blockquote>
+<h3 id="随机文章按钮"><a class="markdownIt-Anchor" href="#随机文章按钮"></a> 随机文章按钮</h3>
+<p>创建 <code>themes/stellar/scripts/helpers/random.js</code> ，增加以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;after_render:html&#x27;</span>, <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> posts = []</span><br><span class="line">    hexo.<span class="property">locals</span>.<span class="title function_">get</span>(<span class="string">&#x27;posts&#x27;</span>).<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">post</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (post.<span class="property">random</span> !== <span class="literal">false</span>) posts.<span class="title function_">push</span>(post.<span class="property">path</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    data += <span class="string">`&lt;script&gt;var posts=<span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(posts)&#125;</span>;function toRandomPost()&#123; var randomPath = posts[Math.floor(Math.random()*posts.length)]; var encodedPath = encodeURIComponent(randomPath); window.open(&#x27;/&#x27; + encodedPath, &quot;_self&quot;); &#125;;&lt;/script&gt;`</span></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E9%9A%8F%E6%9C%BA%E6%96%87%E7%AB%A0%E8%B7%B3%E8%BD%AC">Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆：随机文章按钮</a></p>
+<p>备注：文章路径需要用<code>encodeURIComponent</code>来编码，否则如果文章路径里有连字符，没有在前面加上域名地址，导致打开失败。</p>
+</blockquote>
+<h3 id="增强标签显示"><a class="markdownIt-Anchor" href="#增强标签显示"></a> 增强标签显示</h3>
+<p>现在相比于分类我可能会更喜欢用标签，因为一篇文章可以打多个标签。我在思源笔记里管理笔记也是用管理链接的方式而弃用了文档树分类，所以标签更符合我管理笔记的习惯。stellar默认在文章列表只显示分类，对我来说就有点难受了。</p>
+<h4 id="主页文章列表添加标签"><a class="markdownIt-Anchor" href="#主页文章列表添加标签"></a> 主页文章列表添加标签</h4>
+<p>修改<code>themes/stellar/layout/_partial/main/post_list/post_card.ejs</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// cat</span></span><br><span class="line"><span class="keyword">if</span> (post.<span class="property">categories</span> &amp;&amp; post.<span class="property">categories</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (post.<span class="property">layout</span> === <span class="string">&#x27;post&#x27;</span> &amp;&amp; post.<span class="property">categories</span> &amp;&amp; post.<span class="property">categories</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> cats = [];</span><br><span class="line">    <span class="keyword">if</span> (post.<span class="property">categories</span>) &#123;</span><br><span class="line">      post.<span class="property">categories</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">cat, i</span>) =&gt;</span> &#123;</span><br><span class="line">        cats.<span class="title function_">push</span>(cat.<span class="property">name</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (cats.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> cat = cats.<span class="title function_">shift</span>();</span><br><span class="line">      el += <span class="string">&#x27;&lt;span class=&quot;cap breadcrumb&quot;&#x27;</span> + <span class="title function_">category_color</span>(cat) + <span class="string">&#x27;&gt;&#x27;</span>;</span><br><span class="line">      el += <span class="title function_">icon</span>(<span class="string">&#x27;default:category&#x27;</span>)</span><br><span class="line">      el += <span class="string">`&lt;span&gt;<span class="subst">$&#123;cat&#125;</span>&lt;/span&gt;`</span></span><br><span class="line">      el += <span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="keyword">if</span> (post.<span class="property">sticky</span>) &#123;</span><br><span class="line">  el += <span class="string">`&lt;span class=&quot;pin&quot;&gt;<span class="subst">$&#123;icon(<span class="string">&#x27;default:pin&#x27;</span>)&#125;</span>&lt;/span&gt;`</span></span><br><span class="line">&#125;</span><br><span class="line">el += <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line"><span class="comment">// cat tags</span></span><br><span class="line">el += <span class="string">&#x27;&lt;div style=&quot;margin: 4px 0px;&quot;&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (post.<span class="property">tags</span> &amp;&amp; post.<span class="property">tags</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  el += <span class="string">&#x27;&lt;span class=&quot;cap tags&quot;&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  el += post.<span class="property">tags</span>.<span class="title function_">map</span>(<span class="function"><span class="params">tag</span> =&gt;</span> <span class="string">`&lt;span style=&quot;background-color: var(--tag-bg-color); padding: 0px 6px; margin: 0px 5px 0px 0px;border-radius: 5px; color: var(--tag-text-color); line-height: 1.5;&quot;&gt;#&lt;span&gt;<span class="subst">$&#123;tag.name&#125;</span>&lt;/span&gt;&lt;/span&gt;`</span>).<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  el += <span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">el += <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line">el += <span class="string">&#x27;&lt;/article&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">return</span> el;</span><br></pre></td></tr></table></figure>
+<p>自定义样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 默认的浅色模式颜色 */</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attr">--tag-bg-color</span>: <span class="number">#F2EEFD</span>;</span><br><span class="line">    <span class="attr">--tag-text-color</span>: <span class="number">#835EEC</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* 暗黑模式下的颜色 */</span></span><br><span class="line">  <span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">    <span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">      <span class="attr">--tag-bg-color</span>: <span class="number">#282433</span>;</span><br><span class="line">      <span class="attr">--tag-text-color</span>: <span class="number">#A28BF2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post-meta</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>; </span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--text-p4); <span class="comment">/* 或 --text-p2，设置为灰色 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="在文章页面添加标签显示"><a class="markdownIt-Anchor" href="#在文章页面添加标签显示"></a> 在文章页面添加标签显示</h4>
+<p>在 <code>layout/_partial/main/navbar/article_banner.ejs</code> 文件中，找到</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3.left.top: 面包屑导航</span></span><br><span class="line">  el += <span class="string">`&lt;div class=&quot;flex-row&quot; id=&quot;breadcrumb&quot;&gt;`</span></span><br><span class="line">    <span class="comment">// 首页</span></span><br><span class="line">    el += <span class="string">`&lt;a class=&quot;cap breadcrumb&quot; href=&quot;<span class="subst">$&#123;url_for(config.root)&#125;</span>&quot;&gt;<span class="subst">$&#123;__(<span class="string">&quot;btn.home&quot;</span>)&#125;</span>&lt;/a&gt;`</span></span><br><span class="line">    <span class="keyword">if</span> (theme.<span class="property">wiki</span>.<span class="property">tree</span>[page.<span class="property">wiki</span>]) &#123;</span><br><span class="line">      el += <span class="title function_">partial</span>(<span class="string">&#x27;breadcrumb/wiki&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (page.<span class="property">layout</span> == <span class="string">&#x27;post&#x27;</span>) &#123;</span><br><span class="line">      el += <span class="title function_">partial</span>(<span class="string">&#x27;breadcrumb/blog&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      el += <span class="title function_">partial</span>(<span class="string">&#x27;breadcrumb/page&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">// end 3.left.top</span></span><br><span class="line">  el += <span class="string">`&lt;/div&gt;`</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>并在后面添加：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在这里添加标签代码</span></span><br><span class="line"> <span class="keyword">if</span> (page.<span class="property">layout</span> == <span class="string">&quot;post&quot;</span> &amp;&amp; page.<span class="property">tags</span> &amp;&amp; page.<span class="property">tags</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">   el += <span class="string">&#x27;&lt;div id=&quot;tag&quot;&gt;&#x27;</span>; <span class="comment">// 将标签容器的创建移动到条件内部</span></span><br><span class="line">   el += <span class="string">&#x27; &lt;span&gt;&amp;nbsp标签：&lt;/span&gt;&#x27;</span>;</span><br><span class="line">   el += <span class="title function_">list_categories</span>(page.<span class="property">tags</span>, &#123;</span><br><span class="line">     <span class="attr">class</span>: <span class="string">&quot;cap breadcrumb&quot;</span>,</span><br><span class="line">     <span class="attr">show_count</span>: <span class="literal">false</span>,</span><br><span class="line">     <span class="attr">separator</span>: <span class="string">&#x27;&amp;nbsp; &#x27;</span>,</span><br><span class="line">     <span class="attr">style</span>: <span class="string">&quot;none&quot;</span></span><br><span class="line">   &#125;);</span><br><span class="line">   el += <span class="string">&#x27;&amp;nbsp&lt;/div&gt;&#x27;</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E5%9C%A8%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE%E6%98%BE%E7%A4%BA">Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆：在文章页面添加标签显示</a></p>
+</blockquote>
+<h3 id="自定义css"><a class="markdownIt-Anchor" href="#自定义css"></a> 自定义css</h3>
+<h4 id="文章内更新日期始终显示"><a class="markdownIt-Anchor" href="#文章内更新日期始终显示"></a> 文章内更新日期始终显示</h4>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 文章内更新日期始终显示 */</span></span><br><span class="line"><span class="selector-class">.bread-nav</span> <span class="selector-tag">div</span><span class="selector-id">#post-meta</span> <span class="selector-tag">span</span><span class="selector-class">.updated</span> &#123;</span><br><span class="line">    <span class="attribute">visibility</span>: visible <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义滚动条样式"><a class="markdownIt-Anchor" href="#自定义滚动条样式"></a> 自定义滚动条样式</h4>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* from https: //github.com/weekdaycare/weekdaycare.github.io/blob/main/css/scrollbar.css */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 滚动条 */</span></span><br><span class="line">::-webkit-scrollbar &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-track &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">200</span>, <span class="number">155</span>, <span class="number">155</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-thumb &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#c3c0c1</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="comment">/* background-image: -webkit-linear-gradient(45deg,</span></span><br><span class="line"><span class="comment">            rgba(255, 255, 255, 0.4) 25%,</span></span><br><span class="line"><span class="comment">            transparent 25%,</span></span><br><span class="line"><span class="comment">            transparent 50%,</span></span><br><span class="line"><span class="comment">            rgba(255, 255, 255, 0.4) 50%,</span></span><br><span class="line"><span class="comment">            rgba(255, 255, 255, 0.4) 75%,</span></span><br><span class="line"><span class="comment">            transparent 75%,</span></span><br><span class="line"><span class="comment">            transparent) !important; */</span></span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-corner &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> ::-webkit-scrollbar-thumb &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#1f1f1f</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="限制代码块的最大高度"><a class="markdownIt-Anchor" href="#限制代码块的最大高度"></a> 限制代码块的最大高度</h4>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.md-text</span> <span class="selector-class">.highlight</span> &#123;</span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">800px</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="链接样式优化"><a class="markdownIt-Anchor" href="#链接样式优化"></a> 链接样式优化</h4>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 文章内链接：为链接使用荧光笔下划线效果 */</span></span><br><span class="line"><span class="comment">/* 文章内链接 */</span></span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class]</span>) <span class="selector-tag">a</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class]</span>),</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class]</span>) <span class="selector-tag">a</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class]</span>),</span><br><span class="line"><span class="selector-tag">table</span> <span class="selector-tag">a</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class]</span>) &#123;</span><br><span class="line">  <span class="comment">/*color: var(--theme-link);*/</span></span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="number">3px</span>; <span class="comment">/* 增加底部padding */</span></span><br><span class="line">  <span class="attribute">padding-right</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">2px</span>;</span><br><span class="line"> <span class="attribute">color</span>: <span class="built_in">var</span>(--theme-link);</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(<span class="number">0</span>, <span class="built_in">var</span>(--theme-link), <span class="built_in">var</span>(--theme-link)) no-repeat center bottom / <span class="number">100%</span> <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.flyalready.cn/Hexo%20Stellar%20%E4%B8%BB%E9%A2%98%E8%A3%85%E4%BF%AE%E7%AC%94%E8%AE%B0/#%E8%B6%85%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4">Hexo Stellar 主题装修笔记 - 宇宙尽头的餐馆：超链接样式调整</a></p>
+</blockquote>
+<h3 id="添加最新评论组件"><a class="markdownIt-Anchor" href="#添加最新评论组件"></a> 添加最新评论组件</h3>
+<p>参考：<a target="_blank" rel="noopener" href="https://weekdaycare.cn/posts/twikoo-new/#giscus">Stellar展示最新评论 - 星日语 (weekdaycare.cn)</a></p>
+<p><strong>vercel app准备</strong></p>
+<ol>
+<li>
+<p>部署 repo 至 Vercel：<a target="_blank" rel="noopener" href="https://github.com/Achuan-2/recent-comment">Achuan-2/recent-comment (github.com)</a></p>
+</li>
+<li>
+<p>需要在vercel中设置环境变量</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">name</th>
+<th style="text-align:left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>LIMIT</code></td>
+<td style="text-align:left">获取数量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GITHUB_REPO_OWNER</code></td>
+<td style="text-align:left">Github用户名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GITHUB_REPO_NAME</code></td>
+<td style="text-align:left">仓库名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GITHUB_CATEGORY_ID</code></td>
+<td style="text-align:left">Discussions分类名称</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GITHUB_TOKEN</code></td>
+<td style="text-align:left">Github Access Token</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>配置完成后请redeploy！</p>
+</li>
+<li>
+<p>查看是否能正确输出最新评论的json数据</p>
+</li>
+</ol>
+<p><strong>stellar主题修改</strong></p>
+<ol>
+<li>
+<p>在 <code>theme/source/js/services/</code> 下新建 giscus_new.js</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">utils.<span class="title function_">jq</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    $(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> els = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;ds-giscus&#x27;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; els.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">const</span> el = els[i];</span><br><span class="line">            <span class="keyword">const</span> api = el.<span class="title function_">getAttribute</span>(<span class="string">&#x27;api&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span> (api == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">const</span> default_avatar = def.<span class="property">avatar</span>;</span><br><span class="line">            <span class="comment">// layout</span></span><br><span class="line">            utils.<span class="title function_">request</span>(el, api, <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">                <span class="keyword">const</span> limit = el.<span class="title function_">getAttribute</span>(<span class="string">&#x27;limit&#x27;</span>);</span><br><span class="line">                data.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (limit &amp;&amp; i &gt;= limit) &#123;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    comment = item.<span class="property">body</span>.<span class="property">length</span> &gt; <span class="number">50</span> ? item.<span class="property">body</span>.<span class="title function_">substring</span>(<span class="number">0</span>, <span class="number">50</span>) + <span class="string">&#x27;...&#x27;</span> : item.<span class="property">body</span>;</span><br><span class="line">                    <span class="keyword">var</span> cell = <span class="string">&#x27;&lt;div class=&quot;timenode&quot; index=&quot;&#x27;</span> + i + <span class="string">&#x27;&quot;&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;div class=&quot;header&quot;&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;div class=&quot;user-info&quot;&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;img src=&quot; + (item.author.avatarUrl || default_avatar) + &quot; onerror=&quot;javascript:this.src=\\&quot; + default_avatar + &quot;\\&quot;;&quot;&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;span&gt;&#x27;</span> + item.<span class="property">author</span>.<span class="property">login</span> + <span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;span&gt;&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>(item.<span class="property">createdAt</span>).<span class="title function_">toLocaleString</span>() + <span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;a class=&quot;body&quot; href=&quot;&#x27;</span> + item.<span class="property">url</span> + <span class="string">&#x27;&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener noreferrer&quot;&gt;&#x27;</span>;</span><br><span class="line">                    cell += comment;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;/a&gt;&#x27;</span>;</span><br><span class="line">                    cell += <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line">                    $(el).<span class="title function_">append</span>(cell);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>_config.stellar.yml</code>主题配置中引入</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">data_services:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">giscus:</span></span><br><span class="line">    <span class="attr">js:</span> <span class="string">/js/services/giscus_new.js</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在 <code>_data/widgets.yml</code> 中创建小组件，并在<code>_config.stellar.yml</code>中选择在哪里展示</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">new_comment:</span></span><br><span class="line">  <span class="attr">layout:</span> <span class="string">timeline</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">最新评论</span></span><br><span class="line">  <span class="attr">api:</span> <span class="string">https://xxx.vercel.app</span> <span class="comment"># 你的 vercel 函数地址</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">giscus</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">16</span> <span class="comment"># 限制获取数量，这是客户端，刚刚是服务端</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>成果展示</strong></p>
+<div class="tag-plugin image"><div class="image-bg"><img src="https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/Clip_2024-04-28_01-36-04-20240428013606-bqbi3ns.png"></div></div>
+<h3 id="fix-使用搜索功能搜到的部分文章无法打开"><a class="markdownIt-Anchor" href="#fix-使用搜索功能搜到的部分文章无法打开"></a> Fix 使用搜索功能搜到的部分文章无法打开</h3>
+<p>我目前使用思源笔记这个笔记软件的「发布工具」插件把笔记发布到hexo<br>
+发布工具支持在yaml里放永久链接</p>
+<p>由于永久链接是<code>/post/id.html</code>形式，而使用local search搜索的时候，这些文档则会打开为<code>https://post/id.html</code>,导致失败<br>
+所以需要对data.path进行检测，如果以’//'开头，则path字符串只取第二位到最后一位，使其能正常打开</p>
+<p>在<code>themes\stellar\source\js\search\local-search.js</code>进行修改</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- var dataUrl = data.path;</span></span><br><span class="line"><span class="addition">+ var dataUrl = data.path.startsWith(&#x27;//&#x27;) ? data.path.slice(1) : data.path;</span></span><br></pre></td></tr></table></figure>
+<p>已提交Pull request：<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/pull/450">https://github.com/xaoxuu/hexo-theme-stellar/pull/450</a></p>
+<p>‍</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/write-a-wechat-public-account-article-with-markdown-zatxal.html">用Markdown写微信公众号文章</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/T%20Test.html">统计分析丨T检验</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="Achuan-2/Achuan-2.github.io" data-repo-id="R_kgDOIT0sJw" data-category="Q&A" data-category-id="DIC_kwDOIT0sJ84CSMyl" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">项目</span><a href="/wiki/">None</a></div><div class="sitemap-group"><span class="fs15">社交</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs15">更多</span><a target="_blank" rel="noopener" href="https://github.com/Achuan-2/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Achuan-2</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E7%95%8C%E9%9D%A2"><span class="toc-text"> 博客界面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%A0%B7%E5%BC%8F"><span class="toc-text"> 目前的博客样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%8B%E5%89%8D%E7%9A%84%E5%8E%86%E5%8F%B2%E5%BF%AB%E7%85%A7"><span class="toc-text"> 之前的历史快照</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E6%88%91%E6%98%AF%E6%80%8E%E4%B9%88%E5%8F%91hexo%E5%8D%9A%E5%AE%A2%E7%9A%84"><span class="toc-text"> 目前我是怎么发Hexo博客的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%9B%B4%E6%94%B9%E8%AE%B0%E5%BD%95"><span class="toc-text"> 代码更改记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown%E5%9B%BE%E7%89%87title%E6%A0%87%E9%A2%98%E5%A4%B1%E6%95%88"><span class="toc-text"> Markdown图片title标题失效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB-widget"><span class="toc-text"> 添加分类 widget</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%96%87%E7%AB%A0%E6%8C%89%E9%92%AE"><span class="toc-text"> 随机文章按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E6%A0%87%E7%AD%BE%E6%98%BE%E7%A4%BA"><span class="toc-text"> 增强标签显示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E9%A1%B5%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE"><span class="toc-text"> 主页文章列表添加标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE%E6%98%BE%E7%A4%BA"><span class="toc-text"> 在文章页面添加标签显示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89css"><span class="toc-text"> 自定义css</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%86%85%E6%9B%B4%E6%96%B0%E6%97%A5%E6%9C%9F%E5%A7%8B%E7%BB%88%E6%98%BE%E7%A4%BA"><span class="toc-text"> 文章内更新日期始终显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F"><span class="toc-text"> 自定义滚动条样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9A%84%E6%9C%80%E5%A4%A7%E9%AB%98%E5%BA%A6"><span class="toc-text"> 限制代码块的最大高度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96"><span class="toc-text"> 链接样式优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E7%BB%84%E4%BB%B6"><span class="toc-text"> 添加最新评论组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fix-%E4%BD%BF%E7%94%A8%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%E6%90%9C%E5%88%B0%E7%9A%84%E9%83%A8%E5%88%86%E6%96%87%E7%AB%A0%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80"><span class="toc-text"> Fix 使用搜索功能搜到的部分文章无法打开</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.28.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"giscus":{"js":"/js/services/giscus_new.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.swiper-slide img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
+<script>var posts=["/post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html","/post/a-mother-s-reflection-z17orfm.html","/post/20231104-updated-win11-23h2-1xki6y.html","/post/23-years-old-zggy4y.html","post/c873b400.html","post/8b29a079.html","/post/book-recommendation-self-study-is-the-door-craft-zja4yb.html","/post/draw-calcium-imaging-hot-pictures-with-matlab-and-use-kmeans-clustering-qp7bq.html","/post/groupy-2-multi-window-management-tool-upgrade-experience-ocrer.html","/post/how-does-matlab-convert-graphics-into-outline-zo6ihg.html","/post/how-does-matlab-turn-the-image-to-uint8-z29w8nb.html","/post/how-do-you-know-what-you-took-by-automatic-vending-machine-jeapx.html","/post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html","/post/how-to-give-the-roi-number-in-mask-zm8e9p.html","/post/how-to-use-abbyy-and-acrobat-to-add-bookmarks-and-directory-to-the-book-scanning-version-of-the-book-scanning-version-of-pdf-e6kup.html","/post/how-to-make-water-special-zi87c0.html","/post/i-ca-n-t-find-a-satisfactory-word-template-on-the-entire-network-so-i-made-one-myself-nano3.html","/post/js-dom-operation-1rrvs2.html","/post/i-finally-empty-the-circle-of-friends-oko3o.html","/post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html","/post/matlab-basic-programming-grammar-1ghj9i.html","/post/matlab-2024a-everbright-functional-writing-experience-big-upgrade-eao4i.html","/post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html","/post/matlab-background-asynchronous-execution-function-z1zmis9.html","/post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html","/post/matlab-custom-code-supports-roller-amplification-and-drag-pictures-20eamw.html","/post/matlab-different-ctrl-mouse-right-and-mouse-right-click-1f0inv.html","/post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html","/post/matlab-read-view-save-tiff-1pkevw.html","/post/matlab-reshape-scan-and-fill-in-columns-easy-to-step-on-the-pit-18flah.html","/post/matlab-superimposes-mask-a-certain-transparency-to-the-image-2seqqa.html","post/a86a49b6.html","/post/outside-the-number-glados-sign-in-baiji-is-not-easy-anymore-z2vxoy1.html","/post/python-uses-npvectorize-directional-function-to-perform-batch-processing-ipcdn.html","post/e93c4010.html","/post/scan-the-pdf-batch-with-python-batch-to-add-bookmarks-zn2z7s.html","/post/siyuan-note-use-quicker-action-to-seamlessly-link-with-zotero-zejypu.html","/post/siyuan-notes-good-partner-the-strongest-clipboard-artifact-copyq-z2grwhp.html","/post/thinking-about-waiting-power-and-order-f3swz.html","post/3bc3857.html","post/cf0a2858.html","post/f5348a5e.html","/post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html","post/c873b400.html","/post/what-is-the-color-why-can-we-see-color-1v2pq4.html","/post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html","/post/why-can-convex-lens-be-used-z1cu3qk.html","/post/write-a-wechat-public-account-article-with-markdown-zatxal.html","/post/why-can-human-eyes-see-virtual-statues-z1og6up.html","/post/why-can-small-hole-imaging-be-used-and-large-holes-cannot-be-imaged-z2rx7bz.html","post/134ab329.html","post/d2b2fba7.html","post/e977bfe7.html","post/50f47788.html","post/d766b22.html","post/6e57daa8.html","post/291034.html","post/c6467c9c.html","post/595885f1.html","post/bc4b56d9.html","post/be13a22e.html","/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html","/post/T Test.html","/post/anova-variance-analysis-g7i0c.html","/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html","/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html","/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html","/post/jiefang-poor-analysis-ancova-rxm1i.html","/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html","/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html","/post/matlab-optimization-abnormal-processing-fprintf-s-wonderful-use-z2wefdb.html","/post/my-note-management-method-in-onenote-wolai-zrqwln.html","/post/think-about-how-i-should-spend-my-day-zl38tl.html","/post/moc-manage-the-notes-link-to-the-theme-4uatt.html","/post/why-write-a-diary-hhfd6.html"];function toRandomPost(){ var randomPath = posts[Math.floor(Math.random()*posts.length)]; var encodedPath = encodeURIComponent(randomPath); window.open('/' + encodedPath, "_self"); };</script>

@@ -1,0 +1,90 @@
+.l_main>article.md-text {
+    counter-reset: h2;
+}
+.l_main>article h2 {
+    counter-reset: h3;
+}
+.l_main>article h3 {
+    counter-reset: h4;
+}
+.l_main>article h4 {
+    counter-reset: h5;
+}
+.l_main>article h5 {
+    counter-reset: h6;
+}
+.l_main>article h2:before {
+    counter-increment: h2;
+    content: counter(h2) '. ';
+}
+.l_main>article h3:before {
+    counter-increment: h3;
+    content: counter(h2) '.' counter(h3) '. ';
+}
+.l_main>article h4:before {
+    counter-increment: h4;
+    content: counter(h2) '.' counter(h3) '.' counter(h4) '. ';
+}
+.l_main>article h5:before {
+    counter-increment: h5;
+    content: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '. ';
+}
+.l_main>article h6:before {
+    counter-increment: h6;
+    content: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '.' counter(h6) '. ';
+}
+.l_main>article h2.nocount:before,
+.l_main>article h3.nocount:before,
+.l_main>article h4.nocount:before,
+.l_main>article h5.nocount:before,
+.l_main>article h6.nocount:before {
+    content: '';
+    counter-increment: none;
+}
+
+
+
+
+div.doc-tree .toc{
+    counter-reset: toc2;
+}
+li.toc-item.toc-level-2 {
+    counter-reset: toc3;
+}
+li.toc-item.toc-level-3 {
+    counter-reset: toc4;
+}
+li.toc-item.toc-level-4 {
+    counter-reset: toc5;
+}
+li.toc-item.toc-level-5 {
+    counter-reset: toc6;
+}
+li.toc-item.toc-level-2 .toc-text:before {
+    counter-increment: toc2;
+    content: counter(toc2) '. ';
+}
+li.toc-item.toc-level-3 .toc-text:before {
+    counter-increment: toc3;
+    content: counter(toc2) '.' counter(toc3) '. ';
+}
+li.toc-item.toc-level-4 .toc-text:before {
+    counter-increment: toc4;
+    content: counter(toc2) '.' counter(toc3) '.' counter(toc4) '. ';
+}
+li.toc-item.toc-level-5 .toc-text:before {
+    counter-increment: toc5;
+    content: counter(toc2) '.' counter(toc3) '.' counter(toc4) '.' counter(toc5) '. ';
+}
+li.toc-item.toc-level-6 .toc-text:before {
+    counter-increment: toc6;
+    content: counter(toc2) '.' counter(toc3) '.' counter(toc4) '.' counter(toc5) '.' counter(toc6) '. ';
+}
+li.toc-item.toc-level-2.nocount .toc-text:before,
+li.toc-item.toc-level-3.nocount .toc-text:before,
+li.toc-item.toc-level-4.nocount .toc-text:before,
+li.toc-item.toc-level-5.nocount .toc-text:before,
+li.toc-item.toc-level-6.nocount .toc-text:before {
+    content: '';
+    counter-increment: none;
+}

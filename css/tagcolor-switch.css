@@ -1,0 +1,28 @@
+/* 默认的浅色模式颜色 */
+:root {
+    --tag-bg-color: #F2EEFD;
+    --tag-text-color: #835EEC;
+  }
+  
+  /* 暗黑模式下的颜色 */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --tag-bg-color: #282433;
+      --tag-text-color: #A28BF2;
+    }
+  }
+  
+
+#post-meta {
+  font-size: 12px; 
+  color: var(--text-p4); /* 或 --text-p2，设置为灰色 */
+}
+
+.bread-nav #post-tag a::before{
+    content: '#';
+}
+
+.bread-nav #post-tag a{
+    color: var(--tag-text-color);
+    background-color: var(--tag-bg-color);
+}

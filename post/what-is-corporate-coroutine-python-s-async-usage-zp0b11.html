@@ -1,0 +1,625 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.28.0" theme-name="Stellar" theme-version="1.28.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>协程 Coroutine 是什么？Python 的async用法 - Achuan-2</title>
+
+  
+    <meta name="description" content="协程的作用是在执行函数A时可以随时中断去执行函数B，然后中断函数B继续执行函数A（可以自由切换）。 但这一过程并不是函数调用，这一整个过程看似像多线程，然而协程只有一个线程执行。协程就是一个人干多个活，如果一个任务进行过程中有比较多的等待时间，并不需要自己参与，就可以利用这段时间去干别的事情。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="协程 Coroutine 是什么？Python 的async用法">
+<meta property="og:url" content="http://achuan-2.top/post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html">
+<meta property="og:site_name" content="Achuan-2">
+<meta property="og:description" content="协程的作用是在执行函数A时可以随时中断去执行函数B，然后中断函数B继续执行函数A（可以自由切换）。 但这一过程并不是函数调用，这一整个过程看似像多线程，然而协程只有一个线程执行。协程就是一个人干多个活，如果一个任务进行过程中有比较多的等待时间，并不需要自己参与，就可以利用这段时间去干别的事情。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-25T14:04:22.000Z">
+<meta property="article:modified_time" content="2023-11-25T14:04:34.000Z">
+<meta property="article:author" content="Achuan-2">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="Matlab">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="编程,Matlab">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Achuan-2" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.28.0">
+
+  
+    <link rel="shortcut icon" href="/assets/ico/favicon.svg">
+  
+
+  
+
+  <script src="/js/random.js"></script><link href="/css/appearence.css" rel="stylesheet"><link href="/css/tagcolor-switch.css" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bofeng/hyksk_webfont/dist/hyksk.css" /><link href="/css/scrollbar.css" rel="stylesheet"><link rel="preconnect" href="https://s1.hdslb.com/" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/ico/Achuan.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Achuan-2</div><div class="sub normal cap">一条没有故事的巛</div><div class="sub hover cap" style="opacity:0"> 闪闪发亮，闪闪发亮</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/"><span>博客</span></a><a class="nav-item" title="友链" href="/friends/"><span>友链</span></a><a class="nav-item" title="关于" href="/about/"><span>关于</span></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/post/jiefang-poor-analysis-ancova-rxm1i.html"><span class="title">协方差分析 (ANCOVA)</span></a><a class="item title" href="/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html"><span class="title">生活窍门丨为什么油性笔可以写在塑料上</span></a><a class="item title" href="/post/anova-variance-analysis-g7i0c.html"><span class="title">ANOVA方差分析</span></a><a class="item title" href="/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html"><span class="title">Matlab 深度学习丨基于ResNet的新冠肺炎X光胸片检测</span></a><a class="item title" href="/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html"><span class="title">沉浸式翻译终于支持富文本翻译了</span></a><a class="item title" href="/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html"><span class="title">JS丨MutationObserver（DOM 变动观察器）</span></a><a class="item title" href="/post/T%20Test.html"><span class="title">统计分析丨T检验</span></a><a class="item title" href="/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html"><span class="title">MATLAB 深度学习丨可视化卷积神经网络CNN的激活图</span></a><a class="item title" href="/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html"><span class="title">Matlab 深度学习丨使用深度学习对网络摄像头图像进行分类</span></a><a class="item title" href="/post/why-write-a-diary-hhfd6.html"><span class="title">为什么要写日记？</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Achuan-2/" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/icon-park/github.svg"/></a><a class="social" href="https://music.163.com/#/user/home?id=111010025" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/ri:netease-cloud-music-line.svg"/></a><a class="social" href="/about/#comments" rel="noopener noreferrer"><img src="https://api.iconify.design/bx/comment-detail.svg"/></a><a class="social" href="mailto:achuan-2@outlook.com" rel="noopener noreferrer"><img src="https://api.iconify.design/clarity/email-outline-badged.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/">其他笔记</a></div><div id="post-tag" style="margin: 5px 0px;"> <span>&nbsp标签：</span><a class="cap breadcrumb-link" href="/tags/Matlab/">Matlab</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp</div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2023-11-25T14:04:22.000Z">2023-11-25 22:04</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2023-11-25T14:04:34.000Z">2023-11-25 22:04</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>协程 Coroutine 是什么？Python 的async用法</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><ul>
+<li>
+<p>协程是什么</p>
+<ul>
+<li>协程的作用是在执行函数A时可以随时中断去执行函数B，然后中断函数B继续执行函数A（可以自由切换）。 但这一过程并不是函数调用，这一整个过程看似像多线程，然而协程只有一个线程执行。协程就是一个人干多个活，如果一个任务进行过程中有比较多的等待时间，并不需要自己参与，就可以利用这段时间去干别的事情。</li>
+</ul>
+</li>
+<li>
+<p>协程的主要应用场景</p>
+<ul>
+<li>协程很适合处理((20231124114842-nvxmq57 “IO密集型程序”))的效率问题，Tornado web 框架、文件下载、网络爬虫等应用。协程能够在 IO 等待时间就去切换执行其他任务，当 IO 操作结束后再自动回调，那么就会大大节省资源并提供性能减少了不必要的等待时间，提高了执行速度。</li>
+<li>但需要注意的是<span style="font-weight: bold;" data-type="strong">协程的本质还是个单线程，它不能同时将单个CPU的多个核用上，因此对于CPU密集型程序协程需要和多进程配合，光靠协程没有太大用</span>。比如，要进行大量的计算、逻辑判断，消耗 CPU 资源，比如计算圆周率、对视频进行高清解码等等。</li>
+</ul>
+</li>
+<li>
+<p>协程的例子</p>
+<ul>
+<li>
+<blockquote>
+<p>“假设有1个洗衣房（进程），里面有10台洗衣机（任务），有一个洗衣工（线程）在负责这10台洗衣机。那么洗衣房就相当于1个进程，洗衣工就相当1个线程。如果有10个洗衣工，就相当于10个线程，1个进程是可以开多线程的。这就是多线程！<br>
+<span style="font-weight: bold;" data-type="strong">那么协程呢？</span>  先不急。大家都知道，洗衣机洗衣服是需要等待时间的，如果10个洗衣工，1人负责1台洗衣机，这样效率肯定会提高，但是不觉得浪费资源吗？明明1 个人能做的事，却要10个人来做。只是把衣服放进去，打开开关，就没事做了，等衣服洗好再拿出来就可以了。<span style="font-weight: bold;" data-type="strong">就算很多人来洗衣服，1个人也足以应付了</span>，开好第一台洗衣机，在等待的时候去开第二台洗衣机，再开第三台，……直到有衣服洗好了，就回来把衣服取出来， 接着再取另一台的（哪台洗好先就取哪台，所以协程是无序的）。这就是计算机的协程！洗衣机就是执行的方法。”</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>小明同学的妈妈给他早上安排了三件事：</p>
+<ol>
+<li>洗衣机洗衣服需要花 15 分钟</li>
+<li>电饭煲做饭需要花 20 分钟</li>
+<li>做作业需要花 25 分钟</li>
+</ol>
+<p>那么请问：小明同学早上完成以上三件事需要花多久？？</p>
+<p>——可以接近25分钟完成，因为洗衣服和煮饭只需要按按钮就行了，之后专心去做作业就可以</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>IO 密集型的操作是什么</p>
+<ul>
+<li>
+<p>I/O是什么：IO是指Input/Output，即输入和输出。以内存为中心：</p>
+<ul>
+<li>Input指从外部读入数据到内存，例如，把文件从磁盘读取到内存，从网络读取数据到内存等等。</li>
+<li>Output指把数据从内存输出到外部，例如，把数据从内存写入到文件，把数据从内存输出到网络等等。</li>
+</ul>
+</li>
+<li>
+<p>计算密集型和IO 密集型</p>
+<ul>
+<li>计算密集型的操作：计算密集型任务的特点是要进行大量的计算、逻辑判断，消耗 CPU 资源，比如计算圆周率、对视频进行高清解码等等。</li>
+<li>IO 密集型的操作：涉及到<span style="font-weight: bold;" data-type="strong">网络、磁盘 IO </span> 的任务都是 IO 密集型任务，这类任务的特点是 CPU 消耗很少，任务的大部分时间都在等待 IO 操作完成（因为 IO 的速度远远低于 CPU 和内存的速度）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对协程的疑惑：举的例子，洗衣机、电饭煲都是自己能做事的机器，人只是去启动他，当然可以一个人启动好多台机器，等待结果，但是对于计算机而言，像洗衣这种事情，怎么做到一个线程你后台洗衣服，我前台做煲饭的。</p>
+<ul>
+<li>
+<p>我大概懂了，计算机这种情况就类似于IO密集型程序，CPU消耗很少，主要时间在等IO完成，比如</p>
+<ul>
+<li>等待键盘输入</li>
+<li>控制打印机打印文件</li>
+<li><span style="font-weight: bold;" data-type="strong">从硬盘读取文件、写入文件</span></li>
+<li><span style="font-weight: bold;" data-type="strong">向网络发送请求，查询数据库、等待下载完成</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>python 协程代码示例</p>
+<ul>
+<li>
+<p>同步编程 vs 异步编程</p>
+<ul>
+<li>
+<p>同步编程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">washing1</span>():</span><br><span class="line">    time.sleep(<span class="number">3</span>)  <span class="comment"># 第一台洗衣机,</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;washer1 finished&#x27;</span>)  <span class="comment"># 洗完了</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">washing2</span>():</span><br><span class="line">    time.sleep(<span class="number">8</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;washer2 finished&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">washing3</span>():</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;washer3 finished&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    washing1()</span><br><span class="line">    washing2()</span><br><span class="line">    washing3()</span><br><span class="line">    end_time = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;总共耗时：&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(end_time-start_time))</span><br></pre></td></tr></table></figure>
+<p>washer1 finished<br>
+washer2 finished<br>
+washer3 finished<br>
+总共耗时：16.00322961807251</p>
+</li>
+<li>
+<p>异步编程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">washing1</span>():</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">3</span>)  <span class="comment"># 第一台洗衣机,</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;washer1 finished&#x27;</span>)  <span class="comment"># 洗完了</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">washing2</span>():</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">8</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;washer2 finished&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">washing3</span>():</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;washer3 finished&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;start main:&#x27;</span>)</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    <span class="comment"># step1 创建一个事件循环, 将异步函数（协程）加入事件队列</span></span><br><span class="line">    task_list = [</span><br><span class="line">        washing1(),</span><br><span class="line">        washing2(),</span><br><span class="line">        washing3()</span><br><span class="line">    ]</span><br><span class="line">    <span class="comment"># step2 执行事件队列 直到最晚的一个事件被处理完毕后结束</span></span><br><span class="line">    asyncio.run(asyncio.wait(task_list) )</span><br><span class="line">    end_time = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-----------end main----------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;总共耗时:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(end_time-start_time))</span><br></pre></td></tr></table></figure>
+<p>start main:<br>
+washer1 finished<br>
+washer3 finished<br>
+washer2 finished<br>
+-----------end main----------<br>
+总共耗时:8.002010822296143</p>
+</li>
+</ul>
+</li>
+<li>
+<p>用代码实现连接并查询数据库的同时，下载一个 APK 文件到本地。(<a target="_blank" rel="noopener" href="https://xie.infoq.cn/article/d92c1068b9e50b55cced54708">Ref</a>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> aiomysql</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> aiofiles <span class="keyword">as</span> aiofiles</span><br><span class="line"><span class="keyword">from</span> aiohttp <span class="keyword">import</span> ClientSession</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">get_app</span>():</span><br><span class="line"></span><br><span class="line">    url = <span class="string">&quot;http://www.123.apk&quot;</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> ClientSession() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="comment"># 网络IO请求，获取响应</span></span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">with</span> session.get(url)<span class="keyword">as</span> res:</span><br><span class="line">            <span class="keyword">if</span> res.status == <span class="number">200</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;下载成功&quot;</span>, res)</span><br><span class="line">                <span class="comment"># 磁盘IO请求，读取响应数据</span></span><br><span class="line">                apk = <span class="keyword">await</span> res.content.read()</span><br><span class="line">                <span class="keyword">async</span>  <span class="keyword">with</span>  aiofiles.<span class="built_in">open</span>(<span class="string">&quot;demo2.apk&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    <span class="comment"># 磁盘IO请求，数据写入本地磁盘</span></span><br><span class="line">                    <span class="keyword">await</span> f.write(apk)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;下载失败&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">excute_sql</span>(<span class="params">sql</span>):</span><br><span class="line">    <span class="comment"># 网络IO操作：连接MySQL</span></span><br><span class="line">    conn = <span class="keyword">await</span> aiomysql.connect(host=<span class="string">&#x27;127.0.0.1&#x27;</span>, port=<span class="number">3306</span>, user=<span class="string">&#x27;root&#x27;</span>, password=<span class="string">&#x27;123&#x27;</span>, db=<span class="string">&#x27;mysql&#x27;</span>, )</span><br><span class="line">    <span class="comment"># 网络IO操作：创建CURSOR</span></span><br><span class="line">    cur = <span class="keyword">await</span> conn.cursor()</span><br><span class="line">    <span class="comment"># 网络IO操作：执行SQL</span></span><br><span class="line">    <span class="keyword">await</span> cur.execute(sql)</span><br><span class="line">    <span class="comment"># 网络IO操作：获取SQL结果</span></span><br><span class="line">    result = <span class="keyword">await</span> cur.fetchall()</span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line">    <span class="comment"># 网络IO操作：关闭链接</span></span><br><span class="line">    <span class="keyword">await</span> cur.close()</span><br><span class="line">    conn.close()</span><br><span class="line"></span><br><span class="line">task_list = [get_app(), execute_sql(sql=<span class="string">&quot;SELECT Host,User FROM user&quot;</span>)]</span><br><span class="line">asyncio.run(asyncio.wait(task_list))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>代码逻辑分析：</p>
+<ul>
+<li>【step1】<code>asyncio.run()</code>创建了事件循环。<code>wait()</code>方法将 task 任务列表加入到当前的事件循环中； <em>（注意：必须先创建事件循环，后加入任务列表，否则会报错）</em></li>
+<li>【step2】事件循环监听事件状态，开始执行代码，先执行列表中的<code>get_app()</code>方法，当代码执行到<code>async with session.get(url)as res:</code>时，<span style="font-weight: bold;" data-type="strong">遇到 await 关键字表示有 IO 耗时操作，线程会将该任务挂起在后台执行</span>，并<span style="font-weight: bold;" data-type="strong">切换到另外一个异步函数</span><code>excute_sql()</code>；</li>
+<li>【step3】当代码执行到<code>excute_sql()</code>的第一个 IO 耗时操作后，线程会重复先前的操作，将该任务挂起，去执行其他可执行代码。假如此时事件循环监听到<code>get_app()</code>中的第一 IO 耗时操作已经执行完成，那么线程会切换到该方法第一个 IO 操作后的代码，并按顺序执行直到遇上下一个 await 装饰的 IO 操作；假如事件循环监听到<code>excute_sql()</code>中的第一个 IO 操作先于<code>get_app()</code>的第一个 IO 操作完成，那么线程会继续执行<code>excute_sql</code>的后续代码；</li>
+<li>【step4】线程会重复进行上述第 3 点中的步骤，直到代码全部执行完成，事件循环也会随之停止。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/js-dom-operation-1rrvs2.html">JS DOM 操作</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/matlab-background-asynchronous-execution-function-z1zmis9.html">Matlab 后台异步执行函数</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="Achuan-2/Achuan-2.github.io" data-repo-id="R_kgDOIT0sJw" data-category="Q&A" data-category-id="DIC_kwDOIT0sJ84CSMyl" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">项目</span><a href="/wiki/">None</a></div><div class="sitemap-group"><span class="fs15">社交</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs15">更多</span><a target="_blank" rel="noopener" href="https://github.com/Achuan-2/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Achuan-2</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+</aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.28.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"giscus":{"js":"/js/services/giscus_new.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.swiper-slide img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
+<script>var posts=["/post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html","/post/a-mother-s-reflection-z17orfm.html","/post/20231104-updated-win11-23h2-1xki6y.html","/post/23-years-old-zggy4y.html","post/c873b400.html","post/8b29a079.html","/post/book-recommendation-self-study-is-the-door-craft-zja4yb.html","/post/draw-calcium-imaging-hot-pictures-with-matlab-and-use-kmeans-clustering-qp7bq.html","/post/groupy-2-multi-window-management-tool-upgrade-experience-ocrer.html","/post/how-does-matlab-convert-graphics-into-outline-zo6ihg.html","/post/how-does-matlab-turn-the-image-to-uint8-z29w8nb.html","/post/how-do-you-know-what-you-took-by-automatic-vending-machine-jeapx.html","/post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html","/post/how-to-give-the-roi-number-in-mask-zm8e9p.html","/post/how-to-use-abbyy-and-acrobat-to-add-bookmarks-and-directory-to-the-book-scanning-version-of-the-book-scanning-version-of-pdf-e6kup.html","/post/how-to-make-water-special-zi87c0.html","/post/i-ca-n-t-find-a-satisfactory-word-template-on-the-entire-network-so-i-made-one-myself-nano3.html","/post/js-dom-operation-1rrvs2.html","/post/i-finally-empty-the-circle-of-friends-oko3o.html","/post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html","/post/matlab-basic-programming-grammar-1ghj9i.html","/post/matlab-2024a-everbright-functional-writing-experience-big-upgrade-eao4i.html","/post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html","/post/matlab-background-asynchronous-execution-function-z1zmis9.html","/post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html","/post/matlab-custom-code-supports-roller-amplification-and-drag-pictures-20eamw.html","/post/matlab-different-ctrl-mouse-right-and-mouse-right-click-1f0inv.html","/post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html","/post/matlab-read-view-save-tiff-1pkevw.html","/post/matlab-reshape-scan-and-fill-in-columns-easy-to-step-on-the-pit-18flah.html","/post/matlab-superimposes-mask-a-certain-transparency-to-the-image-2seqqa.html","post/a86a49b6.html","/post/outside-the-number-glados-sign-in-baiji-is-not-easy-anymore-z2vxoy1.html","/post/python-uses-npvectorize-directional-function-to-perform-batch-processing-ipcdn.html","post/e93c4010.html","/post/scan-the-pdf-batch-with-python-batch-to-add-bookmarks-zn2z7s.html","/post/siyuan-note-use-quicker-action-to-seamlessly-link-with-zotero-zejypu.html","/post/siyuan-notes-good-partner-the-strongest-clipboard-artifact-copyq-z2grwhp.html","/post/thinking-about-waiting-power-and-order-f3swz.html","post/3bc3857.html","post/cf0a2858.html","post/f5348a5e.html","/post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html","post/c873b400.html","/post/what-is-the-color-why-can-we-see-color-1v2pq4.html","/post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html","/post/why-can-convex-lens-be-used-z1cu3qk.html","/post/write-a-wechat-public-account-article-with-markdown-zatxal.html","/post/why-can-human-eyes-see-virtual-statues-z1og6up.html","/post/why-can-small-hole-imaging-be-used-and-large-holes-cannot-be-imaged-z2rx7bz.html","post/134ab329.html","post/d2b2fba7.html","post/e977bfe7.html","post/50f47788.html","post/d766b22.html","post/6e57daa8.html","post/291034.html","post/c6467c9c.html","post/595885f1.html","post/bc4b56d9.html","post/be13a22e.html","/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html","/post/T Test.html","/post/anova-variance-analysis-g7i0c.html","/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html","/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html","/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html","/post/jiefang-poor-analysis-ancova-rxm1i.html","/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html","/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html","/post/matlab-optimization-abnormal-processing-fprintf-s-wonderful-use-z2wefdb.html","/post/my-note-management-method-in-onenote-wolai-zrqwln.html","/post/think-about-how-i-should-spend-my-day-zl38tl.html","/post/moc-manage-the-notes-link-to-the-theme-4uatt.html","/post/why-write-a-diary-hhfd6.html"];function toRandomPost(){ var randomPath = posts[Math.floor(Math.random()*posts.length)]; var encodedPath = encodeURIComponent(randomPath); window.open('/' + encodedPath, "_self"); };</script>

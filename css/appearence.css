@@ -1,0 +1,32 @@
+/* 文章内更新日期始终显示 */
+.bread-nav div#post-meta span.updated {
+    visibility: visible !important;
+}
+
+
+/* 文章内面包屑调整间距 */
+.banner .content .top {
+    margin: 1rem 1rem 0rem;
+}
+.banner .bottom {
+    padding: 0rem 1rem 1rem;
+}
+
+/* 文章内链接：为链接使用荧光笔下划线效果 */
+/* 文章内链接 */
+li:not([class]) a:not([class]),
+p:not([class]) a:not([class]),
+table a:not([class]) {
+  /*color: var(--theme-link);*/
+  padding-bottom: 3px; /* 增加底部padding */
+  padding-right: 1px;
+  margin-right: 2px;
+ color: var(--theme-link);
+  background: linear-gradient(0, var(--theme-link), var(--theme-link)) no-repeat center bottom / 100% 2px;
+}
+
+
+.md-text .highlight {
+    max-height: 800px;
+    overflow: auto;
+}

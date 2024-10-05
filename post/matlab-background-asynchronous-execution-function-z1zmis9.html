@@ -1,0 +1,756 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.28.0" theme-name="Stellar" theme-version="1.28.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>Matlab 后台异步执行函数 - Achuan-2</title>
+
+  
+    <meta name="description" content="当在 MATLAB 中运行普通代码时，必须等待该代码完成运行，然后才能运行其他代码。  其实Matlab 目前的多线程编程已经优化的挺好的，看到有些文章使用 Timer 计时器函数曲线救国，以实现多任务后台同时运行，然而 Timer 只是单线程定时执行函数，只是可以指定什么时候执行什么任务，当一个任务运行的时候依然是串行方式，并不是真正的异步，是依然会堵塞主线程的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matlab 后台异步执行函数">
+<meta property="og:url" content="http://achuan-2.top/post/matlab-background-asynchronous-execution-function-z1zmis9.html">
+<meta property="og:site_name" content="Achuan-2">
+<meta property="og:description" content="当在 MATLAB 中运行普通代码时，必须等待该代码完成运行，然后才能运行其他代码。  其实Matlab 目前的多线程编程已经优化的挺好的，看到有些文章使用 Timer 计时器函数曲线救国，以实现多任务后台同时运行，然而 Timer 只是单线程定时执行函数，只是可以指定什么时候执行什么任务，当一个任务运行的时候依然是串行方式，并不是真正的异步，是依然会堵塞主线程的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-24T17:43:19.000Z">
+<meta property="article:modified_time" content="2023-11-25T14:01:00.000Z">
+<meta property="article:author" content="Achuan-2">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="Matlab">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="编程,Matlab">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Achuan-2" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.28.0">
+
+  
+    <link rel="shortcut icon" href="/assets/ico/favicon.svg">
+  
+
+  
+
+  <script src="/js/random.js"></script><link href="/css/appearence.css" rel="stylesheet"><link href="/css/tagcolor-switch.css" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bofeng/hyksk_webfont/dist/hyksk.css" /><link href="/css/scrollbar.css" rel="stylesheet"><link rel="preconnect" href="https://s1.hdslb.com/" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/ico/Achuan.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Achuan-2</div><div class="sub normal cap">一条没有故事的巛</div><div class="sub hover cap" style="opacity:0"> 闪闪发亮，闪闪发亮</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/"><span>博客</span></a><a class="nav-item" title="友链" href="/friends/"><span>友链</span></a><a class="nav-item" title="关于" href="/about/"><span>关于</span></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/post/jiefang-poor-analysis-ancova-rxm1i.html"><span class="title">协方差分析 (ANCOVA)</span></a><a class="item title" href="/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html"><span class="title">生活窍门丨为什么油性笔可以写在塑料上</span></a><a class="item title" href="/post/anova-variance-analysis-g7i0c.html"><span class="title">ANOVA方差分析</span></a><a class="item title" href="/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html"><span class="title">Matlab 深度学习丨基于ResNet的新冠肺炎X光胸片检测</span></a><a class="item title" href="/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html"><span class="title">沉浸式翻译终于支持富文本翻译了</span></a><a class="item title" href="/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html"><span class="title">JS丨MutationObserver（DOM 变动观察器）</span></a><a class="item title" href="/post/T%20Test.html"><span class="title">统计分析丨T检验</span></a><a class="item title" href="/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html"><span class="title">MATLAB 深度学习丨可视化卷积神经网络CNN的激活图</span></a><a class="item title" href="/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html"><span class="title">Matlab 深度学习丨使用深度学习对网络摄像头图像进行分类</span></a><a class="item title" href="/post/why-write-a-diary-hhfd6.html"><span class="title">为什么要写日记？</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Achuan-2/" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/icon-park/github.svg"/></a><a class="social" href="https://music.163.com/#/user/home?id=111010025" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://api.iconify.design/ri:netease-cloud-music-line.svg"/></a><a class="social" href="/about/#comments" rel="noopener noreferrer"><img src="https://api.iconify.design/bx/comment-detail.svg"/></a><a class="social" href="mailto:achuan-2@outlook.com" rel="noopener noreferrer"><img src="https://api.iconify.design/clarity/email-outline-badged.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/">其他笔记</a></div><div id="post-tag" style="margin: 5px 0px;"> <span>&nbsp标签：</span><a class="cap breadcrumb-link" href="/tags/Matlab/">Matlab</a>&nbsp; <a class="cap breadcrumb-link" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp</div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2023-11-24T17:43:19.000Z">2023-11-25 01:43</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2023-11-25T14:01:00.000Z">2023-11-25 22:01</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Matlab 后台异步执行函数</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>当在 MATLAB 中运行普通代码时，必须等待该代码完成运行，然后才能运行其他代码。</p>
+<p>其实Matlab 目前的多线程编程已经优化的挺好的，看到有些文章使用 Timer 计时器函数曲线救国，以实现多任务后台同时运行，然而 Timer 只是单线程定时执行函数，只是可以指定什么时候执行什么任务，当一个任务运行的时候依然是串行方式，并不是真正的异步，是依然会堵塞主线程的</p>
+<p>现在2021b起就自带backgroundPool后台池，自动扩展线程，结合parfeval可以在后台异步执行函数，不干扰主线程。网上这方面资料貌似还比较少，但是真的好用。</p>
+<blockquote>
+<p>Matlab 文档：<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/background-processing.html?s_tid=CRUX_lftnav">后台处理 - MATLAB &amp; Simulink - MathWorks 中国</a></p>
+</blockquote>
+<h2 id="parfeval-异步后台运行函数"><a class="markdownIt-Anchor" href="#parfeval-异步后台运行函数"></a> parfeval 异步后台运行函数</h2>
+<ul>
+<li>
+<p>文档：<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/parfeval.html">parfeval</a></p>
+<p>F = parfeval(backgroundPool,fcn,n,X1,…,Xm)</p>
+<p>F = parfeval(fcn,n,X1,…,Xm)</p>
+</li>
+<li>
+<p><code>parfeval</code> 和 <code>parfevalOnAll</code> 的区别</p>
+<ul>
+<li><code>parfeval</code> 请求在并行池中的工作线程上异步执行。您可以使用 <code>cancel</code> 取消执行。它只是把它发给任何一个worker。</li>
+<li>使用 <code>parfevalOnAll</code> 在所有工作线程上执行一个函数，使用场景有限，一般用于删除、关闭所有worker的指定任务。</li>
+</ul>
+</li>
+<li>
+<p><code>F = parfeval(fcn,n,X1,...,Xm)</code>  和 <code>F = parfeval(backgroundPool,fcn,n,X1,...,Xm)</code>，不加backgroundPool和加了有什么区别</p>
+<p>这语法是Matlab 2021b加的，不加pool就是自动开启pool，如果没有Parallel Computing Toolbox 就是按正常串行运行函数</p>
+<p>Starting in R2021b, you can now run <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/parallel-computing/parallel.pool.parfeval.html"><code>parfeval</code></a> in serial with no pool. This behavior allows you to share parallel code that you write with users who do not have Parallel Computing Toolbox.</p>
+<p>When you use the syntax <code>parfeval(fcn,n,X1,...,Xm)</code>, MATLAB tries to use an open parallel pool if you have Parallel Computing Toolbox. If a parallel pool is not open, MATLAB will create one if automatic pool creation is enabled.</p>
+<p>If parallel pool creation is disabled or if you do not have Parallel Computing Toolbox, the function is evaluated in serial. In previous releases, MATLAB threw an error instead.</p>
+</li>
+<li>
+<p>pareval 和 parfor</p>
+<ul>
+<li>
+<p>pareval的主要功能是后台异步运行函数，可以让耗时长的函数在后台慢慢跑；parfor主要是用于前台加快循环运算</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 普通单线程运行</span></span><br><span class="line">n = <span class="number">200</span>;</span><br><span class="line">A = <span class="number">500</span>;</span><br><span class="line">a = <span class="built_in">zeros</span>(n);</span><br><span class="line">tic</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">    a(<span class="built_in">i</span>) = <span class="built_in">max</span>(<span class="built_in">abs</span>(eig(<span class="built_in">rand</span>(A))));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">toc <span class="comment">% Elapsed time is 24.068519 seconds.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 并行计算</span></span><br><span class="line">delete(gcp(<span class="string">&#x27;nocreate&#x27;</span>))</span><br><span class="line">parpool(<span class="string">&#x27;Threads&#x27;</span>)</span><br><span class="line">n = <span class="number">200</span>;</span><br><span class="line">A = <span class="number">500</span>;</span><br><span class="line">a = <span class="built_in">zeros</span>(n);</span><br><span class="line">tic</span><br><span class="line"><span class="keyword">parfor</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">    a(<span class="built_in">i</span>) = <span class="built_in">max</span>(<span class="built_in">abs</span>(eig(<span class="built_in">rand</span>(A))));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">toc <span class="comment">% Elapsed time is 4.168100 seconds.</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="backgroundpool-后台运行函数支持多线程"><a class="markdownIt-Anchor" href="#backgroundpool-后台运行函数支持多线程"></a> backgroundPool 后台运行函数（支持多线程）</h2>
+<ul>
+<li>
+<p>backgroundPool 是基于线程的吗？能调用几个线程？</p>
+<ul>
+<li>
+<p>backgroundPool就是基于线程运行代码。线程数和计算机最大核心数有关系，如果没有Parallel Computing Toolbox，backgroundPo调用一个线程，如果有Parallel Computing Toolbox，backgroundPool能调用计算机的最大核心数。需要注意的是，后台的一个线程只能同时跑一个任务，任务数大于线程数就会堵塞。.<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/matlab_prog/asynchronous-functions.html#mw_6b0d4b53-ccf6-4df0-a900-96df2f505b14">（Ref）</a></p>
+</li>
+<li>
+<p>获取backgroundPool有多少可用workers</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; backgroundPool().NumWorkers</span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">8</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>具体测试</p>
+<ul>
+<li>
+<p>正常同步运行代码：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 同步执行多个任务 </span></span><br><span class="line">tic</span><br><span class="line"><span class="built_in">disp</span>(task(<span class="number">1</span>,<span class="string">&quot;Normal&quot;</span>))</span><br><span class="line"><span class="built_in">disp</span>(task(<span class="number">2</span>,<span class="string">&quot;Normal&quot;</span>))</span><br><span class="line"><span class="built_in">disp</span>(task(<span class="number">3</span>,<span class="string">&quot;Normal&quot;</span>))</span><br><span class="line">toc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">task</span><span class="params">(taskID,poolType)</span></span></span><br><span class="line">    pause(<span class="number">5</span>);</span><br><span class="line">    output = sprintf(<span class="string">&#x27;Task %d is done in %s at %s&#x27;</span>, taskID, poolType,datetime(<span class="string">&#x27;now&#x27;</span>));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Task 1 is done in Normal at 2023-11-25 14:12:19<br>
+Task 2 is done in Normal at 2023-11-25 14:12:24<br>
+Task 3 is done in Normal at 2023-11-25 14:12:29</p>
+</li>
+<li>
+<p>使用backgroundPool异步运行：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">b(<span class="number">1</span>:<span class="number">3</span>) = parallel.FevalFuture;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">3</span></span><br><span class="line">    b(<span class="built_in">i</span>) = parfeval(backgroundPool, @task, <span class="number">1</span>, <span class="built_in">i</span>, <span class="string">&#x27;backgroundPool&#x27;</span>); <span class="comment">% 以参数i调用 task 函数并进行后台计算</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">afterEach(b, @<span class="built_in">disp</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">task</span><span class="params">(taskID,poolType)</span></span></span><br><span class="line">    pause(<span class="number">5</span>);</span><br><span class="line">    output = sprintf(<span class="string">&#x27;Task %d is done in %s at %s&#x27;</span>, taskID, poolType,datetime(<span class="string">&#x27;now&#x27;</span>));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Task 2 is done in backgroundPool at 2023-11-25 14:13:03<br>
+Task 3 is done in backgroundPool at 2023-11-25 14:13:03<br>
+Task 1 is done in backgroundPool at 2023-11-25 14:13:03</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>backgroundPool 能后台保存文件吗？</p>
+<ul>
+<li>
+<p>✅ 后台保存图像</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">img = imread(<span class="string">&#x27;cameraman.tif&#x27;</span>);</span><br><span class="line">f = parfeval(backgroundPool, @imwrite, <span class="number">0</span>, img, <span class="string">&#x27;test_backgroundPool.jpg&#x27;</span>);</span><br><span class="line">afterEach(f,@done,<span class="number">0</span>);</span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&quot;Waiting for imwrite&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">done</span><span class="params">(~)</span></span></span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&quot;done&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>✅ 后台保存表格</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="built_in">zeros</span>(<span class="number">512</span>,<span class="number">512</span>);</span><br><span class="line">f = parfeval(backgroundPool, @writematrix, <span class="number">0</span>, m, <span class="string">&#x27;test.csv&#x27;</span>);</span><br><span class="line">afterEach(f,@done,<span class="number">0</span>);</span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&quot;Waiting for imwrite&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>✅ 后台调用txt</p>
+<ul>
+<li>
+<p>fopen</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="built_in">zeros</span>(<span class="number">512</span>,<span class="number">512</span>);</span><br><span class="line">f = parfeval(backgroundPool, @writetext, <span class="number">0</span>,<span class="string">&#x27;./test.txt&#x27;</span>, <span class="string">&#x27;Hello Matlab&#x27;</span>);</span><br><span class="line">afterEach(f,@done,<span class="number">0</span>);</span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&quot;Waiting for imwrite&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">done</span><span class="params">(~)</span></span></span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&quot;done&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">writetext</span><span class="params">(fullpath,str)</span></span></span><br><span class="line">    fid = fopen(fullpath, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line">    fprintf(fid, str);</span><br><span class="line">    fclose(fid);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>writelines</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="built_in">zeros</span>(<span class="number">512</span>,<span class="number">512</span>);</span><br><span class="line">f = parfeval(backgroundPool, @writelines, <span class="number">0</span>, <span class="string">&#x27;Hello Matlab&#x27;</span>,<span class="string">&#x27;./test.txt&#x27;</span>);</span><br><span class="line">afterEach(f,@done,<span class="number">0</span>);</span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&quot;Waiting for imwrite&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">done</span><span class="params">(~)</span></span></span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&quot;done&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>注意：backgroundPool 后台运行的函数如果有disp，并不会显示到主线程</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">b(<span class="number">1</span>:<span class="number">8</span>) = parallel.FevalFuture;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    b(<span class="built_in">i</span>) = parfeval(backgroundPool, @task, <span class="number">1</span>, <span class="built_in">i</span>, <span class="string">&#x27;backgroundPool&#x27;</span>); <span class="comment">% 以参数i调用 task 函数并进行后台计算</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">task</span><span class="params">(taskID,poolType)</span></span></span><br><span class="line">    pause(<span class="number">5</span>);</span><br><span class="line">    fprintf(<span class="string">&#x27;Task %d is done in %s at %s&#x27;</span>, taskID, poolType,datetime(<span class="string">&#x27;now&#x27;</span>));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>可以添加<code>afterEach(f, @disp, 0);</code>来显示</p>
+</li>
+<li>
+<p>backgroundPool 是Matlab 2021b才出的功能，backgroundPool的作用是什么，parfeval本身不是支持后台运行任务吗</p>
+<ul>
+<li>
+<p>我的想法</p>
+<ul>
+<li>更轻便：当MATLAB基于进程的并行池第一次启动时，通常需要几秒钟的时间，基于线程的并行池会快些，需要指定线程或进程个数，而backgroundPool会根据需要自行扩展后台线程数，backgroundPool会更轻便。</li>
+<li>基于线程：backgroundPool 基于线程，并不占用基于进程的并行池.</li>
+<li>
+<blockquote>
+<p>疑惑：暂时没觉得parfeval调用基于线程的并行池和调用backgroundPool有什么区别</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>举例（我的电脑核心数为8）</p>
+<ul>
+<li>
+<p>8个基于进程的并行池和8个后台池都同时执行完成了所有任务</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">delete(gcp(<span class="string">&#x27;nocreate&#x27;</span>))</span><br><span class="line">pool=parpool(<span class="string">&#x27;Processes&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% 并行池后台异步执行多个任务</span></span><br><span class="line">f(<span class="number">1</span>:<span class="number">8</span>) = parallel.FevalFuture;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    f(<span class="built_in">i</span>) = parfeval(pool, @task, <span class="number">1</span>, <span class="built_in">i</span>, <span class="string">&#x27;parpool&#x27;</span>); <span class="comment">% 以参数i调用 task 函数并进行并行计算</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">afterEach(f, @<span class="built_in">disp</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b(<span class="number">1</span>:<span class="number">8</span>) = parallel.FevalFuture;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    b(<span class="built_in">i</span>) = parfeval(backgroundPool, @task, <span class="number">1</span>, <span class="built_in">i</span>, <span class="string">&#x27;backgroundPool&#x27;</span>); <span class="comment">% 以参数i调用 task 函数并进行后台计算</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">afterEach(b, @<span class="built_in">disp</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">task</span><span class="params">(taskID,poolType)</span></span></span><br><span class="line">    pause(<span class="number">5</span>);</span><br><span class="line">    output = sprintf(<span class="string">&#x27;Task %d is done in %s at %s&#x27;</span>, taskID, poolType,datetime(<span class="string">&#x27;now&#x27;</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Task 4 is done in parpool at 2023-11-25 11:41:46<br>
+Task 2 is done in parpool at 2023-11-25 11:41:46<br>
+Task 3 is done in parpool at 2023-11-25 11:41:46<br>
+Task 5 is done in parpool at 2023-11-25 11:41:46<br>
+Task 8 is done in parpool at 2023-11-25 11:41:46<br>
+Task 6 is done in parpool at 2023-11-25 11:41:46<br>
+Task 1 is done in parpool at 2023-11-25 11:41:46<br>
+Task 7 is done in parpool at 2023-11-25 11:41:46<br>
+Task 1 is done in backgroundPool at 2023-11-25 11:41:46<br>
+Task 7 is done in backgroundPool at 2023-11-25 11:41:46<br>
+Task 5 is done in backgroundPool at 2023-11-25 11:41:46<br>
+Task 2 is done in backgroundPool at 2023-11-25 11:41:46<br>
+Task 6 is done in backgroundPool at 2023-11-25 11:41:46<br>
+Task 3 is done in backgroundPool at 2023-11-25 11:41:46<br>
+Task 4 is done in backgroundPool at 2023-11-25 11:41:46<br>
+Task 8 is done in backgroundPool at 2023-11-25 11:41:46</p>
+</li>
+<li>
+<p>8个基于线程的并行池和8个后台池同时运行，后台池只能抢到一个线程，等到基于线程的并行池的任务全部完成，后台池才能用其他的线程执行任务</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">delete(gcp(<span class="string">&#x27;nocreate&#x27;</span>))</span><br><span class="line">pool=parpool(<span class="string">&#x27;Threads&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% 并行池后台异步执行多个任务</span></span><br><span class="line">f(<span class="number">1</span>:<span class="number">8</span>) = parallel.FevalFuture;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    f(<span class="built_in">i</span>) = parfeval(pool, @task, <span class="number">1</span>, <span class="built_in">i</span>, <span class="string">&#x27;parpool&#x27;</span>); <span class="comment">% 以参数i调用 task 函数并进行并行计算</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">afterEach(f, @<span class="built_in">disp</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b(<span class="number">1</span>:<span class="number">8</span>) = parallel.FevalFuture;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    b(<span class="built_in">i</span>) = parfeval(backgroundPool, @task, <span class="number">1</span>, <span class="built_in">i</span>, <span class="string">&#x27;backgroundPool&#x27;</span>); <span class="comment">% 以参数i调用 task 函数并进行后台计算</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">afterEach(b, @<span class="built_in">disp</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">task</span><span class="params">(taskID,poolType)</span></span></span><br><span class="line">    pause(<span class="number">5</span>);</span><br><span class="line">    output = sprintf(<span class="string">&#x27;Task %d is done in %s at %s&#x27;</span>, taskID, poolType,datetime(<span class="string">&#x27;now&#x27;</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Task 7 is done in parpool at 2023-11-25 11:48:19<br>
+Task 6 is done in parpool at 2023-11-25 11:48:19<br>
+Task 3 is done in parpool at 2023-11-25 11:48:19<br>
+Task 4 is done in parpool at 2023-11-25 11:48:19<br>
+Task 8 is done in parpool at 2023-11-25 11:48:19<br>
+Task 2 is done in parpool at 2023-11-25 11:48:19<br>
+Task 5 is done in parpool at 2023-11-25 11:48:19<br>
+Task 1 is done in backgroundPool at 2023-11-25 11:48:19<br>
+Task 1 is done in parpool at 2023-11-25 11:48:19<br>
+Task 2 is done in backgroundPool at 2023-11-25 11:48:24<br>
+Task 3 is done in backgroundPool at 2023-11-25 11:48:24<br>
+Task 7 is done in backgroundPool at 2023-11-25 11:48:24<br>
+Task 8 is done in backgroundPool at 2023-11-25 11:48:24<br>
+Task 5 is done in backgroundPool at 2023-11-25 11:48:24<br>
+Task 4 is done in backgroundPool at 2023-11-25 11:48:24<br>
+Task 6 is done in backgroundPool at 2023-11-25 11:48:24</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="获取后台运行结果"><a class="markdownIt-Anchor" href="#获取后台运行结果"></a> 获取后台运行结果</h2>
+<p><code>fetchOutputs</code>、<code>fetchNext</code>手动获取后台结果，<code>afterEach</code>、<code>afterAll</code>后台运行完成自动执行函数获取结果</p>
+<ul>
+<li>
+<p>手动获取后台结果</p>
+<ul>
+<li>
+<p>fetchOutputs：运行完之后获取结果，虽然能后台运行，但是如果没处理完，你直接fetchOutputs，就会卡住</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">f = parfeval(backgroundPool,@test_pause,<span class="number">1</span>,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fetchOutputs(f)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> = <span class="title">test_pause</span><span class="params">(t)</span></span></span><br><span class="line">    pause(t);</span><br><span class="line">    a =<span class="number">5</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/parallel.fevalfuture.fetchnext.html">fetchNext</a>：Retrieve next unread outputs from <code>Future</code> array</p>
+<ul>
+<li>
+<p>多次运行一个函数，直到找到令人满意的结果。在这种情况下，当结果大于0.95时，取消 F。（好像和while没差，可能就是在处理的过程中还能后台产生值，更快一些）</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">for</span> idx = N:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    F(idx) = parfeval(backgroundPool,@<span class="built_in">rand</span>,<span class="number">1</span>); <span class="comment">% Create a random scalar</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">result = NaN; <span class="comment">% No result yet</span></span><br><span class="line"><span class="keyword">for</span> idx = <span class="number">1</span>:N</span><br><span class="line">    [~, thisResult] = fetchNext(F);</span><br><span class="line">    <span class="keyword">if</span> thisResult &gt; <span class="number">0.95</span></span><br><span class="line">        result = thisResult;</span><br><span class="line">        <span class="comment">% Have all the results needed, so break</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% With required result, cancel any remaining futures</span></span><br><span class="line">cancel(F)</span><br><span class="line">result</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>请求几个任务，并在等待完成后更新进度条。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">for</span> idx = N:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    <span class="comment">% Compute the rank of N magic squares</span></span><br><span class="line">    F(idx) = parfeval(backgroundPool,@rank,<span class="number">1</span>,<span class="built_in">magic</span>(idx));</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="comment">% Build a waitbar to track progress</span></span><br><span class="line">h = waitbar(<span class="number">0</span>,<span class="string">&#x27;Waiting for FevalFutures to complete...&#x27;</span>);</span><br><span class="line">results = <span class="built_in">zeros</span>(<span class="number">1</span>,N);</span><br><span class="line"><span class="keyword">for</span> idx = <span class="number">1</span>:N</span><br><span class="line">    [completedIdx,thisResult] = fetchNext(F);</span><br><span class="line">    <span class="comment">% Store the result</span></span><br><span class="line">    results(completedIdx) = thisResult;</span><br><span class="line">    <span class="comment">% Update waitbar</span></span><br><span class="line">    waitbar(idx/N,h,sprintf(<span class="string">&#x27;Latest result: %d&#x27;</span>,thisResult));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">delete(h)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>运行完之后自动获取结果：afterEach 和 afterAll 区别</p>
+<ul>
+<li>
+<p>afterEach：<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/parallel.future.aftereach.html">Run function after each function finishes running in the background - MATLAB afterEach - MathWorks 中国</a></p>
+<p>B = afterEach(A,fcn,n)<br>
+B = afterEach(A,fcn,n,PassFuture=true)</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">f = parfeval(backgroundPool,@test_pause,<span class="number">1</span>,<span class="number">10</span>);</span><br><span class="line">afterEach(f,@<span class="built_in">disp</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">5</span></span><br><span class="line">    f(<span class="built_in">i</span>) = parfeval(backgroundPool,@<span class="built_in">rand</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">afterEach(f,@<span class="built_in">disp</span>,<span class="number">0</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PassFuture=true作用</p>
+<ul>
+<li>表示回调函数fcn的输入参数是Future数组中的每个Future元素，而不是执行函数的输出结果。这样做的意义是，即使某次执行中发生了错误，也不会影响回调函数的执行</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>afterAll：<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/parallel.future.afterall.html">Run function after all functions finish running in the background - MATLAB afterAll - MathWorks 中国</a></p>
+<p>例子：每次完成任务后更新进度条，全部任务完成后关闭进度条</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">w = waitbar(<span class="number">0</span>,<span class="string">&#x27;Please wait ...&#x27;</span>);</span><br><span class="line">N = <span class="number">20</span>;</span><br><span class="line">w.UserData = [<span class="number">0</span> N];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:N</span><br><span class="line">    delay = <span class="built_in">rand</span>;</span><br><span class="line">    f(<span class="built_in">i</span>) = parfeval(backgroundPool,@pause,<span class="number">0</span>,delay);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">afterEach(f,@(~)updateWaitbar(w),<span class="number">0</span>);</span><br><span class="line">afterAll(f,@(~)delete(w),<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateWaitbar</span><span class="params">(w)</span></span></span><br><span class="line">    <span class="comment">% Update a waitbar using the UserData property.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">% Check if the waitbar is a reference to a deleted object</span></span><br><span class="line">    <span class="keyword">if</span> isvalid(w)</span><br><span class="line">        <span class="comment">% Increment the number of completed iterations </span></span><br><span class="line">        w.UserData(<span class="number">1</span>) = w.UserData(<span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">% Calculate the progress</span></span><br><span class="line">        progress = w.UserData(<span class="number">1</span>) / w.UserData(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">% Update the waitbar</span></span><br><span class="line">        waitbar(progress,w);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="dataqueue"><a class="markdownIt-Anchor" href="#dataqueue"></a> DataQueue</h2>
+<blockquote>
+<p>可以把其他线程发过来的数据展示到当前进程，比如使用imshow自动展示后台处理的图片、对工业相机拍摄的图像后台处理后实时展示。不过貌似对f使用afterEach就好了，有什么场景需要用这个吗？</p>
+</blockquote>
+<p>例子</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 创建一个 DataQueue 对象，用于接受后台线程的data，执行处理函数 </span></span><br><span class="line">q = parallel.pool.DataQueue;</span><br><span class="line">afterEach(q,@showImage);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 后台模糊图像</span></span><br><span class="line">img = imread(<span class="string">&#x27;cameraman.tif&#x27;</span>);</span><br><span class="line">f = parfeval(backgroundPool,@blurImage,<span class="number">1</span>,q,img);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% 用来模糊图像，并将结果发送到 DataQueue</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blurred_img</span> = <span class="title">blurImage</span> <span class="params">(q,img)</span></span></span><br><span class="line"></span><br><span class="line">    blurred_img = imgaussfilt (img, <span class="number">2</span>); <span class="comment">% 使用高斯滤波模糊图像</span></span><br><span class="line">    send (q, blurred_img); <span class="comment">% 将模糊后的图像发送到 DataQueue end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% 用来接收 DataQueue 的数据，并显示图像 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showImage</span> <span class="params">(data)</span> </span></span><br><span class="line">    <span class="built_in">figure</span>;</span><br><span class="line">	imshow (data);</span><br><span class="line">	title (<span class="string">&#x27;Blurred Image&#x27;</span>); </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>函数</p>
+<ul>
+<li>
+<p>send(q,data) 将值为 data 的数据项发送到队列 q。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/parallel.pool.dataqueue.send.html">将数据发送到 DataQueue 或 PollableDataQueue - MATLAB send - MathWorks 中国</a></li>
+</ul>
+</li>
+<li>
+<p><code>afterEach</code></p>
+</li>
+<li>
+<p>poll ：Retrieve data from <code>PollableDataQueue</code></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/parallel.pool.pollabledataqueue.poll.html">Retrieve data from PollableDataQueue - MATLAB poll - MathWorks 中国</a></li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html">协程 Coroutine 是什么？Python 的async用法</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/what-is-the-color-why-can-we-see-color-1v2pq4.html">颜色是什么？为什么我们能看到颜色？</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="Achuan-2/Achuan-2.github.io" data-repo-id="R_kgDOIT0sJw" data-category="Q&A" data-category-id="DIC_kwDOIT0sJ84CSMyl" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">项目</span><a href="/wiki/">None</a></div><div class="sitemap-group"><span class="fs15">社交</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs15">更多</span><a target="_blank" rel="noopener" href="https://github.com/Achuan-2/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Achuan-2</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#parfeval-%E5%BC%82%E6%AD%A5%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-text"> parfeval 异步后台运行函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#backgroundpool-%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%87%BD%E6%95%B0%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text"> backgroundPool 后台运行函数（支持多线程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-text"> 获取后台运行结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataqueue"><span class="toc-text"> DataQueue</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.28.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"giscus":{"js":"/js/services/giscus_new.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.swiper-slide img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
+<script>var posts=["/post/20240427-stellar-theme-update-v1280-and-decoration-zanvt4.html","/post/a-mother-s-reflection-z17orfm.html","/post/20231104-updated-win11-23h2-1xki6y.html","/post/23-years-old-zggy4y.html","post/c873b400.html","post/8b29a079.html","/post/book-recommendation-self-study-is-the-door-craft-zja4yb.html","/post/draw-calcium-imaging-hot-pictures-with-matlab-and-use-kmeans-clustering-qp7bq.html","/post/groupy-2-multi-window-management-tool-upgrade-experience-ocrer.html","/post/how-does-matlab-convert-graphics-into-outline-zo6ihg.html","/post/how-does-matlab-turn-the-image-to-uint8-z29w8nb.html","/post/how-do-you-know-what-you-took-by-automatic-vending-machine-jeapx.html","/post/how-does-matlab-give-the-rgb-image-specified-area-and-assign-the-color-in-batches-i1rsr.html","/post/how-to-give-the-roi-number-in-mask-zm8e9p.html","/post/how-to-use-abbyy-and-acrobat-to-add-bookmarks-and-directory-to-the-book-scanning-version-of-the-book-scanning-version-of-pdf-e6kup.html","/post/how-to-make-water-special-zi87c0.html","/post/i-ca-n-t-find-a-satisfactory-word-template-on-the-entire-network-so-i-made-one-myself-nano3.html","/post/js-dom-operation-1rrvs2.html","/post/i-finally-empty-the-circle-of-friends-oko3o.html","/post/is-there-a-function-like-npclip-like-npclip-limiting-the-maximum-and-minimum-value-of-the-array-1deveo.html","/post/matlab-basic-programming-grammar-1ghj9i.html","/post/matlab-2024a-everbright-functional-writing-experience-big-upgrade-eao4i.html","/post/matlab-arguments-to-return-the-function-to-the-function-2e76vf.html","/post/matlab-background-asynchronous-execution-function-z1zmis9.html","/post/matlab-control-the-gentl-protocol-high-speed-camera-z6wcf.html","/post/matlab-custom-code-supports-roller-amplification-and-drag-pictures-20eamw.html","/post/matlab-different-ctrl-mouse-right-and-mouse-right-click-1f0inv.html","/post/matlab-directly-judges-the-return-value-of-the-matrix-with-if-zqyaqj.html","/post/matlab-read-view-save-tiff-1pkevw.html","/post/matlab-reshape-scan-and-fill-in-columns-easy-to-step-on-the-pit-18flah.html","/post/matlab-superimposes-mask-a-certain-transparency-to-the-image-2seqqa.html","post/a86a49b6.html","/post/outside-the-number-glados-sign-in-baiji-is-not-easy-anymore-z2vxoy1.html","/post/python-uses-npvectorize-directional-function-to-perform-batch-processing-ipcdn.html","post/e93c4010.html","/post/scan-the-pdf-batch-with-python-batch-to-add-bookmarks-zn2z7s.html","/post/siyuan-note-use-quicker-action-to-seamlessly-link-with-zotero-zejypu.html","/post/siyuan-notes-good-partner-the-strongest-clipboard-artifact-copyq-z2grwhp.html","/post/thinking-about-waiting-power-and-order-f3swz.html","post/3bc3857.html","post/cf0a2858.html","post/f5348a5e.html","/post/what-is-the-difference-between-matlab-hello-world-vs-hello-world-single-quotation-number-and-dual-quotation-number-z1ynuyi.html","post/c873b400.html","/post/what-is-the-color-why-can-we-see-color-1v2pq4.html","/post/what-is-corporate-coroutine-python-s-async-usage-zp0b11.html","/post/why-can-convex-lens-be-used-z1cu3qk.html","/post/write-a-wechat-public-account-article-with-markdown-zatxal.html","/post/why-can-human-eyes-see-virtual-statues-z1og6up.html","/post/why-can-small-hole-imaging-be-used-and-large-holes-cannot-be-imaged-z2rx7bz.html","post/134ab329.html","post/d2b2fba7.html","post/e977bfe7.html","post/50f47788.html","post/d766b22.html","post/6e57daa8.html","post/291034.html","post/c6467c9c.html","post/595885f1.html","post/bc4b56d9.html","post/be13a22e.html","/post/immersive-translation-finally-supports-rich-text-translation-z1hrao8.html","/post/T Test.html","/post/anova-variance-analysis-g7i0c.html","/post/life-tips-gun-why-can-oily-pen-can-be-written-on-plastic-1ruwyi.html","/post/js-gun-mutationobserver-dom-change-observer-z1ygppd.html","/post/matlab-deep-learning-gun-activation-diagram-of-visualized-convolutional-neural-network-cnn-njgh6.html","/post/jiefang-poor-analysis-ancova-rxm1i.html","/post/matlab-deep-learning-gun-new-coronary-pneumonia-x-ray-chest-test-based-on-resnet-z1ibtf8.html","/post/matlab-deep-learning-gun-use-deep-learning-to-classify-network-camera-images-kbghh.html","/post/matlab-optimization-abnormal-processing-fprintf-s-wonderful-use-z2wefdb.html","/post/my-note-management-method-in-onenote-wolai-zrqwln.html","/post/think-about-how-i-should-spend-my-day-zl38tl.html","/post/moc-manage-the-notes-link-to-the-theme-4uatt.html","/post/why-write-a-diary-hhfd6.html"];function toRandomPost(){ var randomPath = posts[Math.floor(Math.random()*posts.length)]; var encodedPath = encodeURIComponent(randomPath); window.open('/' + encodedPath, "_self"); };</script>
