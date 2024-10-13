@@ -1,7 +1,7 @@
 ---
 title: 非参数检验丨Friedman’s test （多配对样本）
-date: '2024-08-04 11:18:12'
-updated: '2024-10-11 22:15:04'
+date: '2024-10-13 11:49:00'
+updated: '2024-10-13 11:49:01'
 excerpt: >-
   Friedman检验是一种非参数检验，也叫M检验，是重复测量方差分析的非参数检验版本，是Kruskal-Wallis检验的配对样本版本，可以认为是用于两组配对的符号检验的扩展，用于比较三个或更多配对的研究组。由美国经济学家Milton
   Friedman在1937年提出的。
@@ -16,7 +16,7 @@ toc: true
 
 ## 什么是Friedman检验？
 
-Friedman检验是一种非参数检验，也叫M检验，是重复测量方差分析的非参数检验版本，是Kruskal-Wallis检验的配对样本版本，可以认为是用于两组配对的符号检验的扩展，用于比较三个或更多配对的研究组。由美国经济学家Milton Friedman在1937年提出的。
+Friedman检验是一种非参数检验，也叫M检验，是重复测量方差分析的非参数检验版本，是Kruskal-Wallis检验的配对样本版本，可以认为是用于两组配对的符号检验的扩展，用于比较三个或更多配对的研究组。由美国经济学家[Milton Friedman](https://en.wikipedia.org/wiki/Milton_Friedman)在1937年提出。
 
 ## Friedman检验的适用条件
 
@@ -27,7 +27,7 @@ Friedman检验是一种非参数检验，也叫M检验，是重复测量方差�
     2. 两个配对样本请用sign test（符号检验）或Wilcoxon Signed Rank Test
 3. 数据是序数类型或连续类型
 
-## **何时使用Friedman检验?**
+## 何时使用Friedman检验?
 
 Friedman检验通常用于两种情况：
 
@@ -47,7 +47,9 @@ Friedman检验通常用于两种情况：
 
 Friedman检验首先从低到高排列每行（区块）不同处理中的值。每一行均分开排列。然后对每个处理（列）中的秩求和。如果总和相差很大，则P值会很小。
 
-**1️⃣ 数据排序：对每个受试对象的k个观测值单独进行排序,赋予秩次1到k。（不能像Kruskal-Wallis法那样将所有样本放在一起排序）**
+**1️⃣ 数据排序：对每个受试对象的k个观测值单独进行排序,赋予秩次1到k。**
+
+> **是对每个对象的观测值单独进行排序，不能像Kruskal-Wallis法那样将所有样本放在一起排序**
 
 然后计算各处理的秩和:
 
@@ -57,7 +59,7 @@ $$
 
 其中$R_j$是第j个处理的秩和,$R_{ij}$是第i个受试对象在第j个处理下的秩次。
 
-**2️⃣ 计算Friedman统计量**​**$Q$**​ **:**
+**2️⃣ 计算Friedman统计量**​$Q$:
 
 公式
 
@@ -67,8 +69,8 @@ $$
 
 其中:
 
-* n是受试对象数量
-* k是处理方法数量
+* $n$是受试对象数量
+* $k$是处理方法数量
 * $R_j$是第j个处理的秩和
 
 如果样本中存在结值（相同秩次），需要调整公式中的 Q 统计量，校正公式为:
@@ -98,7 +100,7 @@ $$
 ## Friedman检验和Kruskal-Wallis检验区别？
 
 * Friedman检验用于比较**三个或更多相关样本**的中位数差异。它是**重复测量方差分析**的非参数替代方法。
-* Kruskal-Wallis检验用于比较**三个或更多独立样本**的中位数差异。它是**单因素方差分析**的非参数替代方法。
+* 而Kruskal-Wallis检验是用于比较**三个或更多独立样本**的中位数差异。它是**单因素方差分析**的非参数替代方法。
 
 ## Friedman检验的具体例子
 
@@ -116,9 +118,9 @@ $$
 
 这是样本量为3的4个相关样本。有：
 
-k\=4
+处理方法 k\=4
 
-n\=3
+受试对象 n\=3
 
 由于样本量很小且测量水平较低(仅仅是离散评分)，应当采用检验相关样本大小的Friedman秩方差分析。检验的原假设为：
 
@@ -234,9 +236,7 @@ $$
 
 因样本量较大，可直接根据自由度为2的$\chi^2$分布计算pvalue，pvalue = 0.0103<0.05
 
-故拒绝检验的原假设。
-
-研究结论是：三城市大气质量有明显差异
+故拒绝检验的原假设，接受备选假设，认为三城市大气质量有明显差异
 
 ## Friedman检验实现
 
@@ -248,7 +248,7 @@ $$
 
 ### GraphPad Prism
 
-[Tutorial for :  GraphPad Friedman test 教學 (youtube.com)](https://www.youtube.com/watch?v=PAnLMvuu928)
+教程：[Tutorial for :  GraphPad Friedman test 教學 (youtube.com)](https://www.youtube.com/watch?v=PAnLMvuu928)
 
 ​![PixPin_2024-10-05_14-24-49](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/PixPin_2024-10-05_14-24-49-20241005142458-gaynzwz.png)​
 
