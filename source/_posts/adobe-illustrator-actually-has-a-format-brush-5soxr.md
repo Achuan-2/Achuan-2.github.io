@@ -5,6 +5,8 @@ updated: '2024-11-01 15:51:45'
 permalink: /post/adobe-illustrator-actually-has-a-format-brush-5soxr.html
 comments: true
 toc: true
+categories:
+  - 研究生的自我修养
 ---
 
 
