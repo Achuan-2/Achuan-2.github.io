@@ -43,11 +43,11 @@ $$
 
 如果直接比较分数，我们会认为a同学的英语成绩更好。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20241013192740-6npzjp5.png)​
+​![image](https://fastly.jsdelivr.net/assets/image-20241013192740-6npzjp5.png)​
 
 但是，计算两门课程的偏差值后，我们就会发现a同学的数学成绩在班上排名实际上是更靠前的。
 
-​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20241013192905-wi083di.png)​
+​![image](https://fastly.jsdelivr.net/assets/image-20241013192905-wi083di.png)​
 
 ​![image](https://raw.githubusercontent.com/Achuan-2/Picbed/pic/assets/image-20241013193426-tkk7xtc.png)​
 
