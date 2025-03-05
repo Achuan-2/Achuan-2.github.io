@@ -18,6 +18,8 @@ toc: true
 
 场景：git不小心上传了一个大文件，导致无法上传repo到Github，需要把这个大文件的git历史全部删除，仅仅靠`git rm -r --cached --ignore-unmatch`​ 和`.gitignore`​只会删除索引文件，git历史中依然有文件的提交历史，占用空间，需要想办法彻底删除
 
+​![git 删除文件的所有提交历史](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/git%20%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2-20250305192349-sykem3c.svg)​
+
 ## ​`git rm -r --cached --ignore-unmatch`​ ❌
 
 * 这个只会删除文件跟踪，但是文件依然会存在于之前commit历史中
@@ -46,7 +48,7 @@ git filter-branch --force --index-filter \
 
 ## ​`git-filter-repo`​🙂
 
-参考：[git-filter-repo/Documentation/converting-from-filter-branch.md at main · newren/git-filter-repo](https://github.com/newren/git-filter-repo/blob/main/Documentation/converting-from-filter-branch.md#removing-a-file)
+参考：[git-filter-repo/Documentation/converting-from-filter-branch.md](https://github.com/newren/git-filter-repo/blob/main/Documentation/converting-from-filter-branch.md#removing-a-file)
 
 安装filter-repo
 
