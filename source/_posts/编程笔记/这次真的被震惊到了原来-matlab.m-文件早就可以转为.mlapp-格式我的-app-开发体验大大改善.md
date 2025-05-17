@@ -12,13 +12,17 @@ toc: true
 
 
 
+
+
+![matlab app](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/matlab%20app-20250518003107-7lfp3n3.svg)​
+
 ## 背景
 
 matlab的app designer是目前我见过的所有代码语言里，做app最方便的，GUI界面的设计和代码放在一起，无脑拖动控件进去，然后右键添加回调写功能，可以便捷切换界面视图改界面和切换代码视图改代码。
 
 ![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/image-20250517234037-0hdeqrm.png)
 
-但是matlab的app文件（.mlapp后缀) 保存是二进制文件，无法直接用ai来改代码，以及不方便使用git进行版本控制
+但是matlab的app文件（.mlapp后缀) 保存是二进制文件（实际是压缩包，见文章末尾的菜单），无法直接用ai来改代码，以及不方便使用git进行版本控制
 
 虽然可以把.mlapp文件导出为.m，但是这种方式是不可逆的，官方没有提供把.m文件再转为.mlapp的功能，目前我把app导出为.m的用途主要有两种
 
@@ -49,6 +53,8 @@ mlappFullPath = m2mlapp(mFileFullPath, varargin);
 
 ### 可选的名称-值对参数：
 
+主要是给app添加一些metadata信息的
+
 （参数名称，类型，和默认值）
 
 - **Name** `scalar text (char | string)`​ \= `ClassName`​
@@ -65,7 +71,7 @@ mlappFullPath = m2mlapp(mFileFullPath, varargin);
 2. 在验证输入参数后，该函数将返回 .MLAPP 文件的名称；如果出现解析器错误，则返回一个空输出。
 3. 在 App Designer 环境中加载的类具有固定的结构，这限制了自定义, .m文件需要注意代码是否符合这个结构。在该结构中，第一部分是组件的声明（根据它们的堆叠顺序）；然后是可编辑的部分（属性、方法和回调）；最后是用于创建组件以及构建或删除应用的方法。
 
-    这里需要特别注意，组件Properties声明和createComponents(app)声明的顺序需要一致，不然会报错
+    这里需要特别注意，组件Properties声明和createComponents(app)声明的顺序需要一致，不然会报错。如果让ai写.m格式的app，需要注意加下提示词。
 
     ```matlab
     >> m2mlapp('CalciumDeltaFCaculator.m');
@@ -107,7 +113,7 @@ CalciumDeltaFCaculator.m
 
 ![PixPin_2025-05-17_23-24-00](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-05-17_23-24-00-20250517232402-qiv70yb.png)
 
-## 支持.m转为mlapp可以有哪些骚操作
+## .mlapp和.m支持互转后可以有哪些骚操作
 
 过去mlapp文件导出的.m文件只能当成独立的副本，无法互转，而现在实现两个文件格式的相互转换后，就能有如下的工作流：
 
@@ -115,4 +121,14 @@ CalciumDeltaFCaculator.m
 2. 让ai完善现有的app：已有的mlapp先导出为m文件，让ai修改，之后再转回去，这样修改app代码速度大大加快
 3. 优化app开发体验：matlab app designer的函数跳转太难受了，跳转了就不能回去，非常讨厌这一点，现在就可以导出为m文件，用vscode查看代码和修改代码，有更好的编辑体验和ai辅助开发体验，之后需要改页面以及加回调，再转为mlapp
 
-‍
+## 彩蛋：mlapp实际上是一个压缩包
+
+mlapp本质上其实是压缩包
+
+直接用7-zip打开文件，里面内容如下
+
+![PixPin_2025-05-18_00-16-24](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-05-18_00-16-24-20250518001629-nzau31f.png)
+
+matlab/document.xml文件的内容实际就是代码，理论上改document.xml就能修改代码了，但是我没改成功，可能还有其他文件涉及吧。
+
+![PixPin_2025-05-18_00-16-48](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-05-18_00-16-48-20250518001649-8sg9vjs.png)
