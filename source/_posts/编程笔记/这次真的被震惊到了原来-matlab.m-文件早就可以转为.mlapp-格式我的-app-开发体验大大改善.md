@@ -14,7 +14,9 @@ toc: true
 
 
 
-![matlab app](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/matlab%20app-20250518003107-7lfp3n3.svg)​
+![matlab](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/matlab-20250518004643-tmohygo.svg)
+
+‍
 
 ## 背景
 
@@ -22,7 +24,7 @@ matlab的app designer是目前我见过的所有代码语言里，做app最方�
 
 ![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/image-20250517234037-0hdeqrm.png)
 
-但是matlab的app文件（.mlapp后缀) 保存是二进制文件（实际是压缩包，见文章末尾的菜单），无法直接用ai来改代码，以及不方便使用git进行版本控制
+但是matlab的app文件（.mlapp后缀) 保存是二进制文件（实际是压缩包，见文章末尾的彩蛋），无法直接用ai来改代码，以及不方便使用git进行版本控制
 
 虽然可以把.mlapp文件导出为.m，但是这种方式是不可逆的，官方没有提供把.m文件再转为.mlapp的功能，目前我把app导出为.m的用途主要有两种
 
@@ -89,7 +91,7 @@ mlappFullPath = m2mlapp(mFileFullPath, varargin);
 
     ![PixPin_2025-05-17_18-10-37](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-05-17_18-10-37-20250517181047-ek0jqth.png)​
 
-    要和最后createComponent具体定义组件属性的顺序
+    要和最后createComponent具体定义组件属性的顺序一致
 
     ![PixPin_2025-05-17_18-11-06](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-05-17_18-11-06-20250517181130-9xi17xm.png)​
 
