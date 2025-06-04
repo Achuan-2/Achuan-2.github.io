@@ -33,104 +33,9 @@ pandoc 3.x，将markdown导出为docx时，会把图片的caption默认设置为
 
 所以我需要尝试修改pandoc的默认行为，使得docx图片标题与笔记软件里的预览效果一样
 
-![image](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/image-20250605002833-hlzmhza.png "导出word的效果")​
+![PixPin_2025-06-05_00-35-27](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-06-05_00-35-27-20250605003529-7p78rgr.png)
 
 参考这个issue提供的代码进行改进，[Lua filter on image captions does not work. · Issue #8974 · jgm/pandoc](https://github.com/jgm/pandoc/issues/8974)
-
-```
--- image-width.lua
--- A Pandoc Lua filter to adjust image widths based on caption format
--- Format: ![Caption text|width](image.png)
--- Function to create a new caption from text
-function create_caption(text)
-    -- For simple captions, we can just use a Str element
-    if text:find("^%s*$") then
-        -- Empty caption
-        return {}
-    else
-        -- Non-empty caption
-        return pandoc.Inlines(pandoc.Str(text))
-    end
-end
-
--- Function to process the image and extract width from caption
-function process_image(img)
-
-    -- Convert the caption to a single string
-    local caption_text = pandoc.utils.stringify(img.caption)
-
-    -- Check if the caption contains a pipe followed by a number
-    -- Using a more flexible pattern that looks for a pipe character followed by digits
-    local pipe_pos = caption_text:find("|")
-
-    if pipe_pos then
-
-        -- Extract the parts before and after the pipe
-        local new_caption = caption_text:sub(1, pipe_pos - 1)
-        local width_part = caption_text:sub(pipe_pos + 1)
-
-        -- Extract the width number from the width part
-        local width = width_part:match("(%d+)")
-
-        if width then
-
-            -- Update the image caption without the width part
-            img.caption = create_caption(new_caption)
-
-            -- Set the width attribute for the image (in pixels)
-            img.attributes.width = width .. "px"
-
-            -- Log the attributes
-            for k, v in pairs(img.attributes) do end
-
-            -- Return the modified image
-            return img
-        else
-        end
-    else
-    end
-
-    -- If no width specification was found, return the image unchanged
-    return img
-end
-
--- Handler for standalone images
-function Image(img) return process_image(img) end
-
--- Handler for Figure blocks (which may contain images)
-function Figure(fig)
-
-    -- Check if the figure has an image
-    for i, block in ipairs(fig.content) do
-        if block.t == "Plain" then
-            for j, inline in ipairs(block.content) do
-                if inline.t == "Image" then
-                    -- Process the image
-                    local processed_image = process_image(inline)
-                    -- Update the image in the figure
-                    block.content[j] = processed_image
-
-                    -- Also update the figure caption if needed
-                    if processed_image.caption then
-                        -- Extract the caption text
-                        local caption_text =
-                            pandoc.utils.stringify(processed_image.caption)
-                        -- Update the figure caption
-                        fig.caption = create_caption(caption_text)
-                    end
-                end
-            end
-        end
-    end
-
-    return fig
-end
-
--- Log when the filter is loaded
-
--- Return the filter
-return {{Image = Image}, {Figure = Figure}}
-```
 
 改进的代码
 
@@ -207,8 +112,106 @@ end
 return {{Image = Image}, {Figure = Figure}}
 ```
 
+给思源笔记的文献引用插件也贡献了这个代码：[导出图片标题使用title而不是alt文本 by Achuan-2 · Pull Request #104 · WingDr/siyuan-plugin-citation](https://github.com/WingDr/siyuan-plugin-citation/pull/104)
+
 ## 笔记
 
+- [Lua filter on image captions does not work. · Issue #8974 · jgm/pandoc](https://github.com/jgm/pandoc/issues/8974)提供的根据`![Caption text|width](image.png)`​中的alt文本修改图片大小修改caption的代码
+
+  ```lua
+  -- image-width.lua
+  -- A Pandoc Lua filter to adjust image widths based on caption format
+  -- Format: ![Caption text|width](image.png)
+  -- Function to create a new caption from text
+  function create_caption(text)
+      -- For simple captions, we can just use a Str element
+      if text:find("^%s*$") then
+          -- Empty caption
+          return {}
+      else
+          -- Non-empty caption
+          return pandoc.Inlines(pandoc.Str(text))
+      end
+  end
+
+  -- Function to process the image and extract width from caption
+  function process_image(img)
+
+      -- Convert the caption to a single string
+      local caption_text = pandoc.utils.stringify(img.caption)
+
+      -- Check if the caption contains a pipe followed by a number
+      -- Using a more flexible pattern that looks for a pipe character followed by digits
+      local pipe_pos = caption_text:find("|")
+
+      if pipe_pos then
+
+          -- Extract the parts before and after the pipe
+          local new_caption = caption_text:sub(1, pipe_pos - 1)
+          local width_part = caption_text:sub(pipe_pos + 1)
+
+          -- Extract the width number from the width part
+          local width = width_part:match("(%d+)")
+
+          if width then
+
+              -- Update the image caption without the width part
+              img.caption = create_caption(new_caption)
+
+              -- Set the width attribute for the image (in pixels)
+              img.attributes.width = width .. "px"
+
+              -- Log the attributes
+              for k, v in pairs(img.attributes) do end
+
+              -- Return the modified image
+              return img
+          else
+          end
+      else
+      end
+
+      -- If no width specification was found, return the image unchanged
+      return img
+  end
+
+  -- Handler for standalone images
+  function Image(img) return process_image(img) end
+
+  -- Handler for Figure blocks (which may contain images)
+  function Figure(fig)
+
+      -- Check if the figure has an image
+      for i, block in ipairs(fig.content) do
+          if block.t == "Plain" then
+              for j, inline in ipairs(block.content) do
+                  if inline.t == "Image" then
+                      -- Process the image
+                      local processed_image = process_image(inline)
+                      -- Update the image in the figure
+                      block.content[j] = processed_image
+
+                      -- Also update the figure caption if needed
+                      if processed_image.caption then
+                          -- Extract the caption text
+                          local caption_text =
+                              pandoc.utils.stringify(processed_image.caption)
+                          -- Update the figure caption
+                          fig.caption = create_caption(caption_text)
+                      end
+                  end
+              end
+          end
+      end
+
+      return fig
+  end
+
+  -- Log when the filter is loaded
+
+  -- Return the filter
+  return {{Image = Image}, {Figure = Figure}}
+  ```
 - pandoc 3新增了Figure对象，所以不能仅仅用`img.caption`​来修改图片标题
 
   ```lua
