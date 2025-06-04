@@ -10,6 +10,67 @@ categories: []
 
 
 
+![PixPin_2025-05-24_10-54-13](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-05-24_10-54-13-20250524105422-jx93k64.png)
+
+在数据分析、数据建模、科学计算的领域，Matlab 和 Python 一直是两大热门选择。不少人在两者之间犹豫不决，甚至争论不休：到底哪个更强大？哪个更适合自己的需求？
+
+但是小孩子才做选择！其实，Matlab 完全可以直接调用 Python，让你鱼和熊掌兼得！既能保留 Matlab 在界面交互上的优势，又能调用 Python 丰富的第三方库来处理数据。
+
+比如Matlab在科研绘图上有优势，可以把绘图文件保存为fig格式，后面需要修改样式不需要重跑代码，可以打开fig文件，直接修改配色、字体、宽高等样式，所以用代码来进行科研绘图我会选择Matlab而不是Python（此外.mat保存数据也很舒服，还能预览每个mat有什么，.npy就没那么方便）。但是一些最新的数据降维算法只有python有，而matlab没有（比如matlab就没有官方的umap降维方法，第三方实现又说不准靠不靠谱），这时候其实不用纠结，要不要用python绘图。matlab可以调用python的这些库，直接出结果，之后再用matlab来画图。
+
+再比如，matlab开发一个GUI界面非常傻瓜，我用matlab快速开发了一个连接硬件的app，但是后面想加一个功能，可以调用ai模型对采集的数据进行识别分类，这个模型python有现成的库和模型，我懒得用matlab重写，也懒得折腾matlab直接调用Pytorch模型，因为还要自己写处理代码才能得到想要的结果（这个话题后面我会分享），就可以直接调用python现成的调用模型出结果的代码，直接得到数据。
+
+除此之外，
+
+- matlab可以编译C/C++代码为mex文件来直接调用，以及调用动态库.dll
+- 可以调用java包，比如matlab可以通过调用java包ImarisLib.jar来操控imaris软件（见[为了统一imaris 3d重建后的视角，我写了一个插件））](https://mp.weixin.qq.com/s/E-tS6fNbyycsMIznmGi7ug)
+- 可以调用COM接口：许多企业软件（如 Microsoft Excel、Word、Outlook）和其他第三方工具通过 COM 接口暴露功能，MATLAB 可以通过 COM 自动化与这些软件交互，实现数据交换、自动化操作等。
+
+  一个例子：Matlab如何通过 COM 接口与 Excel 交互，将数据写入excel表，并直接在excel创建图表展示
+
+  ```matlab
+  % 创建 Excel COM 对象
+  excel = actxserver('Excel.Application');
+  excel.Visible = true; % 使 Excel 窗口可见，便于观察
+
+  % 创建一个新的工作簿
+  workbook = excel.Workbooks.Add;
+
+  % 选择第一个工作表
+  worksheet = workbook.Worksheets.Item(1);
+
+  % 假设有一些数据需要写入 Excel
+  data = rand(5, 3); % 随机生成一个 5x3 的矩阵作为示例数据
+  columnHeaders = {'Column1', 'Column2', 'Column3'};
+
+  % 写入列标题
+  for col = 1:length(columnHeaders)
+      colLetter = char('A' + col - 1);  % 转换数字为列字母 (A, B, C, ...)
+      worksheet.Range([colLetter '1']).Value = columnHeaders{col};
+  end
+
+  % 写入数据到 Excel
+  worksheet.Range('A2:C6').Value = data;
+
+  % 创建一个简单的图表
+  chart = worksheet.ChartObjects.Add(300, 20, 400, 300);
+  chart.Chart.SetSourceData(worksheet.Range('A1:C6'));
+
+
+
+  % 取消连接
+  delete(excel);
+
+  ```
+
+  ![PixPin_2025-05-24_11-18-00](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-05-24_11-18-00-20250524111803-yvsnnzg.png)
+
+在胶水语言能力上，个人觉得Matlab是不比python差的。
+
+好啦其他不多说了，下面详细介绍Matlab 如何调用 Python 代码
+
+> 其实python也能调用matlab的，比如VSCode的matlab插件就是用python的matlab engine实现一些功能的，但是对于数据分析方面，个人不太需要python调用matlab，就不展开讲了。
+
 ## Matlab 配置Python环境
 
 ### 使用pyenv来配置Matlab调用哪个python.exe
@@ -26,7 +87,7 @@ pyenv('Version', "C:\Users\Achuan-2\miniforge3\envs\MPM\python.exe",ExecutionMod
 >
 > matlab 2023b只支持python 3.9+
 >
-> 其他Matlab对Python的版本见：[Versions  of Python Compatible with MATLAB Products by Release - MATLAB &amp; Simulink (mathworks.cn)](https://ww2.mathworks.cn/support/requirements/python-compatibility.html)
+> 其他Matlab版本对Python的版本要求见：[Versions  of Python Compatible with MATLAB Products by Release - MATLAB &amp; Simulink (mathworks.cn)](https://ww2.mathworks.cn/support/requirements/python-compatibility.html)
 
 ### 测试python环境是否配置好
 
@@ -198,8 +259,6 @@ data =
     ['A', 'new', 'list']
 ```
 
-‍
-
 ##### 将 MATLAB 参数传递给 Python 脚本
 
 调用可以接受输入参数的 Python 脚本。
@@ -357,10 +416,6 @@ mymodule= py.importlib.import_module('mymodule');
 py.importlib.reload(mymodule);
 ```
 
-> 💡  具体使用案例
->
-> 见：Matlab 调用 cellpose 模块进行细胞分割
-
 #### 一个简单例子
 
 创建add_numbers.py
@@ -419,6 +474,8 @@ MATLAB 和 Python 的数据类型并不是一一对应的，但 MATLAB 提供了
 - 对于复杂数据类型（如嵌套结构体或单元数组），转换可能会受到限制，需要手动处理。
 
 ### 图像数据转ndarray
+
+图像数据比较特殊，需要单独转换
 
 把matlab读入的图像数据转为python的ndarray数据
 
