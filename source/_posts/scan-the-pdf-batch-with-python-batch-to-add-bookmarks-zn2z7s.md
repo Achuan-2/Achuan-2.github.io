@@ -1,5 +1,5 @@
 ---
-title: 用Python批量给扫描pdf添加书签
+title: 扫描PDF如何进行OCR+书签生成：不花一分钱，AI帮你完成
 date: '2024-03-06 21:31:53'
 updated: '2024-03-06 21:50:36'
 excerpt: >-
