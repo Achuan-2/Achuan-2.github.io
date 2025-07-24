@@ -51,7 +51,7 @@ toc: true
 
 ![PixPin_2025-07-24_17-43-26](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-07-24_17-43-26-20250724174345-pmjcd99.png)
 
-> 坚果云貌似也是一个毒瘤
+> 注：坚果云貌似也是一个毒瘤
 
 ![PixPin_2025-07-24_17-44-38](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/PixPin_2025-07-24_17-44-38-20250724174439-zaz8rmp.png)
 
