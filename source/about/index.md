@@ -32,7 +32,7 @@ Hi~各位好，我是Achuan-2，2000年生，目前是复旦大学神经生物�
 <!-- tab 联系方式 -->
 
 - Email: achuan-2@outlook.com
-- Wechat: achuan1037
+
 
 {% endtabs %}
 
